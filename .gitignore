@@ -1,0 +1,9 @@
+.DS_Store
+[Tt]humbs.db
+nbproject
+_notes
+dwsync.xml
+.svn*
+node_modules
+vendor
+.vscode
