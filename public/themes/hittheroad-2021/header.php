@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
@@ -7,8 +7,10 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header>
-        <nav role="navigation">
-            <?php wp_nav_menu(['theme_location' => 'navigation']); ?>
-        </nav>
-    </header>
+	<?php wp_body_open(); ?>
+	<a class="skip-link screen-reader-text" href="#content">Aller au contenu</a>
+
+	<div class="site">
+		<?php get_template_part('template-parts/header/site-header'); ?>
+
+		<main class="site-main" id="content">

@@ -1,0 +1,15 @@
+:root {
+	// colors
+	--color-black: #000;
+	--color-white: #fff;
+
+	// font stacks
+	--font-stack-common: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--font-stack-heading: var(--font-stack-common);
+
+	// font sizes
+	--font-size-root: 16px;
+
+	// Transitions
+	--transition-regular: .25s ease-in-out;
+}

@@ -12,5 +12,10 @@
     ">0.25%",
     "not ie 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.42.1",
+    "sass-loader": "^12.1.0"
+  }
 }

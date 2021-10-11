@@ -7,3 +7,5 @@ dwsync.xml
 node_modules
 vendor
 .vscode
+
+.env

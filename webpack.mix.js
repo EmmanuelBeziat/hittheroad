@@ -18,7 +18,8 @@ const theme = process.env.WP_THEME;
 mix.setResourceRoot('../');
 mix.setPublicPath(`public/themes/${theme}/assets`);
 
+mix.disableNotifications();
 mix.js('resources/scripts/app.js', 'app.js');
-mix.postCss('resources/styles/app.css', 'app.css', [
+mix.sass('resources/styles/app.scss', 'app.css', [
   //
 ]);
