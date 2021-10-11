@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a756ddb782d80ea04201b39741031c6",
+    "content-hash": "1dcc99210d18318a2b1acd61e8879cf4",
     "packages": [
         {
             "name": "composer/installers",
@@ -1043,6 +1043,24 @@
                 "source": "https://github.com/wordplate/headache/tree/1.2.0"
             },
             "time": "2021-05-11T13:17:13+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/filebird",
+            "version": "4.9.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/filebird/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/filebird.zip?timestamp=1633008436"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/filebird/"
         },
         {
             "name": "wpackagist-plugin/woocommerce",

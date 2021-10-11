@@ -11,6 +11,7 @@
         "php": "^7.3 || ^8.0",
         "wordplate/framework": "^9.5",
         "wordplate/headache": "^1.2",
+        "wpackagist-plugin/filebird": "^4.9",
         "wpackagist-plugin/woocommerce": "^5.7"
     },
     "config": {
