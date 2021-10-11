@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.3 || ^8.0",
-        "wordplate/framework": "^9.5"
+        "wordplate/framework": "^9.5",
+        "wordplate/headache": "^1.2",
+        "wpackagist-plugin/woocommerce": "^5.7"
     },
     "config": {
         "optimize-autoloader": true,
@@ -19,7 +21,8 @@
     "extra": {
         "installer-paths": {
             "public/mu-plugins/{$name}": [
-                "type:wordpress-muplugin"
+                "type:wordpress-muplugin",
+								"wordplate/headache"
             ],
             "public/plugins/{$name}": [
                 "type:wordpress-plugin"

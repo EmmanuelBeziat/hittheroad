@@ -2,7 +2,7 @@
 
 class HitTheRoad {
 	constructor () {
-		console.log('init HTR')
+		console.log('init HTR ok')
 	}
 }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2bba79170748c0aac0d1ea0a284f6fb",
+    "content-hash": "1a756ddb782d80ea04201b39741031c6",
     "packages": [
         {
             "name": "composer/installers",
@@ -1001,6 +1001,66 @@
                 "source": "https://github.com/wordplate/framework/tree/9.5.2"
             },
             "time": "2021-05-24T11:14:56+00:00"
+        },
+        {
+            "name": "wordplate/headache",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wordplate/headache.git",
+                "reference": "cf35e2b8303f3d52a2e012bbcc8fd5a22d8972da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wordplate/headache/zipball/cf35e2b8303f3d52a2e012bbcc8fd5a22d8972da",
+                "reference": "cf35e2b8303f3d52a2e012bbcc8fd5a22d8972da",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3 || ^8.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@doubledip.se"
+                }
+            ],
+            "description": "An easy-to-swallow painkiller plugin for WordPress",
+            "keywords": [
+                "head",
+                "headache",
+                "plugin",
+                "wordplate",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/wordplate/headache/issues",
+                "source": "https://github.com/wordplate/headache/tree/1.2.0"
+            },
+            "time": "2021-05-11T13:17:13+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce",
+            "version": "5.7.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce/",
+                "reference": "tags/5.7.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.5.7.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce/"
         }
     ],
     "packages-dev": [],
