@@ -10,7 +10,7 @@
 	text-shadow: 0 1px rgba(0, 0, 0, .5);
 }
 
-@media (prefers-reduced-motion no-preference) {
+@media (prefers-reduced-motion: "no-preference") {
 	:focus {
 		transition: outline-offset .25s ease;
 		outline-offset: 5px;
@@ -21,7 +21,7 @@ html {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 
-	@media (prefers-reduced-motion reduce) {
+	@media (prefers-reduced-motion: reduce) {
 		scroll-behavior: auto;
 	}
 }
