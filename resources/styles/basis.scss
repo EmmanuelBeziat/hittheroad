@@ -39,7 +39,7 @@ a {
 	transition: color var(--transition-regular);
 
 	&:hover {
-		color: red
+		color: var(--color-primary);
 	}
 }
 

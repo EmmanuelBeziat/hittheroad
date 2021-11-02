@@ -6,14 +6,14 @@ class HTR_Scripts {
 	/**
 	 * Add WordPress' actions and filters.
 	 */
-	function __construct() {
+	function __construct () {
 		add_action('wp_enqueue_scripts', array($this, 'front_scripts'));
 	}
 
 	/**
 	 * Enqueue scripts and styles.
 	 */
-	public function front_scripts() {
+	public function front_scripts () {
 		$custom_css = '/assets/custom.css';
 		$custom_js = '/assets/custom.js';
 

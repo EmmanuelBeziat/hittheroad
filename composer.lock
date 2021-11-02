@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c8619df1beb5d0229f4f7d7a0d20eec",
+    "content-hash": "bda187758a01fcf979878a63fde28fdd",
     "packages": [
         {
             "name": "composer/installers",
@@ -1043,6 +1043,24 @@
                 "source": "https://github.com/wordplate/headache/tree/1.2.0"
             },
             "time": "2021-05-11T13:17:13+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/clean-image-filenames",
+            "version": "1.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/clean-image-filenames/",
+                "reference": "tags/1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/clean-image-filenames.1.3.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/clean-image-filenames/"
         },
         {
             "name": "wpackagist-plugin/disable-gutenberg",

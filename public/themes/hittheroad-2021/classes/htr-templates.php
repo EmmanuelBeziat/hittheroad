@@ -6,7 +6,7 @@ class HTR_Templates {
 	/**
 	 * Add WordPress' actions and filters
 	 */
-	function __construct() {
+	function __construct () {
 		add_action('after_setup_theme', [$this, 'image_sizes']);
 		add_action('body_class', [$this, 'body_classes']);
 	}
@@ -18,7 +18,7 @@ class HTR_Templates {
 	 *
 	 * @return $body_classes array All body classes.
 	 */
-	public function body_classes($body_classes) {
+	public function body_classes ($body_classes) {
 		$classes = [
 			'body',
 		];
@@ -31,7 +31,7 @@ class HTR_Templates {
 	/**
 	 * Add custom sizes for images.
 	 */
-	public function image_sizes() {
+	public function image_sizes () {
 		update_option('thumbnail_size_h', 0);
 		update_option('thumbnail_size_w', 0);
 		update_option('medium_size_h', 0);
