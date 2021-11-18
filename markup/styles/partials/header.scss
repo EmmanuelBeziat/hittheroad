@@ -1,0 +1,22 @@
+.logo-htr svg {
+	height: 100%;
+	fill: var(--color-white);
+}
+
+.user-menu {
+	display: flex;
+}
+
+.nav-item {
+	padding: 1rem .5rem;
+	color: var(--color-white);
+	display: flex;
+	gap: .25rem;
+	align-items: center;
+}
+
+.nav-item-label {
+	@media (max-width: 767px) {
+		display: none;
+	}
+}

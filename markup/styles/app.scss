@@ -1,0 +1,21 @@
+// @import "vendors/normalize.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/aos/src/sass/aos.scss";
+
+@import "variables.scss";
+
+@import "basis.scss";
+@import "layout.scss";
+
+@import "fonts/bebas-neue.scss";
+@import "fonts/montserrat.scss";
+
+@import "partials/header.scss";
+@import "partials/footer.scss";
+
+@import "pages/home/hero.scss";
+@import "pages/home/best-products.scss";
+
+@import "pages/my-account/dashboard.scss";
+
+@import "vendors/wordpress.scss";

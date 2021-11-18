@@ -8,4 +8,13 @@ node_modules
 vendor
 .vscode
 
+www/*.php
+www/wp-admin
+www/wp-includes
+www/wp-content/uploads
+www/wp-content/plugins
+www/wp-content/mu-plugins
+www/wp-content/languages
+www/wp-content/*.php
+www/wp-content/themes/index.php
 .env
