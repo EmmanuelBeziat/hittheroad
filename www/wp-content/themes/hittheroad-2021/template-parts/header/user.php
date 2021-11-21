@@ -11,12 +11,12 @@
 		<i data-feather="user"></i>
 		<span class="nav-item-label">Mon compte</span>
 	</a>
-	<a class="nav-item" href="<?= wp_logout_url() ?>">
+	<a class="nav-item" href="<?= wp_logout_url(home_url()) ?>">
 		<i data-feather="power"></i>
 		<span class="nav-item-label">Déconnexion</span>
 	</a>
 	<?php else : ?>
-	<a class="nav-item" href="<?= wp_login_url(home_url()) ?>">
+	<a class="nav-item" href="/mon-compte">
 		<i data-feather="user"></i>
 		<span class="nav-item-label">Connexion / Inscription</span>
 	</a>

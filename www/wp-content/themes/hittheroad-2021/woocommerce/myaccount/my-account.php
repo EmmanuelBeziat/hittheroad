@@ -15,7 +15,7 @@
  * @version 3.5.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 ?>
 
 <div class="my-account">
@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
 			 *
 			 * @since 2.6.0
 			 */
-			do_action( 'woocommerce_account_navigation' ); ?>
+			do_action('woocommerce_account_navigation'); ?>
 			<div class="woocommerce-MyAccount-content">
 				<?php
 					/**
@@ -35,7 +35,7 @@ defined( 'ABSPATH' ) || exit;
 					 *
 					 * @since 2.6.0
 					 */
-					do_action( 'woocommerce_account_content' );
+					do_action('woocommerce_account_content');
 				?>
 			</div>
 		</div>
