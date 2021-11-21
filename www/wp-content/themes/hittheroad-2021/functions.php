@@ -18,6 +18,7 @@ require_once 'classes/htr-walkers.php';
 require_once 'classes/htr-templates.php';
 require_once 'classes/htr-tools.php';
 require_once 'inc/disable-comments.php';
+require_once 'inc/woocommerce-functions.php';
 
 function debug ($message, $exit = false) {
 	echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: 2f2f2f;">';
@@ -29,4 +30,4 @@ function debug ($message, $exit = false) {
 	}
 }
 
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+// add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );

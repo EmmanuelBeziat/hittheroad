@@ -29,7 +29,7 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 		<div class="form-card">
 			<h2><?php esc_html_e('Login', 'woocommerce'); ?></h2>
-			<form class="woocommerce-form woocommerce-form-login login" method="post">
+			<form class="woocommerce-form woocommerce-form-login" method="post">
 				<?php do_action('woocommerce_login_form_start'); ?>
 				<div class="mb-3">
 					<label for="username" class="form-label"><?php esc_html_e('Username or email address', 'woocommerce'); ?> <span class="required">*</span></label>

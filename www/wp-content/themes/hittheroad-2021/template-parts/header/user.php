@@ -1,11 +1,16 @@
 <nav class="user-menu ms-auto" id="user-menu">
-	<?php if (is_user_logged_in()) : ?>
+	<?php if (is_user_logged_in()) :
+		global $woocommerce;
+		$count = $woocommerce->cart->cart_contents_count;
+	?>
 	<a class="nav-item position-relative" href="/panier">
 		<i data-feather="shopping-bag"></i>
 		<span class="nav-item-label">Mon panier</span>
+		<?php if ($count > 0) : ?>
 		<span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
-			5 <span class="visually-hidden">Articles</span>
+			<?= $count; ?> <span class="visually-hidden">Articles</span>
 		</span>
+		<?php endif; ?>
 	</a>
 	<a class="nav-item" href="/mon-compte">
 		<i data-feather="user"></i>
