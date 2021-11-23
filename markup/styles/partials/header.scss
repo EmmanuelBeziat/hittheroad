@@ -8,11 +8,32 @@
 }
 
 .nav-item {
+	--active-state: scaleX(0);
 	padding: 1rem .5rem;
 	color: var(--color-white);
 	display: flex;
 	gap: .25rem;
 	align-items: center;
+	position: relative;
+	text-transform: uppercase;
+
+	&:hover,
+	&:focus {
+		--active-state: scaleX(1);
+		color: var(--color-white);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		height: 2px;
+		left: .5rem;
+		right: .5rem;
+		bottom: 10px;
+		background-color: var(--color-white);
+		transition: transform .25s ease-in-out;
+		transform: var(--active-state);
+	}
 }
 
 .nav-item-label {

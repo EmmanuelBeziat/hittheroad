@@ -62,7 +62,7 @@ const styles = () => {
 	return src('./markup/styles/app.scss')
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
-		.pipe(sass({ outputStyle: 'compressed' }))
+		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
 		.pipe(postcss([autoprefixer, cssnano]))
 		.pipe(sourcemaps.write('.'))
 		.pipe(dest(destination + '/css'))

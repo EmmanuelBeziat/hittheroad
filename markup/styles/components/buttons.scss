@@ -1,0 +1,60 @@
+.btn {
+	border-radius: 0;
+	padding: .7rem .75rem .375rem;
+}
+
+.btn-primary {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: var(--color-white);
+
+	&:hover,
+	&:focus,
+	&:active,
+	.hover,
+	.focus,
+	.active {
+		background-color: var(--color-white);
+		border-color: var(--color-primary);
+		color: var(--color-primary);
+	}
+
+	&:focus,
+	&:active,
+	.active,
+	.focus {
+		box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 50%);
+	}
+
+	&:active:focus {
+		box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 75%);
+	}
+}
+
+.btn-light {
+	background-color: var(--color-secondary);
+	border-color: var(--color-secondary);
+	color: var(--color-black);
+
+	&:hover,
+	&:focus,
+	&:active,
+	.hover,
+	.focus,
+	.active {
+		background-color: var(--color-white);
+		border-color: var(--color-secondary);
+		color: var(--color-black);
+	}
+
+	&:focus,
+	&:active,
+	.active,
+	.focus {
+		box-shadow: 0 0 0 0.25rem rgb(197 198 199 / 50%);
+	}
+
+	&:active:focus {
+		box-shadow: 0 0 0 0.25rem rgb(197 198 199 / 75%);
+	}
+}

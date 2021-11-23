@@ -62,7 +62,7 @@ $col    = 1;
 		<address>
 			<?= $address ? wp_kses_post($address) : esc_html_e('You have not set up this type of address yet.', 'woocommerce'); ?>
 		</address>
-		<a href="<?= esc_url(wc_get_endpoint_url('edit-address', $name)); ?>" class="edit btn btn-secondary"><?= $address ? esc_html__('Edit', 'woocommerce') : esc_html__('Add', 'woocommerce'); ?></a>
+		<a href="<?= esc_url(wc_get_endpoint_url('edit-address', $name)); ?>" class="edit btn btn-primary"><?= $address ? esc_html__('Edit', 'woocommerce') : esc_html__('Add', 'woocommerce'); ?></a>
 	</div>
 
 <?php endforeach; ?>

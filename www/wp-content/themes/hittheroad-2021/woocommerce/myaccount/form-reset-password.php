@@ -41,7 +41,7 @@ defined('ABSPATH') || exit; ?>
 
 		<div class="d-grid">
 			<input type="hidden" name="wc_reset_password" value="true">
-			<button type="submit" class="btn btn-secondary" value="<?php esc_attr_e('Save', 'woocommerce'); ?>"><?php esc_html_e('Save', 'woocommerce'); ?></button>
+			<button type="submit" class="btn btn-primary" value="<?php esc_attr_e('Save', 'woocommerce'); ?>"><?php esc_html_e('Save', 'woocommerce'); ?></button>
 		</div>
 
 		<?php wp_nonce_field('reset_password', 'woocommerce-reset-password-nonce'); ?>

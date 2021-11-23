@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit; ?>
 
 	if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
 		<p class="return-to-shop mt-2">
-			<a class="btn btn-secondary" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
+			<a class="btn btn-primary" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
 				<?php
 					/**
 					 * Filter "Return To Shop" text.
