@@ -1,37 +1,89 @@
 .btn {
-	border-radius: 0;
-	padding: .7rem .75rem .375rem;
-}
+	--button-bg: transparent;
+	--button-bg-active: var(--button-bg);
+	--button-bg-outline-active: var(--button-bg);
+	--button-color: #fff;
+	--button-color-active: var(--button-color);
+	--button-color-outline: var(--button-color);
+	--button-color-outline-active: var(--button-color);
+	--button-border: #fff;
+	--button-border-active: var(--button-border);
+	--button-shadow: 0 0 0 .25em rgba(0, 0, 0, .25);
+	--button-shadow-focus: var(--button-shadow);
 
-.btn-primary {
-	background-color: var(--color-primary);
-	border-color: var(--color-primary);
-	color: var(--color-white);
+	text-transform: uppercase;
+	border-radius: 0;
+	padding: .7rem 1.75rem .375rem;
+	background-color: var(--button-bg);
+	border: 1px solid var(--button-border);
+	color: var(--button-color);
+
+	&.btn-rounded {
+		border-radius: 2em;
+	}
 
 	&:hover,
 	&:focus,
 	&:active,
-	.hover,
-	.focus,
-	.active {
-		background-color: var(--color-white);
-		border-color: var(--color-primary);
-		color: var(--color-primary);
+	&.hover,
+	&.focus,
+	&.active {
+		background-color: transparent;
+		border-color: var(--button-border-active);
+		color: var(--button-color-active);
 	}
 
 	&:focus,
 	&:active,
-	.active,
-	.focus {
-		box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 50%);
+	&.active,
+	&.focus {
+		box-shadow: var(--button-shadow);
 	}
 
 	&:active:focus {
-		box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 75%);
+		box-shadow: var(--button-shadow-focus);
+	}
+
+	&.btn-outline {
+		background: transparent;
+		color: var(--button-color-outline);
+
+		&:hover,
+		&:focus,
+		&:active,
+		&.hover,
+		&.focus,
+		&.active {
+			background: var(--button-bg-outline-active);
+			color: var(--button-color-outline-active);
+		}
 	}
 }
 
+.btn-primary {
+	--button-bg: var(--color-primary);
+	--button-color: var(--color-black);
+	--button-border: var(--color-primary);
+	--button-active: 0 0 0 .25em rgba(0, 0, 0, .15);
+	--button-active-focus: 0 0 0 .25em rgba(0, 0, 0, .25);
+}
+
+.btn-secondary {
+	--button-bg: var(--color-secondary);
+	--button-color: var(--color-white);
+	--button-color-active: var(--color-black);
+	--button-color-outline: var(--button-black);
+	--button-border: var(--color-secondary);
+	--button-active: 0 0 0 .25em rgba(197, 198, 199, .25);
+	--button-active-focus: 0 0 0 .25em rgba(197, 198, 199, .5);
+}
+
 .btn-light {
+	--button-bg: var(--color-secondary);
+	--button-color: var(--color-black);
+	--button-border: var(--color-secondary);
+	--button-active: 0 0 0 .25em rgba(0, 0, 0, .15);
+	--button-active-focus: 0 0 0 .25em rgba(0, 0, 0, .25);
 	background-color: var(--color-secondary);
 	border-color: var(--color-secondary);
 	color: var(--color-black);
@@ -39,9 +91,9 @@
 	&:hover,
 	&:focus,
 	&:active,
-	.hover,
-	.focus,
-	.active {
+	&.hover,
+	&.focus,
+	&.active {
 		background-color: var(--color-white);
 		border-color: var(--color-secondary);
 		color: var(--color-black);
@@ -49,8 +101,8 @@
 
 	&:focus,
 	&:active,
-	.active,
-	.focus {
+	&.active,
+	&.focus {
 		box-shadow: 0 0 0 0.25rem rgb(197 198 199 / 50%);
 	}
 

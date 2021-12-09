@@ -1,15 +1,27 @@
 .site-footer {
+	margin-top: 5rem;
+}
+
+.site-footer-top {
+	padding: 4rem 0 5rem;
 	background: var(--color-black);
 	color: var(--color-white);
-	padding: 3rem 0;
-	margin-top: 5rem;
+	position: relative;
+}
+
+.site-footer-bottom {
+	padding: 3rem 0 2rem;
+	background: var(--color-white);
+	color: var(--color-black);
 	position: relative;
 }
 
 .footer-copyright {
 	text-align: center;
 	font-size: .85rem;
-	margin-top: 1.5rem;
+	text-transform: uppercase;
+	font-weight: 400;
+	letter-spacing: 1px;
 }
 
 .footer-divider-top {
@@ -30,7 +42,27 @@
 }
 
 .footer-divider-top .shape-fill {
-	fill: #000000;
+	fill: var(--color-black);
+}
+
+.footer-divider-bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+}
+
+.footer-divider-bottom svg {
+	position: relative;
+	display: block;
+	width: calc(100% + 1.3px);
+	height: 16px;
+}
+
+.footer-divider-bottom .shape-fill {
+	fill: var(--color-white);
 }
 
 .footer-nav {

@@ -1,7 +1,16 @@
-.form-control {
-	border-radius: 0;
-}
-
+.form-control,
+.form-select,
 .form-check-input[type=checkbox] {
 	border-radius: 0;
+	font-size: 1rem;
+}
+
+.form-check-input {
+	margin-top: .2em;
+	margin-right: .5em;
+}
+
+.form-check-label {
+	user-select: none;
+	cursor: pointer;
 }
