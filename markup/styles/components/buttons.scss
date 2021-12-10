@@ -1,5 +1,4 @@
 .btn {
-	--button-bg: transparent;
 	--button-bg-active: var(--button-bg);
 	--button-bg-outline-active: var(--button-bg);
 	--button-color: #fff;
@@ -13,10 +12,13 @@
 
 	text-transform: uppercase;
 	border-radius: 0;
-	padding: .7rem 1.75rem .375rem;
-	background-color: var(--button-bg);
+	text-decoration: none;
+	line-height: 1.25em;
+	padding: .9rem 1.75rem .5rem;
+	background-color: var(--button-bg, transparent);
 	border: 1px solid var(--button-border);
 	color: var(--button-color);
+	cursor: pointer;
 
 	&.btn-rounded {
 		border-radius: 2em;
@@ -58,6 +60,10 @@
 			color: var(--button-color-outline-active);
 		}
 	}
+
+	svg {
+		pointer-events: none;
+	}
 }
 
 .btn-primary {
@@ -79,34 +85,11 @@
 }
 
 .btn-light {
-	--button-bg: var(--color-secondary);
+	--button-bg: var(--color-white);
 	--button-color: var(--color-black);
-	--button-border: var(--color-secondary);
+	--button-border: var(--color-white);
 	--button-active: 0 0 0 .25em rgba(0, 0, 0, .15);
 	--button-active-focus: 0 0 0 .25em rgba(0, 0, 0, .25);
-	background-color: var(--color-secondary);
-	border-color: var(--color-secondary);
-	color: var(--color-black);
-
-	&:hover,
-	&:focus,
-	&:active,
-	&.hover,
-	&.focus,
-	&.active {
-		background-color: var(--color-white);
-		border-color: var(--color-secondary);
-		color: var(--color-black);
-	}
-
-	&:focus,
-	&:active,
-	&.active,
-	&.focus {
-		box-shadow: 0 0 0 0.25rem rgb(197 198 199 / 50%);
-	}
-
-	&:active:focus {
-		box-shadow: 0 0 0 0.25rem rgb(197 198 199 / 75%);
-	}
+	--button-color-active: var(--color-black);
+	--button-color-outline: var(--button-black);
 }

@@ -6,7 +6,6 @@ add_action('after_setup_theme', function () {
 
 	register_nav_menus([
 		'navigation' => __('Menu principal'),
-		'social' => __('Menu Réseaux sociaux'),
 		'footer-left' => __('Pied de page — Gauche'),
 		'footer-center' => __('Pied de page — Centre'),
 		'footer-right' => __('Pied de page — Droite'),
@@ -22,7 +21,7 @@ require_once 'inc/woocommerce-functions.php';
 
 function debug ($message, $exit = false) {
 	echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: 2f2f2f;">';
-	print_r($message);
+	var_dump($message);
 	echo '</pre>';
 
 	if ($exit) {

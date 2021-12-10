@@ -21,5 +21,9 @@
 		<div class="footer-copyright">
 			Hit the Road © <?= date('Y') ?>
 		</div>
+
+		<a href="#top" class="btn btn-secondary btn-squared back-to-top" title="Retourner en haut">
+			<i class="fas fa-chevron-up"></i>
+		</a>
 	</div>
 </footer>

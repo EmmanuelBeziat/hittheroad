@@ -1,0 +1,69 @@
+.pagination {
+	.page-link {
+		--page-background: var(--color-white);
+		--page-border: rgba(0, 0, 0, .35);
+		--page-color: var(--color-black);
+		color: var(--page-color);
+		background-color: var(--page-background);
+		border-color: var(--page-border);
+		border-radius: 0 !important;
+
+		&:hover,
+		&:active {
+			--page-background: var(--color-secondary);
+			--page-color: var(--color-primary);
+		}
+	}
+
+	.page-item {
+		&:not(:first-child):not(:last-child) {
+			.page-link {
+				border-left: 0;
+				border-right: 0;
+			}
+		}
+	}
+
+	.page-item:not(:first-child) + .page-item:not(:last-child) {
+		.page-link {
+			border-left: 1px solid var(--page-border);
+		}
+	}
+}
+
+.page-item-prev,
+.page-item-next {
+	.page-link {
+		--page-background: var(--color-primary);
+		--page-border: var(--color-primary);
+		--page-color: var(--color-black);
+
+		&:hover,
+		&:active {
+			--page-background: var(--color-white);
+			--page-color: var(--color-black);
+		}
+	}
+}
+
+.nav-dots {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	.nav-dots-item {
+		width: 10px;
+		aspect-ratio: 1/1;
+		background: var(--color-secondary);
+
+		&.active {
+			background: var(--color-primary);
+		}
+
+		&:hover,
+		&:focus {
+			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15);
+		}
+	}
+}

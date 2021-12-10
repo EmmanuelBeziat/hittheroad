@@ -12,7 +12,9 @@
 
 <section class="section" id="typography">
 	<div class="container">
-		<h1>Titres</h1>
+		<h1>Typographie</h1>
+
+		<h2>Titres</h2>
 
 		<h1 class="h1">H1 title</h1>
 		<h2 class="h2">H2 title</h1>
@@ -20,11 +22,14 @@
 		<h4 class="h4">H4 title</h1>
 		<h5 class="h5">H5 title</h1>
 
-		<h1>Paragraphes</h1>
+		<hr>
+
+		<h2>Contenu</h2>
+
 		<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem eum sequi inventore perferendis autem fugit ullam omnis veniam exercitationem totam enim assumenda atque aliquid laudantium placeat facere, eaque quasi blanditiis?</p>
 
-		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque porro facilis quis laborum suscipit commodi eum debitis id repellendus assumenda ratione, vero et adipisci iure modi tempora magnam dolorem. At.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illo quam, quia est reprehenderit maxime voluptatum similique repellat a unde rerum sit vero incidunt molestias temporibus, optio voluptates soluta cupiditate. Quisquam, quis.</p>
+		<p>Lorem ipsum dolor, <a href="#">sit amet consectetur adipisicing</a> elit. Atque porro facilis quis laborum suscipit commodi eum debitis id repellendus assumenda ratione, vero et adipisci iure modi tempora magnam dolorem. At.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illo quam, quia est <strong>reprehenderit maxime</strong> voluptatum similique repellat a unde rerum sit <em>vero incidunt</em> molestias temporibus, optio voluptates soluta cupiditate. Quisquam, quis.</p>
 
 		<h1>Listes</h1>
 		<ul>
@@ -45,7 +50,7 @@
 	</div>
 </section>
 
-<section class="section" id="buttons">
+<section class="section mt-5" id="buttons">
 	<div class="container">
 		<h1>Boutons</h1>
 
@@ -54,6 +59,8 @@
 			<button class="btn btn-secondary">Bouton secondaire</button>
 			<button class="btn btn-primary btn-rounded">Bouton primaire</button>
 			<button class="btn btn-secondary btn-rounded">Bouton secondaire</button>
+			<button class="btn btn-primary btn-rounded" disabled>Bouton primaire</button>
+			<button class="btn btn-secondary btn-rounded" disabled>Bouton secondaire</button>
 		</p>
 
 		<p>
@@ -65,7 +72,7 @@
 	</div>
 </section>
 
-<section class="section" id="forms">
+<section class="section mt-5" id="forms">
 	<div class="container">
 		<h1>Formulaires</h1>
 
@@ -98,6 +105,79 @@
 				Case radio
 			</label>
 		</div>
+	</div>
+</section>
+
+<section class="section mt-5" id="notify">
+	<div class="container">
+		<h1>Notifications</h1>
+
+		<div class="alert alert-primary" role="alert">
+			<strong>Attention!</strong> Ce message est important.
+		</div>
+
+		<div class="alert alert-secondary" role="alert">
+			<strong>Attention!</strong> Ce message est important.
+		</div>
+
+		<div class="alert alert-success" role="alert">
+			<strong>Attention!</strong> Ce message est important.
+		</div>
+
+		<div class="alert alert-danger" role="alert">
+			<strong>Attention!</strong> Ce message est important.
+		</div>
+
+		<div class="alert alert-warning" role="alert">
+			<strong>Attention!</strong> Ce message est important.
+		</div>
+
+		<div class="alert alert-info" role="alert">
+			<strong>Attention!</strong> Ce message est important.
+		</div>
+	</div>
+</section>
+
+<section class="section mt-5" id="pagination">
+	<div class="container">
+		<h1>Pagination</h1>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item page-item-prev"><a class="page-link" href="#" aria-label="Page précédente"><i class="fas fa-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item active"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">4</a></li>
+				<li class="page-item page-item-next"><a class="page-link" href="#" aria-label="Page suivante"><i class="fas fa-chevron-right"></i></a></li>
+			</ul>
+		</nav>
+
+		<nav class="nav-dots mt-5">
+			<a href="#" class="nav-dots-item" aria-label="Premier item"></a>
+			<a href="#" class="nav-dots-item active" aria-label="Deuxième item"></a>
+			<a href="#" class="nav-dots-item" aria-label="Troisième item"></a>
+		</nav>
+	</div>
+</section>
+
+<section class="section mt-5" id="tabs">
+	<div class="container">
+		<h1>Tabs</h1>
+
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="#">Active</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Lien</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Lien</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#" disabled tabindex="-1" aria-disabled="true">Désactivée</a>
+			</li>
+		</ul>
 	</div>
 </section>
 

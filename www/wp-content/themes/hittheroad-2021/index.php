@@ -2,17 +2,20 @@
 
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<article>
-				<header>
-					<h1><?php the_title(); ?></h1>
-				</header>
-
-				<?php the_content(); ?>
+				<div class="container">
+					<header class="article-header">
+						<h1><?php the_title(); ?></h1>
+					</header>
+					<?php the_content(); ?>
+				</div>
 			</article>
 		<?php endwhile;
 	else : ?>
-		<article>
-			<p>Nothing to see.</p>
-		</article>
+		<section>
+			<div class="container">
+				<p>Nothing to see.</p>
+			</div>
+		</section>
 	<?php endif; ?>
 
 <?php get_footer(); ?>

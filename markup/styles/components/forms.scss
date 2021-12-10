@@ -14,3 +14,12 @@
 	user-select: none;
 	cursor: pointer;
 }
+
+textarea.form-control {
+	min-height: calc(12.5em + .75rem + 2px);
+}
+
+/** woocommerce stuff */
+.input-text {
+	@extend .form-control;
+}

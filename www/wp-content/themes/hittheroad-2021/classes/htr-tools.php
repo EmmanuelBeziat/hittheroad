@@ -9,6 +9,9 @@ class HTR_Tools {
 	function __construct () {
 		add_filter('upload_mimes', [$this, 'mime_types']);
 		add_filter('clean_image_filenames_mime_types', [$this, 'custom_clean_image_filenames_mime_types']);
+		if (function_exists('acf_add_options_page')) {
+			acf_add_options_page();
+		}
 	}
 
 	/**
@@ -17,7 +20,7 @@ class HTR_Tools {
 	 * @param $message mixed Variable or text to display.
 	 * @param $exit boolean Stop program execution.
 	 */
-	public static function debug ($message, $exit = false) {
+	public static function dd ($message, $exit = false) {
 		echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: 2f2f2f;">';
 		print_r($message);
 		echo '</pre>';

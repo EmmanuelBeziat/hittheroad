@@ -11,7 +11,9 @@
 	.is-active {
 		a {
 			background-color: var(--color-primary);
-			color: var(--color-white);
+			color: var(--color-black);
+			pointer-events: none;
+			cursor: default;
 		}
 
 	}
@@ -20,9 +22,13 @@
 		display: block;
 		padding: .5rem 1rem;
 		transition: .25s ease-in-out;
+		text-decoration: none;
+		line-height: 1.25em;
+		padding: .9rem 1.75rem .5rem;
 
 		&:hover {
-			background-color: #f5f5f5;
+			background-color: var(--color-gray-light);
+			color: var(--color-secondary);
 		}
 	}
 }

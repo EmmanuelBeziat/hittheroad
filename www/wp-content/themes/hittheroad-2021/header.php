@@ -17,7 +17,7 @@
 </head>
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
-	<a class="skip-link visually-hidden-focusable" href="#content">Aller au contenu</a>
+	<a class="skip-link visually-hidden-focusable" id="top" href="#content">Aller au contenu</a>
 
 	<div class="site">
 		<?php get_template_part('template-parts/header/site-header'); ?>

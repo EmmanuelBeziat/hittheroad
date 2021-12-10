@@ -1,0 +1,30 @@
+.nav-tabs {
+	border-bottom: 1px solid var(--color-secondary);
+
+	.nav-item {
+		.nav-link {
+			color: var(--tabs-color, var(--color-black));
+			padding: .5rem 1.5rem;
+			border-radius: 0;
+			border: 0;
+			background: var(--tabs-background, #fff);
+			border-bottom: 1px solid var(--tabs-border);
+
+			&:not(.active):hover {
+				--tabs-background: var(--color-gray-light);
+				--tabs-color: var(--color-secondary);
+			}
+
+			&.active {
+				--tabs-background: var(--color-primary);
+				--tabs-border: var(--color-primary-alt);
+			}
+
+			&[disabled],
+			&.disabled {
+				opacity: .5;
+				--tabs-color: var(--color-secondary);
+			}
+		}
+	}
+}

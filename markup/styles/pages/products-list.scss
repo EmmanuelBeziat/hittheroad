@@ -4,6 +4,20 @@
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.product-link {
+	text-decoration: none;
+	display: block;
+	margin-bottom: .5rem;
+
+	&:hover {
+		color: inherit;
+	}
+
+	.woocommerce-loop-product__title {
+		font-size: 1.25rem;
+		margin: .5rem 0;
+	}
+}
 
 .product-picture {
 	overflow: hidden;

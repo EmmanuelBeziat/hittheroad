@@ -138,17 +138,17 @@ defined( 'ABSPATH' ) || exit;
 
 				<tr>
 					<td colspan="6" class="actions">
+						<div class="actions-content">
+							<?php if (wc_coupons_enabled()) : ?>
+								<div class="coupon">
+									<input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" arial-label="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>">
+									<button type="submit" class="btn btn-secondary" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>">Appliquer</button>
+									<?php do_action( 'woocommerce_cart_coupon' ); ?>
+								</div>
+							<?php endif ?>
 
-						<?php if ( wc_coupons_enabled() ) { ?>
-							<div class="coupon row g-2">
-								<div class="col"><input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" arial-label="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>"></div>
-								<div class="col d-grid"><button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?></button></div>
-								<?php do_action( 'woocommerce_cart_coupon' ); ?>
-							</div>
-						<?php } ?>
-
-						<button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
-
+							<button type="submit" class="btn btn-secondary" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+						</div>
 						<?php do_action( 'woocommerce_cart_actions' ); ?>
 
 						<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>

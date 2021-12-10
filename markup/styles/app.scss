@@ -12,16 +12,21 @@
 @import "fonts/montserrat.scss";
 
 @import "components/buttons.scss";
+@import "components/alerts.scss";
 @import "components/forms.scss";
+@import "components/pagination.scss";
+@import "components/tabs.scss";
 
 @import "partials/header.scss";
 @import "partials/footer.scss";
-@import "partials/wc-header.scss";
 
 @import "pages/single.scss";
 @import "pages/products-list.scss";
 @import "pages/home/hero.scss";
+@import "pages/home/showcase.scss";
 @import "pages/home/best-products.scss";
+
+@import "pages/cart/cart.scss";
 
 @import "pages/my-account/login.scss";
 @import "pages/my-account/dashboard.scss";

@@ -19,5 +19,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div class="container">
-	<div class="products-grid">
+<div class="products-grid">

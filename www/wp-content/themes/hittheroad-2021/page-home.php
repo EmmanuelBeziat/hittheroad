@@ -39,6 +39,19 @@ $home = (object) [
 </section>
 <?php endif; ?>
 
+<section class="showcase">
+	<div class="container text-center">
+		<h2 class="showcase-title">Nos plus belles photos</h2>
+		<p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad sequi voluptate, nulla exercitationem officiis accusamus? Rerum, minima doloribus dolorum expedita eius eum quos delectus! Ad quos neque ullam numquam quae.</p>
+	</div>
+
+	<div class="showcase-divider-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+			<path d="M892.25 114.72L0 0 0 120 1200 120 1200 0 892.25 114.72z" class="shape-fill"></path>
+    </svg>
+	</div>
+</section>
+
 <?php if ($home->bestProducts->isActive) : ?>
 <section class="best-products">
 	<div class="container">

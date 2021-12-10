@@ -1,3 +1,14 @@
+.site-header {
+	margin-bottom: 4rem;
+	padding: .4rem 0;
+	position: relative;
+	z-index: 5;
+}
+
+.home .site-header {
+	margin-bottom: 0;
+}
+
 .logo-htr svg {
 	height: 100%;
 	fill: var(--color-white);
@@ -5,39 +16,106 @@
 
 .user-menu {
 	display: flex;
+	gap: 5px;
+
+	.nav-item {
+		padding: 1rem .5rem;
+		color: var(--nav-color, var(--color-white));
+		display: flex;
+		gap: .25rem;
+		align-items: center;
+		position: relative;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			--active-state: translateY(0) scaleX(1);
+			--active-opacity: 1;
+			--nav-color: var(--color-primary);
+		}
+
+		&::after {
+			--dot-size: 8px;
+			content: "";
+			bottom: 3px;
+			position: absolute;
+			width: var(--dot-size);
+			left: calc(50% - var(--dot-size) / 2);
+			aspect-ratio: 1/1;
+			border-radius: 50%;
+			background: var(--color-primary);
+			transition: .25s ease-in-out;
+			opacity: var(--active-opacity, 0);
+			transform: var(--active-state, translateY(-3px) scaleX(.75));
+		}
+	}
+
+	.nav-item-label {
+		// text-transform: uppercase;
+		font-size: .85rem;
+		color: var(--color-white);
+		margin-left: 4px;
+
+		@media (max-width: 767px) {
+			display: none;
+			margin-left: 0;
+		}
+	}
 }
 
-.nav-item {
-	--active-state: scaleX(0);
-	padding: 1rem .5rem;
+.bg-dark .main-nav {
 	color: var(--color-white);
-	display: flex;
-	gap: .25rem;
-	align-items: center;
-	position: relative;
-	text-transform: uppercase;
+}
 
-	&:hover,
-	&:focus {
-		--active-state: scaleX(1);
+.bg-dark {
+	.navbar-toggler {
 		color: var(--color-white);
 	}
+}
+
+.main-nav {
+	flex: 1;
+	position: relative;
+	padding: 0;
+	margin: 0 1rem;
 
 	&::after {
 		content: "";
-		position: absolute;
-		height: 2px;
-		left: .5rem;
-		right: .5rem;
-		bottom: 10px;
-		background-color: var(--color-white);
-		transition: transform .25s ease-in-out;
-		transform: var(--active-state);
+		width: 1px;
+		height: 20px;
+		background: var(--color-white);
+		margin-left: .75rem;
 	}
-}
 
-.nav-item-label {
-	@media (max-width: 767px) {
-		display: none;
+	.menu-item .nav-link {
+		color: inherit;
+		position: relative;
+		padding: 1rem .5rem;
+
+		&:hover,
+		&:focus {
+			--active-state: translateY(0) scaleX(1);
+			--active-opacity: 1;
+			--nav-color: var(--color-primary);
+		}
+
+		&::after {
+			--dot-size: 8px;
+			content: "";
+			bottom: 3px;
+			position: absolute;
+			width: var(--dot-size);
+			left: calc(50% - var(--dot-size) / 2);
+			aspect-ratio: 1/1;
+			border-radius: 50%;
+			background: var(--color-primary);
+			transition: .25s ease-in-out;
+			opacity: var(--active-opacity, 0);
+			transform: var(--active-state, translateY(-3px) scaleX(.75));
+		}
+	}
+
+	.navbar-nav {
+		gap: 1rem;
 	}
 }

@@ -1,0 +1,15 @@
+
+.actions .coupon {
+	float: none !important;
+	display: flex;
+}
+
+.actions-content {
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
+.woocommerce table.shop_table th {
+	font-weight: 400;
+}
