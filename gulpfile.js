@@ -10,7 +10,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('autoprefixer')
 const rename = require('gulp-rename')
 
-const root = 'www/wp-content/themes/hittheroad'
+const root = 'www/wp-content/themes/hittheroad-2021'
 const destination = root + '/assets'
 
 const cleanCSS = () => {
@@ -73,21 +73,16 @@ const styles = () => {
 const stylesMaintenance = () => {
 	return src('./markup/styles/maintenance.scss')
 		.pipe(plumber())
-		.pipe(sourcemaps.init())
 		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
 		.pipe(postcss([autoprefixer, cssnano]))
-		.pipe(sourcemaps.write('.'))
-		.pipe(rename('maintenance.min.css'))
-		.pipe(dest(root))
+		.pipe(dest(destination + '/css'))
 }
 
 const stylesEditor = () => {
 	return src('./markup/styles/editor-style.scss')
 		.pipe(plumber())
-		.pipe(sourcemaps.init())
 		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
 		.pipe(postcss([autoprefixer, cssnano]))
-		.pipe(sourcemaps.write('.'))
 		.pipe(dest(destination + '/css'))
 }
 
