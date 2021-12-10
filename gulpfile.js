@@ -8,8 +8,10 @@ const postcss = require('gulp-postcss')
 const plumber = require('gulp-plumber')
 const sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('autoprefixer')
+const rename = require('gulp-rename')
 
-const destination = 'www/wp-content/themes/hittheroad-2021/assets'
+const root = 'www/wp-content/themes/hittheroad'
+const destination = root + '/assets'
 
 const cleanCSS = () => {
 	return src(destination + '/css', { read: false, allowEmpty: true })
@@ -68,8 +70,32 @@ const styles = () => {
 		.pipe(dest(destination + '/css'))
 }
 
+const stylesMaintenance = () => {
+	return src('./markup/styles/maintenance.scss')
+		.pipe(plumber())
+		.pipe(sourcemaps.init())
+		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+		.pipe(postcss([autoprefixer, cssnano]))
+		.pipe(sourcemaps.write('.'))
+		.pipe(rename('maintenance.min.css'))
+		.pipe(dest(root))
+}
+
+const stylesEditor = () => {
+	return src('./markup/styles/editor-style.scss')
+		.pipe(plumber())
+		.pipe(sourcemaps.init())
+		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+		.pipe(postcss([autoprefixer, cssnano]))
+		.pipe(sourcemaps.write('.'))
+		.pipe(dest(destination + '/css'))
+}
+
+
 const watchTasks = () => {
 	watch('./markup/styles/**/*.scss', series(cleanCSS, styles))
+	watch('./markup/styles/maintenance.scss', series(stylesMaintenance))
+	watch('./markup/styles/editor-style.scss', series(stylesEditor))
 	watch('./markup/scripts/*.js', series(cleanJS, scripts))
 	watch('./markup/scripts/vendors/*.js', series(cleanJS, scriptsVendors))
 }
@@ -77,10 +103,12 @@ const watchTasks = () => {
 module.exports = {
 	clean: parallel(cleanCSS, cleanJS, cleanImages, cleanFonts),
 	styles: series(styles),
+	maintenance: series(stylesMaintenance),
+	editor: series(stylesEditor),
 	scripts: series(scripts),
 	scriptsVendors: series(scriptsVendors),
 	images: series(images),
 	fonts: series(fonts),
 	watch: watchTasks,
-	default: parallel(series(cleanCSS, styles), series(cleanJS, scripts, scriptsVendors), series(cleanImages, images), series(cleanFonts, fonts))
+	default: parallel(series(cleanCSS, styles, stylesMaintenance, stylesEditor), series(cleanJS, scripts, scriptsVendors), series(cleanImages, images), series(cleanFonts, fonts))
 }

@@ -28,5 +28,8 @@ function debug ($message, $exit = false) {
 		exit();
 	}
 }
-
+function gn_ajouter_styles_editeur() {
+	add_editor_style('assets/css/editor-style.css');
+}
+add_action( 'init', 'gn_ajouter_styles_editeur' );
 // add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
