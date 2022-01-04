@@ -91,8 +91,8 @@ const watchTasks = () => {
 	watch('./markup/styles/**/*.scss', series(cleanCSS, styles))
 	watch('./markup/styles/maintenance.scss', series(stylesMaintenance))
 	watch('./markup/styles/editor-style.scss', series(stylesEditor))
-	watch('./markup/scripts/*.js', series(cleanJS, scripts))
-	watch('./markup/scripts/vendors/*.js', series(cleanJS, scriptsVendors))
+	watch('./markup/scripts/app.js', series(scripts))
+	watch('./markup/scripts/vendors/*.js', series(scriptsVendors))
 }
 
 module.exports = {

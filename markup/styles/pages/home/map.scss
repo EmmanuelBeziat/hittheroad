@@ -1,0 +1,28 @@
+.map {
+	position: relative;
+}
+
+#htr-destinations {
+	aspect-ratio: 21 / 9;
+}
+
+.map-divider-top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+	z-index: 5;
+}
+
+.map-divider-top svg {
+	position: relative;
+	display: block;
+	width: calc(111% + 1.3px);
+	height: 24px;
+}
+
+.map-divider-top .shape-fill {
+	fill: var(--color-primary);
+}

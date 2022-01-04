@@ -14,7 +14,8 @@
 	border-radius: 0;
 	text-decoration: none;
 	line-height: 1.25em;
-	padding: .8rem 1.75rem .8rem;
+	// padding: .8rem 1.75rem;
+	padding: .65em 1.45em;
 	background-color: var(--button-bg, transparent);
 	border: 1px solid var(--button-border);
 	color: var(--button-color);
@@ -64,6 +65,10 @@
 	svg {
 		pointer-events: none;
 	}
+}
+
+.btn-lg {
+	font-size: 1.75rem;
 }
 
 .btn-primary {
