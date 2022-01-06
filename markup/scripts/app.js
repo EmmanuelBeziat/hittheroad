@@ -14,11 +14,55 @@ class MapLibre {
 	}
 
 	mapInit (options) {
-		new maplibregl.Map(options)
+		this.map = new maplibregl.Map(options)
 	}
 
 	createMarkers () {
-		console.log(this.markers)
+		this.markers.forEach(marker => {
+			new maplibregl.Marker()
+				.setLngLat([marker.lng, marker.lat])
+				.addTo(this.map)
+		})
+	}
+}
+
+class cookies {
+	constructor () {
+		this.banner = document.querySelector('.cookies')
+		if (!this.banner) return
+
+		this.accept = document.querySelector('.cookies .cookies-accept')
+
+		if (!this.getCookie('cookies')) {
+			this.showBanner()
+			this.closeButtonEvent()
+		}
+	}
+
+	showBanner () {
+		this.banner.classList.add('show')
+	}
+
+	hideBanner () {
+		this.banner.classList.remove('show')
+	}
+
+	getCookie (name) {
+		return localStorage.getItem(name)
+	}
+
+	setCookie (name, value) {
+		localStorage.setItem(name, value)
+	}
+
+	closeButtonEvent () {
+		if (!this.accept) return
+
+		this.accept.addEventListener('click', event => {
+			event.preventDefault()
+			this.hideBanner()
+			this.setCookie('cookies', 'accepted')
+		})
 	}
 }
 
@@ -28,7 +72,7 @@ class HitTheRoad {
 		Alpine.start() */
 		// feather.replace()
 		AOS.init()
-		if (htrMapToken && htrMapToken) {
+		if (typeof htrMapToken !== 'undefined' && typeof htrMapStyle !== 'undefined') {
 			new MapLibre({
 				container: 'htr-destinations',
 				token: htrMapToken,
@@ -39,6 +83,8 @@ class HitTheRoad {
 			},
 			htrMapDestinations)
 		}
+
+		new cookies()
 	}
 }
 

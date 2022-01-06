@@ -8,12 +8,12 @@
 
 $home = (object) [
 	'hero' => (object) [
-		'isActive' => get_field('block-hero')['is-active'],
+		// 'isActive' => get_field('block-hero')['is-active'],
 		'content' => get_field('block-hero')['content'],
 		'background' => isset(get_field('block-hero')['background']['url']) && get_field('block-hero')['background']['url'] !== '' ? get_field('block-hero')['background']['url'] : '#000',
 	],
 	'showcase' => (object) [
-		'isActive' => get_field('block-showcase')['is-active'],
+		// 'isActive' => get_field('block-showcase')['is-active'],
 		'title' => get_field('block-showcase')['title'],
 		'content' => get_field('block-showcase')['content'],
 		'link' => (object) [
@@ -22,7 +22,7 @@ $home = (object) [
 		],
 	],
 	'map' => (object) [
-		'isActive' => get_field('block-map')['is-active'],
+		// 'isActive' => get_field('block-map')['is-active'],
 		'token' => get_field('block-map')['token'],
 		'style' => get_field('block-map')['style'],
 		'destinations' => get_field('block-map')['destinations'],
@@ -36,7 +36,6 @@ $home = (object) [
 
 <?php get_header(); ?>
 
-<?php if ($home->hero->isActive) : ?>
 <section class="hero" style="--hero-background: url(<?= $home->hero->background ?>)">
 	<div class="hero-content">
 		<div class="hero-inner-content" data-aos="fade-in" data-aos-duration="1000">
@@ -52,9 +51,7 @@ $home = (object) [
 		</div>
 	</div>
 </section>
-<?php endif; ?>
 
-<?php if ($home->showcase->isActive) : ?>
 <section class="showcase">
 	<div class="container text-center">
 		<h2 class="showcase-title"><?= $home->showcase->title ?></h2>
@@ -64,18 +61,8 @@ $home = (object) [
 			<a class="btn btn-secondary btn-lg showcase-button" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
 		<?php endif; ?>
 	</div>
-
-	<?php if (!$home->map->isActive) : ?>
-	<div class="showcase-divider-bottom">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-			<path d="M892.25 114.72L0 0 0 120 1200 120 1200 0 892.25 114.72z" class="shape-fill"></path>
-    </svg>
-	</div>
-	<?php endif; ?>
 </section>
-<?php endif; ?>
 
-<?php if ($home->map->isActive) : ?>
 <section class="map" id="home-map">
 	<div class="map-divider-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -85,12 +72,18 @@ $home = (object) [
 
 	<div id="htr-destinations"></div>
 	<script>
+		const places = <?= json_encode($home->map->destinations) ?>;
 		const htrMapToken = '<?= $home->map->token ?>'
 		const htrMapStyle = '<?= $home->map->style ?>'
-		const htrMapDestinations = <?= json_encode($home->map->destinations) ?>
+		const htrMapDestinations = []
+		places.forEach(place => {
+			htrMapDestinations.push({
+				lat: parseFloat(place.ville.split(',')[0]),
+				lng: parseFloat(place.ville.split(',')[1]),
+			})
+		})
 	</script>
 </section>
-<?php endif; ?>
 
 <?php if ($home->bestProducts->isActive) : ?>
 <section class="best-products">

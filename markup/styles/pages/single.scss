@@ -3,3 +3,9 @@
 	font: 700 2.5rem/1.25 var(--font-stack-heading);
 	color: inherit;
 }
+
+.page-text {
+	h2, h3, h4, h5 {
+		margin-top: 1.5em;
+	}
+}

@@ -3,6 +3,8 @@
 .form-check-input[type=checkbox] {
 	border-radius: 0;
 	font-size: 1rem;
+	caret-color: var(--color-black);
+	accent-color: var(--color-primary);
 }
 
 .form-check-input {
