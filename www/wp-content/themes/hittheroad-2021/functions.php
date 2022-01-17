@@ -12,10 +12,12 @@ add_action('after_setup_theme', function () {
 	]);
 });
 
+require_once 'classes/htr-acf.php';
+require_once 'classes/htr-locations.php';
 require_once 'classes/htr-scripts.php';
-require_once 'classes/htr-walkers.php';
 require_once 'classes/htr-templates.php';
 require_once 'classes/htr-tools.php';
+require_once 'classes/htr-walkers.php';
 require_once 'inc/disable-comments.php';
 require_once 'inc/woocommerce-functions.php';
 
@@ -28,6 +30,7 @@ function debug ($message, $exit = false) {
 		exit();
 	}
 }
+
 function gn_ajouter_styles_editeur() {
 	add_editor_style('assets/css/editor-style.css');
 }

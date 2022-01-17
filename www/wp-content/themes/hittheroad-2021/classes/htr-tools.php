@@ -9,9 +9,6 @@ class HTR_Tools {
 	function __construct () {
 		add_filter('upload_mimes', [$this, 'mime_types']);
 		add_filter('clean_image_filenames_mime_types', [$this, 'custom_clean_image_filenames_mime_types']);
-		if (function_exists('acf_add_options_page')) {
-			acf_add_options_page();
-		}
 	}
 
 	/**
