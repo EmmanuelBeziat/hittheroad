@@ -3,7 +3,7 @@
 }
 
 #htr-destinations {
-	aspect-ratio: 21 / 9;
+	aspect-ratio: 16/9;
 }
 
 .map-divider-top {
@@ -25,4 +25,11 @@
 
 .map-divider-top .shape-fill {
 	fill: var(--color-primary);
+}
+
+.htr-marker {
+	background: url(../images/map/marker.svg) no-repeat 50% top / contain;
+	width: 35px;
+	aspect-ratio: 1/2.5;
+	transform: translateY(-100%);
 }

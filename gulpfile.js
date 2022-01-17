@@ -60,6 +60,16 @@ const scriptsVendors = () => {
 		.pipe(dest(destination + '/js'))
 }
 
+const scriptsClasses = () => {
+	return src('./markup/scripts/classes/*.js')
+		.pipe(plumber())
+		.pipe(sourcemaps.init())
+		.pipe(concat('classes.js'))
+		.pipe(uglify())
+		.pipe(sourcemaps.write('.'))
+		.pipe(dest(destination + '/js'))
+}
+
 const styles = () => {
 	return src('./markup/styles/app.scss')
 		.pipe(plumber())
@@ -93,17 +103,24 @@ const watchTasks = () => {
 	watch('./markup/styles/editor-style.scss', series(stylesEditor))
 	watch('./markup/scripts/app.js', series(scripts))
 	watch('./markup/scripts/vendors/*.js', series(scriptsVendors))
+	watch('./markup/scripts/classes/*.js', series(scriptsClasses))
 }
 
 module.exports = {
+	watch: watchTasks,
 	clean: parallel(cleanCSS, cleanJS, cleanImages, cleanFonts),
 	styles: series(styles),
-	maintenance: series(stylesMaintenance),
-	editor: series(stylesEditor),
+	stylesMaintenance: series(stylesMaintenance),
+	stylesEditor: series(stylesEditor),
 	scripts: series(scripts),
+	scriptsClasses: series(scriptsClasses),
 	scriptsVendors: series(scriptsVendors),
 	images: series(images),
 	fonts: series(fonts),
-	watch: watchTasks,
-	default: parallel(series(cleanCSS, styles, stylesMaintenance, stylesEditor), series(cleanJS, scripts, scriptsVendors), series(cleanImages, images), series(cleanFonts, fonts))
+	default: parallel(
+		series(cleanCSS, styles, stylesMaintenance, stylesEditor),
+		series(cleanJS, scripts, scriptsVendors, scriptsClasses),
+		series(cleanImages, images),
+		series(cleanFonts, fonts)
+	)
 }
