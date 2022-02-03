@@ -25,7 +25,6 @@ $home = (object) [
 		// 'isActive' => get_field('block-map')['is-active'],
 		'token' => get_field('block-map')['token'],
 		'style' => get_field('block-map')['style'],
-		'destinations' => get_field('block-map')['destinations'],
 	],
 	'bestProducts' => (object) [
 		'isActive' => get_field('block-best-products')['is-active'],
@@ -63,27 +62,7 @@ $home = (object) [
 	</div>
 </section>
 
-<section class="map" id="home-map">
-	<div class="map-divider-top">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-			<path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
-    </svg>
-	</div>
-
-	<div id="htr-destinations"></div>
-	<script>
-		const places = <?= json_encode($home->map->destinations) ?>;
-		const htrMapToken = '<?= $home->map->token ?>'
-		const htrMapStyle = '<?= $home->map->style ?>'
-		const htrMapDestinations = []
-		places.forEach(place => {
-			htrMapDestinations.push({
-				lat: parseFloat(place.ville.split(',')[0]),
-				lng: parseFloat(place.ville.split(',')[1]),
-			})
-		})
-	</script>
-</section>
+<?php get_template_part('template-parts/content/home/map', '', ['map' => $home->map]); ?>
 
 <?php if ($home->bestProducts->isActive) : ?>
 <section class="best-products">

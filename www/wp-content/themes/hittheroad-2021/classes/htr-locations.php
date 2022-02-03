@@ -55,7 +55,7 @@ class HTR_Locations {
 			'not_found' => 'Aucun emplacement trouvé',
 			'not_found_in_trash' => 'Aucun emplacement trouvé dans la corbeille',
 			'parent_item_colon' => 'Emplacement parent',
-			'all_items' => 'Toutes les emplacements',
+			'all_items' => 'Tous les emplacements',
 			'archives' => 'Emplacements archivés',
 			'attributes' => 'Attributs de l’emplacement',
 			'insert_into_item' => 'Insérer dans l’emplacement',
@@ -63,13 +63,13 @@ class HTR_Locations {
 			'filter_items_list' => 'Filtrer la liste des emplacements',
 			'items_list_navigation' => 'Navigation dans la liste des emplacements',
 			'items_list' => 'Liste des emplacements',
-			'item_published' => 'Emplacement mise en ligne.',
-			'item_published_privately' => 'Emplacement mise en ligne en privé.',
+			'item_published' => 'Emplacement mis en ligne.',
+			'item_published_privately' => 'Emplacement mis en ligne en privé.',
 			'item_reverted_to_draft' => 'Emplacement repassé en brouillon.',
 			'item_scheduled' => 'Emplacement programmé.',
-			'item_updated' => 'Emplacement mise à jour.',
+			'item_updated' => 'Emplacement mis à jour.',
 			'item_link' => 'Lien vers l’emplacement',
-			'item_link_description' => 'Un lien vers une emplacement',
+			'item_link_description' => 'Un lien vers un emplacement',
 		);
 
 		return $labels;
