@@ -24,7 +24,7 @@ if (empty($product) || ! $product->is_visible()) {
 	return;
 }
 ?>
-<article <?php wc_product_class('my-3', $product); ?> data-aos="fade-up">
+<article <?php wc_product_class('', $product); ?> data-aos="fade-up">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

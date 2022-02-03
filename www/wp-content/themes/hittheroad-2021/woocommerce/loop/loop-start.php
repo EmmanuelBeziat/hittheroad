@@ -19,4 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
+</aside>
+
 <div class="products-grid">
