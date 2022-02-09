@@ -23,8 +23,9 @@ global $product;
 if (empty($product) || ! $product->is_visible()) {
 	return;
 }
+	$countryName = get_field('place', get_the_id($product))->post_name;
 ?>
-<article <?php wc_product_class('', $product); ?> data-aos="fade-up">
+<article <?php wc_product_class('', $product); ?> data-aos="fade-up" data-country="<?= $countryName ?>">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
