@@ -96,7 +96,6 @@ const stylesEditor = () => {
 		.pipe(dest(destination + '/css'))
 }
 
-
 const watchTasks = () => {
 	watch('./markup/styles/**/*.scss', series(cleanCSS, styles))
 	watch('./markup/styles/maintenance.scss', series(stylesMaintenance))

@@ -14,20 +14,20 @@
 		overflow: hidden;
 		display: block;
 		border-radius: 4px;
-		box-shadow: 0 1px 1px hsl(0deg 0% 0% / .075),
-		0 2px 2px hsl(0deg 0% 0% / .075),
-		0 4px 4px hsl(0deg 0% 0% / .05),
-		0 8px 8px hsl(0deg 0% 0% / 0),
-		0 16px 16px hsl(0deg 0% 0% / 0);
+		box-shadow: 0 1px 1px "hsl(0deg 0% 0% / .075)",
+		0 2px 2px "hsl(0deg 0% 0% / .075)",
+		0 4px 4px "hsl(0deg 0% 0% / .05)",
+		0 8px 8px "hsl(0deg 0% 0% / 0)",
+		0 16px 16px "hsl(0deg 0% 0% / 0)";
 		transition: .5s ease-in-out;
 		cursor: pointer;
 
 		&:hover {
-			box-shadow: 0 1px 1px hsl(0deg 0% 0% / .075),
-			0 2px 2px hsl(0deg 0% 0% / .075),
-			0 4px 4px hsl(0deg 0% 0% / .075),
-			0 8px 8px hsl(0deg 0% 0% / .075),
-			0 16px 16px hsl(0deg 0% 0% / .075);
+			box-shadow: 0 1px 1px "hsl(0deg 0% 0% / .075)",
+			0 2px 2px "hsl(0deg 0% 0% / .075)",
+			0 4px 4px "hsl(0deg 0% 0% / .075)",
+			0 8px 8px "hsl(0deg 0% 0% / .075)",
+			0 16px 16px "hsl(0deg 0% 0% / .075)";
 			transform: translateY(-6px);
 			transition: .25s ease-in-out;
 
