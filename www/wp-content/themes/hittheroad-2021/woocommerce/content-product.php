@@ -23,9 +23,11 @@ global $product;
 if (empty($product) || ! $product->is_visible()) {
 	return;
 }
-$countryName = get_field('place', get_the_id($product))->post_name;
+$placeID = get_field('place', get_the_id($product));
+$city = get_post($placeID)->post_name;
+// $country = get_field('country', $placeID);
 ?>
-<article <?php wc_product_class('', $product); ?> data-country="<?= $countryName ?>">
+<article <?php wc_product_class('', $product); ?> data-city="<?= $city ?>">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -61,17 +63,13 @@ $countryName = get_field('place', get_the_id($product))->post_name;
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
 	do_action('woocommerce_after_shop_loop_item_title');
-	?>
 
-	<div class="d-grid">
-		<?php
-		/**
-		 * Hook: woocommerce_after_shop_loop_item.
-		 *
-		 * @hooked woocommerce_template_loop_product_link_close - 5
-		 * @hooked woocommerce_template_loop_add_to_cart - 10
-		 */
-		do_action('woocommerce_after_shop_loop_item');
-		?>
-	</div>
+	/**
+	 * Hook: woocommerce_after_shop_loop_item.
+	 *
+	 * @hooked woocommerce_template_loop_product_link_close - 5
+	 * @hooked woocommerce_template_loop_add_to_cart - 10
+	 */
+	do_action('woocommerce_after_shop_loop_item');
+	?>
 </article>

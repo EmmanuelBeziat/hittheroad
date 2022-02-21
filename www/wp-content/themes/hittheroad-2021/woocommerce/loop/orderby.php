@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	*/ ?>
 	<div class="filters">
 		<div class="filter-item">
-			<label class="form-label" for="filter-country">Filter par pays</label>
+			<label class="form-label" for="filter-country">Filter par localité</label>
 			<select id="filter-country" name="filterbycountry" class="form-select filterbycountry" aria-label="Filtrer par pays">
 				<option value="0">Tous</option>
 				<?php

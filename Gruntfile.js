@@ -19,7 +19,6 @@ module.exports = grunt => {
 				options: {
 					implementation: sass,
 					sourceMap: true,
-					style: 'nested'
 				},
 				files: [
 					{
@@ -39,18 +38,15 @@ module.exports = grunt => {
 				},
 				files: [
 					{
-						expand: true,
-						cwd: '<%= config.src.styles %>',
-						src: ['app.scss'],
-						dest: '<%= config.dist.styles %>',
-						ext: '.css'
+						src: ['<%= config.src.styles %>app.scss'],
+						dest: '<%= config.dist.styles %>app.css'
 					},
 					{
-						src: '<%= config.src.styles %>maintenance.scss',
+						src: ['<%= config.src.styles %>maintenance.scss'],
 						dest: '<%= config.dist.styles %>maintenance.css'
 					},
 					{
-						src: '<%= config.src.styles %>editor-style.scss',
+						src: ['<%= config.src.styles %>editor-style.scss'],
 						dest: '<%= config.dist.styles %>editor-style.css'
 					}
 				]
@@ -112,8 +108,18 @@ module.exports = grunt => {
 		},
 
 		watch: {
+			configFiles: {
+				files: [ 'Gruntfile.js', 'grunt-settings.js' ],
+				options: {
+					reload: true
+				}
+			},
 			options: {
-				debounceDelay: 1,
+				debounceDelay: 250,
+			},
+			styles: {
+				files: ['<%= config.src.styles %>**/*.scss'],
+				taks: ['sass:dev'],
 			},
 			images: {
 				files: ['<%= config.src.images %>**/*.{png,jpg,jpeg,gif,svg,webp}'],
@@ -123,12 +129,16 @@ module.exports = grunt => {
 				}
 			},
 			scripts: {
-				files: '<%= config.src.scripts %>**/*.js',
-				tasks: ['concat:vendors', 'concat:classes', 'concat:app'],
+				files: ['<%= config.src.scripts %>*.js'],
+				tasks: ['concat:app'],
 			},
-			styles: {
-				files: '<%= config.src.styles %>**/*.scss',
-				taks: ['sass:dev'],
+			scriptsVendors: {
+				files: ['<%= config.src.scripts %>vendors/*.js'],
+				tasks: ['concat:vendors'],
+			},
+			scriptsClasses: {
+				files: ['<%= config.src.scripts %>classes/*.js'],
+				tasks: ['concat:classes'],
 			}
 		}
 	})
@@ -137,4 +147,6 @@ module.exports = grunt => {
 	grunt.registerTask('dev:full', ['sass:dev', 'concat:vendors', 'concat:classes', 'concat:app', 'copy:images', 'copy:fonts', 'watch'])
 	grunt.registerTask('dev:quick', ['watch'])
 	grunt.registerTask('build', ['sass:prod', 'uglify:vendors', 'uglify:classes', 'uglify:app', 'copy:images', 'copy:fonts'])
+	grunt.registerTask('build:styles', ['sass:prod'])
+	grunt.registerTask('build:scripts', ['uglify:vendors', 'uglify:classes', 'uglify:app'])
 }

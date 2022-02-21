@@ -23,7 +23,7 @@ require_once 'inc/disable-comments.php';
 require_once 'inc/woocommerce-functions.php';
 
 function debug ($message, $exit = false) {
-	echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: 2f2f2f;">';
+	echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: #2f2f2f;">';
 	var_dump($message);
 	echo '</pre>';
 

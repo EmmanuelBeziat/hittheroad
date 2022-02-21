@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "grunt dev:full",
     "watch": "grunt dev:quick",
-		"build": "grunt build"
+    "build": "grunt build",
+    "build:styles": "grunt build:styles",
+    "build:scripts": "grunt build:scripts"
   },
   "dependencies": {
     "alpinejs": "^3.4.2",
@@ -16,7 +18,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-		"autoprefixer-core": "^6.0.1",
+    "autoprefixer-core": "^6.0.1",
     "grunt": "^1.4.1",
     "grunt-cli": "^1.4.3",
     "grunt-combine-media-queries": "^1.0.20",
@@ -24,7 +26,6 @@
     "grunt-contrib-concat": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-imagemin": "^4.0.0",
-    "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^5.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-css": "^0.5.4",

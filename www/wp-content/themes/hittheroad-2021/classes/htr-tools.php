@@ -18,7 +18,7 @@ class HTR_Tools {
 	 * @param $exit boolean Stop program execution.
 	 */
 	public static function dd ($message, $exit = false) {
-		echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: 2f2f2f;">';
+		echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: #2f2f2f;">';
 		print_r($message);
 		echo '</pre>';
 

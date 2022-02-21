@@ -19,8 +19,17 @@
 	gap: 2rem 1rem;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-area: List;
-}
 
+	.product {
+		display: flex;
+		flex-direction: column;
+
+		.btn-primary {
+			margin-top: auto;
+			display: block;
+		}
+	}
+}
 
 .products-sidebar {
 	grid-area: Sidebar;
@@ -28,8 +37,10 @@
 
 .product-link {
 	text-decoration: none;
-	display: block;
+	display: flex;
+	flex-direction: column;
 	margin-bottom: .5rem;
+	flex: 1;
 
 	&:hover {
 		color: inherit;
@@ -38,6 +49,10 @@
 	.woocommerce-loop-product__title {
 		font-size: 1.25rem;
 		margin: .5rem 0;
+	}
+
+	.price {
+		margin-top: auto;
 	}
 }
 
