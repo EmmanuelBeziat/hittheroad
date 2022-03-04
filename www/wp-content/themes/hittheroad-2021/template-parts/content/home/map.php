@@ -7,13 +7,16 @@
 
 	<div id="htr-destinations"></div>
 	<?php $places = [];
-	$query = new WP_Query(['post_type' => 'location']);
+	$query = new WP_Query([
+		'post_type' => 'location'
+	]);
 	if ($query->have_posts()) :
 		while ($query->have_posts()) :
 			$query->the_post();
 			array_push($places, (object) [
 				'id' => get_the_ID(),
 				'name' => get_the_title(),
+				'slug' => get_post(get_the_ID())->post_name,
 				'lat' => get_field('coordinates', get_the_ID())['lat'],
 				'lng' => get_field('coordinates', get_the_ID())['lng'],
 			]);
@@ -29,6 +32,7 @@
 			htrMapDestinations.push({
 				id: parseFloat(place.id),
 				name: place.name,
+				slug: place.slug,
 				lat: parseFloat(place.lat),
 				lng: parseFloat(place.lng),
 			})

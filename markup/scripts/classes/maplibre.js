@@ -25,6 +25,10 @@ class MapLibre {
 			const el = document.createElement('div')
 			el.className = 'marker htr-marker'
 
+			el.addEventListener('click', () => {
+				window.location.href = `/shop/?place=${marker.slug}`
+			})
+
 			new maplibregl.Marker(el)
 				.setLngLat([marker.lng, marker.lat])
 				.addTo(this.map)

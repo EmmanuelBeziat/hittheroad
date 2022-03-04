@@ -9,3 +9,40 @@
 		margin-top: 1.5em;
 	}
 }
+
+.single-product {
+	.product {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 2fr 3fr;
+		grid-template-rows: repeat(3, auto);
+		grid-template-areas:
+			"Picture Summary"
+			"Description Description"
+			"Related Related";
+	}
+
+	.woocommerce-product-gallery {
+		grid-area: Picture;
+	}
+
+	.summary {
+		grid-area: Summary;
+	}
+
+	.woocommerce-tabs {
+		grid-area: Description;
+	}
+
+	.related.products {
+		grid-area: Related;
+	}
+
+	.single-product-cart {
+		display: flex;
+
+		.qty {
+			height: 100%;
+		}
+	}
+}
