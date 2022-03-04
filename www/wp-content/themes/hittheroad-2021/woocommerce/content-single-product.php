@@ -18,9 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 global $product;
-?>
 
-<?php
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -33,7 +31,7 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
+<section id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
 	<?php
 	/**
@@ -73,6 +71,6 @@ if ( post_password_required() ) {
 	 */
 	do_action( 'woocommerce_after_single_product_summary' );
 	?>
-</div>
+</section>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

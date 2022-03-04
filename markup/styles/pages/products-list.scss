@@ -2,12 +2,12 @@
 	display: grid;
 	gap: 2rem 1rem;
 	grid-template-columns: 240px auto;
-	grid-template-rows: auto auto;
+	grid-template-rows: auto;
 	grid-template-areas:
-		"Sidebar List"
-		"Sidebar List";
+	"Sidebar List";
 
 	@media (max-width: 992px) {
+		grid-template-rows: auto auto;
 		grid-template-areas:
 			"Sidebar Sidebar"
 			"List List";
@@ -15,10 +15,19 @@
 }
 
 .products-grid {
+	--repeat: 4;
 	display: grid;
 	gap: 2rem 1rem;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-template-columns: repeat(var(--repeat, auto-fit), minmax(240px, 1fr));
 	grid-area: List;
+
+	@media (max-width: 1400px) {
+		--repeat: 3;
+	}
+
+	@media (max-width: 1200px) {
+		--repeat: auto-fit;
+	}
 
 	.product {
 		display: flex;
@@ -63,5 +72,14 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+}
+
+.products-pagination {
+	margin-top: 2rem;
+	margin-left: calc(240px + 1rem);
+
+	@media (max-width: 992px) {
+		margin-left: 0;
 	}
 }

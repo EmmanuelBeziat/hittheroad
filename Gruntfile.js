@@ -27,7 +27,7 @@ module.exports = grunt => {
 						src: ['app.scss'],
 						dest: '<%= config.dist.styles %>',
 						ext: '.css'
-					}
+					},
 				]
 			},
 			prod: {
@@ -115,11 +115,24 @@ module.exports = grunt => {
 				}
 			},
 			options: {
-				debounceDelay: 250,
+				debounceDelay: 1,
 			},
+			/* notify: {
+				options: {
+					enabled: true,
+					max_js_hint_notifications: 5,
+					title: 'HtR'
+				},
+				watch: {
+					options: {
+						title: 'Task complete',
+						message: 'SASS finished running'
+					}
+				}
+			}, */
 			styles: {
 				files: ['<%= config.src.styles %>**/*.scss'],
-				taks: ['sass:dev'],
+				tasks: ['sass:dev'],
 			},
 			images: {
 				files: ['<%= config.src.images %>**/*.{png,jpg,jpeg,gif,svg,webp}'],

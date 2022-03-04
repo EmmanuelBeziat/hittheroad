@@ -34,7 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<select id="filter-country" name="filterbycountry" class="form-select filterbycountry" aria-label="Filtrer par pays">
 				<option value="0">Tous</option>
 				<?php
-				$query = new WP_Query(['post_type' => 'location']);
+				$args = [
+					'post_type' => 'location',
+				];
+				$query = new WP_Query($args);
 				foreach ($query->posts as $location) : ?>
 					<option value="<?= $location->post_name ?>"><?= $location->post_title ?></option>
 				<?php endforeach; ?>
