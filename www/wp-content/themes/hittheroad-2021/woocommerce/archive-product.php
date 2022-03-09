@@ -33,9 +33,9 @@ do_action('woocommerce_before_main_content');
 <header class="woocommerce-products-header">
 	<?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
 		<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
-	<?php endif; ?>
+		<?php endif; ?>
 
-	<?php
+		<?php
 	/**
 	 * Hook: woocommerce_archive_description.
 	 *
@@ -48,17 +48,6 @@ do_action('woocommerce_before_main_content');
 
 <?php
 if (woocommerce_product_loop()) :
-
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	do_action('woocommerce_before_shop_loop');
-
-	woocommerce_product_loop_start();
 	$currentPage = (get_query_var('page')) ? get_query_var('page') : 1;
 	$postsPerPage = 12;
 	$args = [
@@ -87,6 +76,18 @@ if (woocommerce_product_loop()) :
 	}
 
 	$loop = new WP_Query($args);
+	$productsCount = $loop->found_posts;
+
+	/**
+	 * Hook: woocommerce_before_shop_loop.
+	 *
+	 * @hooked woocommerce_output_all_notices - 10
+	 * @hooked woocommerce_result_count - 20
+	 * @hooked woocommerce_catalog_ordering - 30
+	 */
+	do_action('woocommerce_before_shop_loop');
+
+	woocommerce_product_loop_start();
 
 	if ($loop->have_posts()) :
 		while ($loop->have_posts()) :

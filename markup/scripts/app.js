@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Cookies banner
 	new CookiesBanner()
 
+	// Shop Filters
+	const countryFilter = new ShopFilter('filterbycountry')
+	countryFilter.onChange(() => {
+		window.location.href = `${window.location.origin}${window.location.pathname}?place=${countryFilter.getValue()}`
+	});
+
 	// MapLibre (HomePage)
 	if (typeof htrMapToken !== 'undefined' && typeof htrMapStyle !== 'undefined') {
 		new MapLibre({

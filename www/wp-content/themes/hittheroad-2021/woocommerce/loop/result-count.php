@@ -25,11 +25,10 @@ if (! defined('ABSPATH')) {
 	<aside class="products-sidebar">
 		<p class="products-count">
 			<?php
+			global $productsCount;
+			$total = $productsCount;
 			// phpcs:disable WordPress.Security
-			if (1 === intval($total)) {
-				_e('Showing the single result', 'woocommerce');
-			}
-			elseif ($total <= $per_page || -1 === $per_page) {
+			if ($total <= $per_page || -1 === $per_page) {
 				/* translators: %d: total results */
 				printf(_n('Showing all %d result', 'Showing all %d results', $total, 'woocommerce'), $total);
 			}
