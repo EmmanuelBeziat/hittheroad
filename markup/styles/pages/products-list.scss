@@ -38,7 +38,12 @@
 			display: block;
 		}
 	}
+
+	.products-alert {
+		grid-column: span var(--repeat, 1);
+	}
 }
+
 
 .products-sidebar {
 	grid-area: Sidebar;

@@ -68,20 +68,62 @@ if (woocommerce_product_loop()) :
 		'orderby' => 'date',
 		'post_status' => 'publish',
 	];
+
+	$queryVar = get_query_var('place');
+	if (isset($queryVar) && $queryVar !== '') {
+		$location = get_page_by_path($queryVar, '', 'location');
+		if (isset($location->ID)) {
+			$args = array_merge($args, [
+				'meta_key' => 'place',
+				'meta_value' => $location->ID,
+			]);
+		}
+		else {
+			$args = array_merge($args, [
+				'meta_key' => 'place',
+				'meta_value' => -1,
+			]);
+		}
+	}
+
 	$loop = new WP_Query($args);
 
 	if ($loop->have_posts()) :
 		while ($loop->have_posts()) :
 			$item = $loop->the_post();
+
 			global $product;
+
+			setup_postdata($loop->post->ID);
 
 			/**
 			 * Hook: woocommerce_shop_loop.
 			 */
 			do_action('woocommerce_shop_loop');
 
+			/**
+			 * If the product is not in the current place, skip it
+			 */
+/* 			if (isset($queryVar) && $queryVar !== '') :
+				$location = get_post(get_field('place', $post->ID))->post_name;
+				if ($queryVar === $location) :
+					$postCount++;
+					wc_get_template_part('content', 'product');
+				endif;
+
+			else :
+				$postCount++;
+				wc_get_template_part('content', 'product');
+			endif; */
 			wc_get_template_part('content', 'product');
 		endwhile;
+	else :
+		/**
+		 * Hook: woocommerce_no_products_found.
+		 *
+		 * @hooked wc_no_products_found - 10
+		 */
+		do_action('woocommerce_no_products_found');
 	endif;
 
 	woocommerce_product_loop_end();
