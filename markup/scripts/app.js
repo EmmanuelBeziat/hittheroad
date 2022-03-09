@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Shop Filters
 	const countryFilter = new ShopFilter('filterbycountry')
 	countryFilter.onChange(() => {
-		window.location.href = `${window.location.origin}${window.location.pathname}?place=${countryFilter.getValue()}`
+		const nextState = {}
+		const nextTitle = ''
+		const nextUrl = `${window.location.origin}${window.location.pathname}?place=${countryFilter.getValue()}`
+		window.history.pushState(nextState, nextTitle, nextUrl)
+		location.reload()
 	});
 
 	// MapLibre (HomePage)
