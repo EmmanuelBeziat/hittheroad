@@ -49,7 +49,7 @@ do_action('woocommerce_before_main_content');
 <?php
 if (woocommerce_product_loop()) :
 	$currentPage = (get_query_var('page')) ? get_query_var('page') : 1;
-	$postsPerPage = 12;
+	$postsPerPage = get_field('products-per-page', 'option');
 	$args = [
 		'post_type' => 'product',
 		'posts_per_page' => $postsPerPage,
