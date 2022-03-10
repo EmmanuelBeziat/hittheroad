@@ -20,6 +20,15 @@
 			"Picture Summary"
 			"Description Description"
 			"Related Related";
+
+		@media (max-width: 767px) {
+			grid-template-columns: auto;
+			grid-template-areas:
+				"Picture"
+				"Summary"
+				"Description"
+				"Related"
+		}
 	}
 
 	.woocommerce-product-gallery {
@@ -56,6 +65,10 @@
 		& > * {
 			display: block;
 		}
+	}
+
+	.woocommerce-product-gallery__image {
+		display: block;
 	}
 }
 
