@@ -3,6 +3,13 @@
 @import "fonts/bebas-neue.scss";
 @import "fonts/montserrat.scss";
 
+body,
+p,
+ul,
+ol {
+	font-family: var(--font-stack-common);
+}
+
 h1,
 h2,
 h3,

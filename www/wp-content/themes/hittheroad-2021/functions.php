@@ -46,9 +46,9 @@ function custom_pagination ($args) {
 	?>
 	<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
 		<ul class="pagination justify-content-center">
-			<li class="page-item<?= $page - 1 === 0 ? ' disabled' : '' ?>">
-				<a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Précédent"<?= $page - 1 === 0 ? ' tabindex="-1" aria-disabled="true"' : '' ?>>
-					<span aria-hidden="true">&laquo;</span>
+			<li class="page-item page-item-prev<?= $page - 1 === 0 ? ' disabled' : '' ?>">
+				<a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Page précédente"<?= $page - 1 === 0 ? ' tabindex="-1" aria-disabled="true"' : '' ?>>
+					<i class="fas fa-chevron-left"></i>
 				</a>
 			</li>
 			<?php for ($i = 0; $i < $args['maxNumPages']; $i++) : ?>
@@ -58,9 +58,9 @@ function custom_pagination ($args) {
 					<li class="page-item"><a class="page-link" href="?page=<?= $i+1 ?>"><?= $i+1 ?></a></li>
 				<?php endif; ?>
 			<?php endfor; ?>
-			<li class="page-item<?= $maxPages === $page ? ' disabled' : '' ?>">
-				<a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Suivant"<?= $maxPages === $page ? ' tabindex="-1" aria-disabled="true"' : '' ?>>
-					<span aria-hidden="true">&raquo;</span>
+			<li class="page-item page-item-next<?= $maxPages === $page ? ' disabled' : '' ?>">
+				<a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Page suivante"<?= $maxPages === $page ? ' tabindex="-1" aria-disabled="true"' : '' ?>>
+					<i class="fas fa-chevron-right"></i>
 				</a>
 			</li>
 		</ul>

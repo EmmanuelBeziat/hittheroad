@@ -21,17 +21,38 @@
 	overflow: hidden;
 	line-height: 0;
 	z-index: 5;
+
+	svg {
+		position: relative;
+		display: block;
+		width: calc(111% + 1.3px);
+		height: 24px;
+	}
+
+	.shape-fill {
+		fill: var(--color-primary);
+	}
 }
 
-.map-divider-top svg {
-	position: relative;
-	display: block;
-	width: calc(111% + 1.3px);
-	height: 24px;
-}
+.map-divider-bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+	transform: rotate(180deg);
 
-.map-divider-top .shape-fill {
-	fill: var(--color-primary);
+	svg {
+		position: relative;
+		display: block;
+		width: calc(125% + 1.3px);
+		height: 36px;
+	}
+
+	.shape-fill {
+		fill: var(--color-white);
+	}
 }
 
 .htr-marker {

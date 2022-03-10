@@ -18,6 +18,7 @@ class MapLibre {
 
 	mapInit (options) {
 		this.map = new maplibregl.Map(options)
+		this.map.scrollZoom.disable()
 	}
 
 	createMarkers (markers = this.markers) {
