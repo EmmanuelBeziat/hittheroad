@@ -3,9 +3,9 @@
 	margin: auto;
 	border-radius: .5rem;
 	padding: 2rem;
-	box-shadow: 0 1px 1px "hsl(0deg 0% 0% / .075)",
-	0 2px 2px "hsl(0deg 0% 0% / .075)",
-	0 4px 4px "hsl(0deg 0% 0% / .05)",
-	0 8px 8px "hsl(0deg 0% 0% / 0)",
-	0 16px 16px "hsl(0deg 0% 0% / 0)";
+	box-shadow: 0 1px 1px HSL(0deg 0% 0% / .075),
+	0 2px 2px HSL(0deg 0% 0% / .075),
+	0 4px 4px HSL(0deg 0% 0% / .05),
+	0 8px 8px HSL(0deg 0% 0% / 0),
+	0 16px 16px HSL(0deg 0% 0% / 0);
 }

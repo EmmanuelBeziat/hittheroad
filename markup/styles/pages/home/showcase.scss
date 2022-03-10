@@ -6,12 +6,14 @@
 
 .showcase-title {
 	text-align: center;
-	font-size: 6rem;
+	font-size: 3rem;
 	display: inline-flex;
 	align-items: center;
 	color: var(--color-white);
 
 	@media (min-width: 768px) {
+		font-size: 6rem;
+
 		&::before,
 		&::after {
 			content: "";

@@ -53,11 +53,11 @@ $home = (object) [
 
 <section class="showcase">
 	<div class="container text-center">
-		<h2 class="showcase-title"><?= $home->showcase->title ?></h2>
-		<p class="lead"><?= $home->showcase->content ?></p>
+		<h2 class="showcase-title" data-aos="fade-up" data-aos-duration="400"><?= $home->showcase->title ?></h2>
+		<p class="lead" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100"><?= $home->showcase->content ?></p>
 
 		<?php if (isset($home->showcase->link->url) && $home->showcase->link->url !== '') : ?>
-			<a class="btn btn-secondary btn-lg showcase-button" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
+			<a class="btn btn-secondary btn-lg showcase-button" data-aos="fade-up" data-aos-duration="400" data-aos-delay="200" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
 		<?php endif; ?>
 	</div>
 </section>
@@ -67,21 +67,26 @@ $home = (object) [
 <?php if ($home->bestProducts->isActive) : ?>
 <section class="best-products">
 	<div class="container">
-		<div class="products-list" style="--products-count: <?= count($home->bestProducts->products) ?>">
+		<h2 class="section-title">Nos dernières photos</h2>
+		<div class="products-grid" style="--products-count: <?= count($home->bestProducts->products) ?>">
 			<?php foreach ($home->bestProducts->products as $index => $product) :
 			$product = $product['product'];
 			?>
-			<article data-aos="fade-up" data-aos-delay="<?= ($index + 10) * 50 ?>" data-aos-duration="500">
-				<a href="<?= get_the_permalink($product->ID) ?>" class="product">
-					<div class="product-image">
-						<img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id($product->ID), 'medium')[0] ?>" alt>
+			<article data-aos="fade-up" data-aos-delay="<?= ($index + 2) * 50 ?>" data-aos-duration="500">
+				<a href="<?= get_the_permalink($product->ID) ?>" class="product-link">
+					<div class="product-picture">
+						<img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id($product->ID), 'product-thumbnail')[0] ?>" alt>
 					</div>
-					<div class="product-content">
-						<h3 class="product-title"><?= $product->post_title ?></h3>
-						<p><?= wc_get_product($product->ID)->get_price() ?> €</p>
-						<p><?= wc_get_product($product->ID)->get_width() ?>×<?= wc_get_product($product->ID)->get_height() ?> mm</p>
-					</div>
+					<h3 class="woocommerce-loop-product__title"><?= $product->post_title ?></h3>
+					<span class="price">
+						<span class="woocommerce-Price-amount amount">
+							<bdi>34,00 <span class="woocommerce-Price-currencySymbol">€</span></bdi>
+						</span>
+					</span>
 				</a>
+				<div class="d-grid">
+					<a href="<?= get_the_permalink($product->ID) ?>" class="btn btn-primary" aria-label="Aller voir “<?= $product->post_title ?>”" rel="nofollow">Voir l’article</a>
+				</div>
 			</article>
 			<?php endforeach; ?>
 		</div>

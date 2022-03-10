@@ -175,7 +175,7 @@ class HTR_Locations {
 	 * Add custom sizes for images.
 	 */
 	public function image_sizes() {
-		add_image_size('product-thumbnail', 600, 400, true);
+		add_image_size('product-thumbnail', 300, 300, true);
 		add_image_size('product-preview', 600, 400, true);
 		add_image_size('product-full', 1280, 800, true);
 	}

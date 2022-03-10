@@ -6,6 +6,13 @@
 	aspect-ratio: 16/9;
 }
 
+.maplibregl-map {
+	@media (max-width: 767px) {
+		height: 0;
+		visibility: hidden;
+	}
+}
+
 .map-divider-top {
 	position: absolute;
 	top: 0;

@@ -18,7 +18,7 @@
 defined('ABSPATH') || exit;
 
 global $product;
-
+global $delay;
 // Ensure visibility.
 if (empty($product) || ! $product->is_visible()) {
 	return;
@@ -27,7 +27,7 @@ $placeID = get_field('place', get_the_id($product));
 $city = get_post($placeID)->post_name;
 // $country = get_field('country', $placeID);
 ?>
-<article <?php wc_product_class('', $product); ?> data-city="<?= $city ?>">
+<article <?php wc_product_class('', $product); ?> data-city="<?= $city ?>" data-aos="fade-in" data-aos-delay="<?= $delay ?>" data-aos-duration="500">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

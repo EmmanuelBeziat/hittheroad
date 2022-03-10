@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<form class="products-ordering" method="get">
+<form class="products-ordering" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800" method="get">
 	<?php /*
 	<select name="orderby" class="form-select orderby" aria-label="<?php esc_attr_e( 'Shop order', 'woocommerce' ); ?>">
 		<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>

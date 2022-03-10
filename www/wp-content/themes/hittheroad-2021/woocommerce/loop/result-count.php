@@ -23,7 +23,7 @@ if (! defined('ABSPATH')) {
 ?>
 <div class="products-page">
 	<aside class="products-sidebar">
-		<p class="products-count">
+		<p class="products-count" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
 			<?php
 			global $productsCount;
 			$total = $productsCount;

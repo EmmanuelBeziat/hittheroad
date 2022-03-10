@@ -90,8 +90,10 @@ if (woocommerce_product_loop()) :
 	woocommerce_product_loop_start();
 
 	if ($loop->have_posts()) :
+		$delay = 0;
 		while ($loop->have_posts()) :
 			$item = $loop->the_post();
+			$delay += 50;
 
 			global $product;
 
@@ -102,20 +104,6 @@ if (woocommerce_product_loop()) :
 			 */
 			do_action('woocommerce_shop_loop');
 
-			/**
-			 * If the product is not in the current place, skip it
-			 */
-/* 			if (isset($queryVar) && $queryVar !== '') :
-				$location = get_post(get_field('place', $post->ID))->post_name;
-				if ($queryVar === $location) :
-					$postCount++;
-					wc_get_template_part('content', 'product');
-				endif;
-
-			else :
-				$postCount++;
-				wc_get_template_part('content', 'product');
-			endif; */
 			wc_get_template_part('content', 'product');
 		endwhile;
 	else :

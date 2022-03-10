@@ -40,10 +40,39 @@
 
 	.single-product-cart {
 		display: flex;
-		gap: 4px;
+		flex-wrap: wrap;
+		gap: 1rem 4px;
 
 		.qty {
 			height: 100%;
 		}
+	}
+
+	.woocommerce-product-gallery__wrapper {
+		margin-bottom: 0;
+	}
+
+	.product_meta {
+		& > * {
+			display: block;
+		}
+	}
+}
+
+.thwepo-extra-options {
+	display: block;
+
+	tbody,
+	tr,
+	td {
+		display: block;
+	}
+
+	.label-tag {
+		display: inline-block !important;
+	}
+
+	select {
+		@extend .form-select;
 	}
 }

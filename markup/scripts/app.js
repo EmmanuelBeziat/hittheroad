@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			style: htrMapStyle,
 			center: [0, 20],
 			zoom: 2,
-			interactive: false,
+			interactive: true,
 			attributionControl: false
 		},
 		htrMapDestinations)

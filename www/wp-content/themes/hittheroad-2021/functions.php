@@ -44,7 +44,7 @@ function custom_pagination ($args) {
 
 	if ($maxPages > 1) :
 	?>
-	<nav class="products-pagination" aria-label="Navigation pages produits">
+	<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
 		<ul class="pagination justify-content-center">
 			<li class="page-item<?= $page - 1 === 0 ? ' disabled' : '' ?>">
 				<a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Précédent"<?= $page - 1 === 0 ? ' tabindex="-1" aria-disabled="true"' : '' ?>>

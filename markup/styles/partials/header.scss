@@ -23,6 +23,8 @@
 		color: var(--nav-color, var(--color-white));
 		display: flex;
 		gap: .25rem;
+		line-height: 1;
+		font-size: 1rem;
 		align-items: center;
 		position: relative;
 		text-decoration: none;
@@ -47,6 +49,10 @@
 			transition: .25s ease-in-out;
 			opacity: var(--active-opacity, 0);
 			transform: var(--active-state, translateY(-3px) scaleX(.75));
+		}
+
+		@media (max-width: 767px) {
+			font-size: 1.5rem;
 		}
 	}
 

@@ -5,7 +5,7 @@
     </svg>
 	</div>
 
-	<div id="htr-destinations"></div>
+	<div id="htr-destinations" data-aos="fade-in" data-aos-duration="500" data-aos-delay="200"></div>
 	<?php $places = [];
 	$query = new WP_Query([
 		'post_type' => 'location'
