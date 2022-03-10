@@ -7,7 +7,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="<?= get_template_directory_uri() ?>/assets/images/favicons/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon-16x16.png">
-	<link rel="manifest" href="<?= get_template_directory_uri() ?>/assets/images/favicons/site.webmanifest">
+	<link rel="manifest" href="<?= get_template_directory_uri() ?>/assets/images/favicons/site.webmanifest" crossorigin="use-credentials">
 	<link rel="mask-icon" href="<?= get_template_directory_uri() ?>/assets/images/favicons/safari-pinned-tab.svg" color="#222222">
 	<link rel="shortcut icon" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon.ico">
 	<meta name="msapplication-TileColor" content="#222222">
