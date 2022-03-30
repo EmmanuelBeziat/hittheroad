@@ -7,7 +7,8 @@ class HTR_Scripts {
 	 * Add WordPress' actions and filters.
 	 */
 	function __construct () {
-		add_action('wp_enqueue_scripts', array($this, 'front_scripts'));
+		add_action('wp_enqueue_scripts', [$this, 'front_scripts']);
+		add_action('login_enqueue_scripts', [$this, 'login_scripts']);
 	}
 
 	/**
@@ -38,6 +39,10 @@ class HTR_Scripts {
 		// External JS
 
 		// AJAX
+	}
+
+	public function login_scripts () {
+    wp_enqueue_style('htr-login', get_stylesheet_directory_uri().'/assets/css/login-style.css');
 	}
 }
 new HTR_Scripts();

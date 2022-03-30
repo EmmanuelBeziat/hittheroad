@@ -1,7 +1,7 @@
 module.exports = grunt => {
 	require('load-grunt-tasks')(grunt)
 	const pathConfig = require('./grunt-settings.js')
-	const sass = require('node-sass')
+	const sass = require('sass')
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -48,6 +48,10 @@ module.exports = grunt => {
 					{
 						src: ['<%= config.src.styles %>editor-style.scss'],
 						dest: '<%= config.dist.styles %>editor-style.css'
+					},
+					{
+						src: ['<%= config.src.styles %>login-style.scss'],
+						dest: '<%= config.dist.styles %>login-style.css'
 					}
 				]
 			}
