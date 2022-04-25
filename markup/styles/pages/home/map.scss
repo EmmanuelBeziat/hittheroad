@@ -22,6 +22,10 @@
 	line-height: 0;
 	z-index: 5;
 
+	@media (max-width: 767px) {
+		display: none;
+	}
+
 	svg {
 		position: relative;
 		display: block;

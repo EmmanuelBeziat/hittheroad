@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	// AOS animations
 	AOS.init()
 
+	// Mobile menu
+	const toggler = document.querySelector('.navbar-toggler')
+	new mobileNav(toggler)
+
 	// Cookies banner
 	new CookiesBanner()
 
