@@ -11,6 +11,7 @@ $home = (object) [
 		// 'isActive' => get_field('block-hero')['is-active'],
 		'content' => get_field('block-hero')['content'],
 		'background' => isset(get_field('block-hero')['background']['url']) && get_field('block-hero')['background']['url'] !== '' ? get_field('block-hero')['background']['url'] : '#000',
+		'borders'	=> get_field('block-hero')['borders'],
 	],
 	'showcase' => (object) [
 		// 'isActive' => get_field('block-showcase')['is-active'],
@@ -22,9 +23,10 @@ $home = (object) [
 		],
 	],
 	'map' => (object) [
-		// 'isActive' => get_field('block-map')['is-active'],
+		'isActive' => get_field('block-map')['is-active'],
 		'token' => get_field('block-map')['token'],
 		'style' => get_field('block-map')['style'],
+		'borders'	=> get_field('block-map')['borders'],
 	],
 	'bestProducts' => (object) [
 		'isActive' => get_field('block-best-products')['is-active'],
@@ -44,11 +46,13 @@ $home = (object) [
 			endif; ?>
 		</div>
 
+		<?php if ($home->hero->borders): ?>
 		<div class="hero-divider-bottom">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 				<path d="M1200 0L0 0 598.97 114.72 1200 0z" class="shape-fill"></path>
 			</svg>
 		</div>
+		<?php endif; ?>
 	</div>
 </section>
 

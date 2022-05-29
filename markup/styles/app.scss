@@ -1,39 +1,41 @@
-// @import "vendors/normalize.scss";
+// @use "vendors/normalize.scss";
 
-// @import "../../node_modules/bootstrap/scss/bootstrap";
-@import "vendors/custom-bootstrap.scss";
-@import "vendors/maplibre-gl.scss";
-@import "vendors/aos.scss";
+// @use "../../node_modules/bootstrap/scss/bootstrap";
+@use "vendors/custom-bootstrap.scss";
+@use "vendors/maplibre-gl.scss";
+@use "vendors/aos.scss";
 
-@import "variables.scss";
+@use "variables.scss";
 
-@import "basis.scss";
-@import "layout.scss";
+@use "basis.scss";
+@use "layout.scss";
 
-@import "fonts/bebas-neue.scss";
-@import "fonts/montserrat.scss";
+@use "fonts/bebas-neue.scss";
+@use "fonts/montserrat.scss";
 
-@import "components/buttons.scss";
-@import "components/alerts.scss";
-@import "components/forms.scss";
-@import "components/pagination.scss";
-@import "components/tabs.scss";
-@import "components/cookies.scss";
+@use "components/buttons.scss";
+@use "components/alerts.scss";
+@use "components/forms.scss";
+@use "components/pagination.scss";
+@use "components/tabs.scss";
+@use "components/videos.scss";
+@use "components/cookies.scss";
 
-@import "partials/header.scss";
-@import "partials/mobile-nav.scss";
-@import "partials/footer.scss";
+@use "partials/header.scss";
+@use "partials/mobile-nav.scss";
+@use "partials/footer.scss";
 
-@import "pages/single.scss";
-@import "pages/products-list.scss";
-@import "pages/home/hero.scss";
-@import "pages/home/showcase.scss";
-@import "pages/home/best-products.scss";
-@import "pages/home/map.scss";
+@use "pages/single.scss";
+@use "pages/products-list.scss";
+@use "pages/home/hero.scss";
+@use "pages/home/showcase.scss";
+@use "pages/home/best-products.scss";
+@use "pages/home/map.scss";
+@use "pages/about-us.scss";
 
-@import "pages/cart/cart.scss";
+@use "pages/cart/cart.scss";
 
-@import "pages/my-account/login.scss";
-@import "pages/my-account/dashboard.scss";
+@use "pages/my-account/login.scss";
+@use "pages/my-account/dashboard.scss";
 
-@import "vendors/wordpress.scss";
+@use "vendors/wordpress.scss";

@@ -27,6 +27,10 @@ class HTR_Tools {
 		}
 	}
 
+	public static function blockVideo	($url) {
+		return '<iframe class="video" src="'.$url.'" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>';
+	}
+
 	/**
 	 * Add custom mime types.
 	 *

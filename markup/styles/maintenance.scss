@@ -1,11 +1,11 @@
-@import "variables.scss";
+@use "variables.scss";
 
-@import "basis.scss";
+@use "basis.scss";
 
-@import "fonts/bebas-neue.scss";
-@import "fonts/montserrat.scss";
+@use "fonts/bebas-neue.scss";
+@use "fonts/montserrat.scss";
 
-@import "vendors/wordpress.scss";
+@use "vendors/wordpress.scss";
 
 h1, .h1 {
 	color: inherit;

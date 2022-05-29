@@ -1,17 +1,23 @@
+<?php if ($args['map']->isActive) : ?>
 <section class="map" id="home-map">
+	<?php if ($args['map']->borders) : ?>
 	<div class="map-divider-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 			<path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
     </svg>
 	</div>
+	<?php endif; ?>
 
 	<div id="htr-destinations" data-aos="fade-in" data-aos-duration="500" data-aos-delay="200"></div>
 
+	<?php if ($args['map']->borders) : ?>
 	<div class="map-divider-bottom">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 			<path d="M1200 0L0 0 598.97 114.72 1200 0z" class="shape-fill"></path>
     </svg>
 	</div>
+	<?php endif; ?>
+
 	<?php $places = [];
 	$query = new WP_Query([
 		'post_type' => 'location'
@@ -45,3 +51,4 @@
 		})
 	</script>
 </section>
+<?php endif; ?>

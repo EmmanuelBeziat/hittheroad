@@ -24,7 +24,6 @@
 								<img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'product-thumbnail')[0] ?>" alt>
 							</div>
 							<h3 class="woocommerce-loop-product__title"><?= get_the_title() ?></h3>
-							<span class="price">
 								<span class="woocommerce-Price-amount amount">
 									<bdi>34,00 <span class="woocommerce-Price-currencySymbol">€</span></bdi>
 								</span>

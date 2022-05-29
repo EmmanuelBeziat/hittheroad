@@ -114,12 +114,18 @@
 		color: var(--color-white);
 		position: relative;
 		padding: 1rem .5rem;
+		transition: .25s ease-in-out;
 
+		// &[aria-current="page"],
 		&:hover,
 		&:focus {
 			--active-state: translateY(0) scaleX(1);
 			--active-opacity: 1;
 			--nav-color: var(--color-primary);
+		}
+
+		&[aria-current="page"] {
+			color: var(--color-primary);
 		}
 
 		@media (max-width: 767px) {

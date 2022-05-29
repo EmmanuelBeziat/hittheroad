@@ -7,9 +7,9 @@ add_action('after_setup_theme', function () {
 
 	register_nav_menus([
 		'navigation' => __('Menu principal'),
-		'footer-left' => __('Pied de page — Gauche'),
-		'footer-center' => __('Pied de page — Centre'),
-		'footer-right' => __('Pied de page — Droite'),
+		// 'footer-left' => __('Pied de page — Gauche'),
+		'footer-center' => __('Pied de page'),
+		// 'footer-right' => __('Pied de page — Droite'),
 	]);
 });
 

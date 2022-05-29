@@ -1,10 +1,19 @@
-@import "variables.scss";
-@import "fonts/bebas-neue.scss";
-@import "fonts/montserrat.scss";
+@use "variables.scss";
+@use "fonts/bebas-neue.scss";
+@use "fonts/montserrat.scss";
+@use "components/buttons.scss";
 
 .login {
+	--color-black-login: #2b2a2a;
 	background: #2b2b32;
 	color: var(--color-white);
+
+	#login_error,
+	.message,
+	.success {
+		background: var(--color-black-login);
+		border-color: var(--color-primary);
+	}
 
 	a {
 		color: var(--color-primary);
@@ -38,13 +47,48 @@
 		display: none;
 	}
 
+	.admin-email-confirm-form {
+		background: var(--color-black-login);
+		border-color: #555555;
+		box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+	}
+
+	h1.admin-email__heading {
+		color: var(--color-white);
+	}
+
+	.admin-email__actions {
+		&-primary {
+			display: inline-flex;
+			gap: 10px;
+		}
+
+		.button {
+			@extend .btn;
+
+			&:first-child {
+				@extend .btn-secondary;
+			}
+
+			&:hover,
+			&:focus {
+				color: var(--color-white);
+			}
+		}
+
+		.button-primary {
+			@extend .btn-primary;
+		}
+	}
+
 	#loginform {
-		background: #2b2a2a;
+		background: var(--color-black-login);
 		border-color: #555555;
 		box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
 
 		input[type="text"],
-		input[type="password"] {
+		input[type="password"],
+		input:-webkit-autofill {
 			border-radius: 0;
 			background: transparent;
 			color: var(--color-white);

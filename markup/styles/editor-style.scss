@@ -1,7 +1,7 @@
-@import "variables.scss";
+@use "variables.scss";
 
-@import "fonts/bebas-neue.scss";
-@import "fonts/montserrat.scss";
+@use "fonts/bebas-neue.scss";
+@use "fonts/montserrat.scss";
 
 body,
 p,

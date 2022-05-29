@@ -1,3 +1,5 @@
+@use '../components/forms.scss';
+
 .woocommerce div.product p.price,
 .woocommerce div.product span.price {
 	font: 700 2.5rem/1.25 var(--font-stack-heading);
@@ -88,4 +90,31 @@
 	select {
 		@extend .form-select;
 	}
+}
+
+.stock-meter {
+	height: 5px;
+	width: 100%;
+	max-width: 220px;
+	background-color: #e7e8de;
+	position: relative;
+}
+
+.stock-meter-value {
+	position: absolute;
+	inset: 0;
+	background: var(--color-primary);
+	transform-origin: left 0;
+}
+
+.stock-number {
+	font-size: .85rem;
+}
+
+.in-stock .stock-number {
+	color: var(--bs-success);
+}
+
+.out-of-stock .stock-number {
+	color: var(--bs-red);
 }
