@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $quantity = $product->get_stock_quantity();
-$maxNumber = get_field('max_number', $product->get_id());
+$maxNumber = $product->get_type() === 'variation' ? get_field('max_number', $product->get_parent_id()) : get_field('max_number', $product->get_id());
 $percent = $maxNumber ? ($quantity / $maxNumber) : 0;
 ?>
 <div class="stock <?php echo esc_attr($class); ?> mb-4">

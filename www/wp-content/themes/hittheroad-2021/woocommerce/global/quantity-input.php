@@ -33,7 +33,7 @@ if ( $max_value && $min_value === $max_value ) {
 		<input
 			type="number"
 			id="<?php echo esc_attr( $input_id ); ?>"
-			class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
+			class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?> form-control"
 			step="<?php echo esc_attr( $step ); ?>"
 			min="<?php echo esc_attr( $min_value ); ?>"
 			max="<?php echo esc_attr( 0 < $max_value ? $max_value : '' ); ?>"
