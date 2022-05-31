@@ -35,9 +35,9 @@ if (!empty($product_tabs)) : ?>
 			<?php
 			$index = 0;
 			foreach ($product_tabs as $key => $product_tab) : $index++; ?>
-				<li class="nav-item" id="tab-title-<?= esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?= esc_attr( $key ); ?>">
-					<a href="#tab-<?= esc_attr( $key ); ?>" class="nav-link<?= $index === 1 ? ' active' : '' ?>" data-bs-toggle="tab" data-bs-target="#tab-<?= esc_attr( $key ); ?>" type="button">
-						<?= wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
+				<li class="nav-item" id="tab-title-<?= esc_attr($key); ?>" role="tab" aria-controls="tab-<?= esc_attr($key); ?>">
+					<a href="#tab-<?= esc_attr($key); ?>" class="nav-link<?= $index === 1 ? ' active' : '' ?>" data-bs-toggle="tab" data-bs-target="#tab-<?= esc_attr($key); ?>" type="button">
+						<?= wp_kses_post(apply_filters('woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key)); ?>
 					</a>
 				</li>
 			<?php endforeach; ?>
@@ -46,10 +46,10 @@ if (!empty($product_tabs)) : ?>
 			<?php
 			$index = 0;
 			foreach ($product_tabs as $key => $product_tab) : $index++; ?>
-				<div class="tab-pane fade <?= $index === 1 ? 'active show' : ''; ?>" id="tab-<?= esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?= esc_attr( $key ); ?>">
+				<div class="tab-pane fade <?= $index === 1 ? 'active show' : ''; ?>" id="tab-<?= esc_attr($key); ?>" role="tabpanel" aria-labelledby="tab-title-<?= esc_attr($key); ?>">
 					<?php
-					if ( isset( $product_tab['callback'] ) ) {
-						call_user_func( $product_tab['callback'], $key, $product_tab );
+					if (isset($product_tab['callback'])) {
+						call_user_func($product_tab['callback'], $key, $product_tab);
 					}
 					?>
 				</div>

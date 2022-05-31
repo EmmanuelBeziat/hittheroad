@@ -1,8 +1,10 @@
 <?php
 /**
- * Show messages
+ * Single Product Share
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/notices/success.php.
+ * Sharing plugins can hook into here or you can add your own code directly.
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/share.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -12,21 +14,13 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.9.0
+ * @version 3.5.0
  */
 
 if (!defined('ABSPATH')) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
-if (!$notices) {
-	return;
-}
+do_action('woocommerce_share'); // Sharing plugins can hook into here.
 
-?>
-
-<?php foreach ($notices as $notice) : ?>
-	<div class="alert alert-success"<?php echo wc_get_notice_data_attr($notice); ?> role="alert">
-		<?php echo wc_kses_notice($notice['notice']); ?>
-	</div>
-<?php endforeach; ?>
+/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

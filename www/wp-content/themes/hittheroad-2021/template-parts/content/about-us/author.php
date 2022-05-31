@@ -2,9 +2,10 @@
 
 <figure class="author">
 	<picture class="author-picture">
-		<source media="(max-width: 767px)" srcset="<?= $author['picture']['sizes']['product-thumbnail'] ?>">
-		<source media="(min-width: 768px)" srcset="<?= $author['picture']['sizes']['product-preview'] ?>">
-		<img src="<?= $author['picture']['sizes']['product-preview'] ?>" width="<?= $author['picture']['sizes']['product-preview-width'] ?>" height="<?= $author['picture']['sizes']['product-preview-height'] ?>" loading="lazy" alt="<?= $author['picture']['title'] ?>">
+		<source media="(max-width: 480px)" srcset="<?= $author['picture']['sizes']['author-picture-small'] ?>">
+		<source media="(max-width: 991px)" srcset="<?= $author['picture']['sizes']['author-picture-medium'] ?>">
+		<source media="(min-width: 992px)" srcset="<?= $author['picture']['sizes']['author-picture'] ?>">
+		<img src="<?= $author['picture']['sizes']['author-picture-medium'] ?>" loading="lazy" alt="<?= $author['picture']['alt'] ?>">
 	</picture>
 
 	<figcaption class="author-caption">

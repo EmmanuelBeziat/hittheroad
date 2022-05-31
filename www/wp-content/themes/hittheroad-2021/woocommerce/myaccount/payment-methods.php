@@ -37,7 +37,7 @@ do_action('woocommerce_before_account_payment_methods', $has_methods); ?>
 		</thead>
 		<?php foreach ($saved_methods as $type => $methods) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited ?>
 			<?php foreach ($methods as $method) : ?>
-				<tr class="payment-method<?= ! empty($method['is_default']) ? ' default-payment-method' : ''; ?>">
+				<tr class="payment-method<?= !empty($method['is_default']) ? ' default-payment-method' : ''; ?>">
 					<?php foreach (wc_get_account_payment_methods_columns() as $column_id => $column_name) : ?>
 						<td class="woocommerce-PaymentMethod woocommerce-PaymentMethod--<?= esc_attr($column_id); ?> payment-method-<?= esc_attr($column_id); ?>" data-title="<?= esc_attr($column_name); ?>">
 							<?php

@@ -14,7 +14,6 @@ class HTR_Locations {
 	protected $taxonomy = 'location_country';
 
 	function __construct() {
-		add_action('after_setup_theme', [$this, 'image_sizes']);
 		add_filter('bulk_post_updated_messages', [$this, 'bulk_updated_messages'], 10, 2);
 		add_action('init', [$this, 'init_post_type']);
 		add_filter('post_updated_messages', [$this, 'updated_messages']);
@@ -169,15 +168,6 @@ class HTR_Locations {
 		];
 
 		return $labels;
-	}
-
-	/**
-	 * Add custom sizes for images.
-	 */
-	public function image_sizes() {
-		add_image_size('product-thumbnail', 300, 300, true);
-		add_image_size('product-preview', 600);
-		add_image_size('product-full', 1920);
 	}
 
 	/**

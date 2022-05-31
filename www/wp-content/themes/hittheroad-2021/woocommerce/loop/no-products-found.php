@@ -15,9 +15,9 @@
  * @version 2.0.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 ?>
 <div class="products-alert">
-	<div class="alert alert-infos" role="alert"><?php esc_html_e( 'No products were found matching your selection.', 'woocommerce' ); ?></div>
+	<div class="alert alert-infos" role="alert"><?php esc_html_e('No products were found matching your selection.', 'woocommerce'); ?></div>
 </div>

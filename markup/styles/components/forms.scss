@@ -1,6 +1,6 @@
 .form-control,
 .form-select,
-.form-check-input[type=checkbox] {
+.form-check-input[type="checkbox"] {
 	border-radius: 0;
 	font-size: 1rem;
 	caret-color: var(--color-black);
@@ -24,4 +24,62 @@ textarea.form-control {
 /** woocommerce stuff */
 .input-text {
 	@extend .form-control;
+}
+
+.woocommerce form .form-row label,
+.woocommerce-page form .form-row label {
+	line-height: inherit;
+	display: initial;
+}
+
+.woocommerce form .form-row label .required {
+	font-weight: inherit;
+	line-height: inherit;
+}
+
+.select2-container--default .select2-selection--single {
+	@extend .form-control;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	height: auto;
+	margin-bottom: 0;
+	background-color: #fff;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 16px 12px;
+
+	.select2-selection__rendered {
+		padding: .375rem 42px .375rem .75rem;
+	}
+
+	.select2-selection__arrow {
+		display: none !important;
+	}
+}
+
+.form-floating {
+	.select2-container--default .select2-selection--single .select2-selection__rendered {
+		padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+		height: calc(3.5rem + 2px);
+    line-height: 1.25;
+	}
+}
+
+.select2-hidden-accessible + .select2-container--default.select2-container--open {
+	border-color: #909090;
+	outline: 0;
+	box-shadow: 0 0 0 0.25rem rgb(32 32 32 / 25%);
+}
+
+.form-row-first,
+.form-row-last {
+	float: none !important;
+	width: 100% !important;
 }

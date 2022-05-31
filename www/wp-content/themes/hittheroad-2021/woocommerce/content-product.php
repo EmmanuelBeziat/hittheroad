@@ -20,7 +20,7 @@ defined('ABSPATH') || exit;
 global $product;
 global $delay;
 // Ensure visibility.
-if (empty($product) || ! $product->is_visible()) {
+if (empty($product) || !$product->is_visible()) {
 	return;
 }
 $placeID = get_field('place', get_the_id($product));

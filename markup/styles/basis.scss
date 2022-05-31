@@ -69,7 +69,6 @@ h1,
 	}
 }
 
-
 button,
 .btn {
 	font-weight: 400;
@@ -80,6 +79,12 @@ button,
 
 [disabled] {
 	cursor: not-allowed;
+}
+
+b,
+strong,
+bdi {
+	font-weight: 600;
 }
 
 .bg-dark {

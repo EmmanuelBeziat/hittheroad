@@ -14,29 +14,14 @@ add_action('after_setup_theme', function () {
 });
 
 require_once 'classes/htr-acf.php';
-require_once 'classes/htr-locations.php';
+require_once 'classes/htr-admin.php';
+// require_once 'classes/htr-locations.php';
 require_once 'classes/htr-scripts.php';
 require_once 'classes/htr-templates.php';
 require_once 'classes/htr-tools.php';
 require_once 'classes/htr-walkers.php';
 require_once 'inc/disable-comments.php';
 require_once 'inc/woocommerce-functions.php';
-
-function debug ($message, $exit = false) {
-	echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: #2f2f2f;">';
-	var_dump($message);
-	echo '</pre>';
-
-	if ($exit) {
-		exit();
-	}
-}
-
-function gn_ajouter_styles_editeur() {
-	add_editor_style('assets/css/editor-style.css');
-}
-add_action( 'init', 'gn_ajouter_styles_editeur' );
-// add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 function custom_pagination ($args) {
 	$page = $args['currentPage'];
@@ -52,10 +37,10 @@ function custom_pagination ($args) {
 				</a>
 			</li>
 			<?php for ($i = 0; $i < $args['maxNumPages']; $i++) : ?>
-				<?php if ($i+1 === $args['currentPage']) : ?>
-					<li class="page-item active"><a class="page-link" href="#"><?= $i+1 ?></a></li>
+				<?php if ($i + 1 === $args['currentPage']) : ?>
+					<li class="page-item active"><a class="page-link" href="#"><?= $i + 1 ?></a></li>
 				<?php else : ?>
-					<li class="page-item"><a class="page-link" href="?page=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+					<li class="page-item"><a class="page-link" href="?page=<?= $i + 1 ?>"><?= $i + 1 ?></a></li>
 				<?php endif; ?>
 			<?php endfor; ?>
 			<li class="page-item page-item-next<?= $maxPages === $page ? ' disabled' : '' ?>">

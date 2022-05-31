@@ -12,33 +12,53 @@ document.addEventListener('DOMContentLoaded', () => {
 	new CookiesBanner()
 
 	// Shop Filters
-	if (document.querySelector('.filterbycountry')) {
+/* 	if (document.querySelector('.filterbycountry')) {
 		const countryFilter = new ShopFilter('filterbycountry')
 		countryFilter.onChange(() => {
 			const nextState = {}
 			const nextTitle = ''
-			const nextUrl = `${window.location.origin}${window.location.pathname}?place=${countryFilter.getValue()}`
+			const url = new URL(`${window.location.origin}${window.location.pathname}`)
+			const params = new URLSearchParams(url.search)
+			params.append('country', countryFilter.getValue())
+			const nextUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`
 			window.history.pushState(nextState, nextTitle, nextUrl)
 			location.reload()
-
-			/* const file = '/wp-admin/admin-ajax.php'
-			const payload = {
-				action: 'filter_projects',
-				category: $(this).data('slug'),
-			}
-			const request = new Request(file, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'plain/html'
-				},
-				body: JSON.stringify(payload)
-			})
-			fetch(request)
-				.then(response => {
-					console.log(response)
-				})
-				.catch(err => console.error(err)) */
 		});
+	} */
+
+	const shopFilters = document.querySelectorAll('.shop-filter')
+	if (shopFilters.length) {
+		// If query string is present, set the filter
+		const urlParameter = new URLParameter(window.location.href)
+		const parameters = urlParameter.getAllQueryParameters().entries()
+		for (const param of parameters) {
+			const filterElement = document.querySelector(`[name="${param[0]}"]`)
+			if (filterElement) {
+				filterElement.value = param[1]
+			}
+		}
+
+		shopFilters.forEach(shopFilter => {
+			const filter = new ShopFilter(shopFilter.id)
+			filter.onChange(() => {
+				window.history.pushState({}, '', filter.setURL(filter.getParameter(), filter.getValue()))
+			})
+		})
+
+		const buttonFilterSubmit = document.querySelector('#filter-submit')
+		if (buttonFilterSubmit) {
+			buttonFilterSubmit.addEventListener('click', () => {
+				location.reload()
+			})
+		}
+
+		const buttonFilterReset = document.querySelector('#filter-reset')
+		if (buttonFilterReset) {
+			buttonFilterReset.addEventListener('click', () => {
+				window.history.pushState({}, '', `${window.location.origin}${window.location.pathname}`)
+				location.reload()
+			})
+		}
 	}
 
 	// MapLibre (HomePage)

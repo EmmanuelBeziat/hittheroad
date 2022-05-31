@@ -1,0 +1,112 @@
+/*
+	If anyone ever read this;
+	I want you to know that I strongly condone the use of "!important" and heavy nesting,
+	but was forced to use it all over the place because woocommerce/woocommerce plugins devs
+	probably never heard of selector's weight and the need to keep them as light as possible.
+	Sincerely, E.B.
+*/
+.wc-saved-payment-methods {
+	all: unset;
+}
+
+#add_payment_method #payment ul.payment_methods li,
+.woocommerce-cart #payment ul.payment_methods li,
+.woocommerce-checkout #payment ul.payment_methods li {
+	line-height: inherit;
+}
+
+.payment_method_stripe {
+	.form-row {
+		padding: 0 !important;
+		margin: 0 0 .5rem !important;
+	}
+
+	.stripe-card-group {
+		.wc-stripe-elements-field,
+		.wc-stripe-iban-element-field {
+			display: block;
+			width: 100%;
+			padding: .375rem .75rem;
+			font-size: 1rem;
+			font-weight: 400;
+			line-height: 1.5;
+			color: #212529;
+			background-color: #fff;
+			background-clip: padding-box;
+			border: 1px solid #ced4da;
+			appearance: none;
+			border-radius: 0;
+			transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+		}
+	}
+}
+
+.payment_box {
+	border-bottom: 4px solid var(--color-primary);
+	border-radius: 0;
+}
+
+.wc_payment_method {
+	.input-radio,
+	input[type="checkbox"],
+	input[type="radio"] {
+    border-radius: 0;
+    width: 1em !important;
+    height: 1em !important;
+		margin: .2em .5em .25em 0 !important;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    appearance: none;
+    color-adjust: exact;
+
+		&:checked {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+			background-color: #202020;
+			border-color: #202020;
+		}
+
+		&:focus {
+			border-color: #909090;
+			outline: 0;
+			box-shadow: 0 0 0 .25rem rgb(32 32 32 / 25%);
+		}
+
+		& +	label {
+			user-select: none;
+			cursor: pointer;
+		}
+	}
+
+	input[type="radio"] {
+		border-radius: 50%;
+
+		&:checked {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+		}
+	}
+}
+
+.woocommerce ul.order_details {
+	@media (max-width: 767px) {
+		display: flex;
+		flex-direction: column;
+		gap: .5rem;
+		padding-left: 0;
+
+		li {
+			border: none;
+			padding-right: 0;
+			margin-right: 0;
+		}
+	}
+}
+
+.woocommerce .woocommerce-customer-details address {
+	border-radius: 0;
+	border-right-width: 1px;
+	border-bottom: 4px solid var(--color-primary);
+}

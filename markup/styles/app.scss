@@ -31,11 +31,14 @@
 @use "pages/home/showcase.scss";
 @use "pages/home/best-products.scss";
 @use "pages/home/map.scss";
+@use "pages/shop/filters.scss";
 @use "pages/about-us.scss";
 
 @use "pages/cart/cart.scss";
+@use "pages/cart/payment.scss";
 
 @use "pages/my-account/login.scss";
 @use "pages/my-account/dashboard.scss";
 
 @use "vendors/wordpress.scss";
+@use "vendors/woocommerce.scss";

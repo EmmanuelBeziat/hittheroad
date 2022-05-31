@@ -58,21 +58,21 @@ if (woocommerce_product_loop()) :
 		'post_status' => 'publish',
 	];
 
-	$queryVar = get_query_var('place');
-	if (isset($queryVar) && $queryVar !== '') {
-		$location = get_page_by_path($queryVar, '', 'location');
-		if (isset($location->ID)) {
-			$args = array_merge($args, [
-				'meta_key' => 'place',
-				'meta_value' => $location->ID,
-			]);
-		}
-		else {
-			$args = array_merge($args, [
-				'meta_key' => 'place',
-				'meta_value' => -1,
-			]);
-		}
+	$components = parse_url($_SERVER['REQUEST_URI']);
+	if (isset($components['query'])) {
+		parse_str($components['query'], $params);
+
+		$metaQuery = [
+			'relation' => 'AND',
+		];
+		foreach ($params as $key => $value) :
+			$metaQuery[] = [
+				'taxonomy' => $key,
+				'value' => $value,
+				'compare' => 'IN',
+			];
+		endforeach;
+		$args = array_merge($args, ['meta_query' => $metaQuery]);
 	}
 
 	$loop = new WP_Query($args);

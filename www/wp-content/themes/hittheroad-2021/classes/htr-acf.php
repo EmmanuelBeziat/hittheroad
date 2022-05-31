@@ -7,7 +7,7 @@ class HTR_ACF {
 	 * Add Wordpress' actions and filters.
 	 */
 	function __construct() {
-		add_action('acf/init', array($this, 'options_page'));
+		add_action('acf/init', [$this, 'options_page']);
 	}
 
 	public function options_page() {

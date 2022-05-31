@@ -155,6 +155,10 @@
 		}
 	}
 
+	.current_page_parent .nav-link {
+		color: var(--color-primary);
+	}
+
 	.navbar-nav {
 		gap: 1rem;
 	}
