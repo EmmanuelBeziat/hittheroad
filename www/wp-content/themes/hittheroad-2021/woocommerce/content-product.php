@@ -26,6 +26,40 @@ if (empty($product) || !$product->is_visible()) {
 $placeID = get_field('place', get_the_id($product));
 $city = get_post($placeID)->post_name;
 // $country = get_field('country', $placeID);
+
+$tags = [
+	'country' => (object) [
+		'name' => get_field_object('country')['label'],
+		'value' => get_field('country', get_the_id($product))['value'],
+		'label' => get_field('country', get_the_id($product))['label'],
+	],
+	'orientation' => (object) [
+		'name' => get_field_object('orientation')['label'],
+		'value' => get_field('orientation', get_the_id($product))['value'],
+		'label' => get_field('orientation', get_the_id($product))['label'],
+	],
+	'format' => (object) [
+		'name' => get_field_object('format')['label'],
+		'value' => get_field('format', get_the_id($product))['value'],
+		'label' => get_field('format', get_the_id($product))['label'],
+	],
+	'character' => (object) [
+		'name' => get_field_object('character')['label'],
+		'value' => get_field('character', get_the_id($product))['value'],
+		'label' => get_field('character', get_the_id($product))['label'],
+	],
+	'type' => (object) [
+		'name' => get_field_object('type')['label'],
+		'value' => get_field('type', get_the_id($product))['value'],
+		'label' => get_field('type', get_the_id($product))['label'],
+	],
+	// 'year' => get_field('year', get_the_id($product)),
+	'colors' => (object) [
+		'name' => get_field_object('colors')['label'],
+		'value' => get_field('colors', get_the_id($product))['value'],
+		'label' => get_field('colors', get_the_id($product))['label'],
+	],
+];
 ?>
 <article <?php wc_product_class('', $product); ?> data-city="<?= $city ?>" data-aos="fade-in" data-aos-delay="<?= $delay ?>" data-aos-duration="500">
 	<?php
@@ -62,8 +96,16 @@ $city = get_post($placeID)->post_name;
 	 * @hooked woocommerce_template_loop_rating - 5
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
-	do_action('woocommerce_after_shop_loop_item_title');
+	// do_action('woocommerce_after_shop_loop_item_title');
+	/* ?>
 
+	<div class="product-tags my-2">
+		<?php foreach ($tags as $tag) : ?>
+		<span class="product-tag" data-value="<?= $tag->value ?>"><i class="fas fa-tag"></i><?= $tag->label ?></span>
+		<?php endforeach; ?>
+	</div>
+
+	<?php */
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
 	 *

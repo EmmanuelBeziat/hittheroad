@@ -18,7 +18,7 @@ function woocommerce_template_loop_product_title () {
 	$city = get_the_title(get_field('place', $id));
 	// $country = get_field('country', get_field('place', $id));
 	?>
-	<h2 class="<?= esc_attr(apply_filters('woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title')) ?>"><?= $city ?> : <?= get_the_title() ?></h2>
+	<h2 class="<?= esc_attr(apply_filters('woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title')) ?>"><?= get_the_title() ?></h2>
 <?php
 }
 
