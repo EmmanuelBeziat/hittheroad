@@ -22,11 +22,6 @@ function woocommerce_template_loop_product_title () {
 <?php
 }
 
-function remove_shop_breadcrumbs() {
-	remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
-}
-add_action('template_redirect', 'remove_shop_breadcrumbs');
-
 add_filter('woocommerce_dropdown_variation_attribute_options_args', static function($args) {
 	$args['class'] = 'form-select';
 	return $args;

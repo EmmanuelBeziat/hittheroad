@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF functions.
+ * Admin functions.
  */
 class HTR_Admin {
 	/**
