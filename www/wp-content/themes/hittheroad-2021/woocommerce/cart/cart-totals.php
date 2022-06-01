@@ -81,7 +81,8 @@ defined('ABSPATH') || exit;
 					</tr>
 					<?php
 				}
-			} else {
+			}
+			else {
 				?>
 				<tr class="tax-total">
 					<th><?php echo esc_html(WC()->countries->tax_or_vat()) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>

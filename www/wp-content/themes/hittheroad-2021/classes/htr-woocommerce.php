@@ -6,11 +6,13 @@ class HTR_Woocommerce {
 	/**
 	 * Add Wordpress' actions and filters.
 	 */
-	function __construct() {
+	function __construct () {
+		add_action('template_redirect', [$this, 'remove_shop_breadcrumbs']);
 		add_action('woocommerce_product_after_variable_attributes', [$this, 'variation_max_qty_field'], 10, 3);
 		add_action('woocommerce_save_product_variation', [$this, 'save_variation_max_qty_field'], 10, 2);
 		add_action('woocommerce_available_variation', [$this, 'load_variation_max_qty_field']);
-		add_action('template_redirect', [$this, 'remove_shop_breadcrumbs']);
+		add_action('woocommerce_cart_calculate_fees', [$this, 'woocommerce_custom_shipping_tax'], 10, 1);
+		add_action('wp_head', [$this, 'get_current_shipping_method']);
 	}
 
 	public function variation_max_qty_field ($loop, $variation_data, $variation) {
@@ -43,5 +45,32 @@ class HTR_Woocommerce {
 	public function remove_shop_breadcrumbs () {
 		remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
 	}
+
+	public function get_current_shipping_method () {
+		$chosen_label = null;
+
+		$packages = WC()->shipping->get_packages();
+		foreach ($packages as $i => $package) {
+			$chosen_method = isset(WC()->session->chosen_shipping_methods[$i]) ? WC()->session->chosen_shipping_methods[$i] : '';
+			$chosen_label = $package['rates'][$chosen_method]->label;
+		}
+
+		return $chosen_label;
+	}
+
+	public function woocommerce_custom_shipping_tax () {
+		global $woocommerce;
+
+		if (is_admin() && !defined('DOING_AJAX')) {
+			return;
+		}
+
+		$shipping_method = $this->get_current_shipping_method();
+		$tax = $shipping_method === 'Express' ? get_field('shipping-taxes', 'option')['shipping-tax-express'] : get_field('shipping-taxes', 'option')['shipping-tax-std'];
+		$percentage = $tax / 100;
+		$shipping_total = $woocommerce->cart->get_shipping_total() * $percentage ?: 0;
+		$woocommerce->cart->add_fee('Supplément carburant', $shipping_total, true, '');
+	}
 }
+
 new HTR_Woocommerce();

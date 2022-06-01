@@ -35,10 +35,9 @@ if (!defined('ABSPATH')) {
 			if ($field['type'] === 'tab' || !isset($field['choices'])) continue;
 		?>
 		<div class="filter-item">
-			<label class="form-label" for="filter-<?= $field['name'] ?>"><?= $field['label'] ?></label>
-
-			<select id="filter-<?= $field['name'] ?>" name="<?= $field['name'] ?>" class="form-select shop-filter" aria-label="Filtrer par <?= $field['label'] ?>">
-				<option value="0">Tous</option>
+			<?php /* <label class="form-label" for="filter-<?= $field['name'] ?>"><?= $field['label'] ?></label> */ ?>
+			<select id="filter-<?= $field['name'] ?>" name="<?= $field['name'] ?>" multiple class="form-select shop-filter" aria-label="Filtrer par <?= $field['label'] ?>" placeholder="<?= $field['label'] ?>" aria-label="<?= $field['label'] ?>">
+				<option value="">Tous</option>
 				<?php
 				foreach ($field['choices'] as $key => $value) : ?>
 					<option value="<?= $key?>"><?= $value ?></option>
