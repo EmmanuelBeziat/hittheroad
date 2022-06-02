@@ -10,6 +10,9 @@ class HTR_ACF {
 		add_action('acf/init', [$this, 'options_page']);
 	}
 
+	/**
+	 * Add ACF options page.
+	 */
 	public function options_page() {
 		acf_add_options_page();
 	}

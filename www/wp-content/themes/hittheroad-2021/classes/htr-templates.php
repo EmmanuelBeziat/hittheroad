@@ -15,18 +15,14 @@ class HTR_Templates {
 
 	/**
 	 * Add classes to body.
-	 *
 	 * @param $body_classes array Current body classes.
-	 *
 	 * @return $body_classes array All body classes.
 	 */
 	public function body_classes ($body_classes) {
 		$classes = [
 			'body',
 		];
-
 		$body_classes = array_merge($body_classes, $classes);
-
 		return $body_classes;
 	}
 
@@ -64,6 +60,11 @@ class HTR_Templates {
 		add_image_size('product-full', 1920);
 	}
 
+	/**
+	 * Remove default image sizes.
+	 * @param $sizes array Current image sizes.
+	 * @return $sizes array All image sizes.
+	 */
 	public function remove_default_image_sizes ($sizes) {
 		unset($sizes['medium']);
 		unset($sizes['medium_large']);
@@ -75,9 +76,7 @@ class HTR_Templates {
 
 	/**
 	 * Filters the content.
-	 *
 	 * @param $content mixed The content.
-	 *
 	 * @return $content mixed The filtered content.
 	 * */
 	public function the_content($content) {

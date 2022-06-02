@@ -13,9 +13,8 @@ class HTR_Tools {
 
 	/**
 	 * Display debug message and can stop program execution.
-	 *
-	 * @param $message mixed Variable or text to display.
-	 * @param $exit boolean Stop program execution.
+	 * @param $message mixed Variable or text to display
+	 * @param $exit boolean Stop program execution
 	 */
 	public static function dd ($message, $exit = false) {
 		echo '<pre style="padding: 1rem; margin: 1rem 0; background: #e8e8e8; color: #2f2f2f;">';
@@ -27,16 +26,19 @@ class HTR_Tools {
 		}
 	}
 
+	/**
+	 * Block video
+	 * @param $url string Video URL
+	 * @return HTMLElement iframe embed video
+	 */
 	public static function blockVideo	($url) {
 		return '<iframe class="video" src="'.$url.'" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>';
 	}
 
 	/**
-	 * Add custom mime types.
-	 *
-	 * @param $mime_types array Current mime types.
-	 *
-	 * @return $mime_types array All mime types.
+	 * Add support for SVG and WebP
+	 * @param $mime_types array
+	 * @return $mime_types array
 	 */
 	public function mime_types ($mime_types) {
 		$mime_types['svg'] = 'image/svg+xml';
@@ -45,6 +47,11 @@ class HTR_Tools {
 		return $mime_types;
 	}
 
+	/**
+	 * Add custom mime types for uploaded files
+	 * @param $mime_types array
+	 * @return $mime_types array
+	 */
 	public function custom_clean_image_filenames_mime_types () {
     $mime_types = [
 			'application/pdf',
