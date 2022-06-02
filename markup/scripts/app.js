@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 	// AOS animations
-	AOS.init()
+	AOS.init({ once: true })
 
 	// Mobile menu
 	const toggler = document.querySelector('.navbar-toggler')
