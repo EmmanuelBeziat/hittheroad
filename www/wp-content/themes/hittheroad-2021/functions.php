@@ -24,33 +24,3 @@ require_once 'classes/htr-woocommerce.php';
 require_once 'inc/disable-comments.php';
 require_once 'inc/woocommerce-functions.php';
 
-function custom_pagination ($args) {
-	$page = $args['currentPage'];
-	$maxPages = (int)$args['maxNumPages'];
-
-	if ($maxPages > 1) :
-	?>
-	<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
-		<ul class="pagination justify-content-center">
-			<li class="page-item page-item-prev<?= $page - 1 === 0 ? ' disabled' : '' ?>">
-				<a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Page précédente"<?= $page - 1 === 0 ? ' tabindex="-1" aria-disabled="true"' : '' ?>>
-					<i class="fas fa-chevron-left"></i>
-				</a>
-			</li>
-			<?php for ($i = 0; $i < $args['maxNumPages']; $i++) : ?>
-				<?php if ($i + 1 === $args['currentPage']) : ?>
-					<li class="page-item active"><a class="page-link" href="#"><?= $i + 1 ?></a></li>
-				<?php else : ?>
-					<li class="page-item"><a class="page-link" href="?page=<?= $i + 1 ?>"><?= $i + 1 ?></a></li>
-				<?php endif; ?>
-			<?php endfor; ?>
-			<li class="page-item page-item-next<?= $maxPages === $page ? ' disabled' : '' ?>">
-				<a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Page suivante"<?= $maxPages === $page ? ' tabindex="-1" aria-disabled="true"' : '' ?>>
-					<i class="fas fa-chevron-right"></i>
-				</a>
-			</li>
-		</ul>
-	</nav>
-	<?php
-	endif;
-}

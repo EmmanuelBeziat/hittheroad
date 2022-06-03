@@ -1,14 +1,27 @@
+.page-numbers,
 .pagination {
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	justify-content: center;
+
+	& > li > *,
 	.page-link {
 		--page-background: var(--color-white);
 		--page-border: rgba(0, 0, 0, .35);
 		--page-color: var(--color-black);
 		color: var(--page-color);
 		background-color: var(--page-background);
+    border: 1px solid #dee2e6;
 		border-color: var(--page-border);
 		border-radius: 0 !important;
 		text-decoration: none;
+		position: relative;
+    display: block;
+		padding: .375rem .75rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
+		&.current,
 		&:hover,
 		&:active {
 			--page-background: var(--color-secondary);
@@ -16,14 +29,17 @@
 		}
 	}
 
+	& > li,
 	.page-item {
 		&:not(:first-child):not(:last-child) {
+			& > a,
 			.page-link {
 				margin-left: 0;
 				border-left: 0;
 				border-right: 0;
 			}
 		}
+
 	}
 
 	.page-item:not(:first-child) + .page-item:not(:last-child) {
@@ -31,15 +47,47 @@
 			border-left: 1px solid var(--page-border);
 		}
 	}
+
+	.dots {
+		cursor: normal;
+		border-right: 0;
+		&:hover,
+		&:focus {
+			background: inherit;
+			color: inherit;
+		}
+	}
+
+	li:not(:first-child) + li:not(:last-child) {
+		& > a {
+			border-left: 1px solid var(--page-border);
+		}
+	}
+
+	.next,
+	.prev {
+		--page-background: var(--color-primary);
+		--page-border: var(--color-primary);
+		--page-color: var(--color-black);
+
+		&.active,
+		&:hover,
+		&:active {
+			--page-background: var(--color-white);
+			--page-color: var(--color-black);
+		}
+	}
 }
 
 .page-item-prev,
 .page-item-next {
+	& > a,
 	.page-link {
 		--page-background: var(--color-primary);
 		--page-border: var(--color-primary);
 		--page-color: var(--color-black);
 
+		&.active,
 		&:hover,
 		&:active {
 			--page-background: var(--color-white);

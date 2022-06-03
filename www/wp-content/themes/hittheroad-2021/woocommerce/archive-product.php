@@ -117,13 +117,6 @@ if (woocommerce_product_loop()) :
 
 	woocommerce_product_loop_end();
 
-	custom_pagination([
-		'currentPage' => $currentPage,
-		'postsPerPage' => $postsPerPage,
-		'postsCount' => wp_count_posts('product')->publish,
-		'maxNumPages' => $loop->max_num_pages,
-	]);
-
 	wp_reset_postdata();
 
 	/**

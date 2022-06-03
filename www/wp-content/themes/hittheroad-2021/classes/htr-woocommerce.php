@@ -13,6 +13,7 @@ class HTR_Woocommerce {
 		add_action('woocommerce_available_variation', [$this, 'load_variation_max_qty_field']);
 		add_action('woocommerce_cart_calculate_fees', [$this, 'woocommerce_custom_shipping_tax'], 10, 1);
 		add_action('wp_head', [$this, 'get_current_shipping_method']);
+		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30 );
 	}
 
 	public function variation_max_qty_field ($loop, $variation_data, $variation) {
@@ -70,6 +71,10 @@ class HTR_Woocommerce {
 		$percentage = $tax / 100;
 		$shipping_total = $woocommerce->cart->get_shipping_total() * $percentage ?: 0;
 		$woocommerce->cart->add_fee('Supplément carburant', $shipping_total, true, '');
+	}
+
+	public function products_per_page ($products) {
+		return get_field('products-per-page', 'option') ?: 12;
 	}
 }
 

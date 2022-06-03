@@ -23,9 +23,6 @@ global $delay;
 if (empty($product) || !$product->is_visible()) {
 	return;
 }
-$placeID = get_field('place', get_the_id($product));
-$city = get_post($placeID)->post_name;
-// $country = get_field('country', $placeID);
 
 $tags = [
 	'country' => (object) [
@@ -61,7 +58,7 @@ $tags = [
 	],
 ];
 ?>
-<article <?php wc_product_class('', $product); ?> data-city="<?= $city ?>" data-aos="fade-in" data-aos-delay="<?= $delay ?>" data-aos-duration="500">
+<article <?php wc_product_class('', $product); ?> data-aos="fade-in" data-aos-delay="<?= $delay ?>" data-aos-duration="400">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -97,7 +94,7 @@ $tags = [
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
 	// do_action('woocommerce_after_shop_loop_item_title');
-	/* ?>
+	?>
 
 	<div class="product-tags my-2">
 		<?php foreach ($tags as $tag) : ?>
@@ -105,7 +102,7 @@ $tags = [
 		<?php endforeach; ?>
 	</div>
 
-	<?php */
+	<?php
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
 	 *
