@@ -1,3 +1,0 @@
-# Sommaire
-
-## [Produits](produits.md)
