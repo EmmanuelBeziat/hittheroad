@@ -28,7 +28,8 @@ class ShopFilters {
 		if (!this.rootElement) return
 
 		this.initUrlParameters()
-		this.initFilters(options.filters)
+		this.initFiltersSelect(options.filters)
+		this.initFiltersCheckboxes(options.filters)
 		this.initButtonSubmit(options.buttonSubmit)
 		this.initButtonReset(options.buttonReset)
 	}
@@ -48,7 +49,7 @@ class ShopFilters {
 		}
 	}
 
-	initFilters (filters = '.shop-filter') {
+	initFiltersSelect (filters = 'select.shop-filter') {
 		const shopFilters = this.rootElement.querySelectorAll(filters)
 		if (!shopFilters.length) return
 
@@ -63,7 +64,7 @@ class ShopFilters {
 				}
 			}
 
-			const filter = new ShopFilter(shopFilter.id)
+			const filter = new ShopFilterSelect(shopFilter.id)
 			filter.onChange(() => {
 				window.history.pushState({}, '', filter.setURL(filter.getParameter(), decodeURI(filter.getValues().join(','))))
 			})
@@ -71,6 +72,28 @@ class ShopFilters {
 			if (items.length) {
 				filter.setValues(items[0])
 			}
+		})
+	}
+
+	initFiltersCheckboxes (filters = 'input.shop-filter[type="checkbox"]') {
+		const shopFilters = this.rootElement.querySelectorAll(filters)
+		if (!shopFilters.length) return
+
+		shopFilters.forEach(shopFilter => {
+			const urlParameter = new URLParameter(window.location.href)
+			const parameters = urlParameter.getAllQueryParameters().entries()
+
+			for (const param of parameters) {
+				if (param[0] === shopFilter.name) {
+					const values = param[1].split(',')
+					shopFilter.checked = values.includes(shopFilter.value)
+				}
+			}
+
+			const filter = new ShopFilterCheckbox(shopFilter.id)
+			filter.onChange(() => {
+				window.history.pushState({}, '', filter.setURL(filter.getParameter(), decodeURI(filter.getValues().join(','))))
+			})
 		})
 	}
 
@@ -108,13 +131,10 @@ class ShopFilter {
 		if (!this.filter) return
 
 		this.name = this.filter.name
-		this.tomSelect = new TomSelect(`#${this.filter.id}`, {
-			maxItems: 5
-		});
 	}
 
 	onChange (callback) {
-		this.tomSelect.on('change', callback)
+		this.filter.addEventListener('change', callback)
 	}
 
 	getParameter () {
@@ -125,18 +145,50 @@ class ShopFilter {
 		return this.filter.options[this.filter.selectedIndex].label
 	}
 
+	setURL (key = this.getParameter(), value = this.getValues().join(',')) {
+		const urlParameter = new URLParameter(window.location.href)
+		const finalURL = urlParameter.setParameter(key, value)
+		return finalURL
+	}
+}
+
+class ShopFilterSelect extends ShopFilter {
+	constructor (name) {
+		super(name)
+		if (!this.filter) return
+
+		this.tomSelect = new TomSelect(`#${this.filter.id}`, {
+			maxItems: 5
+		});
+	}
+
+	onChange (callback) {
+		this.tomSelect.on('change', callback)
+	}
+
 	getValues () {
-		// return [...this.filter.options].filter(x => x.selected).map(x => x.value)
 		return this.tomSelect.getValue()
 	}
 
 	setValues (values = []) {
 		this.tomSelect.setValue(values)
 	}
+}
 
-	setURL (key = this.getParameter(), value = this.getValues().join(',')) {
-		const urlParameter = new URLParameter(window.location.href)
-		const finalURL = urlParameter.setParameter(key, value)
-		return finalURL
+class ShopFilterCheckbox extends ShopFilter {
+	constructor (name) {
+		super(name)
+		if (!this.filter) return
+
+		this.filter.addEventListener('change', () => {
+			window.history.pushState({}, '', this.setURL())
+		})
+	}
+
+	getValues () {
+		const group = document.querySelectorAll(`[name=${this.name}]`)
+		if (!group.length) return
+
+		return Array.from(group).filter(x => x.checked).map(x => x.value)
 	}
 }

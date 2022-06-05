@@ -26,16 +26,30 @@ if (!defined('ABSPATH')) {
 		$fields = acf_get_fields(252);
 		foreach ($fields as $field) :
 			if ($field['type'] === 'tab' || !isset($field['choices'])) continue;
+
+			$type = $field['type'];
+			$name = $field['name'];
+			$label = $field['label'];
+			$choices = $field['choices'];
 		?>
 		<div class="filter-item">
-			<?php /* <label class="form-label" for="filter-<?= $field['name'] ?>"><?= $field['label'] ?></label> */ ?>
-			<select id="filter-<?= $field['name'] ?>" name="<?= $field['name'] ?>" multiple class="form-select shop-filter" aria-label="Filtrer par <?= $field['label'] ?>" placeholder="<?= $field['label'] ?>" aria-label="<?= $field['label'] ?>">
-				<option value="">Tous</option>
-				<?php
-				foreach ($field['choices'] as $key => $value) : ?>
-					<option value="<?= $key?>"><?= $value ?></option>
+			<h3 class="h4"><?= $label ?></h3>
+
+			<?php if ($type === 'country') : ?>
+			<select id="filter-<?= $name ?>" name="<?= $name ?>" multiple class="form-select shop-filter" aria-label="Filtrer par <?= $label ?>" placeholder="<?= $label ?>" aria-label="<?= $label ?>">
+				<?php foreach ($choices as $key => $value) : ?>
+					<option value="<?= $key ?>"><?= $value ?></option>
 				<?php endforeach; ?>
 			</select>
+
+			<?php else: ?>
+				<?php foreach ($choices as $key => $value) : ?>
+					<div class="filter-checkbox">
+						<input class="form-check-input shop-filter" type="checkbox" name="<?= $name ?>" id="filter-<?= $name ?>-<?= $key ?>" value="<?= $key ?>">
+						<label class="form-check-label" for="filter-<?= $name ?>-<?= $key ?>"><?= $value ?></label>
+					</div>
+				<?php endforeach; ?>
+			<?php endif; ?>
 		</div>
 		<?php endforeach; ?>
 	</div>
