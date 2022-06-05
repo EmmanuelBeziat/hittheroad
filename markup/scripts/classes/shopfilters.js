@@ -3,16 +3,16 @@ class URLParameter {
 		this.url = url
 	}
 
-	checkIfParameterExists (parameter) {
-		return (this.url.indexOf(`?${parameter}=`) != -1 || this.url.indexOf(`&${parameter}=`) != -1)
-	}
-
 	setParameter(parameter, value) {
-		const valueExist = this.checkIfParameterExists(parameter)
-		const separator = valueExist ? '&' : '?'
-
 		const href = new URL(this.url)
-		href.searchParams.set(parameter, value)
+
+		if (!value) {
+			href.searchParams.delete(parameter)
+		}
+		else {
+			href.searchParams.set(parameter, value)
+		}
+
 		return href.toString()
 	}
 
@@ -27,26 +27,10 @@ class ShopFilters {
 		this.rootElement = document.querySelector(rootElement)
 		if (!this.rootElement) return
 
-		this.initUrlParameters()
 		this.initFiltersSelect(options.filters)
 		this.initFiltersCheckboxes(options.filters)
 		this.initButtonSubmit(options.buttonSubmit)
 		this.initButtonReset(options.buttonReset)
-	}
-
-	initUrlParameters () {
-		const urlParameter = new URLParameter(window.location.href)
-		const parameters = urlParameter.getAllQueryParameters().entries()
-
-		for (const param of parameters) {
-			const key = param[0]
-			const value = param[1]
-			/* const filterElement = this.rootElement.querySelector(`[name="${param[0]}"]`)
-			if (filterElement) {
-				filterElement.value = `${param[1]}`
-				console.log(filterElement.value)
-			} */
-		}
 	}
 
 	initFiltersSelect (filters = 'select.shop-filter') {
