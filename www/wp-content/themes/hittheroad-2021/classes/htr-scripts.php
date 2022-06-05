@@ -19,21 +19,21 @@ class HTR_Scripts {
 		$custom_js = '/assets/js/custom.js';
 
 		// CSS
-		wp_enqueue_style('htr-app', get_template_directory_uri().'/assets/css/app.css', [], '1.0.0');
+		wp_enqueue_style('htr-app', get_template_directory_uri().'/assets/css/app.css', [], THEME_VERSION);
 
 		if (file_exists(get_template_directory().$custom_css)) {
-			wp_enqueue_style('htr-custom', get_template_directory_uri().$custom_css, ['htr-app'], '1.0.0');
+			wp_enqueue_style('htr-custom', get_template_directory_uri().$custom_css, ['htr-app'], THEME_VERSION);
 		}
 
 		// External CSS
 
 		// JS
-		wp_enqueue_script('htr-vendors', get_template_directory_uri().'/assets/js/vendors.js', [], '1.0.0', true);
-		wp_enqueue_script('htr-classes', get_template_directory_uri().'/assets/js/classes.js', [], '1.0.0', true);
-		wp_enqueue_script('htr-app', get_template_directory_uri().'/assets/js/app.js', [], '1.0.0', true);
+		wp_enqueue_script('htr-vendors', get_template_directory_uri().'/assets/js/vendors.js', [], THEME_VERSION, true);
+		wp_enqueue_script('htr-classes', get_template_directory_uri().'/assets/js/classes.js', [], THEME_VERSION, true);
+		wp_enqueue_script('htr-app', get_template_directory_uri().'/assets/js/app.js', [], THEME_VERSION, true);
 
 		if (file_exists(get_template_directory().$custom_js)) {
-			wp_enqueue_script('htr-custom', get_template_directory_uri().$custom_js, ['htr-app'], '1.0.0', true);
+			wp_enqueue_script('htr-custom', get_template_directory_uri().$custom_js, ['htr-app'], THEME_VERSION, true);
 		}
 
 		// External JS

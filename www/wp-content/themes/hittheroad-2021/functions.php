@@ -1,4 +1,6 @@
 <?php
+$theme = wp_get_theme();
+define('THEME_VERSION', $theme->Version);
 
 add_action('after_setup_theme', function () {
 	add_theme_support('post-thumbnails');
