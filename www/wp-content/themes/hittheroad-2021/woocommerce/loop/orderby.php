@@ -34,8 +34,17 @@ if (!defined('ABSPATH')) {
 		<div class="filter-item">
 			<h3 class="h4"><?= $label ?></h3>
 
-			<?php if (!isset($field['choices'])) : ?>
-			<?php else :
+			<?php if (!isset($field['choices'])) :
+				global $wpdb;
+				$years = $wpdb->get_results("SELECT DISTINCT(meta_value) FROM htrwp_postmeta WHERE meta_key = '$name' AND meta_value != ''", ARRAY_A);
+
+				foreach ($years as $year) : ?>
+				<div class="filter-checkbox">
+					<input class="form-check-input shop-filter" type="checkbox" name="<?= $name ?>" id="filter-<?= $name ?>-<?= $year['meta_value'] ?>" value="<?= $year['meta_value'] ?>">
+					<label class="form-check-label" for="filter-<?= $name ?>-<?= $year['meta_value'] ?>"><?= $year['meta_value'] ?></label>
+				</div>
+			<?php endforeach;
+			else :
 				$index = 0;
 				foreach ($field['choices'] as $key => $value) : ?>
 					<?php if ($index === 5) : ?>
