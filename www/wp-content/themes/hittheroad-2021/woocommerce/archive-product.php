@@ -48,13 +48,13 @@ do_action('woocommerce_before_main_content');
 
 <?php
 if (woocommerce_product_loop()) :
-	$currentPage = get_query_var('paged') ?: 1;
+	$paged = get_query_var('paged') ?: 1;
 	$postsPerPage = get_field('products-per-page', 'option');
 	$args = [
 		'post_type' => 'product',
-		'paged' => $currentPage,
+		'paged' => $paged,
 		'posts_per_page' => $postsPerPage,
-		// 'offset' => ($currentPage - 1) * $postsPerPage,
+		// 'offset' => ($paged - 1) * $postsPerPage,
 		'orderby' => 'date',
 		'post_status' => 'publish',
 	];
@@ -114,6 +114,27 @@ if (woocommerce_product_loop()) :
 	endif;
 
 	woocommerce_product_loop_end();
+
+	$total = ceil($productsCount / $postsPerPage);
+	$base = isset($base) ? $base : esc_url_raw(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false))));
+	$format = isset($format) ? $format : '';
+
+	if ($total <= 1) {
+		return;
+	}
+	?>
+	<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="0" data-aos-duration="400">
+		<?php echo paginate_links([
+			'base' => $base,
+			'format' => $format,
+			'current' => max(1, $paged),
+			'total' => $total,
+			'type' => 'list',
+			'prev_text' => '<i class="fas fa-chevron-left"></i><span class="screen-reader-text">Page précédente</span>',
+			'next_text' => '<i class="fas fa-chevron-right"></i><span class="screen-reader-text">Page suivante</span>',
+		]); ?>
+	</nav>
+	<?php
 
 	wp_reset_postdata();
 

@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-$total = isset($total) ? $total : wc_get_loop_prop('total_pages');
+/* $total = isset($total) ? $total : wc_get_loop_prop('total_pages');
 $current = isset($current) ? $current : wc_get_loop_prop('current_page');
 $base = isset($base) ? $base : esc_url_raw(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false))));
 $format = isset($format) ? $format : '';
@@ -28,7 +28,7 @@ if ($total <= 1) {
 	return;
 }
  ?>
-<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="200" data-aos-duration="400">
+<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="0" data-aos-duration="400">
 	<?= paginate_links(
 		apply_filters('woocommerce_pagination_args',
 			[ // WPCS: XSS ok.
@@ -47,3 +47,4 @@ if ($total <= 1) {
 	); ?>
 </nav>
 
+ */
