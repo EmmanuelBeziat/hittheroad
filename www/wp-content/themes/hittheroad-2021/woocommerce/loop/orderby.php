@@ -25,31 +25,35 @@ if (!defined('ABSPATH')) {
 		<?php
 		$fields = acf_get_fields(252);
 		foreach ($fields as $field) :
-			if ($field['type'] === 'tab' || !isset($field['choices'])) continue;
+			if ($field['type'] === 'tab' || $field['name'] === 'format') continue;
 
 			$type = $field['type'];
 			$name = $field['name'];
 			$label = $field['label'];
-			$choices = $field['choices'];
 		?>
 		<div class="filter-item">
 			<h3 class="h4"><?= $label ?></h3>
 
-			<?php if ($type === 'country') : ?>
-			<select id="filter-<?= $name ?>" name="<?= $name ?>" multiple class="form-select shop-filter" aria-label="Filtrer par <?= $label ?>" placeholder="<?= $label ?>" aria-label="<?= $label ?>">
-				<?php foreach ($choices as $key => $value) : ?>
-					<option value="<?= $key ?>"><?= $value ?></option>
-				<?php endforeach; ?>
-			</select>
+			<?php if (!isset($field['choices'])) : ?>
+			<?php else :
+				$index = 0;
+				foreach ($field['choices'] as $key => $value) : ?>
+					<?php if ($index === 5) : ?>
+						<a class="filter-toggle" data-bs-toggle="collapse" href="#filters-category-<?= $name ?>" role="button" aria-expanded="false" aria-controls="filters-category-<?= $name ?>">Voir d’avantage <i class="fa fa-chevron-down"></i></a>
+						<div id="filters-category-<?= $name ?>" class="collapse">
+					<?php endif; ?>
 
-			<?php else: ?>
-				<?php foreach ($choices as $key => $value) : ?>
-					<div class="filter-checkbox">
-						<input class="form-check-input shop-filter" type="checkbox" name="<?= $name ?>" id="filter-<?= $name ?>-<?= $key ?>" value="<?= $key ?>">
-						<label class="form-check-label" for="filter-<?= $name ?>-<?= $key ?>"><?= $value ?></label>
+						<div class="filter-checkbox">
+							<input class="form-check-input shop-filter" type="checkbox" name="<?= $name ?>" id="filter-<?= $name ?>-<?= $key ?>" value="<?= $key ?>">
+							<label class="form-check-label" for="filter-<?= $name ?>-<?= $key ?>"><?= $value ?></label>
+						</div>
+
+					<?php if ($index >= 5 && $index === count($field['choices']) - 1) : ?>
 					</div>
-				<?php endforeach; ?>
-			<?php endif; ?>
+					<?php endif;
+					$index++;
+				endforeach;
+			endif; ?>
 		</div>
 		<?php endforeach; ?>
 	</div>
