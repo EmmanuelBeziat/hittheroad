@@ -21,6 +21,7 @@
 		grid-template-areas:
 			"Picture Summary"
 			"Description Description"
+			"Process Process"
 			"Related Related";
 
 		@media (max-width: 767px) {
@@ -29,6 +30,7 @@
 				"Picture"
 				"Summary"
 				"Description"
+				"Process"
 				"Related"
 		}
 	}
@@ -47,6 +49,10 @@
 
 	.related.products {
 		grid-area: Related;
+	}
+
+	.product-description {
+		grid-area: Process;
 	}
 
 	.yith_magnifier_zoom img,

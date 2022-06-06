@@ -30,7 +30,7 @@ $product_tabs = apply_filters('woocommerce_product_tabs', []);
 
 if (!empty($product_tabs)) : ?>
 
-	<div class="woocommerce-tabs mt-4 mb-5">
+	<div class="woocommerce-tabs my-4">
 		<ul class="nav nav-tabs" role="tablist">
 			<?php
 			$index = 0;

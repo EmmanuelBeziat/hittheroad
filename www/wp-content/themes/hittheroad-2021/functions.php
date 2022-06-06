@@ -25,4 +25,3 @@ require_once 'classes/htr-walkers.php';
 require_once 'classes/htr-woocommerce.php';
 require_once 'inc/disable-comments.php';
 require_once 'inc/woocommerce-functions.php';
-

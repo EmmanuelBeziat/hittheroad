@@ -14,7 +14,7 @@
 	@media (min-width: 768px) {
 		font-size: 6rem;
 
-		&::before,
+		/* &::before,
 		&::after {
 			content: "";
 			display: inline-block;
@@ -23,7 +23,7 @@
 			background: var(--color-black);
 			margin: 0 1rem;
 			transform: translateY(-50%);
-		}
+		} */
 	}
 }
 

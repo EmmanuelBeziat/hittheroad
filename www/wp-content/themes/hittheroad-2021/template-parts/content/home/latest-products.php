@@ -1,16 +1,25 @@
-<section class="section best-products">
+<?php if ($args['products']->isActive) : ?>
+<section class="section latest-products">
+	<?php if ($args['products']->borders) : ?>
+	<div class="latest-divider-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+			<path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+    </svg>
+	</div>
+	<?php endif; ?>
+
 	<div class="container">
 		<h1 class="section-title">Nos dernières aventures</h1>
-		<div class="products-grid">
+		<div class="products-slider">
 			<?php
-			$args = [
+			$options = [
 				'post_type' => 'product',
-				'posts_per_page' => 4,
+				'posts_per_page' => $args['products']->number ?: 4,
 				'orderby' => 'date',
 				'order' => 'DESC',
 				'post_status' => 'publish',
 			];
-			$loop = new WP_Query($args);
+			$loop = new WP_Query($options);
 			$index = 0;
 			if ($loop->have_posts()) :
 				while ($loop->have_posts()) :
@@ -51,13 +60,13 @@
 						],
 					];
 					?>
-					<article data-aos="fade-up" data-aos-delay="<?= ($index + 2) * 50 ?>" data-aos-duration="500">
+					<article data-aos="fade-up" data-aos-delay="<?= ($index + 2) * 50 ?>" data-aos-duration="500" class="product">
 						<a href="<?= get_the_permalink(get_the_ID()) ?>" class="product-link">
+							<h2 class="screen-reader-text"><?= get_the_title(); ?></h2>
 							<div class="product-picture">
 								<img src="<?= wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'product-thumbnail')[0] ?>" alt>
 							</div>
-							<h3 class="woocommerce-loop-product__title"><?= get_the_title() ?></h3>
-							<div class="product-tags">
+							<div class="product-tags mt-2">
 								<?php foreach ($tags as $tag) : ?>
 								<span class="product-tag" data-value="<?= $tag->value ?>"><i class="fas fa-tag"></i><?= $tag->label ?></span>
 								<?php endforeach; ?>
@@ -72,4 +81,13 @@
 			<?php endif; ?>
 		</div>
 	</div>
+
+	<?php /* if ($args['products']->borders) : ?>
+	<div class="latest-divider-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+			<path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+    </svg>
+	</div>
+	<?php endif; */ ?>
 </section>
+<?php endif; ?>

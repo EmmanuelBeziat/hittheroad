@@ -67,6 +67,7 @@ $tags = [
 	 */
 	do_action('woocommerce_before_shop_loop_item'); ?>
 
+	<h2 class="screen-reader-text"><?= get_the_title(); ?></h2>
 	<div class="product-picture">
 		<?php
 		/**
@@ -94,6 +95,7 @@ $tags = [
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
 	// do_action('woocommerce_after_shop_loop_item_title');
+	/*
 	?>
 
 	<div class="product-tags my-2">
@@ -103,6 +105,7 @@ $tags = [
 	</div>
 
 	<?php
+	*/
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
 	 *

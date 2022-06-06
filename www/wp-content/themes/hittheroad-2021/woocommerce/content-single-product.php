@@ -61,6 +61,18 @@ if (post_password_required()) {
 		?>
 	</div>
 
+
+	<?php
+	$process = get_field('product-description', 'option');
+
+	if (isset($process) && $process !== '') : ?>
+		<section class="product-description mb-4">
+			<?= $process ?>
+		</section>
+		<?php
+	endif;
+	?>
+
 	<?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
@@ -72,5 +84,4 @@ if (post_password_required()) {
 	do_action('woocommerce_after_single_product_summary');
 	?>
 </section>
-
 <?php do_action('woocommerce_after_single_product'); ?>

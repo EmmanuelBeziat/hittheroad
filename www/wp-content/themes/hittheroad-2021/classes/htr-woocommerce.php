@@ -13,7 +13,8 @@ class HTR_Woocommerce {
 		add_action('woocommerce_available_variation', [$this, 'load_variation_max_qty_field']);
 		add_action('woocommerce_cart_calculate_fees', [$this, 'woocommerce_custom_shipping_tax'], 10, 1);
 		add_action('wp_head', [$this, 'get_current_shipping_method']);
-		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30 );
+		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
+		add_filter('woocommerce_product_get_weight', '__return_false');
 	}
 
 	public function variation_max_qty_field ($loop, $variation_data, $variation) {

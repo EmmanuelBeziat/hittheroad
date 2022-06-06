@@ -14,33 +14,12 @@ function woocommerce_template_loop_product_link_open() {
 
 function woocommerce_template_loop_product_title () {
 	global $product;
-	$id = get_the_id($product);
-	$city = get_the_title(get_field('place', $id));
-	// $country = get_field('country', get_field('place', $id));
-	?>
-	<h2 class="<?= esc_attr(apply_filters('woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title')) ?>"><?= get_the_title() ?></h2>
-<?php
 }
 
 add_filter('woocommerce_dropdown_variation_attribute_options_args', static function($args) {
 	$args['class'] = 'form-select';
 	return $args;
 }, 2);
-
-add_filter('woocommerce_product_tabs', 'woo_new_product_tab');
-function woo_new_product_tab ($tabs) {
-	// Adds the new tab
-	$tabs['desc_tab'] = [
-		'title' => 'Procédé',
-		'priority' => 50,
-		'callback' => 'woo_new_product_tab_content'
-	];
-	return $tabs;
-}
-
-function woo_new_product_tab_content () {
-	echo get_field('product-description', 'option');
-}
 
 if (!function_exists('woocommerce_form_field')) {
 
