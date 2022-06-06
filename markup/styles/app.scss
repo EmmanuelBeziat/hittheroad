@@ -20,6 +20,7 @@
 @use "components/tabs.scss";
 @use "components/videos.scss";
 @use "components/cookies.scss";
+@use "components/slider.scss";
 
 @use "partials/header.scss";
 @use "partials/mobile-nav.scss";
@@ -43,4 +44,4 @@
 @use "vendors/wordpress.scss";
 @use "vendors/woocommerce.scss";
 @use "vendors/tom-select.scss";
-@use "vendors/tiny-slider.scss";
+@use "vendors/swiper.scss";

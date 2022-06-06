@@ -1,11 +1,9 @@
-.page-numbers,
 .pagination {
 	display: flex;
 	padding-left: 0;
 	list-style: none;
 	justify-content: center;
 
-	& > li > *,
 	.page-link {
 		--page-background: var(--color-white);
 		--page-border: rgba(0, 0, 0, .35);
@@ -29,7 +27,6 @@
 		}
 	}
 
-	& > li,
 	.page-item {
 		&:not(:first-child):not(:last-child) {
 			& > a,
@@ -81,7 +78,6 @@
 
 .page-item-prev,
 .page-item-next {
-	& > a,
 	.page-link {
 		--page-background: var(--color-primary);
 		--page-border: var(--color-primary);
@@ -96,14 +92,12 @@
 	}
 }
 
-.tns-nav,
 .nav-dots {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
 
-	[data-nav],
 	.nav-dots-item {
 		all: unset;
 		width: 10px;

@@ -1,6 +1,5 @@
 .latest-products,
 .best-products {
-	// margin-top: -5rem;
 	padding: 4rem 0;
 	position: relative;
 
@@ -8,6 +7,10 @@
 		display: flex;
 		flex-direction: column;
 	}
+}
+
+.best-products {
+	padding-top: 0;
 }
 
 .products-list {
@@ -64,16 +67,6 @@
 
 	.product-title {
 		font: 400 1.625rem/1.5 var(--font-stack-heading);
-	}
-}
-
-.products-slider {
-	display: flex;
-	gap: 0;
-
-	.product {
-		display: flex;
-		flex-direction: column;
 	}
 }
 

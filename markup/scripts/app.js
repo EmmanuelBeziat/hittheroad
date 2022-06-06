@@ -28,30 +28,41 @@ document.addEventListener('DOMContentLoaded', () => {
 		htrMapDestinations)
 	}
 
-	// Sliders (Glide.js)
+	// Sliders (tiny-slider.js)
 	const productsSlider = document.querySelectorAll('.products-slider')
 	if (productsSlider.length) {
 		productsSlider.forEach(slider => {
-			tns({
-				container: slider,
-				items: 1,
-				gutter: 16,
-				controlsPosition: 'bottom',
-				controlsText: [
-					'<i class="fas fa-chevron-left"></i><span class="screen-reader-text">Produits précédents</span>',
-					'<i class="fas fa-chevron-right"></i><span class="screen-reader-text">Produits suivants</span>'
-				],
-				navPosition: 'bottom',
-				responsive: {
-					1280: {
-						items: 4
-					},
-      		992: {
-						items: 3
-					},
-					768: {
-						items: 2
+			new Swiper(slider, {
+				pagination: {
+					el: slider.querySelector('.nav-dots'),
+					type: 'bullets',
+					clickable: true,
+					bulletClass: 'nav-dots-item',
+					bulletActiveClass: 'active',
+					renderBullet (index, className) {
+						return `<button type="button" class="${className}"><span class="screen-reader-text">${index + 1}</span></button>`
 					}
+				},
+				navigation: {
+					prevEl: slider.querySelector('.slider-prev'),
+					nextEl: slider.querySelector('.slider-next'),
+				},
+				slidesPerView: 1,
+				spaceBetween: 16,
+				rewind: true,
+				breakpoints: {
+					768: {
+						slidesPerView: 2,
+						// slidesPerGroup: 2,
+					},
+					992: {
+						slidesPerView: 3,
+						// slidesPerGroup: 3
+					},
+					1280: {
+						slidesPerView: 4,
+						// slidesPerGroup: 4
+					},
 				}
 			})
 		})
