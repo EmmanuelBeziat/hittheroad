@@ -115,26 +115,24 @@ if (woocommerce_product_loop()) :
 
 	woocommerce_product_loop_end();
 
-	$total = ceil($productsCount / $postsPerPage);
-	$base = isset($base) ? $base : esc_url_raw(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false))));
+	$total = ceil($productsCount / $postsPerPage) ?: 1;
+	$base = isset($base) ? $base : esc_url_raw(str_replace(999999999, '%#%', get_pagenum_link(999999999, false)));
 	$format = isset($format) ? $format : '';
 
-	if ($total <= 1) {
-		return;
-	}
-	?>
-	<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="0" data-aos-duration="400">
-		<?php echo paginate_links([
-			'base' => $base,
-			'format' => $format,
-			'current' => max(1, $paged),
-			'total' => $total,
-			'type' => 'list',
-			'prev_text' => '<i class="fas fa-chevron-left"></i><span class="screen-reader-text">Page précédente</span>',
-			'next_text' => '<i class="fas fa-chevron-right"></i><span class="screen-reader-text">Page suivante</span>',
-		]); ?>
-	</nav>
-	<?php
+	if (!$total <= 1) : ?>
+		<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="0" data-aos-duration="400">
+			<?php echo paginate_links([
+				'base' => $base,
+				'format' => $format,
+				'current' => max(1, $paged),
+				'total' => $total,
+				'type' => 'list',
+				'prev_text' => '<i class="fas fa-chevron-left"></i><span class="screen-reader-text">Page précédente</span>',
+				'next_text' => '<i class="fas fa-chevron-right"></i><span class="screen-reader-text">Page suivante</span>',
+			]); ?>
+		</nav>
+		<?php
+	endif;
 
 	wp_reset_postdata();
 
