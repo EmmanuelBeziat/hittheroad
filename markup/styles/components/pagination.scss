@@ -1,9 +1,11 @@
+.page-numbers,
 .pagination {
 	display: flex;
 	padding-left: 0;
 	list-style: none;
 	justify-content: center;
 
+	& > li > *,
 	.page-link {
 		--page-background: var(--color-white);
 		--page-border: rgba(0, 0, 0, .35);
@@ -27,6 +29,7 @@
 		}
 	}
 
+	& > li,
 	.page-item {
 		&:not(:first-child):not(:last-child) {
 			& > a,
@@ -78,6 +81,7 @@
 
 .page-item-prev,
 .page-item-next {
+	& > a,
 	.page-link {
 		--page-background: var(--color-primary);
 		--page-border: var(--color-primary);
@@ -88,30 +92,6 @@
 		&:active {
 			--page-background: var(--color-white);
 			--page-color: var(--color-black);
-		}
-	}
-}
-
-.nav-dots {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-
-	.nav-dots-item {
-		all: unset;
-		width: 10px;
-		aspect-ratio: 1/1;
-		background: var(--color-secondary);
-
-		&.tns-nav-active,
-		&.active {
-			background: var(--color-primary);
-		}
-
-		&:hover,
-		&:focus {
-			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15);
 		}
 	}
 }

@@ -28,7 +28,7 @@ if ($total <= 1) {
 	return;
 }
  ?>
-<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="200" data-aos-duration="400">
 	<?= paginate_links(
 		apply_filters('woocommerce_pagination_args',
 			[ // WPCS: XSS ok.
