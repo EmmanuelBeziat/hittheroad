@@ -18,7 +18,7 @@
 .products-grid {
 	--repeat: 3;
 	display: grid;
-	gap: 2rem 1rem;
+	gap: 1rem;
 	grid-template-columns: repeat(var(--repeat, auto-fit), minmax(240px, 1fr));
 	grid-area: List;
 
@@ -33,10 +33,17 @@
 	.product {
 		display: flex;
 		flex-direction: column;
+		transition: .25s ease-in-out !important;
 
 		.btn-primary {
 			margin-top: auto;
 			display: block;
+		}
+
+		&:hover,
+		&:focus {
+			transform: scale(1.025) !important;
+			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15) !important;
 		}
 	}
 
@@ -53,7 +60,6 @@
 	text-decoration: none;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: .5rem;
 	flex: 1;
 
 	&:hover {

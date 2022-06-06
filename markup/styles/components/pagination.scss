@@ -95,3 +95,27 @@
 		}
 	}
 }
+
+.nav-dots {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	.nav-dots-item {
+		all: unset;
+		width: 10px;
+		aspect-ratio: 1/1;
+		background: var(--color-secondary);
+
+		&.tns-nav-active,
+		&.active {
+			background: var(--color-primary);
+		}
+
+		&:hover,
+		&:focus {
+			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15);
+		}
+	}
+}

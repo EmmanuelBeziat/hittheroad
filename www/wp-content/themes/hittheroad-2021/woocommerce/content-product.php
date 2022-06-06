@@ -18,7 +18,6 @@
 defined('ABSPATH') || exit;
 
 global $product;
-global $delay;
 // Ensure visibility.
 if (empty($product) || !$product->is_visible()) {
 	return;
@@ -50,7 +49,7 @@ $tags = [
 		'value' => get_field('type', get_the_id($product))['value'],
 		'label' => get_field('type', get_the_id($product))['label'],
 	],
-	// 'year' => get_field('year', get_the_id($product)),
+	'year' => get_field('year', get_the_id($product)),
 	'colors' => (object) [
 		'name' => get_field_object('colors')['label'],
 		'value' => get_field('colors', get_the_id($product))['value'],
@@ -58,7 +57,7 @@ $tags = [
 	],
 ];
 ?>
-<article <?php wc_product_class('', $product); ?> data-aos="fade-in" data-aos-delay="<?= $delay ?>" data-aos-duration="400">
+<article <?php wc_product_class('', $product); ?> data-aos="fade-in" data-aos-delay="100" data-aos-duration="400">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

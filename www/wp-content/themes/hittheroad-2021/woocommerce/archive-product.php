@@ -52,8 +52,9 @@ if (woocommerce_product_loop()) :
 	$postsPerPage = get_field('products-per-page', 'option');
 	$args = [
 		'post_type' => 'product',
+		'paged' => $currentPage,
 		'posts_per_page' => $postsPerPage,
-		'offset' => ($currentPage - 1) * $postsPerPage,
+		// 'offset' => ($currentPage - 1) * $postsPerPage,
 		'orderby' => 'date',
 		'post_status' => 'publish',
 	];
@@ -90,11 +91,8 @@ if (woocommerce_product_loop()) :
 	woocommerce_product_loop_start();
 
 	if ($loop->have_posts()) :
-		$delay = 0;
 		while ($loop->have_posts()) :
 			$item = $loop->the_post();
-			$delay += 50;
-
 			global $product;
 
 			setup_postdata($loop->post->ID);

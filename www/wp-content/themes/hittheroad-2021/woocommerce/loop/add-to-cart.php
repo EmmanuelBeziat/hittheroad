@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 
 global $product;
 
-echo apply_filters(
+/* echo apply_filters(
 	'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
 	sprintf(
 		'<a href="%s" data-quantity="%s" class="btn btn-primary ajax_add_to_cart" %s>%s</a>',
@@ -33,4 +33,4 @@ echo apply_filters(
 	),
 	$product,
 	$args
-);
+); */
