@@ -16,7 +16,7 @@
 }
 
 .products-grid {
-	--repeat: 4;
+	--repeat: 3;
 	display: grid;
 	gap: 2rem 1rem;
 	grid-template-columns: repeat(var(--repeat, auto-fit), minmax(240px, 1fr));
