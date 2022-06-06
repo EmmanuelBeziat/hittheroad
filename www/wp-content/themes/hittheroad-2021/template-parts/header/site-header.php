@@ -1,4 +1,4 @@
-<header class="site-header<?= is_front_page() ? '' : ' bg-dark' ?>" id="top-header">
+<header class="site-header<?= is_front_page() ? '' : ' bg-dark' ?>">
 	<div class="container-fluid site-header-container">
 		<div class="d-flex">
 			<a href="<?= get_site_url() ?>" class="navbar-brand logo-htr">

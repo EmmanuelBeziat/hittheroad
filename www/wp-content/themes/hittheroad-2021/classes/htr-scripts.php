@@ -39,6 +39,10 @@ class HTR_Scripts {
 		// External JS
 
 		// AJAX
+		/* wp_localize_script('htr-app', 'query_products', [
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('htr-queryproducts-nonce'),
+		]); */
 	}
 
 	public function login_scripts () {

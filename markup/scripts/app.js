@@ -67,4 +67,59 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		})
 	}
+
+/* 	jQuery(document).ready(function($) {
+		const button = document.getElementById('button');
+		button.addEventListener('click', () => {
+			$.ajax( {
+				method : 'POST',
+				dataType : 'json',
+				url : query_products.ajaxurl,
+				data : {
+					foo : 'foobar',
+					nonce : query_products.nonce,
+					action : 'query_products'
+				}
+			} )
+			.done(
+				function(data){
+					console.log('win')
+					console.log(data);
+				}
+			)
+			.fail(function(error) {
+				console.log('fail')
+				console.log(error.responseText);
+			})
+		// Button end
+		})
+	}) */
+/* 	const button = document.getElementById('button');
+	button.addEventListener('click', () => {
+		const data = new FormData()
+		data.append('action', 'get_products')
+		data.append('nonce', query_products.nonce)
+		// const params = new URLSearchParams(data)
+		const params = {
+			action: 'get_products',
+			nonce: query_products.nonce
+		}
+
+		fetch(query_products.ajaxurl, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'same-origin',
+			body: params
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data)
+		})
+		.catch(error => {
+      console.error(error);
+    })
+	}) */
+
 })

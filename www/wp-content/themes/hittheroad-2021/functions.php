@@ -23,3 +23,20 @@ require_once 'classes/htr-walkers.php';
 require_once 'classes/htr-woocommerce.php';
 require_once 'inc/disable-comments.php';
 require_once 'inc/woocommerce-functions.php';
+
+/* add_action('wp_ajax_query_products', 'ajax_query_products');
+add_action('wp_ajax_nopriv_query_products', 'ajax_query_products');
+
+function ajax_query_products () {
+	$security = wp_verify_nonce($_POST['nonce'], 'htr-queryproducts-nonce');
+
+	$json = [];
+	ob_start();
+	get_template_part('template-parts/products-list');
+	$json['html'] = ob_get_contents();
+	ob_end_clean();
+
+	echo wp_json_encode($json);
+	wp_die();
+}
+ */
