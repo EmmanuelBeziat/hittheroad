@@ -15,6 +15,7 @@ class HTR_Woocommerce {
 		add_action('wp_head', [$this, 'get_current_shipping_method']);
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
+		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
 	}
 
 	public function variation_max_qty_field ($loop, $variation_data, $variation) {
@@ -77,6 +78,18 @@ class HTR_Woocommerce {
 	public function products_per_page ($products) {
 		return get_field('products-per-page', 'option') ?: 12;
 	}
+
+	public function custom_single_product_image_html ($args) {
+		global $product;
+		global $_wp_additional_image_sizes;
+		$attachment_ids = get_the_post_thumbnail_url($product->get_id(), 'product-preview');
+		$imageSize = getimagesize($attachment_ids);
+		$containerClass = $imageSize[0] > $imageSize[1] ? 'paysage' : 'portrait';
+		$replacement = ['/class="woocommerce-product-gallery__image /', '/src="(.*?)"/', '/width="(.*?)"/', '/height="(.*?)"/'];
+		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_ids.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
+		echo $image;
+	}
+
 }
 
 new HTR_Woocommerce();

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		htrMapDestinations)
 	}
 
-	// Sliders (tiny-slider.js)
+	// Sliders (swiper.js)
 	const productsSlider = document.querySelectorAll('.products-slider')
 	if (productsSlider.length) {
 		productsSlider.forEach(slider => {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 	}
 
-/* 	jQuery(document).ready(function($) {
+	/* jQuery(document).ready(function($) {
 		const button = document.getElementById('button');
 		button.addEventListener('click', () => {
 			$.ajax( {
@@ -93,8 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		// Button end
 		})
-	}) */
-/* 	const button = document.getElementById('button');
+	})
+
+	const button = document.getElementById('button');
 	button.addEventListener('click', () => {
 		const data = new FormData()
 		data.append('action', 'get_products')

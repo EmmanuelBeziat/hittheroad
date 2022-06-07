@@ -41,14 +41,14 @@ class HTR_Templates {
 		update_option('woocommerce_single', 0);
 		update_option('woocommerce_gallery_thumbnail', 0);
 		update_option('shop_catalog', 0);
-		update_option('shop_single', 0);
+		update_option('shop_single', 768);
 		update_option('shop_thumbnail', 0);
 
 		remove_image_size('woocommerce_thumbnail');
 		remove_image_size('woocommerce_single');
 		remove_image_size('woocommerce_gallery_thumbnail');
 		remove_image_size('shop_catalog');
-		remove_image_size('shop_single');
+		// remove_image_size('shop_single');
 		remove_image_size('shop_thumbnail');
 
 		add_image_size('author-picture-small', 300, 300, true);

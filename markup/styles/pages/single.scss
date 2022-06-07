@@ -58,6 +58,32 @@
 	.yith_magnifier_zoom img,
 	.woocommerce-product-gallery .attachment-shop_single {
 		width: 100%;
+		// max-height: 480px;
+	}
+
+	.related.products {
+		.products-grid {
+			--repeat: 4;
+		}
+	}
+
+	.woocommerce-product-gallery__image {
+		&.portrait {
+			text-align: center;
+
+			.yith_magnifier_zoom_wrap,
+			.yith_magnifier_zoom_wrap > a {
+				display: inline-block;
+				vertical-align: top;
+
+				img {
+					width: auto;
+					max-width: 100%;
+					vertical-align: top;
+					max-height: 560px;
+				}
+			}
+		}
 	}
 
 	.woocommerce-variation-add-to-cart,
@@ -195,7 +221,7 @@
 }
 
 .pp_expand {
-	display: none;
+	display: none !important;
 }
 
 .pp_overlay {
