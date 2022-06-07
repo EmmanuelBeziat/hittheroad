@@ -23,9 +23,11 @@ if (!function_exists('wc_get_gallery_image_html')) {
 }
 
 global $product;
-
 $columns = apply_filters('woocommerce_product_thumbnails_columns', 4);
 $post_thumbnail_id = $product->get_image_id();
+$picture_thumbnail = get_the_post_thumbnail($product->get_id(), 'product-preview');
+$picture_full = get_the_post_thumbnail($product->get_id());
+$picture_link = get_the_post_thumbnail_url($product->get_id());
 $wrapper_classes = apply_filters(
 	'woocommerce_single_product_image_gallery_classes',
 	[

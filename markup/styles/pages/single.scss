@@ -69,6 +69,8 @@
 
 	.woocommerce-product-gallery__image {
 		background: var(--bs-gray-200);
+		overflow: hidden;
+		// position: relative;
 
 		&.portrait {
 			text-align: center;

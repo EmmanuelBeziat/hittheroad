@@ -32,7 +32,6 @@ if (post_password_required()) {
 }
 ?>
 <section id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
-
 	<?php
 	/**
 	 * Hook: woocommerce_before_single_product_summary.

@@ -26,8 +26,8 @@ if (!defined('ABSPATH')) {
  *
  * @see woocommerce_default_product_tabs()
  */
+/*
 $product_tabs = apply_filters('woocommerce_product_tabs', []);
-
 if (!empty($product_tabs)) : ?>
 
 	<div class="woocommerce-tabs my-4">
@@ -59,4 +59,4 @@ if (!empty($product_tabs)) : ?>
 		<?php do_action('woocommerce_product_after_tabs'); ?>
 	</div>
 
-<?php endif; ?>
+<?php endif; */ ?>

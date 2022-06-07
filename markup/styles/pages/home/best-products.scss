@@ -6,6 +6,13 @@
 	.product {
 		display: flex;
 		flex-direction: column;
+		transition: .25s ease-in-out !important;
+
+		&:hover,
+		&:focus {
+			transform: scale(1.025) !important;
+			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15) !important;
+		}
 	}
 }
 

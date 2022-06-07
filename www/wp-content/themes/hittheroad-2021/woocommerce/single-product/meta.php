@@ -74,11 +74,23 @@ $tags = [
 		'label' => get_field('colors', $product->get_id())['label'],
 	],
 ];
-?>
 
+/*
 <h2 class="h3 mt-4">Filtres</h2>
 <div class="product-tags">
 	<?php foreach ($tags as $tag) : ?>
 	<span class="product-tag" data-value="<?= $tag->value ?>"><i class="fas fa-tag"></i> <strong><?= $tag->name ?> :</strong> <?= $tag->label ?></span>
 	<?php endforeach; ?>
 </div>
+*/
+
+$product_tabs = apply_filters('woocommerce_product_tabs', []);
+if (!empty($product_tabs)) { ?>
+	<div class="mt-5 mb-4">
+	<?php foreach ($product_tabs as $key => $product_tab) :
+		if (isset($product_tab['callback'])) {
+			call_user_func($product_tab['callback'], $key, $product_tab);
+		}
+	endforeach; ?>
+	</div>
+<?php } ?>

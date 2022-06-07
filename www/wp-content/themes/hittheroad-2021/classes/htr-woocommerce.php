@@ -8,9 +8,11 @@ class HTR_Woocommerce {
 	 */
 	function __construct () {
 		add_action('template_redirect', [$this, 'remove_shop_breadcrumbs']);
+		// quantity
 		add_action('woocommerce_product_after_variable_attributes', [$this, 'variation_max_qty_field'], 10, 3);
 		add_action('woocommerce_save_product_variation', [$this, 'save_variation_max_qty_field'], 10, 2);
 		add_action('woocommerce_available_variation', [$this, 'load_variation_max_qty_field']);
+
 		add_action('woocommerce_cart_calculate_fees', [$this, 'woocommerce_custom_shipping_tax'], 10, 1);
 		add_action('wp_head', [$this, 'get_current_shipping_method']);
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
@@ -89,7 +91,6 @@ class HTR_Woocommerce {
 		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_ids.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
 		echo $image;
 	}
-
 }
 
 new HTR_Woocommerce();
