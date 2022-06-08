@@ -71,6 +71,8 @@ defined('ABSPATH') || exit;
 							// Meta data.
 							echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
 
+							$extra_cost = 50;
+							// echo '<div class="extra-cost"><strong>Finition attache simple :</strong> +'.$extra_cost.'€</div>';
 							// $cart_item['data']->set_price($cart_item['data']->get_price() + $extra_cost);
 
 							// Backorder notification.
