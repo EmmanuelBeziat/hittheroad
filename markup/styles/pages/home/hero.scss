@@ -61,3 +61,9 @@
 .hero-divider-bottom .shape-fill {
 	fill: var(--color-primary);
 }
+
+.hero-video {
+	max-width: 100%;
+	max-height: 40vh;
+	aspect-ratio: 1 / 1;
+}

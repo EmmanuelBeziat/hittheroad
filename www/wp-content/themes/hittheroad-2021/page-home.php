@@ -46,6 +46,10 @@ $home = (object) [
 <section class="hero" style="--hero-background: url(<?= $home->hero->background ?>)">
 	<div class="hero-content">
 		<div class="hero-inner-content" data-aos="fade-in" data-aos-duration="1000">
+			<video class="hero-video" width="480" height=480" autoplay muted loop playsinline>
+				<source src="<?= get_stylesheet_directory_uri() ?>/assets/images/videos/htr-logo.mov" type="video/quicktime">
+				<source src="<?= get_stylesheet_directory_uri() ?>/assets/images/videos/htr-logo.webm" type="video/webm">
+			</video>
 			<?php if ($home->hero->content && $home->hero->content !== '') :
 				echo $home->hero->content;
 			endif; ?>
