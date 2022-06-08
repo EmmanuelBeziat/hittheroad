@@ -52,11 +52,6 @@ $tags = [
 		'value' => get_field('orientation', $product->get_id())['value'],
 		'label' => get_field('orientation', $product->get_id())['label'],
 	],
-	'format' => (object) [
-		'name' => get_field_object('format')['label'],
-		'value' => get_field('format', $product->get_id())['value'],
-		'label' => get_field('format', $product->get_id())['label'],
-	],
 	'character' => (object) [
 		'name' => get_field_object('character')['label'],
 		'value' => get_field('character', $product->get_id())['value'],
@@ -67,7 +62,7 @@ $tags = [
 		'value' => get_field('type', $product->get_id())['value'],
 		'label' => get_field('type', $product->get_id())['label'],
 	],
-	// 'year' => get_field('year', $product->get_id()),
+	'year' => get_field('year', $product->get_id()),
 	'colors' => (object) [
 		'name' => get_field_object('colors')['label'],
 		'value' => get_field('colors', $product->get_id())['value'],

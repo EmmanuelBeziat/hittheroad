@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 		<?php
 		$fields = acf_get_fields(252);
 		foreach ($fields as $field) :
-			if ($field['type'] === 'tab' || $field['name'] === 'format') continue;
+			if ($field['type'] === 'tab') continue;
 
 			$type = $field['type'];
 			$name = $field['name'];
@@ -36,7 +36,7 @@ if (!defined('ABSPATH')) {
 
 			<?php if (!isset($field['choices'])) :
 				global $wpdb;
-				$years = $wpdb->get_results("SELECT DISTINCT(meta_value) FROM htrwp_postmeta WHERE meta_key = '$name' AND meta_value != ''", ARRAY_A);
+				$years = $wpdb->get_results("SELECT DISTINCT(meta_value) FROM htrwp_postmeta WHERE meta_key = '$name' AND meta_value != '' ORDER BY meta_value DESC", ARRAY_A);
 
 				foreach ($years as $year) : ?>
 				<div class="filter-checkbox">

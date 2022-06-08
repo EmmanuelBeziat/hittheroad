@@ -19,29 +19,55 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if ($related_products) : ?>
+global $product;
+$tags = [
+	// 'country' => get_field('country', $product->get_id())['value'],
+	// 'orientation' => get_field('orientation', $product->get_id())['value'],
+	'character' => get_field('character', $product->get_id())['value'],
+	'type' => get_field('type', $product->get_id())['value'],
+	// 'year' => get_field('year', $product->get_id()),
+	'colors' => get_field('colors', $product->get_id())['value'],
+];
+
+$args = [
+	'post_type' => 'product',
+	'posts_per_page' => 4,
+	'orderby' => 'date',
+	'post_status' => 'publish',
+];
+
+$metaQuery = [
+	'relation' => 'AND',
+];
+foreach ($tags as $key => $value) :
+	$metaQuery[] = [
+		'taxonomy' => $key,
+		'value' => $value,
+		'compare' => 'IN',
+	];
+endforeach;
+$args = array_merge($args, ['meta_query' => $metaQuery]);
+
+$related = new WP_Query($args);
+
+if ($related->have_posts()) : ?>
 	<section class="related products">
 		<?php $heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
 		if ($heading) : ?>
 			<h2>Tirages suggérés</h2>
-		<?php endif; ?>
+		<?php endif;
 
-		<?php woocommerce_product_loop_start(); ?>
+		woocommerce_product_loop_start();
+		while ($related->have_posts()) :
+			$item = $related->the_post();
+			global $product;
 
-			<?php foreach ($related_products as $related_product) : ?>
+			// $post_object = get_post($related_product->get_id());
+			setup_postdata($GLOBALS['post'] =& $item); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+			wc_get_template_part('content', 'product');
 
-					<?php
-					$post_object = get_post($related_product->get_id());
-
-					setup_postdata($GLOBALS['post'] =& $post_object); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-
-					wc_get_template_part('content', 'product');
-					?>
-
-			<?php endforeach; ?>
-
-		<?php woocommerce_product_loop_end(); ?>
-
+		endwhile;
+		woocommerce_product_loop_end(); ?>
 	</section>
 	<?php
 endif;

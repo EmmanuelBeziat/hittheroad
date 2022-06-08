@@ -34,11 +34,6 @@ $tags = [
 		'value' => get_field('orientation', get_the_id($product))['value'],
 		'label' => get_field('orientation', get_the_id($product))['label'],
 	],
-	'format' => (object) [
-		'name' => get_field_object('format')['label'],
-		'value' => get_field('format', get_the_id($product))['value'],
-		'label' => get_field('format', get_the_id($product))['label'],
-	],
 	'character' => (object) [
 		'name' => get_field_object('character')['label'],
 		'value' => get_field('character', get_the_id($product))['value'],
