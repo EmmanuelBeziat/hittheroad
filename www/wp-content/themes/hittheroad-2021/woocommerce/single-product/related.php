@@ -34,6 +34,7 @@ $args = [
 	'posts_per_page' => 4,
 	'orderby' => 'date',
 	'post_status' => 'publish',
+	'post__not_in' => [$product->get_id()],
 ];
 
 $metaQuery = [
@@ -49,7 +50,7 @@ endforeach;
 $args = array_merge($args, ['meta_query' => $metaQuery]);
 
 $related = new WP_Query($args);
-
+wp_reset_query();
 if ($related->have_posts()) : ?>
 	<section class="related products">
 		<?php $heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
@@ -58,14 +59,11 @@ if ($related->have_posts()) : ?>
 		<?php endif;
 
 		woocommerce_product_loop_start();
+		$index = 0;
 		while ($related->have_posts()) :
-			$item = $related->the_post();
-			global $product;
-
-			// $post_object = get_post($related_product->get_id());
-			setup_postdata($GLOBALS['post'] =& $item); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-			wc_get_template_part('content', 'product');
-
+			$related->the_post();
+			get_template_part('template-parts/content/product/product', 'item', ['id' => get_the_id()]);
+			$index++;
 		endwhile;
 		woocommerce_product_loop_end(); ?>
 	</section>

@@ -5,7 +5,7 @@
 		<div class="products-slider swiper">
 			<div class="swiper-wrapper">
 				<?php foreach ($args['products']->products as $index => $product_id) :
-					get_template_part('template-parts/content/home/product', '', ['id' => $product_id, 'delay' => ($index + 2) * 50]);
+					get_template_part('template-parts/content/product/product', 'item', ['id' => $product_id]);
 				endforeach; ?>
 			</div>
 

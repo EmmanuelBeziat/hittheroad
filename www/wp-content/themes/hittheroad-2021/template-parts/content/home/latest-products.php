@@ -26,7 +26,7 @@
 					while ($loop->have_posts()) :
 						$loop->the_post();
 						setup_postdata($loop->post->ID);
-						get_template_part('template-parts/content/home/product', '', ['id' => get_the_ID(), 'delay' => ($index + 2) * 50]);
+						get_template_part('template-parts/content/product/product', 'item', ['id' => get_the_ID()]);
 						$index++;
 					endwhile;
 				endif; ?>

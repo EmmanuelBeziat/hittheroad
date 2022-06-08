@@ -22,35 +22,6 @@ global $product;
 if (empty($product) || !$product->is_visible()) {
 	return;
 }
-
-$tags = [
-	'country' => (object) [
-		'name' => get_field_object('country')['label'],
-		'value' => get_field('country', get_the_id($product))['value'],
-		'label' => get_field('country', get_the_id($product))['label'],
-	],
-	'orientation' => (object) [
-		'name' => get_field_object('orientation')['label'],
-		'value' => get_field('orientation', get_the_id($product))['value'],
-		'label' => get_field('orientation', get_the_id($product))['label'],
-	],
-	'character' => (object) [
-		'name' => get_field_object('character')['label'],
-		'value' => get_field('character', get_the_id($product))['value'],
-		'label' => get_field('character', get_the_id($product))['label'],
-	],
-	'type' => (object) [
-		'name' => get_field_object('type')['label'],
-		'value' => get_field('type', get_the_id($product))['value'],
-		'label' => get_field('type', get_the_id($product))['label'],
-	],
-	'year' => get_field('year', get_the_id($product)),
-	'colors' => (object) [
-		'name' => get_field_object('colors')['label'],
-		'value' => get_field('colors', get_the_id($product))['value'],
-		'label' => get_field('colors', get_the_id($product))['label'],
-	],
-];
 ?>
 <article <?php wc_product_class('', $product); ?> data-aos="fade-in" data-aos-delay="100" data-aos-duration="400">
 	<?php
