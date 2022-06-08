@@ -21,12 +21,12 @@ if (!defined('ABSPATH')) {
 
 global $product;
 $tags = [
-	// 'country' => get_field('country', $product->get_id())['value'],
-	// 'orientation' => get_field('orientation', $product->get_id())['value'],
-	'character' => get_field('character', $product->get_id())['value'],
-	'type' => get_field('type', $product->get_id())['value'],
-	// 'year' => get_field('year', $product->get_id()),
+	'year' => get_field('year', $product->get_id()),
+	'country' => get_field('country', $product->get_id())['value'],
 	'colors' => get_field('colors', $product->get_id())['value'],
+	// 'orientation' => get_field('orientation', $product->get_id())['value'],
+	// 'character' => get_field('character', $product->get_id())['value'],
+	// 'type' => get_field('type', $product->get_id())['value'],
 ];
 
 $args = [

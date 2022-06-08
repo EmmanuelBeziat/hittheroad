@@ -71,6 +71,8 @@ defined('ABSPATH') || exit;
 							// Meta data.
 							echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
 
+							// $cart_item['data']->set_price($cart_item['data']->get_price() + $extra_cost);
+
 							// Backorder notification.
 							if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
 								echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
