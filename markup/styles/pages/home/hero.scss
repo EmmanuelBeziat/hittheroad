@@ -20,7 +20,7 @@
 
 	h1 {
 		font: 700 8rem/1 var(--font-stack-heading);
-		margin: .25em 0;
+		margin: 0 0 .25em;
 		text-shadow: 0 1px 1px HSL(0deg 0% 0% / .075),
 		0 2px 2px HSL(0deg 0% 0% / .075),
 		0 4px 4px HSL(0deg 0% 0% / .075),
@@ -34,6 +34,8 @@
 }
 
 .hero-inner-content {
+	text-align: center;
+
 	h1 {
 		@media (max-width: 767px) {
 			font-size: 2.5rem;
