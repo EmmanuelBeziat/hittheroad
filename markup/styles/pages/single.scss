@@ -64,6 +64,16 @@
 	.related.products {
 		.products-grid {
 			--repeat: 4;
+			--min-width: 180px;
+			grid-template-columns: repeat(var(--repeat), minmax(var(--min-width), 1fr));
+
+			@media (max-width: 996px) {
+				--repeat: 2;
+			}
+
+			@media (max-width: 576px) {
+				--repeat: auto-fit;
+			}
 		}
 	}
 
