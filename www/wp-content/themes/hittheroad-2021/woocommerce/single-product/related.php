@@ -55,7 +55,7 @@ if ($related->have_posts()) : ?>
 	<section class="related products">
 		<?php $heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
 		if ($heading) : ?>
-			<h2>Tirages suggérés</h2>
+			<h1>Tirages suggérés</h1>
 		<?php endif;
 
 		woocommerce_product_loop_start();
