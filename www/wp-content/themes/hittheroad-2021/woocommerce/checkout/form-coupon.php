@@ -20,8 +20,11 @@ defined('ABSPATH') || exit;
 if (!wc_coupons_enabled()) { // @codingStandardsIgnoreLine.
 	return;
 }
+$notification = get_field('notification', 'option');
+if (isset($notification) && $notification !== '') : ?>
+<div class="alert alert-warning" role="alert"><?= $notification ?></div>
+<?php endif ?>
 
-?>
 <div class="woocommerce-form-coupon-toggle">
 	<?php wc_print_notice(apply_filters('woocommerce_checkout_coupon_message', esc_html__('Have a coupon?', 'woocommerce') . ' <a href="#" class="showcoupon">' . esc_html__('Click here to enter your code', 'woocommerce') . '</a>'), 'notice'); ?>
 </div>

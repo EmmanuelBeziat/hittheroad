@@ -11,7 +11,7 @@
 		</article>
 	<?php endwhile;
 	else : ?>
-		<section>
+		<section class="page-text">
 			<div class="container">
 				<p>Nothing to see.</p>
 			</div>

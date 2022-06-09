@@ -30,7 +30,12 @@ if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
-?>
+
+$notification = get_field('notification', 'option');
+if (isset($notification) && $notification !== '') : ?>
+<div class="alert alert-warning" role="alert"><?= $notification ?></div>
+<?php endif ?>
+
 <section id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<?php
 	/**

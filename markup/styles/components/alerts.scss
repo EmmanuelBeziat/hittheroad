@@ -3,7 +3,7 @@
 	color: var(--alert-color, var(--color-black));
 	background: var(--alert-background-color, var(--color-gray-light));
 	padding: 1em 2em 1em 3.5em;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 	word-break: break-word;
 	position: relative;
 
@@ -16,6 +16,14 @@
 		width: 1.25rem;
 		aspect-ratio: 1/1;
 		display: block;
+	}
+
+	& > *:first-child {
+		margin-top: 0;
+	}
+
+	& > *:last-child {
+		margin-bottom: 0;
 	}
 }
 

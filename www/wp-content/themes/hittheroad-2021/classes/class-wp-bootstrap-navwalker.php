@@ -38,8 +38,8 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 		 * @since 4.2.0
 		 */
 		public function __construct() {
-			if (!has_filter('wp_nav_menu_args', array($this, 'add_schema_to_navbar_ul'))) {
-				add_filter('wp_nav_menu_args', array($this, 'add_schema_to_navbar_ul'));
+			if (!has_filter('wp_nav_menu_args', [$this, 'add_schema_to_navbar_ul'])) {
+				add_filter('wp_nav_menu_args', [$this, 'add_schema_to_navbar_ul']);
 			}
 		}
 
@@ -64,7 +64,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 			}
 			$indent = str_repeat($t, $depth);
 			// Default class to add to the file.
-			$classes = array('dropdown-menu');
+			$classes = ['dropdown-menu'];
 			/**
 			 * Filters the CSS class(es) applied to a menu list element.
 			 *
@@ -125,7 +125,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 				$args->link_after .= '</span>';
 			}
 
-			$classes = empty($item->classes) ? array() : (array) $item->classes;
+			$classes = empty($item->classes) ? [] : (array) $item->classes;
 
 			// Updating the CSS classes of a menu item in the WordPress Customizer preview results in all classes defined
 			// in that particular input box to come in as one big class string.
@@ -138,8 +138,8 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 			 * Initialize some holder variables to store specially handled item
 			 * wrappers and icons.
 			 */
-			$linkmod_classes = array();
-			$icon_classes    = array();
+			$linkmod_classes = [];
+			$icon_classes    = [];
 
 			/*
 			 * Get an updated $classes array without linkmod or icon classes.
@@ -201,7 +201,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 			$output .= $indent . '<li ' . $id . $class_names . '>';
 
 			// Initialize array for holding the $atts for the link item.
-			$atts           = array();
+			$atts           = [];
 			$atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
 			$atts['target'] = !empty($item->target) ? $item->target : '';
 			if ('_blank' === $item->target && empty($item->xfn)) {
@@ -352,7 +352,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 				 * @param array $tags The acceptable HTML tags for use as menu containers.
 				 *                    Default is array containing 'div' and 'nav'.
 				 */
-				$allowed_tags = apply_filters('wp_nav_menu_container_allowedtags', array('div', 'nav'));
+				$allowed_tags = apply_filters('wp_nav_menu_container_allowedtags', ['div', 'nav']);
 				if (is_string($args['container']) && in_array($args['container'], $allowed_tags, true)) {
 					$show_container   = true;
 					$class            = $args['container_class'] ? ' class="menu-fallback-container ' . esc_attr($args['container_class']) . '"' : ' class="menu-fallback-container"';
@@ -460,7 +460,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 		 *
 		 * @return string                empty for default, a linkmod type string otherwise.
 		 */
-		private function get_linkmod_type($linkmod_classes = array()) {
+		private function get_linkmod_type($linkmod_classes = []) {
 			$linkmod_type = '';
 			// Loop through array of linkmod classes to handle their $atts.
 			if (!empty($linkmod_classes)) {
@@ -491,7 +491,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 		 *
 		 * @return array                 maybe updated array of attributes for item.
 		 */
-		private function update_atts_for_linkmod_type($atts = array(), $linkmod_classes = array()) {
+		private function update_atts_for_linkmod_type($atts = [], $linkmod_classes = []) {
 			if (!empty($linkmod_classes)) {
 				foreach ($linkmod_classes as $link_class) {
 					if (!empty($link_class)) {
@@ -592,7 +592,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) :
 		 * @return array a simple array
 		 */
 		public function flatten($array) {
-			$result = array();
+			$result = [];
 			foreach ($array as $element) {
 				if (is_array($element)) {
 					array_push($result, ...$this->flatten($element));
