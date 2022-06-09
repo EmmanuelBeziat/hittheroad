@@ -2,7 +2,7 @@
 
 <figure class="author">
 	<picture class="author-picture">
-		<source media="(max-width: 480px)" srcset="<?= $author['picture']['sizes']['author-picture-small'] ?>">
+		<source media="(max-width: 480px)" srcset="<?= $author['picture']['sizes']['author-picture-medium'] ?>">
 		<source media="(max-width: 991px)" srcset="<?= $author['picture']['sizes']['author-picture-medium'] ?>">
 		<source media="(min-width: 992px)" srcset="<?= $author['picture']['sizes']['author-picture'] ?>">
 		<img src="<?= $author['picture']['sizes']['author-picture-medium'] ?>" loading="lazy" alt="<?= $author['picture']['alt'] ?>">
