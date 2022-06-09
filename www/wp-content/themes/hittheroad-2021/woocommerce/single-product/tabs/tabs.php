@@ -26,11 +26,12 @@ if (!defined('ABSPATH')) {
  *
  * @see woocommerce_default_product_tabs()
  */
-/*
+
 $product_tabs = apply_filters('woocommerce_product_tabs', []);
 if (!empty($product_tabs)) : ?>
 
 	<div class="woocommerce-tabs my-4">
+		<?php /*
 		<ul class="nav nav-tabs" role="tablist">
 			<?php
 			$index = 0;
@@ -56,7 +57,11 @@ if (!empty($product_tabs)) : ?>
 			<?php endforeach; ?>
 		</div>
 
-		<?php do_action('woocommerce_product_after_tabs'); ?>
+		<?php do_action('woocommerce_product_after_tabs'); */ ?>
+		<?php foreach ($product_tabs as $key => $product_tab) :
+			if (isset($product_tab['callback'])) {
+				call_user_func($product_tab['callback'], $key, $product_tab);
+			}
+		endforeach; ?>
 	</div>
-
-<?php endif; */ ?>
+<?php endif;
