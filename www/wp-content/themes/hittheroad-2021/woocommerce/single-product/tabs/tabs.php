@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) {
 $product_tabs = apply_filters('woocommerce_product_tabs', []);
 if (!empty($product_tabs)) : ?>
 
-	<div class="woocommerce-tabs my-4">
+	<div class="woocommerce-tabs mt-4">
 		<?php /*
 		<ul class="nav nav-tabs" role="tablist">
 			<?php
