@@ -1,6 +1,9 @@
 
 .navbar-toggler {
 	aspect-ratio: 1 / 1;
+	@supports not (aspect-ratio: 1 / 1) {
+		height: 42px;
+	}
 	width: 42px;
 	padding: 0;
 	cursor: pointer;

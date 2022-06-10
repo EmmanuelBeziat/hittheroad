@@ -151,6 +151,9 @@
 	padding: 0;
 	width: 2em;
 	aspect-ratio: 1/1;
+	@supports not (aspect-ratio: 1/1) {
+		height: 2em;
+	}
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
@@ -177,6 +180,9 @@
 	line-height: 1;
 	width: 4rem;
 	aspect-ratio: 1/1;
+	@supports not (aspect-ratio: 1/1) {
+		height: 4rem;
+	}
 	display: flex;
 	justify-content: center;
 	align-items: center;

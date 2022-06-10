@@ -52,6 +52,9 @@
 			width: var(--dot-size);
 			left: calc(50% - var(--dot-size) / 2);
 			aspect-ratio: 1/1;
+			@supports not (aspect-ratio: 1/1) {
+				height: var(--dot-size);
+			}
 			border-radius: 50%;
 			background: var(--color-primary);
 			transition: .25s ease-in-out;
@@ -143,6 +146,9 @@
 			width: var(--dot-size);
 			left: calc(50% - var(--dot-size) / 2);
 			aspect-ratio: 1/1;
+			@supports not (aspect-ratio: 1/1) {
+				height: var(--dot-size);
+			}
 			border-radius: 50%;
 			background: var(--color-primary);
 			transition: .25s ease-in-out;

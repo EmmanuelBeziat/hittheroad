@@ -106,6 +106,9 @@
 		all: unset;
 		width: 10px;
 		aspect-ratio: 1/1;
+		@supports not (aspect-ratio: 1/1) {
+			height: 10px;
+		}
 		background: var(--color-secondary);
 
 		&.tns-nav-active,

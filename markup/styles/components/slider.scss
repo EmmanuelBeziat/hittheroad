@@ -28,12 +28,15 @@
 
 .slider-arrow {
 	all: unset;
+	width: 2rem;
 	aspect-ratio: 1 / 1;
+	@supports not (aspect-ratio: 1/1) {
+		height: 2rem;
+	}
 	color: var(--color-black);
 	background: var(--color-primary);
 	text-decoration: none;
 	transition: .25s ease-in-out;
-	width: 2rem;
 	font-size: 1rem;
 	display: flex;
 	justify-content: center;
