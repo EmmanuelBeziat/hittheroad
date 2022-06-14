@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 
 global $product;
 $tags = [
-	'year' => get_field('year', $product->get_id()),
+	'year' => get_field('origin-year', $product->get_id()),
 	'country' => get_field('country', $product->get_id())['value'],
 	'colors' => get_field('colors', $product->get_id())['value'],
 	// 'orientation' => get_field('orientation', $product->get_id())['value'],
@@ -48,9 +48,7 @@ foreach ($tags as $key => $value) :
 	];
 endforeach;
 $args = array_merge($args, ['meta_query' => $metaQuery]);
-
 $related = new WP_Query($args);
-wp_reset_query();
 if ($related->have_posts()) : ?>
 	<section class="related products">
 		<?php $heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
@@ -69,5 +67,6 @@ if ($related->have_posts()) : ?>
 	</section>
 	<?php
 endif;
+wp_reset_query();
 
 wp_reset_postdata();
