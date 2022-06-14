@@ -34,19 +34,17 @@ function doPost(e) {
   const order_total = data.total;
   const shipping_cost = data.shipping_total;
 
-	if (data.line_items.length === 1) {
-		const product = productInformations(data.line_items[0]);
-		sheet.appendRow([execution_date,order_number,order_created,order_status,product.product_name,product.quantity,product.product_size,product.product_finish,billing_name,billing_email,billing_phone,shipping_address,shipping_cost,product.line_price,order_total]);
-	}
-	else {
-		sheet.appendRow([execution_date,order_number,order_created,order_status,'⬇️','⬇️','⬇️','⬇️',billing_name,billing_email,billing_phone,shipping_address,shipping_cost,'⬇️',order_total]);
-		data.line_items.forEach(function(item) {
+	data.line_items.forEach((item, index) => {
+		if (index + 1 === 1) {
+			const product = productInformations(item);
+			sheet.appendRow([execution_date,order_number,order_created,order_status,product.product_name,product.quantity,product.product_size,product.product_finish,billing_name,billing_email,billing_phone,shipping_address,shipping_cost,product.line_price,order_total]);
+		}
+		else {
 			const product = productInformations(item);
 			sheet.appendRow(makeProductRow(product));
-		})
-	}
-
+		}
+	})
 
   // Separator
-  sheet.appendRow(['------', '------', '------', '------', '------', '------', '------', '------', '------', '------', '------', '------', '------','-----']);
+  sheet.appendRow(['------', '', '', '', '', '', '', '', '', '', '', '', '','']);
 }
