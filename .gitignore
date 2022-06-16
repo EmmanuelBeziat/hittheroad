@@ -8,6 +8,7 @@ node_modules
 vendor
 .vscode
 
+www/.htaccess
 www/*.php
 www/wp-admin
 www/wp-includes
