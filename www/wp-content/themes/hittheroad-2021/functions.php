@@ -64,7 +64,7 @@ add_action('woocommerce_product_after_variable_attributes', function($loop, $var
 }, 10, 3);
 
 // Filter function to update field names
-function  acf_prepare_field_update_field_name($field) {
+function acf_prepare_field_update_field_name($field) {
 	global $abcdefgh_i;
 	$field['name'] = preg_replace('/^acf\[/', "acf[$abcdefgh_i][", $field['name']);
 	return $field;
@@ -94,5 +94,15 @@ function ajax_query_products () {
 
 	echo wp_json_encode($json);
 	wp_die();
+} */
+
+// Disable sitemaps
+add_filter('wp_sitemaps_enabled', '__return_false');
+
+function noIndexPage ($id) {
+	foreach(get_field('no-index', 'option') as $page) :
+		if ($id == $page) : ?>
+			<meta name="robots" content="noindex,nofollow">
+		<?php endif;
+	endforeach;
 }
- */

@@ -13,6 +13,8 @@
 	<meta name="msapplication-TileColor" content="#222222">
 	<meta name="msapplication-config" content="<?= get_template_directory_uri() ?>/assets/images/favicons/browserconfig.xml">
 	<meta name="theme-color" content="#222222">
+
+	<?= noIndexPage(get_queried_object_id()) ?>
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
