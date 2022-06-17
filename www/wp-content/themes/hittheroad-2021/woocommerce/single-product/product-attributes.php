@@ -22,6 +22,16 @@ defined('ABSPATH') || exit;
 if (!$product_attributes) {
 	return;
 }
+
+global $product;
+$tags = [
+	'country' => (object) [
+		'name' => get_field_object('country')['label'],
+		'value' => get_field('country', $product->get_id())['value'],
+		'label' => get_field('country', $product->get_id())['label'],
+	],
+	'year' => get_field('origin-year', $product->get_id()),
+];
 ?>
 <table class="woocommerce-product-attributes shop_attributes">
 	<?php foreach ($product_attributes as $product_attribute_key => $product_attribute) : ?>
@@ -31,4 +41,12 @@ if (!$product_attributes) {
 			<td class="woocommerce-product-attributes-item__value"><?php echo wp_kses_post($product_attribute['value']); ?></td>
 		</tr>
 	<?php endforeach; ?>
+	<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--place>">
+		<th class="woocommerce-product-attributes-item__label">Pays</th>
+		<td class="woocommerce-product-attributes-item__value"><?= $tags['country']->label ?></td>
+	</tr>
+	<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--place>">
+		<th class="woocommerce-product-attributes-item__label">Année</th>
+		<td class="woocommerce-product-attributes-item__value"><?= $tags['year'] ?></td>
+	</tr>
 </table>
