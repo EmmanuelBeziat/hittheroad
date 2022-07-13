@@ -1,8 +1,3 @@
-//get invoked when web app receives a GET request
-function doGet(e) {
-  return HtmlService.createHtmlOutput('Requête Reçue')
-}
-
 function productInformations (item) {
 	return {
 		price: item.price,

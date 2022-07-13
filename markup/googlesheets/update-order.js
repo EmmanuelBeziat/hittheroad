@@ -1,10 +1,3 @@
-const { Logger } = require("sass");
-
-//get invoked when web app receives a GET request
-function doGet (e) {
-  return HtmlService.createHtmlOutput("request received");
-}
-
 function findRow (searchValue) {
 	const sheet = SpreadsheetApp.getActiveSheet()
 	const data = sheet.getDataRange().getValues()
@@ -14,8 +7,6 @@ function findRow (searchValue) {
 	const columnIndex = i % columnCount
 	const rowIndex = ((i - columnIndex) / columnCount)
 
-	Logger.log({ columnIndex, rowIndex })
-
 	return i >= 0 ? rowIndex + 1 : 'Search value not found'
 }
 
@@ -24,4 +15,10 @@ function doPost (e) {
   const sheet = SpreadsheetApp.getActiveSheet()
 	const data = JSON.parse([e.postData.contents])
   const row = sheet.getRow(findRow(data.number))
+
+	if (!row) {
+		return HtmlService.createHtmlOutput('Impossible de trouver la commande')
+	}
+
+	sheet.getRange(row, 4).setValue(data.status)
 }
