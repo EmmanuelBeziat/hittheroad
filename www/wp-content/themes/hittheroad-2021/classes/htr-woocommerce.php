@@ -18,6 +18,8 @@ class HTR_Woocommerce {
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
+		// Webhooks
+		add_filter('woocommerce_webhook_payload', [$this, 'add_custom_webhook_payload'], 10, 4);
 	}
 
 	// Quantity
@@ -91,6 +93,17 @@ class HTR_Woocommerce {
 		$replacement = ['/class="woocommerce-product-gallery__image /', '/src="(.*?)"/', '/width="(.*?)"/', '/height="(.*?)"/'];
 		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_ids.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
 		echo $image;
+	}
+
+	public function add_custom_webhook_payload ($payload, $resource, $resource_id, $id) {
+		if ($resource !== 'order') return $payload;
+
+		foreach ($payload['line_items'] as $key => $item) {
+			$product = get_post_meta($item['variation_id']);
+			$payload['line_items'][$key]['dimensions'] = $product['_length'][0] . '×' . $product['_width'][0];
+		}
+
+		return $payload;
 	}
 }
 
