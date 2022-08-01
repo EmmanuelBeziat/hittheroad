@@ -23,8 +23,8 @@ function makeProductRow (product) {
 
 //get invoked when webapp receives a POST request
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSheet()
-  const data = JSON.parse([e.postData.contents])
+	const sheet = SpreadsheetApp.getActiveSheet()
+	const data = JSON.parse([e.postData.contents])
 	const order = {
 		number: data.number,
 		date: data.date_created,
@@ -44,7 +44,7 @@ function doPost(e) {
 		country: new Intl.DisplayNames([data.shipping.country.toLowerCase()], { type: 'region' }).of(data.shipping.country),
 		cost: data.shipping_total
 	}
-  const total = data.total
+	const total = data.total
 
 	data.line_items.forEach((item, index) => {
 		if (index + 1 === 1) {
@@ -76,11 +76,11 @@ function doPost(e) {
 		else {
 			const product = productInformations(item)
 			sheet.appendRow(makeProductRow(product))
+			sheet.getRange(sheet.getLastRow(), 1).insertCheckboxes()
 		}
 	})
 
-  // Separator
-  sheet.appendRow(['  '])
-
+	// Separator
+	sheet.appendRow(['  '])
 	return HtmlService.createHtmlOutput('Commande ajoutée avec succès')
 }

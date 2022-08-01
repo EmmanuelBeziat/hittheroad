@@ -18,6 +18,7 @@ class HTR_Woocommerce {
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
+
 		// Webhooks
 		add_filter('woocommerce_webhook_payload', [$this, 'add_custom_webhook_payload'], 10, 4);
 	}
@@ -93,6 +94,19 @@ class HTR_Woocommerce {
 		$replacement = ['/class="woocommerce-product-gallery__image /', '/src="(.*?)"/', '/width="(.*?)"/', '/height="(.*?)"/'];
 		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_ids.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
 		echo $image;
+	}
+
+	public static function get_variation_size ($product) {
+		$items = [];
+
+		foreach ($product->get_children() as $key => $item) {
+			array_push($items, [
+				get_post_meta($item)['_length'][0],
+				get_post_meta($item)['_width'][0]
+			]);
+		}
+
+		return $items;
 	}
 
 	public function add_custom_webhook_payload ($payload, $resource, $resource_id, $id) {
