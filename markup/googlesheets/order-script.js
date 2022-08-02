@@ -4,7 +4,8 @@ function productInformations (item) {
 		name: item.parent_name,
 		quantity: item.quantity,
 		size: `${item.meta_data[0].display_value} (${item.dimensions})`,
-		finish: item.meta_data[1].value.Fields[0].SelectedValues[0].Value
+		finish: item.meta_data[1].value.Fields[0].SelectedValues[0].Value,
+		number: item.number
 	}
 }
 
@@ -15,6 +16,7 @@ function makeProductRow (product) {
 		product.quantity,
 		product.size,
 		product.finish,
+		product.number,
 		'', '', '', '', '', '', '', '', '', '',
 		product.price,
 		''
@@ -58,6 +60,7 @@ function doPost(e) {
 				product.quantity,
 				product.size,
 				product.finish,
+				product.number,
 				billing.lastname,
 				billing.firstname,
 				billing.email,
