@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// WPCF7 remove ajax validation
-	jQuery(document).ready(function(jQuery){
-		jQuery(".wpcf7-form-control").prop('required',true);
-		jQuery(".wpcf7-form").removeAttr('novalidate');
-	});
+/* 	jQuery(document).ready(function(jQuery){
+		jQuery('.wpcf7-form-control').prop('required', true)
+		jQuery('.wpcf7-form').removeAttr('novalidate')
+	}) */
 
 	/* jQuery(document).ready(function($) {
 		const button = document.getElementById('button');

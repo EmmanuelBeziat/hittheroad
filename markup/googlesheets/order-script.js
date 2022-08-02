@@ -41,7 +41,7 @@ function doPost(e) {
 		address2: data.shipping.address_2,
 		postcode: data.shipping.postcode,
 		city: data.shipping.city,
-		country: new Intl.DisplayNames([data.shipping.country.toLowerCase()], { type: 'region' }).of(data.shipping.country),
+		country: new Intl.DisplayNames(['EN'], { type: 'region' }).of(data.shipping.country),
 		cost: data.shipping_total
 	}
 	const total = data.total

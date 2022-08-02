@@ -6,3 +6,15 @@
 	border-top: 3px solid #2da140 !important;
 	background: #f1f8f3 !important;
 }
+
+span#club-js {
+	pointer-events: none;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	display: block !important;
+	visibility: visible !important;
+	left: 0;
+}
