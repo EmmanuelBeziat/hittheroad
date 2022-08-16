@@ -1,3 +1,24 @@
+# Ajouter un nouveau produit
+
+## 1. Création du produit
+
+
+
+## 2. Renseignement des Tags
+
+> ↪️ Pour ajouter un nouveau pays à la liste, voir plus bas.
+
+## 3. Créer les déclinaisons de produit
+
+## 4. Remplir les déclinaisons de produit
+
+## 5. Gérer les options (châssis)
+
+> ↪️ Si aucun export d’options n’a encore été fait, voir plus bas.
+
+## 6. Publier et vérifier
+
+
 # Les Filtres / Tags
 
 Les tags permettent de filtrer les produits. Ils sont sélectionés sur la page de chaque produit dans le pannel d’administration.
@@ -12,7 +33,7 @@ La liste des filtres est accessible, et chaque élément peut être modifié. Un
 
 🎦[Vidéo : Modifier les tags sur un produit](https://images.emmanuelbeziat.com/msedge_9ttUfWCCWF.mp4)
 
-## Ajouter un nouveau tag
+## Ajouter un nouveau Pa
 
 `Espace administration → ACF → Produits`
 
