@@ -34,6 +34,10 @@ Une fois téléchargée, l’image est automatiquement sélectionnée. On voit q
 
 Cliquer sur "Définir l’image produit".
 
+![](pictures/product-ajout-ugs.jpg)
+
+Dans le champ UGS plus bas, remettre le nom du produit, tel quel.
+
 ## 2. Renseignement des Filtres
 
 ![](pictures/produit-ajout-006.jpg)
