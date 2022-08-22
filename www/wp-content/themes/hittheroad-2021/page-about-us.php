@@ -31,8 +31,10 @@ $aboutUs = (object) [
 
 		<?= $aboutUs->contentNext ?>
 
+		<?php if ($aboutUs->video !== '') : ?>
 		<h2 class="h2 mt-5">Notre dernier film</h2>
 		<?= HTR_Tools::blockVideo($aboutUs->video) ?>
+		<?php endif; ?>
 	</div>
 </section>
 
