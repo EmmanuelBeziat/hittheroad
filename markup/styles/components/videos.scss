@@ -20,3 +20,37 @@
 		aspect-ratio: 21/9;
 	}
 }
+
+.movie {
+	display: flex;
+	gap: 1rem;
+
+	@media (max-width: 980px) {
+		flex-direction: column;
+	}
+}
+
+.movie-picture {
+	flex: 4;
+
+	img {
+		width: 100%;
+		vertical-align: top;
+	}
+}
+
+.movie-caption {
+	flex: 5;
+	display: flex;
+	flex-direction: column;
+
+}
+
+.movie-link {
+	margin-top: auto;
+}
+
+.movies-grid hr {
+	width: clamp(240px, 50%, 480px);
+	margin: 2rem auto;
+}
