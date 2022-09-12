@@ -114,7 +114,8 @@ class HTR_Woocommerce {
 
 		foreach ($payload['line_items'] as $key => $item) {
 			$product = get_post_meta($item['variation_id']);
-			$payload['line_items'][$key]['dimensions'] = $product['_length'][0] . '×' . $product['_width'][0];
+			$payload['line_items'][$key]['width'] = $product['_length'][0];
+			$payload['line_items'][$key]['height'] = $product['_width'][0];
 			$payload['line_items'][$key]['number'] = (intval($product['max_stock_qty'][0]) - intval($product['_stock'][0])) . '/' . $product['max_stock_qty'][0];
 		}
 
