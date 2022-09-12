@@ -288,7 +288,7 @@ function doPost(e) {
 	const billing = {
 		firstname: data.billing.first_name,
 		lastname: data.billing.last_name,
-		indicator: `+${getPhoneIndicator(data.shipping.country)}`,
+		indicator: `'+${getPhoneIndicator(data.shipping.country)}`,
 		phone: `'${data.billing.phone}`,
 		email: data.billing.email
 	}
