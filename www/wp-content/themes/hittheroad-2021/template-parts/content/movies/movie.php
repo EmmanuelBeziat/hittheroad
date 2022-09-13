@@ -12,10 +12,12 @@ $movie = (object) [
 ?>
 
 <figure class="movie" data-aos="fade-in" data-aos-delay="<?= $args['delay'] ?>">
-	<picture class="movie-picture">
-		<source srcset="<?= $movie->pictures->mobile['sizes']['author-picture'] ?>" media="(max-width: 980px)" type="image/<?= $movie->pictures->mobile['subtype'] ?>">
-		<img src="<?= $movie->pictures->desktop['sizes']['author-picture'] ?>" alt="<?= $movie->title ?>">
-	</picture>
+	<a href="<?= $movie->link ?>">
+		<picture class="movie-picture">
+			<source srcset="<?= $movie->pictures->mobile['sizes']['author-picture'] ?>" media="(max-width: 980px)" type="image/<?= $movie->pictures->mobile['subtype'] ?>">
+			<img src="<?= $movie->pictures->desktop['sizes']['author-picture'] ?>" alt="<?= $movie->title ?>">
+		</picture>
+	</a>
 
 	<figcaption class="movie-caption">
 		<h2 class="h2 mb-3"><?= $movie->title ?></h2>
