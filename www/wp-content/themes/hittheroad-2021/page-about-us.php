@@ -21,7 +21,7 @@ $aboutUs = (object) [
 	<div class="container">
 		<h1 class="h1"><?= $aboutUs->title ?></h1>
 
-		<?= $aboutUs->content ?>
+		<?= wpautop(wptexturize($aboutUs->content)) ?>
 
 		<div class="presentation-grid my-5">
 			<?php foreach ($aboutUs->authors as $author):
