@@ -12,12 +12,13 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 4.1.0
+ * @version 6.0.0
  */
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
+
 $registerIsEnabled = 'yes' === get_option('woocommerce_enable_myaccount_registration');
 $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 
