@@ -85,7 +85,7 @@ do_action('woocommerce_before_customer_login_form'); ?>
 				<?php wp_nonce_field('woocommerce-login', 'woocommerce-login-nonce'); ?>
 				<button type="submit" class="btn btn-primary" name="login" value="<?php esc_attr_e('Log in', 'woocommerce'); ?>"><?php esc_html_e('Log in', 'woocommerce'); ?></button>
 
-				<a class="btn btn-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>/lost-password/"><?php esc_html_e('Lost your password?', 'woocommerce'); ?></a>
+				<a class="btn btn-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>lost-password/"><?php esc_html_e('Lost your password?', 'woocommerce'); ?></a>
 				<a class="btn btn-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>?action=register">S’inscrire</a>
 			</div>
 			<?php do_action('woocommerce_login_form_end'); ?>
