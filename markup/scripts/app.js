@@ -1,6 +1,8 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', () => {
+	console.log('%c Made with 🕑 and 💖 by Emmanuel Béziat', 'background: #ffcc1d; color: #17191e; padding: .5em 1em;')
+
 	// AOS animations
 	AOS.init({ once: true })
 
