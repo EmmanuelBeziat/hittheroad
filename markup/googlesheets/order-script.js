@@ -27,7 +27,7 @@ function makeProductRow (product) {
 		product.height,
 		product.finish,
 		product.number,
-		'', '', '', '', '', '', '', '', '', '', '',
+		'', '', '', '', '', '', '', '', '', '', '', '', '',
 		product.price,
 		''
 	]
@@ -285,19 +285,18 @@ function doPost(e) {
 		date: data.date_created,
 		status: data.status
 	}
-	const billing = {
-		firstname: data.billing.first_name,
-		lastname: data.billing.last_name,
-		indicator: `'+${getPhoneIndicator(data.shipping.country)}`,
-		phone: `'${data.billing.phone}`,
-		email: data.billing.email
-	}
 	const shipping = {
+		firstname: data.shipping.first_name,
+		lastname: data.shipping.last_name,
+		indicator: `'+${getPhoneIndicator(data.shipping.country)}`,
+		phone: `'${data.shipping.phone}`,
+		email: data.meta_data.find(item => item.key === '_shipping_email').value,
 		address1: data.shipping.address_1,
 		address2: data.shipping.address_2,
 		postcode: data.shipping.postcode,
 		city: data.shipping.city,
 		country: new Intl.DisplayNames(['EN'], { type: 'region' }).of(data.shipping.country),
+		note: data.customer_note,
 		cost: data.shipping_total
 	}
 	const total = data.total
@@ -320,16 +319,18 @@ function doPost(e) {
 				product.height,
 				product.finish,
 				product.number,
-				billing.lastname,
-				billing.firstname,
-				billing.email,
-				billing.indicator,
-				billing.phone,
+				shipping.lastname,
+				shipping.firstname,
+				shipping.email,
+				shipping.indicator,
+				shipping.phone,
+				shipping.company,
 				shipping.address1,
 				shipping.address2,
 				shipping.postcode,
 				shipping.city,
 				shipping.country,
+				shipping.note,
 				shipping.cost,
 				product.price,
 				total
