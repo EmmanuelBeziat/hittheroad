@@ -12,18 +12,18 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 6.0.0
+ * @version 7.0.1
  */
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
+do_action('woocommerce_before_customer_login_form');
 $registerIsEnabled = 'yes' === get_option('woocommerce_enable_myaccount_registration');
 $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 
-do_action('woocommerce_before_customer_login_form'); ?>
-
+?>
 <div class="container">
 	<div class="form-card">
 		<?php if ($registerIsEnabled && $userRegistration) : ?>
@@ -34,13 +34,13 @@ do_action('woocommerce_before_customer_login_form'); ?>
 
 			<?php if ('no' === get_option('woocommerce_registration_generate_username')) : ?>
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" placeholder="John Doe" value="<?= (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>">
+					<input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" placeholder="John Doe" value="<?= (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>"><?php // @codingStandardsIgnoreLine ?>
 					<label for="reg_username"><?php esc_html_e('Username', 'woocommerce'); ?> <span class="required">*</span></label>
 				</div>
 			<?php endif; ?>
 
 			<div class="form-floating mb-3">
-				<input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" placeholder="your@email.com" value="<?= (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>">
+				<input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" placeholder="your@email.com" value="<?= (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>"><?php // @codingStandardsIgnoreLine ?>
 				<label for="reg_email"><?php esc_html_e('Email address', 'woocommerce'); ?> <span class="required">*</span></label>
 			</div>
 
@@ -50,7 +50,7 @@ do_action('woocommerce_before_customer_login_form'); ?>
 				<label for="reg_password"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
 			</div>
 			<?php else : ?>
-				<p><?php esc_html_e('A password will be sent to your email address.', 'woocommerce'); ?></p>
+				<p><?php esc_html_e('A link to set a new password will be sent to your email address.', 'woocommerce'); ?></p>
 			<?php endif; ?>
 
 			<?php do_action('woocommerce_register_form'); ?>
