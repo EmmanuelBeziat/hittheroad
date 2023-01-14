@@ -301,6 +301,11 @@ function doPost(e) {
 	}
 	const total = data.total
 
+  // Test: remove filters beforce adding
+  if (sheet.getActiveSheet().getFilter()) {
+    sheet.getActiveSheet().getFilter().remove()
+  }
+
 	// Separator
 	sheet.appendRow(['  '])
 
@@ -344,5 +349,5 @@ function doPost(e) {
 		}
 	})
 
-	return HtmlService.createHtmlOutput('Commande ajoutée avec succès')
+	return HtmlService.createHtmlOutput('Commande ajoutée avec succès.')
 }
