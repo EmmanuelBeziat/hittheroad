@@ -12,7 +12,7 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     3.6.0
+ * @version     7.0.1
  */
 
 if (!defined('ABSPATH')) {
@@ -24,11 +24,11 @@ if (is_user_logged_in()) {
 }
 
 ?>
-<form class="woocommerce-form woocommerce-form-login login" method="post" <?php echo ($hidden) ? 'style="display:none;"' : ''; ?>>
+<form class="woocommerce-form woocommerce-form-login login" method="post" <?= ($hidden) ? 'style="display:none;"' : ''; ?>>
 
 	<?php do_action('woocommerce_login_form_start'); ?>
 
-	<?php echo ($message) ? wpautop(wptexturize($message)) : ''; // @codingStandardsIgnoreLine ?>
+	<?= ($message) ? wpautop(wptexturize($message)) : ''; // @codingStandardsIgnoreLine ?>
 
 	<p class="form-row form-row-first">
 		<label for="username"><?php esc_html_e('Username or email', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
