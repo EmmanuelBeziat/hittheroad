@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.4.4
+ * @version 7.0.1
  */
 
 defined('ABSPATH') || exit;
@@ -33,6 +33,7 @@ if (isset($notification) && $notification !== '') : ?>
 	<p><?php esc_html_e('If you have a coupon code, please apply it below.', 'woocommerce'); ?></p>
 
 	<div class="d-inline-flex justify-content-start">
+		<label for="coupon_code" class="screen-reader-text"><?php esc_html_e('Coupon:', 'woocommerce'); ?></label>
 		<input type="text" name="coupon_code" class="form-control me-1" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" id="coupon_code" arial-label="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>">
 		<button type="submit" class="btn btn-primary btn-outline" name="apply_coupon">Appliquer</button>
 	</div>

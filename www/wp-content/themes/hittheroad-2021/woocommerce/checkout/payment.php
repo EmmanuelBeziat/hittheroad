@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.5.3
+ * @version 7.0.1
  */
 
 defined('ABSPATH') || exit;
@@ -29,7 +29,8 @@ if (!wp_doing_ajax()) {
 				foreach ($available_gateways as $gateway) {
 					wc_get_template('checkout/payment-method.php', array('gateway' => $gateway));
 				}
-			} else {
+			}
+			else {
 				echo '<li><div class="alert alert-info">' . apply_filters('woocommerce_no_available_payment_methods_message', WC()->customer->get_billing_country() ? esc_html__('Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce') : esc_html__('Please fill in your details above to see available payment methods.', 'woocommerce')) . '</div></li>'; // @codingStandardsIgnoreLine
 			}
 			?>
