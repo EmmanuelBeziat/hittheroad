@@ -14,15 +14,17 @@
 	font-weight: 400;
 }
 
-.woocommerce-cart-form__contents .product-quantity {
-	.remove {
-		font-size: 1rem;
-		color: var(--color-secondary) !important;
+.woocommerce-cart-form__contents .product-remove {
+	font-size: 1rem;
+	color: var(--color-secondary) !important;
 
-		&:hover {
-			background: none;
-			color: var(--bs-red) !important;
-		}
+	&:hover {
+		background: none;
+		color: var(--bs-red) !important;
+	}
+
+	svg {
+		width: .875rem;
 	}
 }
 
