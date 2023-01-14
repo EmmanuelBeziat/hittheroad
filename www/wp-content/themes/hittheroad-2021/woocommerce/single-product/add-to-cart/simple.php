@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.4.0
+ * @version 7.0.1
  */
 
 defined('ABSPATH') || exit;
@@ -22,9 +22,7 @@ global $product;
 if (!$product->is_purchasable()) {
 	return;
 }
-?>
 
-<?php
 echo wc_get_stock_html($product); // WPCS: XSS ok.
 
 if ($product->is_in_stock()) : ?>

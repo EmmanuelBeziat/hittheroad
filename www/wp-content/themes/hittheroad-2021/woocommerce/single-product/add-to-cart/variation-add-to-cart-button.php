@@ -4,7 +4,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.4.0
+ * @version 7.0.1
  */
 
 defined('ABSPATH') || exit;
@@ -12,9 +12,9 @@ defined('ABSPATH') || exit;
 global $product;
 ?>
 <div class="woocommerce-variation-add-to-cart variations_button">
-	<?php do_action('woocommerce_before_add_to_cart_button'); ?>
-
-	<?php	do_action('woocommerce_before_add_to_cart_quantity');
+	<?php
+	do_action('woocommerce_before_add_to_cart_button');
+	do_action('woocommerce_before_add_to_cart_quantity');
 
 	woocommerce_quantity_input([
 		'min_value'   => apply_filters('woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product),
