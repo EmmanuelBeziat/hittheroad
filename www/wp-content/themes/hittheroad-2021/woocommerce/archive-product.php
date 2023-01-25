@@ -45,7 +45,6 @@ do_action('woocommerce_before_main_content');
 	// do_action('woocommerce_archive_description');
 	?>
 </header>
-
 <?php
 if (woocommerce_product_loop()) :
 	$paged = get_query_var('paged') ?: 1;
@@ -59,21 +58,37 @@ if (woocommerce_product_loop()) :
 	];
 
 	$components = parse_url($_SERVER['REQUEST_URI']);
+	$metaQuery = [
+	'relation' => 'AND',
+		[
+			'relation' => 'OR',
+			[
+				'key' => 'hide-from-shop',
+				'compare' => 'NOT EXISTS',
+			],
+			[
+				'key' => 'hide-from-shop',
+				'value' => '0',
+			]
+		]
+	];
+
 	if (isset($components['query'])) {
 		parse_str($components['query'], $params);
-
-		$metaQuery = [
-			'relation' => 'AND',
+		$show = [
+			'relation' => 'AND'
 		];
+
 		foreach ($params as $key => $value) :
-			$metaQuery[] = [
+			$show[] = [
 				'taxonomy' => $key,
 				'value' => $value,
 				'compare' => 'IN',
 			];
 		endforeach;
-		$args = array_merge($args, ['meta_query' => $metaQuery]);
+		array_push($metaQuery, $show);
 	}
+	$args = array_merge($args, ['meta_query' => $metaQuery]);
 
 	$loop = new WP_Query($args);
 	$productsCount = $loop->found_posts;

@@ -11,6 +11,7 @@ class HTR_Templates {
 		add_action('body_class', [$this, 'body_classes']);
 		add_filter('the_content', [$this, 'the_content'], 999);
 		add_filter('intermediate_image_sizes_advanced', [$this, 'remove_default_image_sizes']);
+		add_action('wp_head', [$this, 'unindex'], 2);
 	}
 
 	/**
@@ -79,12 +80,19 @@ class HTR_Templates {
 	 * @param $content mixed The content.
 	 * @return $content mixed The filtered content.
 	 * */
-	public function the_content($content) {
+	public function the_content ($content) {
 		if (strstr($content, 'youtube')) {
 			$content = preg_replace('#https://www.youtube.com/#', 'https://www.youtube-nocookie.com/', $content);
 		}
 
 		return $content;
+	}
+
+	public function unindex () {
+		$hidden = get_field('hide-from-shop', get_queried_object_id());
+		if ($hidden) : ?>
+		<meta name="robots" content="noindex,nofollow">
+		<?php endif;
 	}
 }
 

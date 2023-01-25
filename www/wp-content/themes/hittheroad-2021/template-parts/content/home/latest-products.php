@@ -19,6 +19,17 @@
 					'orderby' => 'date',
 					'order' => 'DESC',
 					'post_status' => 'publish',
+					'meta_query' => [
+						'relation' => 'OR',
+						[
+							'key' => 'hide-from-shop',
+							'compare' => 'NOT EXISTS',
+						],
+						[
+							'key' => 'hide-from-shop',
+							'value' => '0',
+						]
+					]
 				];
 				$loop = new WP_Query($options);
 				$index = 0;
