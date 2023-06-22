@@ -36,7 +36,7 @@ do_action('woocommerce_before_account_downloads', $has_downloads); ?>
 
 <?php else : ?>
 	<div class="alert alert-secondary mb-2" role="alert">
-		<?php esc_html__('No downloads available yet.', 'woocommerce')); ?>
+		<?php esc_html_e('No downloads available yet.', 'woocommerce'); ?>
 	</div>
 
 	<a class="woocommerce-Button btn btn-primary" href="<?= esc_url(apply_filters('woocommerce_return_to_shop_redirect', wc_get_page_permalink('shop'))); ?>">
