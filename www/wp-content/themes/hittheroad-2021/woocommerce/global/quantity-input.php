@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.4.0
+ * @version 7.8.0
  *
  * @var bool   $readonly If the input should be set to readonly mode.
  * @var string $type     The input type attribute.
@@ -23,15 +23,6 @@ defined('ABSPATH') || exit;
 /* translators: %s: Quantity. */
 $label = !empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'woocommerce'), wp_strip_all_tags($args['product_name'])) : esc_html__('Quantity', 'woocommerce');
 
-/*
-// In some cases we wish to display the quantity but not allow for it to be changed.
-if ($max_value && $min_value === $max_value) {
-	$is_readonly = true;
-	$input_value = $min_value;
-}
-else {
-	$is_readonly = false;
-} */
 ?>
 <div class="quantity">
 	<?php
@@ -49,7 +40,7 @@ else {
 		class="<?= esc_attr(join(' ', (array) $classes)); ?> form-control"
 		name="<?= esc_attr($input_name); ?>"
 		value="<?= esc_attr($input_value); ?>"
-		title="<?= esc_attr_x('Qty', 'Product quantity input tooltip', 'woocommerce'); ?>"
+		aria-label="<?php esc_attr_e( 'Product quantity', 'woocommerce' ); ?>"
 		size="4"
 		min="<?= esc_attr($min_value); ?>"
 		max="<?= esc_attr(0 < $max_value ? $max_value : ''); ?>"

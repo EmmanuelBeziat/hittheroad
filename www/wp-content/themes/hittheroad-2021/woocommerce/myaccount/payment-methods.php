@@ -14,7 +14,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 2.6.0
+ * @version 7.8.0
  */
 
 defined('ABSPATH') || exit;
@@ -67,7 +67,7 @@ do_action('woocommerce_before_account_payment_methods', $has_methods); ?>
 
 <?php else : ?>
 
-	<div class="alert alert-secondary" role="alert"><?php esc_html_e('No saved methods found.', 'woocommerce'); ?></div>
+	<div class="alert alert-secondary" role="alert"><?php wc_print_notice(esc_html__('No saved methods found.', 'woocommerce'), 'notice'); ?></div>
 
 <?php endif; ?>
 
