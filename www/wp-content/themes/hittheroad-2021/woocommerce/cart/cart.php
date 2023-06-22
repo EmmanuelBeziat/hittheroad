@@ -24,7 +24,7 @@ if (isset($notification) && $notification !== '') : ?>
 	<div class="alert alert-warning" role="alert"><?= $notification ?></div>
 <?php endif ?>
 
-<form class="woocommerce-cart-form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+<form class="woocommerce-cart-form" action="<?= esc_url(wc_get_cart_url()); ?>" method="post">
 	<?php do_action('woocommerce_before_cart_table'); ?>
 
 	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
@@ -57,14 +57,15 @@ if (isset($notification) && $notification !== '') : ?>
 				if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) {
 					$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
 					?>
-					<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
+					<tr class="woocommerce-cart-form__cart-item <?= esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
 						<td class="product-thumbnail">
 						<?php
 						$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
 
 						if (!$product_permalink) {
 							echo $thumbnail; // PHPCS: XSS ok.
-						} else {
+						}
+						else {
 							printf('<a href="%s">%s</a>', esc_url($product_permalink), $thumbnail); // PHPCS: XSS ok.
 						}
 						?>
@@ -81,7 +82,7 @@ if (isset($notification) && $notification !== '') : ?>
 							 * @param array $cart_item The product in the cart.
 							 * @param string $cart_item_key Key for the product in the cart.
 							 */
-							echo wp_kses_post( apply_filters('woocommerce_cart_item_name', $product_name, $cart_item, $cart_item_key) . '&nbsp;');
+							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $product_name, $cart_item, $cart_item_key) . '&nbsp;');
 						}
 						else {
 							/**
@@ -90,7 +91,7 @@ if (isset($notification) && $notification !== '') : ?>
 							 * @since 7.8.0
 							 * @param string $product_url URL the product in the cart.
 							 */
-							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $product_name)), $cart_item, $cart_item_key));
+							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $product_name), $cart_item, $cart_item_key));
 						}
 
 						do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
@@ -124,13 +125,13 @@ if (isset($notification) && $notification !== '') : ?>
 							}
 
 							$product_quantity = woocommerce_quantity_input(
-								array(
+								[
 									'input_name'   => "cart[{$cart_item_key}][qty]",
 									'input_value'  => $cart_item['quantity'],
 									'max_value'    => $max_quantity,
 									'min_value'    => $min_quantity,
 									'product_name' => $_product->get_name(),
-								),
+								],
 								$_product,
 								false
 							);
@@ -145,7 +146,7 @@ if (isset($notification) && $notification !== '') : ?>
 							?>
 						</td>
 						<td class="product-remove">
-							<?php echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							<?= apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									'woocommerce_cart_item_remove_link',
 									sprintf('<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><i class="fa fa-trash" aria-hidden="true"></i></a>',
 										esc_url(wc_get_cart_remove_url($cart_item_key)),
