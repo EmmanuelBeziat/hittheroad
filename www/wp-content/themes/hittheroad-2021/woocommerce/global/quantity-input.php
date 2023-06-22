@@ -40,7 +40,7 @@ $label = !empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'wooc
 		class="<?= esc_attr(join(' ', (array) $classes)); ?> form-control"
 		name="<?= esc_attr($input_name); ?>"
 		value="<?= esc_attr($input_value); ?>"
-		aria-label="<?php esc_attr_e( 'Product quantity', 'woocommerce' ); ?>"
+		aria-label="<?php esc_attr_e('Product quantity', 'woocommerce'); ?>"
 		size="4"
 		min="<?= esc_attr($min_value); ?>"
 		max="<?= esc_attr(0 < $max_value ? $max_value : ''); ?>"
