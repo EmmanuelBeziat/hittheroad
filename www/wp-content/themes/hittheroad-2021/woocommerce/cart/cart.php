@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.8.0
+ * @version 7.9.0
  */
 
 defined('ABSPATH') || exit;
@@ -49,8 +49,10 @@ if (isset($notification) && $notification !== '') : ?>
 				/**
 				 * Filter the product name.
 				 *
-				 * @since 7.8.0
+				 * @since 2.1.0
 				 * @param string $product_name Name of the product in the cart.
+				 * @param array $cart_item The product in the cart.
+				 * @param string $cart_item_key Key for the product in the cart.
 				 */
 				$product_name = apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key);
 
@@ -74,22 +76,13 @@ if (isset($notification) && $notification !== '') : ?>
 						<td class="product-name" data-title="<?php esc_attr_e('Product', 'woocommerce'); ?>">
 						<?php
 						if (!$product_permalink) {
-							/**
-							 * Filter the product name.
-							 *
-							 * @since 7.8.0
-							 * @param string $product_name Name of the product in the cart.
-							 * @param array $cart_item The product in the cart.
-							 * @param string $cart_item_key Key for the product in the cart.
-							 */
-							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $product_name, $cart_item, $cart_item_key) . '&nbsp;');
+							echo wp_kses_post($product_name . '&nbsp;');
 						}
 						else {
 							/**
-							 * Filter the product name.
+							 * This filter is documented above.
 							 *
-							 * @since 7.8.0
-							 * @param string $product_url URL the product in the cart.
+							 * @since 2.1.0
 							 */
 							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $product_name), $cart_item, $cart_item_key));
 						}
