@@ -1,5 +1,9 @@
 # Suivi de mises à jour
 
+## 09.12.2023
+
+* Modification script Google (Ajout mailing)
+
 ## 11.10.2023
 
 * Mise à jour templates woocommerce
