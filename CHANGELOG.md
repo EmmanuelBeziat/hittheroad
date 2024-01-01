@@ -1,5 +1,10 @@
 # Suivi de mises à jour
 
+## 01.01.2024
+
+* Mises à jour de sécurité
+* Évolution script du Google Sheet (contenu automatisé)
+
 ## 09.12.2023
 
 * Modification script Google (Ajout mailing)

@@ -16,22 +16,22 @@ function productInformations (item) {
 	}
 }
 
-function makeProductRow (product) {
-	return [
-		'', '', '',
-		product.name,
-		 '', '',
-		product.quantity,
-		product.size,
-		product.width,
-		product.height,
-		product.finish,
-		product.number,
-		'', '', '', '', '', '', '', '', '', '', '', '', '',
-		product.price,
-		''
-	]
-}
+const makeProductRow = (product, orderNumber) => [
+	'',
+	orderNumber,
+	'',
+	product.name,
+	'', '',
+	product.quantity,
+	product.size,
+	product.width,
+	product.height,
+	product.finish,
+	product.number,
+	'', '', '', '', '', '', '', '', '', '', '', '', '',
+	product.price,
+	''
+]
 
 const countries = [
 	{ iso: 'af', tel: '93', name: 'Afghanistan' },
@@ -272,8 +272,31 @@ const countries = [
 	{ iso: 'zw', tel: '263', name: 'Zimbabwe'}
 ]
 
-function getPhoneIndicator (iso) {
-	return countries.find(item => item.iso === iso.toLowerCase()).tel || ''
+const dropdowns = [
+  { column: 30, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 31, list: ['A FAIRE', 'FAIT', 'N/A'] },
+  { column: 32, list: ['A FAIRE', 'FAIT F6000', 'FAIT F7200', 'N/A'] },
+  { column: 33, list: ['A FAIRE', 'FAIT F6000', 'FAIT F7200', 'N/A'] },
+  { column: 35, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 36, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 37, list: ['A FAIRE', 'FAIT', 'N/A'] },
+  { column: 38, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+]
+
+const getPhoneIndicator = iso => countries.find(item => item.iso === iso.toLowerCase()).tel || ''
+
+function createDropdown (range, list) {
+  if (!list) return
+	const rule = SpreadsheetApp.newDataValidation().requireValueInList(list, true).setAllowInvalid(true).build()
+	range.setDataValidation(rule)
+	// Set the initial value to the first item in the list
+	range.setValue(list[0])
+}
+
+function createCheckboxes (sheet, cells = [1, 29, 34, 39]) {
+	cells.forEach(cell => {
+		sheet.getRange(sheet.getLastRow(), cell).insertCheckboxes()
+	})
 }
 
 //get invoked when webapp receives a POST request
@@ -305,11 +328,12 @@ function doPost(e) {
 	sheet.appendRow(['  '])
 
 	data.line_items.forEach((item, index) => {
+		const orderNumber = data.line_items.length > 1 ? `${order.number} (${index + 1}/${data.line_items.length})` : order.number
 		if (index + 1 === 1) {
 			const product = productInformations(item)
 			sheet.appendRow([
 				'',
-				order.number,
+				orderNumber,
 				order.date,
 				product.name,
 				'', '',
@@ -333,26 +357,30 @@ function doPost(e) {
 				shipping.note,
 				shipping.cost,
 				product.price,
-				total
+				total,
 			])
-			sheet.getRange(sheet.getLastRow(), 1).insertCheckboxes()
+			createCheckboxes(sheet)
 		}
 		else {
 			const product = productInformations(item)
-			sheet.appendRow(makeProductRow(product))
-			sheet.getRange(sheet.getLastRow(), 1).insertCheckboxes()
+			sheet.appendRow(makeProductRow(product, orderNumber))
+			createCheckboxes(sheet)
 		}
+
+		dropdowns.forEach(({ column, list }) => {
+			createDropdown(sheet.getRange(sheet.getLastRow(), column), list)
+		})
 	})
 
 	// Get the URL of the current Google Sheet
-  const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
+	const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
 
 	// Send email notification
-  MailApp.sendEmail({
-    to: '',
-    subject: 'Nouvelle commande Hit the Road',
-    htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
-  })
+	MailApp.sendEmail({
+		to: 'emmanuelbeziat.redir@gmail.com',
+		subject: 'Nouvelle commande Hit the Road',
+		htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
+	})
 
 	return HtmlService.createHtmlOutput('Commande ajoutée avec succès')
 }
