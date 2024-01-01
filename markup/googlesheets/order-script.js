@@ -377,7 +377,7 @@ function doPost(e) {
 
 	// Send email notification
 	MailApp.sendEmail({
-		to: 'emmanuelbeziat.redir@gmail.com',
+		to: '',
 		subject: 'Nouvelle commande Hit the Road',
 		htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
 	})
