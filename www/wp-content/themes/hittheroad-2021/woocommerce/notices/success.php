@@ -25,7 +25,7 @@ if (!$notices) {
 ?>
 
 <?php foreach ($notices as $notice) : ?>
-	<div class="alert alert-success"<?= wc_get_notice_data_attr($notice); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> ?> role="alert">
+	<div class="alert alert-success"<?= wc_get_notice_data_attr($notice); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="alert">
 		<?= wc_kses_notice($notice['notice']); ?>
 	</div>
 <?php endforeach; ?>
