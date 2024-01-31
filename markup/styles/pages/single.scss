@@ -117,10 +117,10 @@
 		}
 	}
 
+	#wc-stripe-payment-request-wrapper {
+		display: none !important;
+	}
 	.woocommerce-variation-add-to-cart {
-		#wc-stripe-payment-request-wrapper {
-			display: none !important;
-		}
 
 		#wc-stripe-payment-request-button-separator {
 			margin-top: 1em !important;

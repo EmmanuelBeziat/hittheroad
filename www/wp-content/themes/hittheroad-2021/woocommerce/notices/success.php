@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.9.0
+ * @version 8.5.0
  */
 
 if (!defined('ABSPATH')) {
@@ -22,11 +22,10 @@ if (!defined('ABSPATH')) {
 if (!$notices) {
 	return;
 }
-
 ?>
 
 <?php foreach ($notices as $notice) : ?>
-	<div class="alert alert-success"<?php echo wc_get_notice_data_attr($notice); ?> role="alert">
-		<?php echo wc_kses_notice($notice['notice']); ?>
+	<div class="alert alert-success"<?= wc_get_notice_data_attr($notice); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> ?> role="alert">
+		<?= wc_kses_notice($notice['notice']); ?>
 	</div>
 <?php endforeach; ?>

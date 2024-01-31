@@ -14,7 +14,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.8.0
+ * @version 8.5.0
  */
 
 defined('ABSPATH') || exit;
@@ -100,7 +100,7 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 		<div class="alert alert-secondary mb-2" role="alert">
 			<?php esc_html_e('No order has been made yet.', 'woocommerce'); ?>
 		</div>
-		<a class=" btn btn-primary" href="<?= esc_url(apply_filters('woocommerce_return_to_shop_redirect', wc_get_page_permalink('shop'))); ?>"><?php esc_html_e('Browse products', 'woocommerce'); ?></a>
+		<a class=" btn btn-primary" href="<?= esc_url(apply_filters('woocommerce_return_to_shop_redirect', wc_get_page_permalink('shop'))); ?>"><?php esc_html_e('Browse products', 'woocommerce'); // phpcs:ignore WooCommerce.Commenting.CommentHooks.MissingHookComment ?></a>
 	</div>
 <?php endif; ?>
 

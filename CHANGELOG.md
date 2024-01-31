@@ -1,5 +1,16 @@
 # Suivi de mises à jour
 
+## 30.01.2024
+
+* Mise à jour de PHP (8.0 → 8.2)
+* Mise à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/myaccount/orders.php` 7.8.0 → 8.5.0
+  * `hittheroad-2021/woocommerce/notices/error.php` 3.9.0 → 8.5.0
+  * `hittheroad-2021/woocommerce/notices/notice.php` 3.9.0 → 8.5.0
+  * `hittheroad-2021/woocommerce/notices/success.php` 3.9.0 → 8.5.0
+* Débug classes d’expédition
+* Modifications produits (classe d’expédition manquantes)
+
 ## 01.01.2024
 
 * Mises à jour de sécurité

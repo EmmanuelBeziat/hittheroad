@@ -12,22 +12,30 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.9.0
+ * @version 8.5.0
  */
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (!$notices) {
+if (empty($notices) || !is_array($notices)) {
 	return;
 }
 
+$multiple = count( $notices ) > 1;
 ?>
-<ul class="alert alert-error" role="alert">
-	<?php foreach ($notices as $notice) : ?>
-		<li<?php echo wc_get_notice_data_attr($notice); ?>>
-			<?php echo wc_kses_notice($notice['notice']); ?>
-		</li>
-	<?php endforeach; ?>
-</ul>
+<div class="alert alert-error" role="alert" <?= $multiple ? '' : wc_get_notice_data_attr( $notices[0] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php if ($multiple) { ?>
+		<p class="wc-block-components-notice-banner__summary"><?php esc_html_e( 'The following problems were found:', 'woocommerce' ); ?></p>
+		<ul>
+		<?php foreach ($notices as $notice) : ?>
+			<li<?= wc_get_notice_data_attr($notice); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+				<?= wc_kses_notice($notice['notice']); ?>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php } else {
+		echo wc_kses_notice($notices[0]['notice']);
+	} ?>
+</div>
