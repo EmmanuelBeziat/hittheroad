@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 2.6.0
+ * @version 8.7.0
  */
 
 defined('ABSPATH') || exit;
@@ -22,25 +22,25 @@ $customer_id = get_current_user_id();
 if (!wc_ship_to_billing_address_only() && wc_shipping_enabled()) {
 	$get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
-		array(
+		[
 			'billing'  => __('Billing address', 'woocommerce'),
 			'shipping' => __('Shipping address', 'woocommerce'),
-		),
+		],
 		$customer_id
 	);
 }
 else {
 	$get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
-		array(
+		[
 			'billing' => __('Billing address', 'woocommerce'),
-		),
+		],
 		$customer_id
 	);
 }
 
 $oldcol = 1;
-$col    = 1;
+$col = 1;
 ?>
 
 <p>
@@ -60,7 +60,16 @@ $col    = 1;
 			<h3><?= esc_html($address_title); ?></h3>
 		</header>
 		<address>
-			<?= $address ? wp_kses_post($address) : esc_html_e('You have not set up this type of address yet.', 'woocommerce'); ?>
+			<?= $address ? wp_kses_post($address) : esc_html_e('You have not set up this type of address yet.', 'woocommerce');
+
+			/**
+			 * Used to output content after core address fields.
+			 *
+			 * @param string $name Address type.
+			 * @since 8.7.0
+			 */
+			do_action('woocommerce_my_account_after_my_address', $name);
+			?>
 		</address>
 		<a href="<?= esc_url(wc_get_endpoint_url('edit-address', $name)); ?>" class="edit btn btn-primary"><?= $address ? esc_html__('Edit', 'woocommerce') : esc_html__('Add', 'woocommerce'); ?></a>
 	</div>
