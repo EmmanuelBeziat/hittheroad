@@ -1,5 +1,19 @@
 # Suivi de mises à jour
 
+## 28.06.2024
+
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/archive-products.php` 3.4.0 → 8.6.0
+  * `hittheroad-2021/woocommerce/cart/cart-shipping.php` 7.3.0 → 8.8.0
+  * `hittheroad-2021/woocommerce/myaccount/form-edit-account.php` 7.0.1 → 8.7.0
+  * `hittheroad-2021/woocommerce/myaccount/my-address.php` 2.6.0 → 8.7.0
+  * `hittheroad-2021/woocommerce/myaccount/payment-method.php` 7.8.0 → 8.9.0
+  * `hittheroad-2021/woocommerce/notices/error.php` 8.5.0 → 8.6.0
+  * `hittheroad-2021/woocommerce/notices/notice.php` 8.5.0 → 8.6.0
+  * `hittheroad-2021/woocommerce/notices/success.php` 8.5.0 → 8.6.0
+* Plugin HtR Vimeo
+* Fonctionnalité packs
+
 ## 30.01.2024
 
 * Mise à jour de PHP (8.0 → 8.2)

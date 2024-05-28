@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.0.1
+ * @version 8.7.0
  */
 
 defined('ABSPATH') || exit;
@@ -42,6 +42,15 @@ do_action('woocommerce_before_edit_account_form'); ?>
 		<input type="email" class="form-control" placeholder="name@example.com" name="account_email" id="account_email" autocomplete="email" value="<?= esc_attr($user->user_email); ?>">
 		<label for="account_email"><?php esc_html_e('Email address', 'woocommerce'); ?>&nbsp;<span class="required">*</span></label>
 	</div>
+
+	<?php
+		/**
+		 * Hook where additional fields should be rendered.
+		 *
+		 * @since 8.7.0
+		 */
+		do_action( 'woocommerce_edit_account_form_fields' );
+	?>
 
 	<fieldset>
 		<legend><?php esc_html_e('Password change', 'woocommerce'); ?></legend>
