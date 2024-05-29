@@ -100,8 +100,10 @@ function ajax_query_products () {
 add_filter('wp_sitemaps_enabled', '__return_false');
 
 function noIndexPage ($id) {
-	if (get_field('no-index', 'option') === null) return;
-	foreach(get_field('no-index', 'option') as $page) :
+	$noIndexPages = get_field('no-index', 'option');
+	if (empty($noIndexPages) || !is_array($noIndexPages)) return;
+
+	foreach($noIndexPages as $page) :
 		if ($id == $page) : ?>
 			<meta name="robots" content="noindex,nofollow">
 		<?php endif;
