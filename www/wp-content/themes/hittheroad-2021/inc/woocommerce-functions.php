@@ -3,7 +3,7 @@
 /**
  * Insert the opening anchor tag for products in the loop.
  */
-function woocommerce_template_loop_product_link_open() {
+function woocommerce_template_loop_product_link_open () {
 	global $product;
 
 	$link = apply_filters('woocommerce_loop_product_link', get_the_permalink(), $product);
@@ -31,7 +31,7 @@ if (!function_exists('woocommerce_form_field')) {
 	 * @param string $value (default: null).
 	 * @return string
 	 */
-	function woocommerce_form_field($key, $args, $value = null) {
+	function woocommerce_form_field ($key, $args, $value = null) {
 		$defaults = [
 			'type' => 'text',
 			'label' => '',

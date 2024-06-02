@@ -84,10 +84,15 @@ if (isset($notification) && $notification !== '') : ?>
 							 *
 							 * @since 2.1.0
 							 */
-							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $product_name), $cart_item, $cart_item_key));
+							echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
 						}
 
 						do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
+
+						// Retrieve the ACF field "vimeo-code" for the product
+						if (get_field('vimeo-code', $_product->get_parent_id())) {
+							echo '<div class="vimeo-code">' . esc_html__('Code Viméo offert ! 🎉', 'woocommerce') . '</div>';
+						}
 
 						// Meta data.
 						echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.

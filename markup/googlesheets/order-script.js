@@ -12,7 +12,8 @@ function productInformations (item) {
 		width: item.width,
 		height: item.height,
 		finish: item.meta_data[1].value.Fields[0].SelectedValues[0].Value,
-		number: item.number
+		number: item.number,
+		vimeoCode: item.vimeo_code
 	}
 }
 
@@ -30,6 +31,7 @@ const makeProductRow = (product, orderNumber) => [
 	product.number,
 	'', '', '', '', '', '', '', '', '', '', '', '', '',
 	product.price,
+	product.vimeoCode,
 	''
 ]
 
@@ -343,6 +345,7 @@ function doPost(e) {
 				product.height,
 				product.finish,
 				product.number,
+				product.vimeoCode,
 				shipping.lastname,
 				shipping.firstname,
 				shipping.email,

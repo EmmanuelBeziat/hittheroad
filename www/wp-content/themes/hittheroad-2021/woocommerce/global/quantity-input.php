@@ -44,7 +44,7 @@ $label = !empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'wooc
 		size="4"
 		min="<?= esc_attr($min_value); ?>"
 		max="<?= esc_attr(0 < $max_value ? $max_value : ''); ?>"
-		<?php if (!$is_readonly) : ?>
+		<?php if (!$readonly) : ?>
 			step="<?= esc_attr($step); ?>"
 			placeholder="<?= esc_attr($placeholder); ?>"
 			inputmode="<?= esc_attr($inputmode); ?>"

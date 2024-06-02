@@ -19,4 +19,10 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
+global $product;
 the_title('<h1 class="h1 entry-title">', '</h1>');
+// Retrieve the ACF field "vimeo-code" for the product
+if (get_field('vimeo-code', $product->get_id())) {
+	echo '<div class="vimeo-code mb-2">' . esc_html__('Code Viméo offert ! 🎉', 'woocommerce') . '</div>';
+}
+
