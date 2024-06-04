@@ -88,11 +88,12 @@ class HTR_Woocommerce {
 	public function custom_single_product_image_html ($args) {
 		global $product;
 		global $_wp_additional_image_sizes;
-		$attachment_ids = get_the_post_thumbnail_url($product->get_id(), 'product-preview');
-		$imageSize = getimagesize($attachment_ids);
+		$attachment_uri = get_the_post_thumbnail_url($product->get_id(), 'product-preview');
+		$attachment_id = get_post_thumbnail_id($product->get_id());
+		$imageSize = wp_get_attachment_image_src($attachment_id, 'product-preview');
 		$containerClass = $imageSize[0] > $imageSize[1] ? 'paysage' : 'portrait';
 		$replacement = ['/class="woocommerce-product-gallery__image /', '/src="(.*?)"/', '/width="(.*?)"/', '/height="(.*?)"/'];
-		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_ids.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
+		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_uri.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
 		echo $image;
 	}
 
@@ -113,10 +114,37 @@ class HTR_Woocommerce {
 		if ($resource !== 'order') return $payload;
 
 		foreach ($payload['line_items'] as $key => $item) {
+			$code = '';
 			$product = get_post_meta($item['variation_id']);
+			error_log('PRODUCT');
+			var_dump($product);
+			$parent_product_id = $product->get_parent_id();
+			error_log($parent_product_id);
+			var_dump($parent_product_id);
+
+			/* if ($parent_product_id) {
+				$vimeo_code = get_field('vimeo-code', $parent_product_id);
+				if ($vimeo_code) {
+					$HTRVimeoCode = get_option('htr_vimeo_code_instance');
+					if ($HTRVimeoCode instanceof HTRVimeoCode) {
+						$vimeo = $HTRVimeoCode->applyCodeAtSale();
+						if ($vimeo) {
+							$code = $vimeo;
+						}
+						else {
+							$order_number = $payload['id'];
+							$admin_email = get_option('admin_email');
+							$subject = 'Code Viméo manquant pour la commande n°' . $order_number;
+							$message = 'La commande n° ' . $order_number . ' a besoin d’un code Viméo qui n’a pas pu être ajouté automatiquement.';
+							wp_mail($admin_email, $subject, $message);
+						}
+					}
+				}
+			} */
 			$payload['line_items'][$key]['width'] = $product['_length'][0];
 			$payload['line_items'][$key]['height'] = $product['_width'][0];
 			$payload['line_items'][$key]['number'] = (intval($product['max_stock_qty'][0]) - intval($product['_stock'][0])) . '/' . $product['max_stock_qty'][0];
+			$payload['line_items'][$key]['vimeo_code'] = $code;
 		}
 
 		return $payload;
