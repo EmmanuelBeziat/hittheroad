@@ -118,16 +118,19 @@ class HTR_Woocommerce {
 			$product = get_post_meta($item['variation_id']);
 			$parent_product_id = $item['product_id'];
 
+			error_log('INIT PAYLOAD');
 			if ($parent_product_id) {
 				$vimeo_code = get_field('vimeo-code', $parent_product_id);
 				if ($vimeo_code) {
 					$HTRVimeoCode = new HTRVimeoCode();
 					if ($HTRVimeoCode instanceof HTRVimeoCode) {
-						$vimeo = $HTRVimeoCode->applyCodeAtSale();
-						if ($vimeo) {
-							$code = $vimeo['code'];
+						$vimeo = $HTRVimeoCode->applyCodeAtSale() ?? NULL;
+
+						if (isset($vimeo) && $vimeo) {
+							$code = $vimeo->code;
 						}
 						else {
+							error_log(print_r('Code Viméo manquant pour la commande n°' . $order_number, true));
 							$order_number = $payload['id'];
 							$admin_email = get_option('admin_email');
 							$subject = 'Code Viméo manquant pour la commande n°' . $order_number;
@@ -141,7 +144,6 @@ class HTR_Woocommerce {
 			$payload['line_items'][$key]['height'] = $product['_width'][0];
 			$payload['line_items'][$key]['number'] = (intval($product['max_stock_qty'][0]) - intval($product['_stock'][0])) . '/' . $product['max_stock_qty'][0];
 			$payload['line_items'][$key]['vimeo_code'] = $code;
-			error_log('Debugging: code = ' . print_r($code, true));
 		}
 
 		return $payload;
