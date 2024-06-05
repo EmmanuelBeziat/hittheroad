@@ -116,20 +116,16 @@ class HTR_Woocommerce {
 		foreach ($payload['line_items'] as $key => $item) {
 			$code = '';
 			$product = get_post_meta($item['variation_id']);
-			error_log('PRODUCT');
-			var_dump($product);
-			$parent_product_id = $product->get_parent_id();
-			error_log($parent_product_id);
-			var_dump($parent_product_id);
+			$parent_product_id = $item['product_id'];
 
-			/* if ($parent_product_id) {
+			if ($parent_product_id) {
 				$vimeo_code = get_field('vimeo-code', $parent_product_id);
 				if ($vimeo_code) {
-					$HTRVimeoCode = get_option('htr_vimeo_code_instance');
+					$HTRVimeoCode = new HTRVimeoCode();
 					if ($HTRVimeoCode instanceof HTRVimeoCode) {
 						$vimeo = $HTRVimeoCode->applyCodeAtSale();
 						if ($vimeo) {
-							$code = $vimeo;
+							$code = $vimeo['code'];
 						}
 						else {
 							$order_number = $payload['id'];
@@ -140,11 +136,12 @@ class HTR_Woocommerce {
 						}
 					}
 				}
-			} */
+			}
 			$payload['line_items'][$key]['width'] = $product['_length'][0];
 			$payload['line_items'][$key]['height'] = $product['_width'][0];
 			$payload['line_items'][$key]['number'] = (intval($product['max_stock_qty'][0]) - intval($product['_stock'][0])) . '/' . $product['max_stock_qty'][0];
 			$payload['line_items'][$key]['vimeo_code'] = $code;
+			error_log('Debugging: code = ' . print_r($code, true));
 		}
 
 		return $payload;
