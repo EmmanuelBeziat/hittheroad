@@ -1,13 +1,13 @@
 <?php
-
+$id = $args['movie']->ID;
 $movie = (object) [
-	'title' => $args['movie']['title'],
+	'title' => get_post($id)->post_title,
 	'pictures' => (object) [
-		'mobile' => $args['movie']['picture-mobile'],
-		'desktop' => $args['movie']['picture-desktop'],
+		'mobile' => get_field('picture-mobile', $id),
+		'desktop' => get_field('picture-desktop', $id),
 	],
-	'description' => $args['movie']['description'],
-	'link' => $args['movie']['link']
+	'description' => get_field('description', $id),
+	'link' => get_field('link', $id)
 ];
 ?>
 

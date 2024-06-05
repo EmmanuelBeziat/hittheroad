@@ -16,6 +16,7 @@ add_action('after_setup_theme', function () {
 require_once 'classes/htr-acf.php';
 require_once 'classes/htr-admin.php';
 // require_once 'classes/htr-locations.php';
+require_once 'classes/htr-custom-post-types.php';
 require_once 'classes/htr-scripts.php';
 require_once 'classes/htr-templates.php';
 require_once 'classes/htr-tools.php';
@@ -29,8 +30,7 @@ add_filter('woocommerce_available_variation', 'load_variation_settings_fields');
 
 /**
  * Add custom fields for variations
- *
-*/
+ */
 function load_variation_settings_fields($variations) {
 	// duplicate the line for each field
 	$variations['text_field'] = get_post_meta($variations[ 'variation_id' ], '_text_field', true);
@@ -167,7 +167,8 @@ function wc_dropdown_variation_attribute_options($args = []) {
 					$html .= '<option value="' . esc_attr($term->slug) . '" ' . selected(sanitize_title($args['selected']), $term->slug, false) . '>' . esc_html(apply_filters('woocommerce_variation_option_name', $term->name, $term, $attribute, $product)) . ' ('. $size[$key][0] . '×' . $size[$key][1] .' cm)</option>';
 				}
 			}
-		} else {
+		}
+		else {
 			foreach ($options as $option) {
 				// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
 				$selected = sanitize_title($args['selected']) === $args['selected'] ? selected($args['selected'], sanitize_title($option), false) : selected($args['selected'], $option, false);

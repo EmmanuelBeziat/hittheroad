@@ -118,24 +118,24 @@ class HTR_Woocommerce {
 			$product = get_post_meta($item['variation_id']);
 			$parent_product_id = $item['product_id'];
 
-			error_log('INIT PAYLOAD');
 			if ($parent_product_id) {
-				$vimeo_code = get_field('vimeo-code', $parent_product_id);
-				if ($vimeo_code) {
+				$vimeoCode = get_field('vimeo-code', $parent_product_id);
+				$videoId = intval(get_field('movie', $parent_product_id)) ?? NULL;
+				if ($vimeoCode && $videoId) {
 					$HTRVimeoCode = new HTRVimeoCode();
 					if ($HTRVimeoCode instanceof HTRVimeoCode) {
-						$vimeo = $HTRVimeoCode->applyCodeAtSale() ?? NULL;
+						$vimeo = $HTRVimeoCode->applyCodeAtSale($videoId) ?? NULL;
 
 						if (isset($vimeo) && $vimeo) {
 							$code = $vimeo->code;
 						}
 						else {
-							error_log(print_r('Code Viméo manquant pour la commande n°' . $order_number, true));
-							$order_number = $payload['id'];
-							$admin_email = get_option('admin_email');
-							$subject = 'Code Viméo manquant pour la commande n°' . $order_number;
-							$message = 'La commande n° ' . $order_number . ' a besoin d’un code Viméo qui n’a pas pu être ajouté automatiquement.';
-							wp_mail($admin_email, $subject, $message);
+							$orderNumber = $payload['id'];
+							$email = get_option('admin_email');
+							$subject = 'Code Viméo manquant pour la commande n°' . $orderNumber;
+							$message = 'La commande n° ' . $orderNumber . ' a besoin d’un code Viméo qui n’a pas pu être ajouté automatiquement.';
+							wp_mail($email, $subject, $message);
+							error_log(print_r('Code Viméo manquant pour la commande n°' . $orderNumber, true));
 						}
 					}
 				}
