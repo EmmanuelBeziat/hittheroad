@@ -24,10 +24,17 @@ $has_calculated_shipping = !empty($has_calculated_shipping);
 $show_shipping_calculator = !empty($show_shipping_calculator);
 $calculator_text = '';
 ?>
+		<?php HTR_tools::dd($available_methods); ?>
+
 <tr class="woocommerce-shipping-totals shipping">
 	<th><?php echo wp_kses_post($package_name); ?></th>
 	<td data-title="<?php echo esc_attr($package_name); ?>">
-		<?php if (!empty($available_methods) && !is_array($available_methods)) : ?>
+		<?php
+		/**
+		 * [BUG NOTICE] Why is it not an array?
+		 */
+			//if (!empty($available_methods) && !is_array($available_methods)) :
+			if (!empty($available_methods)) : ?>
 			<ul id="shipping_method" class="woocommerce-shipping-methods">
 				<?php foreach ($available_methods as $method) : ?>
 					<li>
@@ -58,8 +65,7 @@ $calculator_text = '';
 					?>
 				</p>
 			<?php endif; ?>
-			<?php
-		elseif (!$has_calculated_shipping || !$formatted_destination) :
+		<?php elseif (!$has_calculated_shipping || !$formatted_destination) :
 			if (is_cart() && 'no' === get_option('woocommerce_enable_shipping_calc')) {
 				echo wp_kses_post(apply_filters('woocommerce_shipping_not_enabled_on_cart_html', __('Shipping costs are calculated during checkout.', 'woocommerce')));
 			}
