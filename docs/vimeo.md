@@ -8,7 +8,7 @@ Les codes vimeo doivent être ajoutés en lien avec un [Film](films.md). Ajouter
 
 ![](pictures/vimeo-02.webp)
 
-Les codes peuvent être ajoutés par lots pour une même vidéo, sous plusieurs formats. Un espace, une virgule ou un retour à la ligne sera considéré comme un séparateur entre deux codes.
+Les codes peuvent être ajoutés par lots pour une même vidéo, sous plusieurs formats. Un espace, une virgule, un point-virgule ou un retour à la ligne sera considéré comme un séparateur entre deux codes.
 
 Tous ces exemples sont donc valides :
 
@@ -26,6 +26,10 @@ code2
 code3
 code4
 ````
+
+```
+code1;code2;code3;code4
+```
 
 De cette façon, le copier-coller depuis la génération des codes par Vimeo devrait être plus facile.
 
