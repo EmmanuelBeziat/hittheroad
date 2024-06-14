@@ -12,7 +12,10 @@
   * `hittheroad-2021/woocommerce/notices/notice.php` 8.5.0 → 8.6.0
   * `hittheroad-2021/woocommerce/notices/success.php` 8.5.0 → 8.6.0
 * Plugin HtR Vimeo
-* Fonctionnalité packs
+* Debug méthodes de livraison
+* Système d’update du status depuis Google Sheets
+  * Script order-status.js pour App Scripts
+  * API REST woocommerce
 
 ## 30.01.2024
 
