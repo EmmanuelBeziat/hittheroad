@@ -1,6 +1,10 @@
 # Suivi de mises à jour
 
-## 28.06.2024
+## 18.06.2024
+
+* Mise à jour script order-status.js
+
+## 15.06.2024
 
 * Mises à jour templates woocommerce
   * `hittheroad-2021/woocommerce/archive-products.php` 3.4.0 → 8.6.0
