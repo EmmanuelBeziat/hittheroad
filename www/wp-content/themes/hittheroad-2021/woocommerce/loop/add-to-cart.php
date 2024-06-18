@@ -12,7 +12,7 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     3.3.0
+ * @version     9.0.0
  */
 
 if (!defined('ABSPATH')) {
@@ -33,4 +33,9 @@ global $product;
 	),
 	$product,
 	$args
-); */
+);
+<span id="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product->get_id()); ?>" class="screen-reader-text">
+	<?php echo esc_html($args['aria-describedby_text']); ?>
+</span>
+*/
+?>

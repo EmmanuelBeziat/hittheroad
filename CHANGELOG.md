@@ -3,6 +3,11 @@
 ## 18.06.2024
 
 * Mise à jour script order-status.js
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/loop/add-to-cart.php` 3.3.0 → 9.0.0
+  * `hittheroad-2021/woocommerce/myaccount/form-lost-password.php` 7.0.1 → 9.0.0
+  * `hittheroad-2021/woocommerce/myaccount/navigation.php` 2.6.0 → 9.0.0
+  * `hittheroad-2021/woocommerce/order/order-details.php` 8.5.0 → 9.0.0
 
 ## 15.06.2024
 
