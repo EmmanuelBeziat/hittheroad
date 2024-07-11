@@ -18,7 +18,7 @@ class HTR_Woocommerce {
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
-		// add_action('woocommerce_before_calculate_totals', [$this, 'apply_custom_pricing_rules'], 10, 1);
+		add_action('woocommerce_before_calculate_totals', [$this, 'apply_custom_pricing_rules'], 10, 1);
 		add_action('woocommerce_before_cart_table', [$this, 'pack_apply_discount_to_cart'], 10, 1);
 		add_action('woocommerce_cart_updated', [$this, 'pack_update_discount_to_cart'], 10, 1);
 		add_filter('woocommerce_coupon_is_valid', [$this, 'pack_validate_coupon'], 10, 3);
@@ -232,37 +232,62 @@ class HTR_Woocommerce {
 	public function pack_apply_discount_to_cart () {
 		$couponRules = $this->get_custom_coupon_rules();
 		$cart = WC()->cart;
-		foreach ($couponRules as $couponCode => $rule) {
-			$couponCodeSanitized = sanitize_text_field($couponCode);
-			$categoryTarget = $rule['category'];
-			$itemCountCondition = $rule['itemCountCondition'];
-			$productsInCategory = 0;
 
-			// Iterate through cart items and count products in the target category
-			foreach ($cart->get_cart() as $cartItem) {
-				$productId = $cartItem['product_id'];
-				$productCategories = get_the_terms($productId, 'product_cat');
+		$productsInCategories = [];
+		$categoryIds = [];
+    foreach ($couponRules as $rule) {
+			$categoryIds[$rule['category']] = true;
+    }
 
-				if (is_array($productCategories)) {
-					// Check if the target category exists in the product's categories
-					$categoryNames = wp_list_pluck($productCategories, 'name');
-					if (in_array($categoryTarget, $categoryNames, true)) {
-						$productsInCategory++;
+		// Count products in the category
+		foreach ($cart->get_cart() as $cartItem) {
+			$productId = $cartItem['product_id'];
+			$productCategories = get_the_terms($productId, 'product_cat');
+
+			if (is_array($productCategories)) {
+				foreach ($productCategories as $category) {
+					$categoryId = $category->term_id;
+					$categoryName = $category->name;
+					$categorySlug = $category->slug;
+
+					// Check if this category is targeted by any coupon rule
+					if (isset($categoryIds[$categoryName])) {
+						if (!isset($productsInCategories[$categoryName])) {
+							$productsInCategories[$categoryName] = 0; // Initialize count if not already set
+						}
+						$productsInCategories[$categoryName]++;
 					}
 				}
 			}
+		}
 
-			// Apply or remove the coupon based on the count of products in the target category
-			if ($productsInCategory >= $itemCountCondition) {
+		// Determine which coupon to apply based on the number of products in 'movies' category
+    $couponToApply = '';
+    foreach ($couponRules as $couponCode => $rule) {
+			$categoryTarget = $rule['category'];
+			$itemCountCondition = $rule['itemCountCondition'];
+
+			if ($productsInCategories[$categoryTarget] >= $itemCountCondition) {
+				$couponToApply = $couponCode;
+				break; // Exit loop as soon as a coupon is found to apply
+			}
+    }
+
+		// Apply or remove coupons accordingly
+    foreach ($couponRules as $couponCode => $rule) {
+			$couponCodeSanitized = sanitize_text_field($couponCode);
+
+			if ($couponCode === $couponToApply) {
 				if (!$cart->has_discount($couponCodeSanitized)) {
 					$cart->apply_coupon($couponCodeSanitized);
 				}
-			} else {
+			}
+			else {
 				if ($cart->has_discount($couponCodeSanitized)) {
 					$cart->remove_coupon($couponCodeSanitized);
 				}
 			}
-		}
+    }
 	}
 
 	/**
