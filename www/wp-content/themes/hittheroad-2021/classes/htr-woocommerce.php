@@ -18,6 +18,10 @@ class HTR_Woocommerce {
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
+		// add_action('woocommerce_before_calculate_totals', [$this, 'apply_custom_pricing_rules'], 10, 1);
+		add_action('woocommerce_before_cart_table', [$this, 'pack_apply_discount_to_cart'], 10, 1);
+		add_action('woocommerce_cart_updated', [$this, 'pack_update_discount_to_cart'], 10, 1);
+		add_filter('woocommerce_coupon_is_valid', [$this, 'pack_validate_coupon'], 10, 3);
 
 		// Webhooks
 		add_filter('woocommerce_webhook_payload', [$this, 'add_custom_webhook_payload'], 10, 4);
@@ -147,6 +151,221 @@ class HTR_Woocommerce {
 		}
 
 		return $payload;
+	}
+
+	public function apply_custom_pricing_rules ($cart) {
+		if (is_admin() && !defined('DOING_AJAX')) {
+			return;
+		}
+
+		// Get the custom field values
+		$packs = get_field('pack', 'option');
+		$packs_list = (object) [
+			'isActive' => false,
+			'products_list' => [],
+			'discounts' => []
+		];
+
+		if ($packs) {
+			$active_packs = array_filter($packs, fn($pack) => $pack['active']);
+			$packs_list->isActive = !empty($active_packs);
+
+			$packs_list->products_list = array_merge(...array_map(fn($pack) => $pack['products_list'] ?? [], $active_packs));
+			$packs_list->discounts = array_merge(...array_map(fn($pack) => array_map(fn($discount) => (object) [
+				'product_number' => $discount['product_number'] ?? 0,
+				'discount' => $discount['discount'] ?? 0
+			], $pack['discounts'] ?? []), $active_packs));
+		}
+
+		if (!$packs_list->isActive) {
+			error_log("No active packs found");
+			return;
+		}
+
+		$cart_product_ids = array_map(fn($cart_item) => $cart_item['product_id'], $cart->get_cart());
+		$pack_product_count = count(array_intersect($cart_product_ids, $packs_list->products_list));
+		$pack_products = [];
+
+		if ($pack_product_count < 2) {
+			error_log("Not enough pack products in cart");
+			return;
+		}
+
+		// Collect all pack products in the cart
+		foreach ($cart->get_cart() as $cart_item) {
+			$product_id = $cart_item['product_id'];
+			if (in_array($product_id, $packs_list->products_list)) {
+				$pack_products[] = $cart_item;
+			}
+		}
+
+		// Apply discounts to the collected pack products
+		foreach ($packs_list->discounts as $discount) {
+			$processed_quantity = 0;
+
+			foreach ($pack_products as $cart_item) {
+				$quantity = $cart_item['quantity'];
+
+				while ($quantity > 0 && $processed_quantity < $discount->product_number) {
+					$processed_quantity++;
+					$quantity--;
+
+					error_log("Processed quantity: $processed_quantity, Discount product number: {$discount->product_number}");
+
+					if ($processed_quantity == $discount->product_number) {
+						$original_price = $cart_item['data']->get_regular_price();
+						$discounted_price = $original_price * ((100 - $discount->discount) / 100);
+						$cart_item['data']->set_price($discounted_price);
+						// Log debug information
+						error_log("Discount applied: Product ID: {$cart_item['product_id']}, Original Price: $original_price, Discounted Price: $discounted_price");
+						$processed_quantity = 0; // Reset processed_quantity to apply next discount level correctly
+						break; // Break to avoid applying the same discount multiple times
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Apply a discount to the cart based on the number of products from a specific category.
+	 */
+	public function pack_apply_discount_to_cart () {
+		$couponRules = $this->get_custom_coupon_rules();
+		$cart = WC()->cart;
+		foreach ($couponRules as $couponCode => $rule) {
+			$couponCodeSanitized = sanitize_text_field($couponCode);
+			$categoryTarget = $rule['category'];
+			$itemCountCondition = $rule['itemCountCondition'];
+			$productsInCategory = 0;
+
+			// Iterate through cart items and count products in the target category
+			foreach ($cart->get_cart() as $cartItem) {
+				$productId = $cartItem['product_id'];
+				$productCategories = get_the_terms($productId, 'product_cat');
+
+				if (is_array($productCategories)) {
+					// Check if the target category exists in the product's categories
+					$categoryNames = wp_list_pluck($productCategories, 'name');
+					if (in_array($categoryTarget, $categoryNames, true)) {
+						$productsInCategory++;
+					}
+				}
+			}
+
+			// Apply or remove the coupon based on the count of products in the target category
+			if ($productsInCategory >= $itemCountCondition) {
+				if (!$cart->has_discount($couponCodeSanitized)) {
+					$cart->apply_coupon($couponCodeSanitized);
+				}
+			} else {
+				if ($cart->has_discount($couponCodeSanitized)) {
+					$cart->remove_coupon($couponCodeSanitized);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Validate the coupon application based on custom conditions.
+	 *
+	 * @param bool $valid Indicates if the coupon is valid.
+	 * @param WC_Coupon $coupon The coupon object.
+	 * @param WC_Discounts $discounts The discounts object.
+	 * @return bool
+	 */
+	public function pack_validate_coupon ($valid, $coupon, $discounts) {
+		$couponRules = $this->get_custom_coupon_rules();
+
+		$couponCode = $coupon->get_code();
+		$couponCodeSanitized = sanitize_text_field($couponCode);
+
+		// Check if the coupon has a defined rule
+		if (isset($couponRules[$couponCodeSanitized])) {
+			$categoryTarget = $couponRules[$couponCodeSanitized]['category'];
+			$itemCountCondition = $couponRules[$couponCodeSanitized]['itemCountCondition'];
+			$cart = WC()->cart;
+			$productsInCategory = 0;
+
+			// Iterate through cart items and count products in the target category
+			foreach ($cart->get_cart() as $cartItem) {
+				$productId = $cartItem['product_id'];
+				$productCategories = get_the_terms($productId, 'product_cat');
+
+				if (is_array($productCategories)) {
+					// Check if the target category exists in the product's categories
+					$categoryNames = wp_list_pluck($productCategories, 'name');
+					if (in_array($categoryTarget, $categoryNames, true)) {
+						$productsInCategory++;
+					}
+				}
+			}
+
+			// Validate based on the custom condition
+			if ($productsInCategory >= $itemCountCondition) {
+				$valid = true;
+			}
+			else {
+				$valid = false;
+				wc_add_notice(__('The coupon cannot be applied as the condition is not met.', 'woocommerce'), 'error');
+			}
+		}
+
+		return $valid;
+	}
+
+	public function pack_update_discount_to_cart () {
+		$this->pack_apply_discount_to_cart();
+	}
+
+	/**
+	 * Get coupon rules from ACF fields.
+	 * @return array Associative array of coupon rules.
+	 */
+	public function get_custom_coupon_rules () {
+		$couponRules = [];
+
+		// Get the custom field values using ACF functions
+		$rulesList = get_field('pack', 'option');
+
+		if (!is_array($rulesList)) {
+			return $couponRules; // Return empty array if rulesList is not an array
+		}
+
+		foreach ($rulesList as $rule) {
+			if (isset($rule['active']) && $rule['active']) {
+				// HTR_Tools::dd($rule);
+				$productCategory = $rule['product_category'] ?? 0; // Assuming product_category is a single category ID
+
+
+				// Ensure $productCategory is not empty and is a valid category ID
+				if ($productCategory && is_int($productCategory)) {
+					// Loop through coupon rules for the current rule
+					if (isset($rule['coupon_rules']) && is_array($rule['coupon_rules'])) {
+						foreach ($rule['coupon_rules'] as $couponRule) {
+							$couponID = $couponRule['coupon'] ?? 0;
+							$productsCount = $couponRule['products_count'] ?? 0;
+
+							// Fetch coupon code from coupon post object
+							$couponCode = '';
+							if ($couponID && ($couponPost = get_post($couponID)) && $couponPost->post_type === 'shop_coupon') {
+								$couponCode = $couponPost->post_title; // Assuming post_title is the coupon code
+							}
+
+							// Add coupon rule to the output array
+							if ($couponCode && $productsCount > 0) {
+								$productCategoryName = get_term_by('term_id', $productCategory, 'product_cat')->name;
+								$couponRules[$couponCode] = [
+									'category' => $productCategoryName,
+									'itemCountCondition' => $productsCount,
+								];
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return $couponRules;
 	}
 }
 

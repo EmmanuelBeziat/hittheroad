@@ -27,6 +27,19 @@ class HTR_Tools {
 	}
 
 	/**
+	 * Log errors messages
+	 * @param $message mixed Variable or text to log
+	 * @param $exit boolean Stop program execution
+	 */
+	public static function log ($message, $exit = false) {
+		error_log($message);
+
+		if ($exit) {
+			exit();
+		}
+	}
+
+	/**
 	 * Block video
 	 * @param $url string Video URL
 	 * @return HTMLElement iframe embed video
