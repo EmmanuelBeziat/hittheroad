@@ -7,6 +7,12 @@
   * `hittheroad-2021/woocommerce/single-product/product-image.php` 7.8.0 → 9.0.0
 * Documentation Packs
 
+## 11.07.2024
+
+* Système de packs de produits
+  * Système de promotions automatiques par packs de produits
+  * Présentation du contenu des packs (front)
+
 ## 18.06.2024
 
 * Mise à jour script order-status.js
@@ -28,6 +34,8 @@
   * `hittheroad-2021/woocommerce/notices/notice.php` 8.5.0 → 8.6.0
   * `hittheroad-2021/woocommerce/notices/success.php` 8.5.0 → 8.6.0
 * Plugin HtR Vimeo
+  * Nouveau type de contenu "Films"
+  * Modification page "Nos films"
 * Debug méthodes de livraison
 * Système d’update du status depuis Google Sheets
   * Script order-status.js pour App Scripts
