@@ -36,6 +36,7 @@
 * Plugin HtR Vimeo
   * Nouveau type de contenu "Films"
   * Modification page "Nos films"
+  * Génération des codes Viméo pour les films
 * Debug méthodes de livraison
 * Système d’update du status depuis Google Sheets
   * Script order-status.js pour App Scripts
