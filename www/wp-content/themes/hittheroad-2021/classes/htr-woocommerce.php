@@ -233,6 +233,10 @@ class HTR_Woocommerce {
 		$couponRules = $this->get_custom_coupon_rules();
 		$cart = WC()->cart;
 
+		if (empty($cart->get_cart())) {
+			return;
+		}
+
 		$productsInCategories = [];
 		$categoryIds = [];
     foreach ($couponRules as $rule) {
