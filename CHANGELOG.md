@@ -1,6 +1,12 @@
 # Suivi de mises à jour
 
+## 17.07.2024
+
 ## 18.06.2024
+
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/myaccount/orders.php` 8.5.0 → 9.1.0
+  * `hittheroad-2021/woocommerce/single-product/product-image.php` 7.8.0 → 9.0.0
 
 * Mise à jour script order-status.js
 * Mises à jour templates woocommerce
