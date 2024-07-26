@@ -1,5 +1,13 @@
 # Suivi de mises à jour
 
+## 26.07.2024
+
+* Mise à jour ACF-Pro
+* Mise à jour ACF-Country
+* Mise à jour Stripe (nouveau form)
+* Debugs css font
+* Debugs php version
+
 F2024 ----------------------------------------------
 
 ## 17.07.2024
