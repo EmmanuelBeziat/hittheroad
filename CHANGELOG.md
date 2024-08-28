@@ -1,5 +1,15 @@
 # Suivi de mises à jour
 
+## 29.08.2024
+
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/global/form-login.php` 7.0.1 → 9.2.0
+  * `hittheroad-2021/woocommerce/myaccount/form-login.php` 7.0.1 → 9.2.0
+  * `hittheroad-2021/woocommerce/myaccount/form-lost-password.php` 9.0.0 → 9.2.0
+  * `hittheroad-2021/woocommerce/myaccount/form-reset-password.php` 7.0.1 → 9.2.0
+  * `hittheroad-2021/woocommerce/myaccount/my-address.php` 8.7.0 → 9.2.0
+  * `hittheroad-2021/woocommerce/myaccount/orders.php` 9.1.0 → 9.2.0
+
 ## 26.07.2024
 
 * Mise à jour ACF-Pro

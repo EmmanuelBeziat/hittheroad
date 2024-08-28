@@ -14,7 +14,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.1.0
+ * @version 9.2.0
  */
 
 defined('ABSPATH') || exit;
@@ -39,12 +39,19 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 				$item_count = $order->get_item_count() - $order->get_item_count_refunded();
 				?>
 				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?= esc_attr($order->get_status()); ?> order">
-					<?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) : ?>
-						<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?= esc_attr($column_id); ?>" data-title="<?= esc_attr($column_name); ?>">
+					<?php foreach (wc_get_account_orders_columns() as $column_id => $column_name) :
+						$is_order_number = 'order-number' === $column_id; ?>
+
+						<?php if ($is_order_number) : ?>
+							<th class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?= esc_attr($column_id); ?>" data-title="<?= esc_attr($column_name); ?>" scope="row">
+						<?php else : ?>
+							<td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-<?= esc_attr($column_id); ?>" data-title="<?= esc_attr($column_name); ?>">
+						<?php endif; ?>
+
 							<?php if (has_action('woocommerce_my_account_my_orders_column_' . $column_id)) : ?>
 								<?php do_action('woocommerce_my_account_my_orders_column_' . $column_id, $order); ?>
 
-							<?php elseif ('order-number' === $column_id) : ?>
+							<?php elseif ($is_order_number) : ?>
 								<a href="<?= esc_url($order->get_view_order_url()); ?>" aria-label="<?= esc_attr(sprintf(__('View order number %s', 'woocommerce' ), $order->get_order_number())); ?>">
 									<?= esc_html(_x('#', 'hash before order number', 'woocommerce') . $order->get_order_number()); ?>
 								</a>
@@ -72,7 +79,11 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 								}
 								?>
 							<?php endif; ?>
-						</td>
+						<?php if ($is_order_number) : ?>
+							</th>
+						<?php else : ?>
+							</td>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				</tr>
 				<?php

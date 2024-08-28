@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.0.0
+ * @version 9.2.0
  */
 
 defined('ABSPATH') || exit; ?>
@@ -27,8 +27,8 @@ do_action('woocommerce_before_lost_password_form');
 		<p><?= apply_filters('woocommerce_lost_password_message', esc_html__('Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce')); ?></p><?php // @codingStandardsIgnoreLine ?>
 
 		<div class="form-floating mb-3">
-			<input class="form-control" type="text" name="user_login" id="user_login" autocomplete="username" placeholder="Login" aria-required="true">
-			<label for="user_login"><?php esc_html_e('Username or email', 'woocommerce'); ?></label>
+			<input class="form-control" type="text" name="user_login" id="user_login" autocomplete="username" placeholder="Login" aria-required="true" required>
+			<label for="user_login"><?php esc_html_e('Username or email', 'woocommerce'); ?> <span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
 		</div>
 
 		<?php do_action('woocommerce_lostpassword_form'); ?>

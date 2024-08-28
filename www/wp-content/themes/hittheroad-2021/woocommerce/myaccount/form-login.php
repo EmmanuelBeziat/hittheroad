@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.0.1
+ * @version 9.2.0
  */
 
 if (!defined('ABSPATH')) {
@@ -34,20 +34,20 @@ $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 
 			<?php if ('no' === get_option('woocommerce_registration_generate_username')) : ?>
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" placeholder="John Doe" value="<?= (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>"><?php // @codingStandardsIgnoreLine ?>
-					<label for="reg_username"><?php esc_html_e('Username', 'woocommerce'); ?> <span class="required">*</span></label>
+					<input type="text" class="form-control" name="username" id="reg_username" autocomplete="username" placeholder="John Doe" value="<?= (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>" required aria-required="true"><?php // @codingStandardsIgnoreLine ?>
+					<label for="reg_username"><?php esc_html_e('Username', 'woocommerce'); ?> <span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e('Required', 'woocommerce'); ?></span></label>
 				</div>
 			<?php endif; ?>
 
 			<div class="form-floating mb-3">
-				<input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" placeholder="your@email.com" value="<?= (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>"><?php // @codingStandardsIgnoreLine ?>
-				<label for="reg_email"><?php esc_html_e('Email address', 'woocommerce'); ?> <span class="required">*</span></label>
+				<input type="email" class="form-control" name="email" id="reg_email" autocomplete="email" placeholder="your@email.com" value="<?= (!empty($_POST['email'])) ? esc_attr(wp_unslash($_POST['email'])) : ''; ?>" required aria-required="true"><?php // @codingStandardsIgnoreLine ?>
+				<label for="reg_email"><?php esc_html_e('Email address', 'woocommerce'); ?> <span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e('Required', 'woocommerce'); ?></span></label>
 			</div>
 
 			<?php if ('no' === get_option('woocommerce_registration_generate_password')) : ?>
 			<div class="form-floating mb-3">
-				<input type="password" class="form-control" name="password" id="reg_password" autocomplete="new-password" placeholder="Your password">
-				<label for="reg_password"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
+				<input type="password" class="form-control" name="password" id="reg_password" autocomplete="new-password" placeholder="Your password" required aria-required="true">
+				<label for="reg_password"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e('Required', 'woocommerce'); ?></span></label>
 			</div>
 			<?php else : ?>
 				<p><?php esc_html_e('A link to set a new password will be sent to your email address.', 'woocommerce'); ?></p>
@@ -70,11 +70,11 @@ $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 			<?php do_action('woocommerce_login_form_start'); ?>
 			<div class="form-floating mb-3">
 				<input type="text" class="form-control" name="username" id="username" autocomplete="username" placeholder="JohnDoe" value="<?= (!empty($_POST['username'])) ? esc_attr(wp_unslash($_POST['username'])) : ''; ?>">
-				<label for="username" class="form-label"><?php esc_html_e('Username or email address', 'woocommerce'); ?> <span class="required">*</span></label>
+				<label for="username" class="form-label"><?php esc_html_e('Username or email address', 'woocommerce'); ?> <span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e('Required', 'woocommerce'); ?></span></label>
 			</div>
 			<div class="form-floating mb-3">
 				<input class="form-control" type="password" name="password" id="password" palceholder="Mot de passe" autocomplete="current-password">
-				<label for="password" class="form-label"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
+				<label for="password" class="form-label"><?php esc_html_e('Password', 'woocommerce'); ?> <span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e('Required', 'woocommerce'); ?></span></label>
 			</div>
 			<?php do_action('woocommerce_login_form'); ?>
 			<div class="mb-3">
