@@ -9,6 +9,7 @@
   * `hittheroad-2021/woocommerce/myaccount/my-address.php` 9.2.0 → 9.3.0
   * `hittheroad-2021/woocommerce/myaccount/navigation.php` 9.0.0 → 9.3.0
   * `hittheroad-2021/woocommerce/single-product/product-attributes.php` 3.6.0 → 9.3.0
+* Mise à jour script Google sheet
 
 ## 29.08.2024
 
