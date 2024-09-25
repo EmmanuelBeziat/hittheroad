@@ -361,6 +361,7 @@ function doPost(e) {
 				shipping.cost,
 				product.price,
 				total,
+				'',
 			])
 			createCheckboxes(sheet)
 		}
