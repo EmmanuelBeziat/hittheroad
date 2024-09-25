@@ -271,7 +271,7 @@ class HTR_Woocommerce {
 			$categoryTarget = $rule['category'];
 			$itemCountCondition = $rule['itemCountCondition'];
 
-			if ($productsInCategories[$categoryTarget] >= $itemCountCondition) {
+			if (isset($productsInCategories[$categoryTarget]) && $productsInCategories[$categoryTarget] >= $itemCountCondition) {
 				$couponToApply = $couponCode;
 				break; // Exit loop as soon as a coupon is found to apply
 			}

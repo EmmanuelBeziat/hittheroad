@@ -14,7 +14,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.6.0
+ * @version 9.3.0
  */
 
 defined('ABSPATH') || exit;
@@ -33,12 +33,12 @@ $tags = [
 	'year' => get_field('origin-year', $product->get_id()),
 ];
 ?>
-<table class="woocommerce-product-attributes shop_attributes">
+<table class="woocommerce-product-attributes shop_attributes" aria-label="<?php esc_attr_e('Product Details', 'woocommerce'); ?>">
 	<?php foreach ($product_attributes as $product_attribute_key => $product_attribute) : ?>
 		<?php if ($product_attribute_key === 'weight') { continue; } ?>
-		<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--<?php echo esc_attr($product_attribute_key); ?>">
-			<th class="woocommerce-product-attributes-item__label"><?php echo wp_kses_post($product_attribute['label']); ?></th>
-			<td class="woocommerce-product-attributes-item__value"><?php echo wp_kses_post($product_attribute['value']); ?></td>
+		<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--<?= esc_attr($product_attribute_key); ?>">
+			<th class="woocommerce-product-attributes-item__label"><?= wp_kses_post($product_attribute['label']); ?></th>
+			<td class="woocommerce-product-attributes-item__value"><?= wp_kses_post($product_attribute['value']); ?></td>
 		</tr>
 	<?php endforeach; ?>
 	<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--place>">

@@ -1,5 +1,15 @@
 # Suivi de mises à jour
 
+## 22.09.2024
+
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/loop/add-to-cart.php` 9.0.0 → 9.2.0
+  * `hittheroad-2021/woocommerce/loop/pagination.php` 3.3.1 → 9.3.0
+  * `hittheroad-2021/woocommerce/myaccount/form-edit-address.php` 7.0.1 → 9.3.0
+  * `hittheroad-2021/woocommerce/myaccount/my-address.php` 9.2.0 → 9.3.0
+  * `hittheroad-2021/woocommerce/myaccount/navigation.php` 9.0.0 → 9.3.0
+  * `hittheroad-2021/woocommerce/single-product/product-attributes.php` 3.6.0 → 9.3.0
+
 ## 29.08.2024
 
 * Mises à jour templates woocommerce

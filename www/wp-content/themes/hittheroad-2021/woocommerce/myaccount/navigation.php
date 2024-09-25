@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.0.0
+ * @version 9.3.0
  */
 
 if (!defined('ABSPATH')) {
@@ -26,7 +26,7 @@ do_action('woocommerce_before_account_navigation');
 	<ul>
 		<?php foreach (wc_get_account_menu_items() as $endpoint => $label) : ?>
 			<li class="<?= wc_get_account_menu_item_classes($endpoint); ?>">
-				<a href="<?= esc_url(wc_get_account_endpoint_url($endpoint)); ?>"><?= esc_html($label); ?></a>
+				<a href="<?= esc_url(wc_get_account_endpoint_url($endpoint)); ?>" <?= wc_is_current_account_menu_item($endpoint) ? 'aria-current="page"' : ''; ?>><?= esc_html($label); ?></a>
 			</li>
 		<?php endforeach; ?>
 	</ul>
