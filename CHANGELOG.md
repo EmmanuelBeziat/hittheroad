@@ -1,5 +1,9 @@
 # Suivi de mises à jour
 
+## 30.09.2024
+
+* Mises à jour templates pour accessibilité
+
 ## 22.09.2024
 
 * Mises à jour templates woocommerce

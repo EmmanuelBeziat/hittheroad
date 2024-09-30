@@ -4,7 +4,7 @@
 		<section class="page-text">
 			<div class="container">
 				<header class="section-header">
-					<h1><?php the_title(); ?></h1>
+					<h1 class="h1"><?php the_title(); ?></h1>
 				</header>
 				<?php the_content(); ?>
 			</div>

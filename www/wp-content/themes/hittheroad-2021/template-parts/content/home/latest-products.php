@@ -9,7 +9,7 @@
 	<?php endif; ?>
 
 	<div class="container">
-		<h1 class="section-title">Nos dernières aventures</h1>
+		<h2 class="h1 section-title">Nos dernières aventures</h2>
 		<div class="products-slider swiper">
 			<div class="swiper-wrapper">
 				<?php
