@@ -32,7 +32,7 @@ const makeProductRow = (product, orderNumber) => [
 	'', '', '', '', '', '', '', '', '', '', '', '', '',
 	product.price,
 	product.vimeoCode,
-	''
+	' '
 ]
 
 const countries = [
@@ -275,14 +275,14 @@ const countries = [
 ]
 
 const dropdowns = [
-  { column: 30, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
-  { column: 31, list: ['A FAIRE', 'FAIT', 'N/A'] },
-  { column: 32, list: ['A FAIRE', 'FAIT F6000', 'FAIT F7200', 'N/A'] },
-  { column: 33, list: ['A FAIRE', 'FAIT F6000', 'FAIT F7200', 'N/A'] },
-  { column: 35, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 31, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 32, list: ['A FAIRE', 'FAIT', 'N/A'] },
+  { column: 33, list: ['A FAIRE', 'FAIT F6000', 'FAIT F6400', 'FAIT F7200', 'N/A'] },
+  { column: 34, list: ['A FAIRE', 'FAIT F6000', 'FAIT F6400', 'FAIT F7200', 'N/A'] },
   { column: 36, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
-  { column: 37, list: ['A FAIRE', 'FAIT', 'N/A'] },
-  { column: 38, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 37, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+  { column: 38, list: ['A FAIRE', 'FAIT', 'N/A'] },
+  { column: 39, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
 ]
 
 const getPhoneIndicator = iso => countries.find(item => item.iso === iso.toLowerCase()).tel || ''
@@ -295,7 +295,7 @@ function createDropdown (range, list) {
 	range.setValue(list[0])
 }
 
-function createCheckboxes (sheet, cells = [1, 29, 34, 39]) {
+function createCheckboxes (sheet, cells = [1, 30, 35, 40]) {
 	cells.forEach(cell => {
 		sheet.getRange(sheet.getLastRow(), cell).insertCheckboxes()
 	})

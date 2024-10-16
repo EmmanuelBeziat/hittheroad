@@ -1,5 +1,9 @@
 # Suivi de mises à jour
 
+## 16.10.2024
+
+* Mise à jour du script Pacific Colours
+
 ## 30.09.2024
 
 * Mises à jour templates pour accessibilité
