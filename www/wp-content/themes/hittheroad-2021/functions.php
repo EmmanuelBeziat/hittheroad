@@ -184,3 +184,10 @@ function wc_dropdown_variation_attribute_options($args = []) {
 }
 
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+function wc_remove_state_field ($fields) {
+	$fields['state']['required'] = false;
+	unset($fields['state']);
+	return $fields;
+}
+add_filter('woocommerce_default_address_fields', 'wc_remove_state_field');
