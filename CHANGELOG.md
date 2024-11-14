@@ -1,5 +1,12 @@
 # Suivi de mises à jour
 
+## 14.11.2024
+
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/content-product.php` 3.6.0 → 9.4.0
+  * `hittheroad-2021/woocommerce/global/quantity-input.php` 7.8.0 → 9.4.0
+  * `hittheroad-2021/woocommerce/loop/result-count.php` 3.7.0 → 9.4.0
+
 ## 16.10.2024
 
 * Mise à jour du script Pacific Colours
