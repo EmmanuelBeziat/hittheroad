@@ -20,3 +20,5 @@ www/wp-content/languages
 www/wp-content/*.php
 www/wp-content/themes/index.php
 .env
+
+shopify
