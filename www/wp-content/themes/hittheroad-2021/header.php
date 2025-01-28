@@ -4,15 +4,12 @@
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="apple-touch-icon" sizes="180x180" href="<?= get_template_directory_uri() ?>/assets/images/favicons/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon-16x16.png">
-	<link rel="manifest" href="<?= get_template_directory_uri() ?>/assets/images/favicons/site.webmanifest" crossorigin="use-credentials">
-	<link rel="mask-icon" href="<?= get_template_directory_uri() ?>/assets/images/favicons/safari-pinned-tab.svg" color="#222222">
+	<link rel="icon" type="image/png" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/svg+xml" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon.svg">
 	<link rel="shortcut icon" href="<?= get_template_directory_uri() ?>/assets/images/favicons/favicon.ico">
-	<meta name="msapplication-TileColor" content="#222222">
-	<meta name="msapplication-config" content="<?= get_template_directory_uri() ?>/assets/images/favicons/browserconfig.xml">
-	<meta name="theme-color" content="#222222">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?= get_template_directory_uri() ?>/assets/images/favicons/apple-touch-icon.png">
+	<meta name="apple-mobile-web-app-title" content="Hit the Road">
+	<link rel="manifest" href="<?= get_template_directory_uri() ?>/assets/images/favicons/site.webmanifest">
 
 	<?= noIndexPage(get_queried_object_id()) ?>
   <?php wp_head(); ?>
