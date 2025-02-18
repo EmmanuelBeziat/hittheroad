@@ -1,5 +1,20 @@
 # Suivi de mises à jour
 
+## 18.02.2024
+
+* Mises à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/cart/shipping-calculator.php` 7.0.1 → 9.5.0
+  * `hittheroad-2021/woocommerce/emails/customer-invoice.php` 3.7.0 → 9.6.0
+  * `hittheroad-2021/woocommerce/myaccount/form-edit-account.php` 8.7.0 → 9.6.0
+  * `hittheroad-2021/woocommerce/myaccount/orders.php` 9.2.0 → 9.5.0
+  * `hittheroad-2021/woocommerce/order/order-details.php` 9.0.0 → 9.6.0
+  * `hittheroad-2021/woocommerce/single-product/add-to-cart/variable.php` 6.1.0 → 9.6.0
+  * `hittheroad-2021/woocommerce/single-product/product-thumbnails.php` 3.5.1 → 9.5.0
+  * `hittheroad-2021/woocommerce/single-product/related.php` 3.9.0 → 9.6.0
+  * `hittheroad-2021/woocommerce/single-product/tabs/tabs.php` 3.8.0 → 9.6.0
+  * `hittheroad-2021/woocommerce/single-product/up-sells.php` 3.0.0 → 9.6.0
+
+
 ## 14.11.2024
 
 * Mises à jour templates woocommerce
