@@ -14,7 +14,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.2.0
+ * @version 9.5.0
  */
 
 defined('ABSPATH') || exit;
@@ -74,7 +74,15 @@ do_action('woocommerce_before_account_orders', $has_orders); ?>
 
 								if (!empty($actions)) {
 									foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-										echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
+										if (empty($action['aria-label'])) {
+											// Generate the aria-label based on the action name.
+											/* translators: %1$s Action name, %2$s Order number. */
+											$action_aria_label = sprintf(__('%1$s order number %2$s', 'woocommerce'), $action['name'], $order->get_order_number());
+										}
+										else {
+											$action_aria_label = $action['aria-label'];
+										}
+										echo '<a href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '" aria-label="' . esc_attr($action_aria_label) . '">' . esc_html($action['name']) . '</a>';
 									}
 								}
 								?>

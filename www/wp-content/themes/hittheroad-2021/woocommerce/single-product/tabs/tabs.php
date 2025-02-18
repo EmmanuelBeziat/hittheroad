@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.8.0
+ * @version 9.6.0
  */
 
 if (!defined('ABSPATH')) {
@@ -63,5 +63,6 @@ if (!empty($product_tabs)) : ?>
 				call_user_func($product_tab['callback'], $key, $product_tab);
 			}
 		endforeach; ?>
+		<?php do_action('woocommerce_product_after_tabs'); ?>
 	</div>
 <?php endif;

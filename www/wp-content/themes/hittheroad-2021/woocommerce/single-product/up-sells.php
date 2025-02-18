@@ -12,7 +12,7 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     3.0.0
+ * @version     9.6.0
  */
 
 if (!defined('ABSPATH')) {
@@ -26,14 +26,14 @@ if ($upsells) : ?>
 
 		if ($heading) :
 			?>
-			<h2><?php echo esc_html($heading); ?></h2>
+			<h2><?= esc_html($heading); ?></h2>
 		<?php endif; ?>
 
 		<?php woocommerce_product_loop_start(); ?>
 			<?php foreach ($upsells as $upsell) : ?>
 				<?php
 				$post_object = get_post($upsell->get_id());
-				setup_postdata($GLOBALS['post'] =& $post_object); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+				setup_postdata($GLOBALS['post'] = $post_object); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 				wc_get_template_part('content', 'product');
 				?>
 			<?php endforeach; ?>

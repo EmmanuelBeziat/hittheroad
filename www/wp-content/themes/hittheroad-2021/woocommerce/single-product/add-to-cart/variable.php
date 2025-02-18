@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 6.1.0
+ * @version 9.6.0
  */
 
 defined('ABSPATH') || exit;
@@ -41,11 +41,12 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
 							'product'   => $product,
 						]);
 					?>
-					<?= end($attribute_keys) === $attribute_name ? wp_kses_post(apply_filters('woocommerce_reset_variations_link', '<button type="button" class="reset_variations" title="Effacer"><i class="fa fa-sync-alt"></i></button>')) : '' ?>
+					<?= end($attribute_keys) === $attribute_name ? wp_kses_post(apply_filters('woocommerce_reset_variations_link', '<button type="button" class="reset_variations" title="Effacer les options"><i class="fa fa-sync-alt"></i></button>')) : '' ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
 
+		<div class="reset_variations_alert screen-reader-text" role="alert" aria-live="polite" aria-relevant="all"></div>
 		<?php do_action('woocommerce_after_variations_table'); ?>
 
 		<div class="single_variation_wrap">
