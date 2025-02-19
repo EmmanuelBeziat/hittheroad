@@ -13,6 +13,7 @@
   * `hittheroad-2021/woocommerce/single-product/related.php` 3.9.0 → 9.6.0
   * `hittheroad-2021/woocommerce/single-product/tabs/tabs.php` 3.8.0 → 9.6.0
   * `hittheroad-2021/woocommerce/single-product/up-sells.php` 3.0.0 → 9.6.0
+* Mise à jour du script Pacific Colours
 
 
 ## 14.11.2024
