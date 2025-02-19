@@ -301,8 +301,16 @@ function createCheckboxes (sheet, cells = [1, 30, 35, 40]) {
 	})
 }
 
+function sendEmailNotification (email, orderNumber, sheetUrl) {
+	MailApp.sendEmail({
+		to: email,
+		subject: `[HitTheRoad] Commande #${orderNumber}`,
+		htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
+	})
+}
+
 //get invoked when webapp receives a POST request
-function doPost(e) {
+function writeContent (e) {
 	const sheet = SpreadsheetApp.getActiveSheet()
 	const data = JSON.parse([e.postData.contents])
 	const order = {
@@ -379,12 +387,27 @@ function doPost(e) {
 	// Get the URL of the current Google Sheet
 	const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
 
-	// Send email notification
-	MailApp.sendEmail({
-		to: '',
-		subject: 'Nouvelle commande Hit the Road',
-		htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
-	})
+	sendEmailNotification('', orderNumber, sheetUrl)
+
+	// Small pause to try avoid exceeds of writing quota
+	Utilities.sleep(500)
 
 	return HtmlService.createHtmlOutput('Commande ajoutée avec succès')
+}
+
+function doPost (e) {
+	const lock = LockService.getScriptLock()
+	const timer = 5000
+
+	if (lock.tryLock(timer)) {
+    try {
+      writeContent(e)
+    }
+		finally {
+			lock.release()
+    }
+	}
+	else {
+		Logger.log('Impossible d’obtenir le verrou.');
+	}
 }
