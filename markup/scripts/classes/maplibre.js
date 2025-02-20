@@ -23,9 +23,10 @@ class MapLibre {
 
 	createMarkers (markers = this.markers) {
 		markers.forEach(marker => {
-			const el = document.createElement('a')
-			el.className = 'marker htr-marker'
-			el.href = `/shop/?place=${marker.slug}`
+			const el = Object.assign(document.createElement('a'), {
+				className: 'marker htr-marker',
+				href: `/shop/?place=${marker.slug}`,
+			})
 
 			new maplibregl.Marker(el)
 				.setLngLat([marker.lng, marker.lat])
