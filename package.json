@@ -29,7 +29,7 @@
 	},
 	"devDependencies": {
 		"autoprefixer-core": "^6.0.1",
-		"browserslist": "^4.24.3",
+		"browserslist": "^4.24.4",
 		"grunt": "^1.6.1",
 		"grunt-cli": "^1.5.0",
 		"grunt-contrib-clean": "^2.0.1",
@@ -48,6 +48,6 @@
 		"grunt-svgmin": "^7.0.0",
 		"load-grunt-tasks": "^5.1.0",
 		"postcss-sort-media-queries": "^5.2.0",
-		"sass": "^1.83.0"
+		"sass": "^1.85.1"
 	}
 }
