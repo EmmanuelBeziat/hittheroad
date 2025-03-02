@@ -12,8 +12,10 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     3.0.0
+ * @version     9.7.0
  */
+
+use Automattic\WooCommerce\Enums\ProductType;
 
 if (!defined('ABSPATH')) {
 	exit;

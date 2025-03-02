@@ -1,18 +1,31 @@
 # Suivi de mises à jour
 
-## 18.02.2024
+## 02.03.2025
 
 * Mises à jour templates woocommerce
-  * `hittheroad-2021/woocommerce/cart/shipping-calculator.php` 7.0.1 → 9.5.0
-  * `hittheroad-2021/woocommerce/emails/customer-invoice.php` 3.7.0 → 9.6.0
-  * `hittheroad-2021/woocommerce/myaccount/form-edit-account.php` 8.7.0 → 9.6.0
-  * `hittheroad-2021/woocommerce/myaccount/orders.php` 9.2.0 → 9.5.0
-  * `hittheroad-2021/woocommerce/order/order-details.php` 9.0.0 → 9.6.0
-  * `hittheroad-2021/woocommerce/single-product/add-to-cart/variable.php` 6.1.0 → 9.6.0
-  * `hittheroad-2021/woocommerce/single-product/product-thumbnails.php` 3.5.1 → 9.5.0
-  * `hittheroad-2021/woocommerce/single-product/related.php` 3.9.0 → 9.6.0
-  * `hittheroad-2021/woocommerce/single-product/tabs/tabs.php` 3.8.0 → 9.6.0
-  * `hittheroad-2021/woocommerce/single-product/up-sells.php` 3.0.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/cart/shipping-calculator.php` 9.5.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/emails/customer-invoice.php` 9.6.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/emails/email-order-details.php` 3.7.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/loop/orderby.php` 3.6.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/myaccount/form-edit-account.php` 9.6.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/myaccount/form-login.php` 9.2.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/single-product/meta.php` 3.0.0 → 9.7.0
+	* `hittheroad-2021/woocommerce/single-product/product-image.php` 9.0.0 → 9.7.0
+
+
+## 18.02.2025
+
+* Mises à jour templates woocommerce
+	* `hittheroad-2021/woocommerce/cart/shipping-calculator.php` 7.0.1 → 9.5.0
+	* `hittheroad-2021/woocommerce/emails/customer-invoice.php` 3.7.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/myaccount/form-edit-account.php` 8.7.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/myaccount/orders.php` 9.2.0 → 9.5.0
+	* `hittheroad-2021/woocommerce/order/order-details.php` 9.0.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/single-product/add-to-cart/variable.php` 6.1.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/single-product/product-thumbnails.php` 3.5.1 → 9.5.0
+	* `hittheroad-2021/woocommerce/single-product/related.php` 3.9.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/single-product/tabs/tabs.php` 3.8.0 → 9.6.0
+	* `hittheroad-2021/woocommerce/single-product/up-sells.php` 3.0.0 → 9.6.0
 * Mise à jour du script Pacific Colours
 
 

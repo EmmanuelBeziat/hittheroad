@@ -12,11 +12,16 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.6.0
+ * @version 9.7.0
  */
 
 defined('ABSPATH') || exit;
 
+/**
+ * Hook - woocommerce_before_edit_account_form.
+ *
+ * @since 2.6.0
+ */
 do_action('woocommerce_before_edit_account_form'); ?>
 
 <form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action('woocommerce_edit_account_form_tag'); ?> >
@@ -24,22 +29,22 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_first_name" id="account_first_name" autocomplete="given-name" value="<?= esc_attr($user->first_name); ?>" placeholder="John">
+		<input type="text" class="form-control" name="account_first_name" id="account_first_name" required autocomplete="given-name" value="<?= esc_attr($user->first_name); ?>" placeholder="John">
 		<label for="account_first_name"><?php esc_html_e('First name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_last_name" id="account_last_name" autocomplete="family-name" value="<?= esc_attr($user->last_name); ?>" placeholder="Doe">
+		<input type="text" class="form-control" name="account_last_name" id="account_last_name" required autocomplete="family-name" value="<?= esc_attr($user->last_name); ?>" placeholder="Doe">
 		<label for="account_last_name"><?php esc_html_e('Last name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_display_name" id="account_display_name" value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
+		<input type="text" class="form-control" name="account_display_name" id="account_display_name" required value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
 		<label for="account_display_name"><?php esc_html_e('Display name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 
 	<div class="form-floating mb-3">
-		<input type="email" class="form-control" placeholder="name@example.com" name="account_email" id="account_email" autocomplete="email" value="<?= esc_attr($user->user_email); ?>">
+		<input type="email" class="form-control" placeholder="name@example.com" name="account_email" required id="account_email" autocomplete="email" value="<?= esc_attr($user->user_email); ?>">
 		<label for="account_email"><?php esc_html_e('Email address', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 

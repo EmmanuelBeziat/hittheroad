@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.5.0
+ * @version 9.7.0
  */
 
 defined('ABSPATH') || exit;
@@ -26,7 +26,7 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 	<section class="shipping-calculator-form" style="display:none;">
 		<?php if (apply_filters('woocommerce_shipping_calculator_enable_country', true)) : ?>
 			<div class="mb-1" id="calc_shipping_country_field">
-				<select name="calc_shipping_country" id="calc_shipping_country" class="country_to_state country_select form-select" rel="calc_shipping_state">
+				<select name="calc_shipping_country" id="calc_shipping_country" class="country_to_state country_select form-select" rel="calc_shipping_state" aria-label="<?php esc_html_e('Country / region', 'woocommerce'); ?>">
 					<option value="default"><?php esc_html_e('Select a country / region&hellip;', 'woocommerce'); ?></option>
 					<?php
 					foreach (WC()->countries->get_shipping_countries() as $key => $value) {
@@ -47,7 +47,7 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 				if (is_array($states) && empty($states)) : ?>
 					<input type="hidden" name="calc_shipping_state" id="calc_shipping_state" placeholder="<?php esc_attr_e('State / County', 'woocommerce'); ?>" />
 				<?php elseif (is_array($states)) : ?>
-					<label for="calc_shipping_state" class="screen-reader-text"><?php esc_html_e( 'State / County:', 'woocommerce' ); ?></label>
+					<label for="calc_shipping_state" class="screen-reader-text"><?php esc_html_e('State / County:', 'woocommerce'); ?></label>
 					<select name="calc_shipping_state" class="state_select form-select" id="calc_shipping_state" data-placeholder="<?php esc_attr_e('State / County', 'woocommerce'); ?>">
 						<option value=""><?php esc_html_e('Select an option&hellip;', 'woocommerce'); ?></option>
 						<?php

@@ -12,13 +12,14 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     3.6.0
+ * @version     9.7.0
  */
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
+$id_suffix = wp_unique_id();
 ?>
 <form class="products-ordering" data-aos="fade-up" data-aos-delay="50" data-aos-duration="300" method="get">
 	<div class="filters">
