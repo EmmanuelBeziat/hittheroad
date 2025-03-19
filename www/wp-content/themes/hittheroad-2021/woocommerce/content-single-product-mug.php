@@ -30,8 +30,16 @@ if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
-$current_product = get_the_ID();
-$current_product_slug = get_post_field('post_name', $current_product);
+
+$mug_photo_id = isset($_GET['mug_photo_id']) ? intval($_GET['mug_photo_id']) : 0;
+if ($mug_photo_id) {
+	$photo_title = get_the_title($mug_photo_id);
+	$photo_image = get_the_post_thumbnail($mug_photo_id, 'large');
+}
+else {
+	$photo_title = "Mug Personnalisé";
+	$photo_image = '<img src="' . wc_placeholder_img_src() . '" alt="Mug">';
+}
 
 $notification = get_field('notification', 'option');
 if (isset($notification) && $notification !== '') : ?>
@@ -65,28 +73,7 @@ if (isset($notification) && $notification !== '') : ?>
 		 */
 		do_action('woocommerce_single_product_summary');
 		?>
-
-		<div class="mt-2 mb-2">
-			<?php
-			$mug_product = get_page_by_path('mug', OBJECT, 'product');
-			if ($mug_product) :
-				$mug_product_url = add_query_arg('mug_photo_id', $current_product, get_permalink($mug_product->ID)); ?>
-				<a href="<?= esc_url($mug_product_url); ?>" class="btn btn-primary">Commander en mug</a>
-			<?php endif; ?>
-		</div>
 	</div>
-
-
-	<?php
-	$process = get_field('product-description', 'option');
-
-	if (isset($process) && $process !== '') : ?>
-		<section class="product-description mb-4">
-			<?= $process ?>
-		</section>
-		<?php
-	endif;
-	?>
 
 	<?php
 	/**

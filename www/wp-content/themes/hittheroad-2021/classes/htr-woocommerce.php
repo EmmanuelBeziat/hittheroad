@@ -23,6 +23,12 @@ class HTR_Woocommerce {
 		add_action('woocommerce_cart_updated', [$this, 'pack_update_discount_to_cart'], 10, 1);
 		add_filter('woocommerce_coupon_is_valid', [$this, 'pack_validate_coupon'], 10, 3);
 
+		add_filter('woocommerce_add_cart_item_data', [$this, 'add_mug_photo_to_cart'], 10, 2);
+		add_filter('woocommerce_get_cart_item_from_session', [$this, 'retain_mug_photo_in_cart'], 10, 2);
+		add_filter('woocommerce_cart_item_name', [$this, 'modify_mug_name_in_cart'], 10, 3);
+		add_filter('woocommerce_order_item_name', [$this, 'modify_mug_name_in_emails'], 10, 3);
+
+
 		// Webhooks
 		add_filter('woocommerce_webhook_payload', [$this, 'add_custom_webhook_payload'], 10, 4);
 	}
@@ -395,6 +401,41 @@ class HTR_Woocommerce {
 		}
 
 		return $couponRules;
+	}
+
+	public function add_mug_photo_to_cart ($cart_item_data, $product_id) {
+    if ($product_id == get_page_by_path('mug', OBJECT, 'product')->ID && isset($_GET['mug_photo_id'])) {
+			$cart_item_data['mug_photo_id'] = intval($_GET['mug_photo_id']);
+			$cart_item_data['unique_key'] = md5(microtime().rand()); // Empêche la fusion des mugs identiques
+    }
+    return $cart_item_data;
+	}
+
+	public function retain_mug_photo_in_cart ($cart_item, $values) {
+    if (isset($cart_item['mug_photo_id'])) {
+			$cart_item['mug_photo_id'] = intval($cart_item['mug_photo_id']);
+    }
+    return $cart_item;
+	}
+
+	public function modify_mug_name_in_cart ($product_name, $cart_item, $cart_item_key) {
+    if (!empty($cart_item['mug_photo_id'])) {
+			$photo_title = get_the_title($cart_item['mug_photo_id']);
+			if ($photo_title) {
+				$product_name .= ' (' . esc_html($photo_title) . ')';
+			}
+    }
+    return $product_name;
+	}
+
+	public function modify_mug_name_in_emails ($product_name, $item, $is_visible) {
+    if (!empty($item['mug_photo_id'])) {
+			$photo_title = get_the_title($item['mug_photo_id']);
+			if ($photo_title) {
+				$product_name .= ' (' . esc_html($photo_title) . ')';
+			}
+    }
+    return $product_name;
 	}
 }
 
