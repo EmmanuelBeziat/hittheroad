@@ -302,11 +302,18 @@ function createCheckboxes (sheet, cells = [1, 30, 35, 40]) {
 }
 
 function sendEmailNotification (email, orderNumber, sheetUrl) {
-	MailApp.sendEmail({
-		to: email,
-		subject: `[HitTheRoad] Commande #${orderNumber}`,
-		htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
-	})
+	Logger.log('sendEmail in')
+	try {
+		MailApp.sendEmail({
+			to: email,
+			subject: `[HitTheRoad] Commande #${orderNumber}`,
+			htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
+		});
+		Logger.log('Email envoyé avec succès.');
+	}
+	catch (error) {
+		Logger.log('Erreur lors de l’envoi de l’email : ' + error.message);
+	}
 }
 
 //get invoked when webapp receives a POST request
@@ -382,12 +389,11 @@ function writeContent (e) {
 		dropdowns.forEach(({ column, list }) => {
 			createDropdown(sheet.getRange(sheet.getLastRow(), column), list)
 		})
+
+		// Get the URL of the current Google Sheet
+		const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
+		sendEmailNotification('', orderNumber, sheetUrl)
 	})
-
-	// Get the URL of the current Google Sheet
-	const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
-
-	sendEmailNotification('', orderNumber, sheetUrl)
 
 	// Small pause to try avoid exceeds of writing quota
 	Utilities.sleep(500)
@@ -403,8 +409,11 @@ function doPost (e) {
     try {
       writeContent(e)
     }
+		catch (error) {
+			Logger.log('Erreur dans doPost: ' + error.message)
+		}
 		finally {
-			lock.release()
+			lock.releaseLock()
     }
 	}
 	else {
