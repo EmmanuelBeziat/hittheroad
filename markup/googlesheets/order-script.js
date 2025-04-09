@@ -302,7 +302,6 @@ function createCheckboxes (sheet, cells = [1, 30, 35, 40]) {
 }
 
 function sendEmailNotification (email, orderNumber, sheetUrl) {
-	Logger.log('sendEmail in')
 	try {
 		MailApp.sendEmail({
 			to: email,
