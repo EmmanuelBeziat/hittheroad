@@ -10,7 +10,7 @@
 
 		&:hover,
 		&:focus {
-			transform: scale(1.025) !important;
+			scale: 1.025 !important;
 			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15) !important;
 		}
 	}
@@ -44,11 +44,11 @@
 			0 4px 4px HSL(0deg 0% 0% / .075),
 			0 8px 8px HSL(0deg 0% 0% / .075),
 			0 16px 16px HSL(0deg 0% 0% / .075);
-			transform: translateY(-6px);
+			translate: 0 -6px;
 			transition: .25s ease-in-out;
 
 			.product-image img {
-				transform: scale(1.05);
+				scale: 1.05;
 				transition: .25s ease-in-out;
 			}
 		}
@@ -86,7 +86,7 @@
 	line-height: 0;
 	z-index: 5;
 
-	@media (max-width: 767px) {
+	@media (width <= 767px) {
 		display: none;
 	}
 
@@ -109,7 +109,7 @@
 	width: 100%;
 	overflow: hidden;
 	line-height: 0;
-	transform: rotate(180deg);
+	rotate: 180deg;
 
 	svg {
 		position: relative;

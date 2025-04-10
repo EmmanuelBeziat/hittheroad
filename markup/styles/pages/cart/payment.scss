@@ -91,7 +91,7 @@
 }
 
 .woocommerce ul.order_details {
-	@media (max-width: 767px) {
+	@media (width <= 767px) {
 		display: flex;
 		flex-direction: column;
 		gap: .5rem;

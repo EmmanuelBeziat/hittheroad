@@ -406,7 +406,7 @@ function doPost (e) {
 
 	if (lock.tryLock(timer)) {
     try {
-      writeContent(e)
+			writeContent(e)
     }
 		catch (error) {
 			Logger.log('Erreur dans doPost: ' + error.message)

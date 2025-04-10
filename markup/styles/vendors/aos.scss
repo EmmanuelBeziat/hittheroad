@@ -140,7 +140,7 @@ $aos-distance: 100px !default;
 		}
 
 		[data-aos='zoom-in'] {
-			transform: scale(.6);
+			scale: .6;
 		}
 
 		[data-aos='zoom-in-up'] {
@@ -160,7 +160,7 @@ $aos-distance: 100px !default;
 		}
 
 		[data-aos='zoom-out'] {
-			transform: scale(1.2);
+			scale: 1.2;
 		}
 
 		[data-aos='zoom-out-up'] {

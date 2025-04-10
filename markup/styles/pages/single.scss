@@ -24,7 +24,7 @@
 			"Process Process"
 			"Related Related";
 
-		@media (max-width: 767px) {
+		@media (width <= 767px) {
 			grid-template-columns: auto;
 			grid-template-areas:
 				"Picture"
@@ -71,11 +71,11 @@
 			--min-width: 180px;
 			grid-template-columns: repeat(var(--repeat), minmax(var(--min-width), 1fr));
 
-			@media (max-width: 996px) {
+			@media (width <= 996px) {
 				--repeat: 2;
 			}
 
-			@media (max-width: 576px) {
+			@media (width <= 576px) {
 				--repeat: auto-fit;
 			}
 		}

@@ -7,7 +7,7 @@
 	grid-template-areas:
 	"Sidebar List";
 
-	@media (max-width: 992px) {
+	@media (width <= 992px) {
 		grid-template-rows: auto auto;
 		grid-template-areas:
 			"Sidebar Sidebar"
@@ -22,11 +22,11 @@
 	grid-template-columns: repeat(var(--repeat), minmax(240px, 1fr));
 	grid-area: List;
 
-	@media (max-width: 1400px) {
+	@media (width <= 1400px) {
 		--repeat: 3;
 	}
 
-	@media (max-width: 1200px) {
+	@media (width <= 1200px) {
 		--repeat: auto-fit;
 	}
 
@@ -42,7 +42,7 @@
 
 		&:hover,
 		&:focus {
-			transform: scale(1.025) !important;
+			scale: 1.025 !important;
 			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15) !important;
 		}
 	}
@@ -91,7 +91,7 @@
 	margin-top: 2rem;
 	margin-left: calc(240px + 1rem);
 
-	@media (max-width: 992px) {
+	@media (width <= 992px) {
 		margin-left: 0;
 	}
 }

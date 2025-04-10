@@ -31,7 +31,9 @@
 	width: 100%;
 	overflow: hidden;
 	line-height: 0;
-	transform: rotate(180deg) translateY(100%) scaleX(-1);
+	rotate: 180deg;
+	translate: 0 100%;
+	scale: -1 1;
 }
 
 .footer-divider-top svg {

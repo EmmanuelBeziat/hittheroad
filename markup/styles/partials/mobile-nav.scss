@@ -131,10 +131,10 @@
 }
 
 .mobine-nav-wrapper {
-	transform: translateY(2rem);
+	translate: 0 2rem;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
 	.menu-mobile-open {
 		height: 100vh;
 		overflow-y: hidden;

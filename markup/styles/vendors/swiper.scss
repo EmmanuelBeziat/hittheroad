@@ -38,7 +38,7 @@ $themeColor: #007aff !default;
 }
 .swiper-android .swiper-slide,
 .swiper-wrapper {
-  transform: translate3d(0px, 0, 0);
+	translate: 0 0 0;
 }
 .swiper-pointer-events {
   touch-action: pan-y;

@@ -6,7 +6,7 @@
 	margin-left: calc(-1 * var(--gutter)) !important;
 	margin-right: calc(-1 * var(--gutter)) !important;
 
-	@media (max-width: 480px) {
+	@media (width <= 480px) {
 		--gutter: 0;
 	}
 } */

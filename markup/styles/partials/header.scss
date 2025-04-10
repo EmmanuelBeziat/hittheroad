@@ -39,7 +39,8 @@
 
 		&:hover,
 		&:focus {
-			--active-state: translateY(0) scaleX(1);
+			--translate-y: 0;
+			--scale-x: 1;
 			--active-opacity: 1;
 			--nav-color: var(--color-primary);
 		}
@@ -59,10 +60,11 @@
 			background: var(--color-primary);
 			transition: .25s ease-in-out;
 			opacity: var(--active-opacity, 0);
-			transform: var(--active-state, translateY(-3px) scaleX(.75));
+			translate: 0 var(--translate-y, -3px);
+			scale: var(--scale-x, 0.75);
 		}
 
-		@media (max-width: 767px) {
+		@media (width <= 767px) {
 			font-size: 1.5rem;
 		}
 	}
@@ -73,7 +75,7 @@
 		color: var(--color-white);
 		margin-left: 4px;
 
-		@media (max-width: 992px) {
+		@media (width <= 992px) {
 			display: none;
 			margin-left: 0;
 		}
@@ -96,7 +98,7 @@
 	padding: 0;
 	margin: 0 1rem;
 
-	@media (max-width: 767px) {
+	@media (width <= 767px) {
 		flex: none;
 		order: 3;
 	}
@@ -108,7 +110,7 @@
 		background: var(--color-white);
 		margin-left: .75rem;
 
-		@media (max-width: 767px) {
+		@media (width <= 767px) {
 			content: none;
 		}
 	}
@@ -122,7 +124,8 @@
 		// &[aria-current="page"],
 		&:hover,
 		&:focus {
-			--active-state: translateY(0) scaleX(1);
+			--translate-y: 0;
+			--scale-x: 1;
 			--active-opacity: 1;
 			--nav-color: var(--color-primary);
 		}
@@ -131,7 +134,7 @@
 			color: var(--color-primary);
 		}
 
-		@media (max-width: 767px) {
+		@media (width <= 767px) {
 			text-align: center;
 			font-size: 1.625rem;
 			padding-top: 0;
@@ -153,9 +156,10 @@
 			background: var(--color-primary);
 			transition: .25s ease-in-out;
 			opacity: var(--active-opacity, 0);
-			transform: var(--active-state, translateY(-3px) scaleX(.75));
+			translate: 0 var(--translate-y, -3px);
+			scale: var(--scale-x, 0.75);
 
-			@media (max-width: 767px) {
+			@media (width <= 767px) {
 				content: none;
 			}
 		}

@@ -7,7 +7,7 @@
 }
 
 .maplibregl-map {
-	@media (max-width: 767px) {
+	@media (width <= 767px) {
 		height: 0;
 		visibility: hidden;
 	}
@@ -22,7 +22,7 @@
 	line-height: 0;
 	z-index: 5;
 
-	@media (max-width: 767px) {
+	@media (width <= 767px) {
 		display: none;
 	}
 
@@ -45,7 +45,7 @@
 	width: 100%;
 	overflow: hidden;
 	line-height: 0;
-	transform: rotate(180deg);
+	rotate: 180deg;
 
 	svg {
 		position: relative;
@@ -63,5 +63,5 @@
 	background: url(../images/map/marker.svg) no-repeat 50% top / contain;
 	width: 35px;
 	aspect-ratio: 1/2.5;
-	transform: translateY(-100%);
+	translate: 0 -100%;
 }
