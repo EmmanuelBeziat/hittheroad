@@ -357,6 +357,7 @@ function writeContent (e) {
 				product.size,
 				product.width,
 				product.height,
+				'',
 				product.finish,
 				product.number,
 				product.vimeoCode,
