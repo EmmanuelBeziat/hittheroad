@@ -44,7 +44,7 @@
 		"grunt-notify": "^0.4.5",
 		"grunt-pngmin": "^2.0.3",
 		"grunt-postcss": "^0.9.0",
-		"grunt-sass": "^3.1.0",
+		"grunt-sass": "^4.0.0",
 		"grunt-svgmin": "^7.0.0",
 		"load-grunt-tasks": "^5.1.0",
 		"postcss-sort-media-queries": "^5.2.0",
