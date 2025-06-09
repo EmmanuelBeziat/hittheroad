@@ -48,6 +48,6 @@
 		"grunt-svgmin": "^7.0.0",
 		"load-grunt-tasks": "^5.1.0",
 		"postcss-sort-media-queries": "^5.2.0",
-		"sass": "^1.89.1"
+		"sass": "^1.89.2"
 	}
 }
