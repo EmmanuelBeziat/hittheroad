@@ -25,11 +25,11 @@
 	],
 	"dependencies": {
 		"bootstrap": "^5.3.8",
-		"dotenv": "^17.2.2"
+		"dotenv": "^17.2.3"
 	},
 	"devDependencies": {
 		"autoprefixer-core": "^6.0.1",
-		"browserslist": "^4.26.0",
+		"browserslist": "^4.26.3",
 		"grunt": "^1.6.1",
 		"grunt-cli": "^1.5.0",
 		"grunt-contrib-clean": "^2.0.1",
@@ -48,6 +48,6 @@
 		"grunt-svgmin": "^7.0.0",
 		"load-grunt-tasks": "^5.1.0",
 		"postcss-sort-media-queries": "^5.2.0",
-		"sass": "^1.92.1"
+		"sass": "^1.93.2"
 	}
 }
