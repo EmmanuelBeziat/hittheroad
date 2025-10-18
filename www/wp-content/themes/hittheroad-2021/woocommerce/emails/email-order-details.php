@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see https://docs.woocommerce.com/document/template-structure/
+ * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
- * @version 9.7.0
+ * @version 10.1.0
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -41,7 +41,7 @@ if ($email_improvements_enabled) {
  */
 do_action('woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text, $email); ?>
 
-<h2>
+<h2 class="<?= esc_attr($heading_class); ?>">
 	<?php
 	if ($email_improvements_enabled) {
 		echo wp_kses_post(__('Order summary', 'woocommerce'));
@@ -57,13 +57,17 @@ do_action('woocommerce_email_before_order_table', $order, $sent_to_admin, $plain
 	}
 
 	if ($email_improvements_enabled) {
-		echo '<span>';
+		echo '<br><span>';
 	}
 
 	/* translators: %s: Order ID. */
-	$order_number_string = $email_improvements_enabled ? __('Order #%s', 'woocommerce') : __('[Order #%s]', 'woocommerce');
-	echo wp_kses_post($before . sprintf(__('[Order #%s]', 'woocommerce') . $after . ' (<time datetime="%s">%s</time>)', $order->get_order_number(), $order->get_date_created()->format('c'), wc_format_datetime($order->get_date_created())));
-	if ($email_improvements_enabled) {
+	$order_number_string = __( '[Order #%s]', 'woocommerce' );
+	if ( $email_improvements_enabled ) {
+		/* translators: %s: Order ID. */
+		$order_number_string = __( 'Order #%s', 'woocommerce' );
+	}
+	echo wp_kses_post( $before . sprintf( $order_number_string . $after . ' (<time datetime="%s">%s</time>)', $order->get_order_number(), $order->get_date_created()->format( 'c' ), wc_format_datetime( $order->get_date_created() ) ) );
+	if ( $email_improvements_enabled ) {
 		echo '</span>';
 	}
 	?>
@@ -122,8 +126,8 @@ do_action('woocommerce_email_before_order_table', $order, $sent_to_admin, $plain
 			if ($order->get_customer_note() && !$email_improvements_enabled) {
 				?>
 				<tr>
-					<th class="td" scope="row" colspan="2" style="text-align:<?= esc_attr($text_align); ?>;"><?php esc_html_e('Note:', 'woocommerce'); ?></th>
-					<td class="td" style="text-align:<?= esc_attr($text_align); ?>;"><?= wp_kses(nl2br(wptexturize($order->get_customer_note())), []); ?></td>
+					<th class="td text-align-left" scope="row" colspan="2" style="text-align:<?= esc_attr($text_align); ?>;"><?php esc_html_e('Note:', 'woocommerce'); ?></th>
+					<td class="td text-align-left" style="text-align:<?= esc_attr($text_align); ?>;"><?= wp_kses(nl2br(wptexturize($order->get_customer_note())), []); ?></td>
 				</tr>
 				<?php
 			}

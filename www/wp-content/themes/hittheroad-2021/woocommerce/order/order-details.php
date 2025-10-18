@@ -12,7 +12,7 @@
  *
  * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.6.0
+ * @version 10.1.0
  *
  * @var bool $show_downloads Controls whether the downloads table should be rendered.
  */
@@ -30,9 +30,10 @@ $show_purchase_note = $order->has_status(apply_filters('woocommerce_purchase_not
 $downloads = $order->get_downloadable_items();
 $actions = array_filter(
 	wc_get_account_orders_actions($order),
-	function ($action) {
-		return 'View' !== $action['name'];
-	}
+	function ($key) {
+		return 'View' !== $key;
+	},
+	ARRAY_FILTER_USE_KEY
 );
 // We make sure the order belongs to the user. This will also be true if the user is a guest, and the order belongs to a guest (userID === 0).
 $show_customer_details = $order->get_user_id() === get_current_user_id();

@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.6.0
+ * @version 9.8.0
  */
 
 if (!defined('ABSPATH')) {
@@ -28,8 +28,8 @@ if (!defined('ABSPATH')) {
  */
 
 $product_tabs = apply_filters('woocommerce_product_tabs', []);
-if (!empty($product_tabs)) : ?>
 
+if (!empty($product_tabs)) : ?>
 	<div class="woocommerce-tabs mt-4">
 		<?php /*
 		<ul class="nav nav-tabs" role="tablist">
@@ -63,6 +63,7 @@ if (!empty($product_tabs)) : ?>
 				call_user_func($product_tab['callback'], $key, $product_tab);
 			}
 		endforeach; ?>
+
 		<?php do_action('woocommerce_product_after_tabs'); ?>
 	</div>
 <?php endif;

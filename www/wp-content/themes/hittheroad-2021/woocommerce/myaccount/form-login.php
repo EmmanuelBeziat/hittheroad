@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.7.0
+ * @version 9.9.0
  */
 
 if (!defined('ABSPATH')) {
@@ -20,6 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 do_action('woocommerce_before_customer_login_form');
+
 $registerIsEnabled = 'yes' === get_option('woocommerce_enable_myaccount_registration');
 $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 

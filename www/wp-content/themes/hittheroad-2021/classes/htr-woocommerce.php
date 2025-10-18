@@ -23,7 +23,7 @@ class HTR_Woocommerce {
 		add_action('woocommerce_cart_updated', [$this, 'pack_update_discount_to_cart'], 10, 1);
 		add_filter('woocommerce_coupon_is_valid', [$this, 'pack_validate_coupon'], 10, 3);
 
-		add_filter('woocommerce_add_cart_item_data', [$this, 'add_mug_photo_to_cart'], 10, 2);
+		// add_filter('woocommerce_add_cart_item_data', [$this, 'add_mug_photo_to_cart'], 10, 2);
 		add_filter('woocommerce_get_cart_item_from_session', [$this, 'retain_mug_photo_in_cart'], 10, 2);
 		add_filter('woocommerce_cart_item_name', [$this, 'modify_mug_name_in_cart'], 10, 3);
 		add_filter('woocommerce_order_item_name', [$this, 'modify_mug_name_in_emails'], 10, 3);

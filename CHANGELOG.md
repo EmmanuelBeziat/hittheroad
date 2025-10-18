@@ -1,5 +1,24 @@
 # Suivi de mises à jour
 
+## 18.10.2025
+
+* Mises à jour templates woocommerce
+	* `hittheroad-2021/woocommerce/cart/cart.php` 7.9.0 → 10.1.0
+	* `hittheroad-2021/woocommerce/checkout/form-coupon.php` 7.0.1 → 9.8.0
+	* `hittheroad-2021/woocommerce/checkout/payment.php` 8.1.0 → 9.8.0
+	* `hittheroad-2021/woocommerce/emails/customer-invoice.php` 9.7.0 → 9.8.0
+	* `hittheroad-2021/woocommerce/emails/email-order-details.php` 9.7.0 → 10.1.0
+	* `hittheroad-2021/woocommerce/global/quantity-input.php` 9.4.0 → 10.1.0
+	* `hittheroad-2021/woocommerce/loop/result-count.php` 9.4.0 → 9.9.0
+	* `hittheroad-2021/woocommerce/myaccount/form-login.php` 9.7.0 → 9.9.0
+	* `hittheroad-2021/woocommerce/myaccount/view-order.php` 3.0.0 → 10.1.0
+	* `hittheroad-2021/woocommerce/notices/notice.php` 8.6.0 → 10.2.0
+	* `hittheroad-2021/woocommerce/order/order-details.php` 9.6.0 → 10.1.0
+	* `hittheroad-2021/woocommerce/single-product/add-to-cart/simple.php` 7.0.1 → 10.2.0
+	* `hittheroad-2021/woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php` 7.0.1 → 10.2.0
+	* `hittheroad-2021/woocommerce/single-product/product-thumbnails.php` 9.5.0 → 9.8.0
+	* `hittheroad-2021/woocommerce/single-product/tabs/tabs.php` 9.6.0 → 9.8.0
+
 ## 02.03.2025
 
 * Mises à jour templates woocommerce
