@@ -36,6 +36,7 @@ add_filter( 'wpo_ips_ink_saving_css', function( $css, $document, $current_templa
 // Ensure shop address fields always use current settings (not historical)
 add_filter( 'wpo_wcpdf_non_historical_settings', function( $settings, $document ) {
 	$shop_address_fields = array(
+		'shop_name',
 		'shop_address',
 		'shop_address_line_1',
 		'shop_address_line_2',
