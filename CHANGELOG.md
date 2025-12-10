@@ -1,5 +1,9 @@
 # Suivi de mises à jour
 
+## 10.12.2025
+
+* Debug des factures PDF (adresse)
+
 F2025 ----------------------------------------------
 
 ## 18.10.2025
