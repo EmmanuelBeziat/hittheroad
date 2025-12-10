@@ -1,6 +1,6 @@
 <?php
 $theme = wp_get_theme()->get('Version');
-define('THEME_VERSION', is_string($theme_version) ? $theme_version : false);
+define('THEME_VERSION', is_string($theme) ? $theme : false);
 
 add_action('after_setup_theme', function () {
 	add_theme_support('post-thumbnails');
