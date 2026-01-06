@@ -1,5 +1,13 @@
 # Suivi de mises à jour
 
+## 06.01.2026
+
+* Mise à jour templates woocommerce
+	`hittheroad-2021/woocommerce/emails/customer-invoice.php` 9.8.0 → 104.0
+	`hittheroad-2021/woocommerce/emails/email-order-details.hp` 10.1.0 → 10.4.0
+	`hittheroad-2021/woocommerce/notices/notice.php` 10.2.0 → 10.4.
+	`hittheroad-2021/woocommerce/single-product/related.php` 9.6.0 → 10.3.0
+
 ## 10.12.2025
 
 * Debug des factures PDF (adresse)

@@ -12,7 +12,7 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
- * @version 10.1.0
+ * @version 10.4.0
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -105,7 +105,7 @@ do_action('woocommerce_email_before_order_table', $order, $sent_to_admin, $plain
 			if ($item_totals) {
 				$i = 0;
 				foreach ($item_totals as $total) {
-					$i++;
+					++$i;
 					$last_class = ($i === $item_totals_count) ? ' order-totals-last' : '';
 					?>
 					<tr class="order-totals order-totals-<?= esc_attr($total['type'] ?? 'unknown'); ?><?= esc_attr($last_class); ?>">

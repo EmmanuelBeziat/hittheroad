@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
- * @version 9.8.0
+ * @version 10.4.0
  */
 
 use Automattic\WooCommerce\Enums\OrderStatus;
@@ -35,11 +35,12 @@ do_action('woocommerce_email_header', $email_heading, $email); ?>
 <?php echo $email_improvements_enabled ? '<div class="email-introduction">' : ''; ?>
 <p>
 <?php
-if ( ! empty( $order->get_billing_first_name() ) ) {
+if (!empty($order->get_billing_first_name())) {
 	/* translators: %s: Customer first name */
-	printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) );
-} else {
-	printf( esc_html__( 'Hi,', 'woocommerce' ) );
+	printf(esc_html__('Hi %s,', 'woocommerce'), esc_html($order->get_billing_first_name()));
+}
+else {
+	printf(esc_html__('Hi,', 'woocommerce'));
 }
 ?>
 </p>
