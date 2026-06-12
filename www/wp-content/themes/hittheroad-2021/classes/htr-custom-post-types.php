@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom Post tipes functions.
+ * Custom Post types functions.
  */
 class HTR_CustomPostTypes {
 	/**

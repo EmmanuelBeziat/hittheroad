@@ -25,11 +25,11 @@
 	],
 	"dependencies": {
 		"bootstrap": "^5.3.8",
-		"dotenv": "^17.2.3"
+		"dotenv": "^17.3.1"
 	},
 	"devDependencies": {
 		"autoprefixer-core": "^6.0.1",
-		"browserslist": "^4.27.0",
+		"browserslist": "^4.28.2",
 		"grunt": "^1.6.1",
 		"grunt-cli": "^1.5.0",
 		"grunt-contrib-clean": "^2.0.1",
@@ -44,10 +44,10 @@
 		"grunt-notify": "^0.4.5",
 		"grunt-pngmin": "^2.0.3",
 		"grunt-postcss": "^0.9.0",
-		"grunt-sass": "^4.0.0",
+		"grunt-sass": "^4.1.0",
 		"grunt-svgmin": "^7.0.0",
 		"load-grunt-tasks": "^5.1.0",
-		"postcss-sort-media-queries": "^5.2.0",
-		"sass": "^1.93.2"
+		"postcss-sort-media-queries": "^6.3.3",
+		"sass": "^1.98.0"
 	}
 }
