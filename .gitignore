@@ -22,3 +22,17 @@ www/wp-content/themes/index.php
 .env
 
 shopify
+
+.kilo/
+.claude/
+.cursor/
+.cursorrules
+.windsurf/
+.kilocode/
+.opencode/
+AGENTS.md
+CLAUDE.md
+CURSOR.md
+KILO.md
+OPENCODE.md
+WIND.md
