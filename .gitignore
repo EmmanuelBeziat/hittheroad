@@ -25,7 +25,6 @@ shopify
 
 # AI Coding Assistants & Local Configs
 .kilo/
-CLAUDE.md
 .claude/
 .cursor/
 .cursorrules
@@ -33,6 +32,7 @@ CLAUDE.md
 .kilocode/
 .opencode/
 AGENTS.md
+CLAUDE.md
 CURSOR.md
 KILO.md
 OPENCODE.md
