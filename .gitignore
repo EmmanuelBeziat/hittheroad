@@ -23,7 +23,7 @@ www/wp-content/themes/index.php
 
 shopify
 
-.kilo/
+# AI Coding Assistants (local only)
 .claude/
 .cursor/
 .cursorrules
@@ -31,7 +31,6 @@ shopify
 .kilocode/
 .opencode/
 AGENTS.md
-CLAUDE.md
 CURSOR.md
 KILO.md
 OPENCODE.md
