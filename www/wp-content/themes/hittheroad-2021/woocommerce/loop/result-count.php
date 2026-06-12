@@ -14,7 +14,7 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     9.9.0
+ * @version     10.8.0
  */
 
 if (!defined('ABSPATH')) {
@@ -23,7 +23,7 @@ if (!defined('ABSPATH')) {
 ?>
 <div class="products-page">
 	<aside class="products-sidebar">
-		<p class="products-count" data-aos="fade-up" data-aos-delay="100" data-aos-duration="200">
+		<p class="products-count" role="status" aria-relevant="all" <?php echo (empty($orderedby) || 1 === intval($total)) ? '' : 'data-is-sorted-by="true"'; ?> data-aos="fade-up" data-aos-delay="100" data-aos-duration="200">
 			<?php
 			global $productsCount;
 			$total = $productsCount;

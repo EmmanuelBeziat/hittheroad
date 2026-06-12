@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 9.7.0
+ * @version 10.5.0
  */
 
 defined('ABSPATH') || exit;
@@ -29,8 +29,13 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	<?php do_action('woocommerce_edit_account_form_start'); ?>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_first_name" id="account_first_name" required autocomplete="given-name" value="<?= esc_attr($user->first_name); ?>" placeholder="John">
-		<label for="account_first_name"><?php esc_html_e('First name', 'woocommerce'); ?> <span class="required">*</span></label>
+		<input type="text" class="form-control" name="account_first_name" id="account_first_name" required aria-required="true" autocomplete="given-name" value="<?= esc_attr($user->first_name); ?>" placeholder="John">
+		<label for="account_first_name"><?php esc_html_e('First name', 'woocommerce'); ?> <span class="required">*</span></label>
+	</div>
+
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" name="account_last_name" id="account_last_name" required aria-required="true" autocomplete="family-name" value="<?= esc_attr($user->last_name); ?>" placeholder="Doe">
+		<label for="account_last_name"><?php esc_html_e('Last name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 
 	<div class="form-floating mb-3">
@@ -39,8 +44,8 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	</div>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_display_name" id="account_display_name" required value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
-		<label for="account_display_name"><?php esc_html_e('Display name', 'woocommerce'); ?> <span class="required">*</span></label>
+		<input type="text" class="form-control" name="account_display_name" id="account_display_name" required aria-required="true" aria-describedby="account_display_name_description" value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span id="account_display_name_description"><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
+		<label for="account_display_name"><?php esc_html_e('Display name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 
 	<div class="form-floating mb-3">
@@ -61,15 +66,23 @@ do_action('woocommerce_before_edit_account_form'); ?>
 		<legend><?php esc_html_e('Password change', 'woocommerce'); ?></legend>
 
 		<div class="form-floating mb-3">
-			<input type="password" class="form-control" name="password_current" id="password_current" placeholder="Mot de passe" autocomplete="off">
+			<input type="password" class="form-control" name="password_current" id="password_current" placeholder="Mot de passe" autocomplete="current-password">
 			<label for="password_current"><?php esc_html_e('Current password (leave blank to leave unchanged)', 'woocommerce'); ?></label>
 		</div>
 		<div class="form-floating mb-3">
-			<input type="password" class="form-control" name="password_1" id="password_1" autocomplete="off" placeholder="Mot de passe">
+			<input type="password" class="form-control" name="password_1" id="password_1" autocomplete="new-password" placeholder="Mot de passe">
 			<label for="password_1"><?php esc_html_e('New password (leave blank to leave unchanged)', 'woocommerce'); ?></label>
 		</div>
 		<div class="form-floating mb-3">
-			<input type="password" class="form-control" name="password_2" id="password_2" autocomplete="off" placeholder="Mot de passe">
+			<input type="password" class="form-control" name="password_2" id="password_2" autocomplete="new-password" placeholder="Mot de passe">
+			<label for="password_2"><?php esc_html_e('Confirm new password', 'woocommerce'); ?></label>
+		</div>
+		<div class="form-floating mb-3">
+			<input type="password" class="form-control" name="password_1" id="password_1" autocomplete="new-password" placeholder="Mot de passe">
+			<label for="password_1"><?php esc_html_e('New password (leave blank to leave unchanged)', 'woocommerce'); ?></label>
+		</div>
+		<div class="form-floating mb-3">
+			<input type="password" class="form-control" name="password_2" id="password_2" autocomplete="new-password" placeholder="Mot de passe">
 			<label for="password_2"><?php esc_html_e('Confirm new password', 'woocommerce'); ?></label>
 		</div>
 	</fieldset>

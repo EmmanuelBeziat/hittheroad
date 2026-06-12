@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 10.1.0
+ * @version 10.8.0
  */
 
 defined('ABSPATH') || exit;
@@ -56,7 +56,7 @@ if (isset($notification) && $notification !== '') : ?>
 				 */
 				$product_name = apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key);
 
-				if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) {
+				if ($_product instanceof WC_Product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) {
 					$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
 					?>
 					<tr class="woocommerce-cart-form__cart-item <?= esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
@@ -148,7 +148,7 @@ if (isset($notification) && $notification !== '') : ?>
 									'woocommerce_cart_item_remove_link',
 									sprintf('<a role="button" href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><i class="fa fa-trash" aria-hidden="true"></i></a>',
 										esc_url(wc_get_cart_remove_url($cart_item_key)),
-										esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), $product_name)),
+										esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
 										esc_attr($product_id),
 										esc_attr($_product->get_sku())
 									), $cart_item_key); ?>
@@ -166,7 +166,8 @@ if (isset($notification) && $notification !== '') : ?>
 					<div class="actions-content">
 						<?php if (wc_coupons_enabled()) : ?>
 							<div class="coupon">
-								<input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" arial-label="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>">
+								<label for="coupon_code" class="screen-reader-text"><?php esc_html_e('Coupon code', 'woocommerce'); ?></label>
+								<input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" aria-label="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>">
 								<button type="submit" class="btn btn-secondary" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">Appliquer</button>
 								<?php do_action('woocommerce_cart_coupon'); ?>
 							</div>

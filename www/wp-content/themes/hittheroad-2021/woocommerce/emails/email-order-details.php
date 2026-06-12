@@ -12,7 +12,7 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
- * @version 10.4.0
+ * @version 10.8.0
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -22,6 +22,8 @@ defined('ABSPATH') || exit;
 $text_align = is_rtl() ? 'right' : 'left';
 
 $email_improvements_enabled = FeaturesUtil::feature_is_enabled('email_improvements');
+$block_email_editor_enabled = FeaturesUtil::feature_is_enabled('block_email_editor');
+$display_section_divider    = (bool) apply_filters('woocommerce_email_body_display_section_divider', true);
 $heading_class              = $email_improvements_enabled ? 'email-order-detail-heading' : '';
 $order_table_class          = $email_improvements_enabled ? 'email-order-details' : '';
 $order_total_text_align     = $email_improvements_enabled ? 'right' : 'left';
@@ -127,17 +129,22 @@ do_action('woocommerce_email_before_order_table', $order, $sent_to_admin, $plain
 				?>
 				<tr>
 					<th class="td text-align-left" scope="row" colspan="2" style="text-align:<?= esc_attr($text_align); ?>;"><?php esc_html_e('Note:', 'woocommerce'); ?></th>
-					<td class="td text-align-left" style="text-align:<?= esc_attr($text_align); ?>;"><?= wp_kses(nl2br(wptexturize($order->get_customer_note())), []); ?></td>
+					<td class="td text-align-left" style="text-align:<?= esc_attr($text_align); ?>;"><?= wp_kses_post(wpautop(wc_wptexturize_order_note($order->get_customer_note()))); ?></td>
 				</tr>
 				<?php
 			}
 
 			if ($order->get_customer_note() && $email_improvements_enabled) {
+				if ($display_section_divider) {
+					?>
+					<hr style="border: 0; border-top: 1px solid #1E1E1E; border-top-color: rgba(30, 30, 30, 0.2); margin: 20px 0;">
+					<?php
+				}
 				?>
 				<tr class="order-customer-note">
 					<td class="td text-align-left" colspan="3">
 						<b><?php esc_html_e('Customer note', 'woocommerce'); ?></b><br>
-						<?= wp_kses(nl2br(wptexturize($order->get_customer_note())), array('br' => array())); ?>
+						<?= wp_kses_post(wpautop(wc_wptexturize_order_note($order->get_customer_note()))); ?>
 					</td>
 				</tr>
 				<?php

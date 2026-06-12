@@ -14,7 +14,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 10.1.0
+ * @version 10.6.0
  */
 
 defined('ABSPATH') || exit;
@@ -53,7 +53,7 @@ $notes = $order->get_customer_order_notes();
 				<div class="woocommerce-OrderUpdate-text comment-text">
 					<p class="woocommerce-OrderUpdate-meta meta"><?= date_i18n(esc_html__('l jS \o\f F Y, h:ia', 'woocommerce'), strtotime($note->comment_date)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 					<div class="woocommerce-OrderUpdate-description description">
-						<?= wpautop(wptexturize($note->comment_content)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?= wp_kses_post(wpautop(wptexturize($note->comment_content))); ?>
 					</div>
 
 				</div>
