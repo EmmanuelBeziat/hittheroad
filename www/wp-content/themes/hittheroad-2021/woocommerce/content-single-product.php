@@ -65,17 +65,7 @@ if (isset($notification) && $notification !== '') : ?>
 		 */
 		do_action('woocommerce_single_product_summary');
 		?>
-
-		<div class="mt-2 mb-2">
-			<?php
-			$mug_product = get_page_by_path('mug', OBJECT, 'product');
-			if ($mug_product) :
-				$mug_product_url = add_query_arg('mug_photo_id', $current_product, get_permalink($mug_product->ID)); ?>
-				<a href="<?= esc_url($mug_product_url); ?>" class="btn btn-primary">Commander en mug</a>
-			<?php endif; ?>
-		</div>
 	</div>
-
 
 	<?php
 	$process = get_field('product-description', 'option');

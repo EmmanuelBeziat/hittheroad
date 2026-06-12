@@ -33,12 +33,7 @@ get_header('shop'); ?>
 	while (have_posts()) :
 		the_post();
 
-		if (get_post_field('post_name', get_the_ID()) === 'mug' && isset($_GET['mug_photo_id'])) {
-			wc_get_template_part('content', 'single-product-mug');
-		}
-		else {
-			wc_get_template_part('content', 'single-product');
-		}
+		wc_get_template_part('content', 'single-product');
 	endwhile; // end of the loop.
 
 	/**
