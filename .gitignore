@@ -24,6 +24,7 @@ www/wp-content/themes/index.php
 shopify
 
 # AI Coding Assistants (local only)
+.kilo/
 .claude/
 .cursor/
 .cursorrules
