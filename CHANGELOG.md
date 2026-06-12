@@ -10,6 +10,7 @@
   * `hittheroad-2021/woocommerce/myaccount/view-order.php` 10.1.0 → 10.6.0
   * `hittheroad-2021/woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php` 10.2.0 → 10.5.2
   * `hittheroad-2021/woocommerce/single-product/product-image.php` 9.7.0 → 10.5.0
+* Nettoyage du code : suppression de la logique et des templates liés aux "mugs" (fonctionnalité abandonnée).
 
 ## 06.01.2026
 
