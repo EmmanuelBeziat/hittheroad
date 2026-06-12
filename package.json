@@ -16,7 +16,8 @@
 		"watch": "grunt dev:quick",
 		"build": "grunt build",
 		"build:styles": "grunt build:styles",
-		"build:scripts": "grunt build:scripts"
+		"build:scripts": "grunt build:scripts",
+		"check:wc": "node .kilo/scripts/check-wc-templates.js"
 	},
 	"browserslist": [
 		">0.25%",
