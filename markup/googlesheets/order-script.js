@@ -4,14 +4,17 @@ function doGet(e) {
 }
 
 function productInformations (item) {
+	const sizeMeta = item.meta_data?.find(m => m.key?.toLowerCase().includes('size')) || item.meta_data?.[0]
+	const finishMeta = item.meta_data?.find(m => m.key?.toLowerCase().includes('finish')) || item.meta_data?.[1]
+
 	return {
 		price: item.price,
 		name: item.parent_name,
 		quantity: item.quantity,
-		size: `${item.meta_data[0].display_value}`,
+		size: sizeMeta?.display_value ?? '',
 		width: item.width,
 		height: item.height,
-		finish: item.meta_data[1].value.Fields[0].SelectedValues[0].Value,
+		finish: finishMeta?.value?.Fields?.[0]?.SelectedValues?.[0]?.Value ?? '',
 		number: item.number,
 		vimeoCode: item.vimeo_code
 	}
@@ -285,7 +288,10 @@ const dropdowns = [
   { column: 39, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
 ]
 
-const getPhoneIndicator = iso => countries.find(item => item.iso === iso.toLowerCase()).tel || ''
+const getPhoneIndicator = iso => {
+	const country = countries.find(item => item.iso === iso.toLowerCase())
+	return country ? `+${country.tel}` : ''
+}
 
 function createDropdown (range, list) {
   if (!list) return
@@ -318,7 +324,12 @@ function sendEmailNotification (email, orderNumber, sheetUrl) {
 //get invoked when webapp receives a POST request
 function writeContent (e) {
 	const sheet = SpreadsheetApp.getActiveSheet()
-	const data = JSON.parse([e.postData.contents])
+	const data = JSON.parse(e.postData.contents)
+
+	if (!data.number || !data.shipping || !data.line_items || !Array.isArray(data.line_items)) {
+		Logger.log('Données de commande invalides: champs requis manquants — ' + JSON.stringify(data))
+	}
+
 	const order = {
 		number: data.number,
 		date: data.date_created,
@@ -327,9 +338,10 @@ function writeContent (e) {
 	const shipping = {
 		firstname: data.shipping.first_name,
 		lastname: data.shipping.last_name,
-		indicator: `'+${getPhoneIndicator(data.shipping.country)}`,
+		indicator: `'${getPhoneIndicator(data.shipping.country)}`,
 		phone: `'${data.shipping.phone}`,
 		email: data.meta_data.find(item => item.key === '_shipping_email').value,
+		company: data.shipping.company,
 		address1: data.shipping.address_1,
 		address2: data.shipping.address_2,
 		postcode: data.shipping.postcode,
@@ -407,10 +419,11 @@ function doPost (e) {
 
 	if (lock.tryLock(timer)) {
     try {
-			writeContent(e)
+			return writeContent(e)
     }
 		catch (error) {
 			Logger.log('Erreur dans doPost: ' + error.message)
+			return HtmlService.createHtmlOutput('Erreur: ' + error.message)
 		}
 		finally {
 			lock.releaseLock()
@@ -418,5 +431,6 @@ function doPost (e) {
 	}
 	else {
 		Logger.log('Impossible d’obtenir le verrou.');
+		return HtmlService.createHtmlOutput('Erreur: service occupé, réessayez plus tard')
 	}
 }
