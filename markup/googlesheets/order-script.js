@@ -301,9 +301,9 @@ function createDropdown (range, list) {
 	range.setValue(list[0])
 }
 
-function createCheckboxes (sheet, cells = [1, 30, 35, 40]) {
+function createCheckboxes (sheet, row, cells = [1, 30, 35, 40]) {
 	cells.forEach(cell => {
-		sheet.getRange(sheet.getLastRow(), cell).insertCheckboxes()
+		sheet.getRange(row, cell).insertCheckboxes()
 	})
 }
 
@@ -346,7 +346,7 @@ function writeContent (e) {
 		address2: data.shipping.address_2,
 		postcode: data.shipping.postcode,
 		city: data.shipping.city,
-		country: new Intl.DisplayNames(['EN'], { type: 'region' }).of(data.shipping.country),
+		country: countries.find(c => c.iso === data.shipping.country.toLowerCase())?.name ?? data.shipping.country,
 		note: data.customer_note,
 		cost: data.shipping_total
 	}
@@ -390,12 +390,12 @@ function writeContent (e) {
 				total,
 				'',
 			])
-			createCheckboxes(sheet)
+			createCheckboxes(sheet, sheet.getLastRow())
 		}
 		else {
 			const product = productInformations(item)
 			sheet.appendRow(makeProductRow(product, orderNumber))
-			createCheckboxes(sheet)
+			createCheckboxes(sheet, sheet.getLastRow())
 		}
 
 		dropdowns.forEach(({ column, list }) => {
