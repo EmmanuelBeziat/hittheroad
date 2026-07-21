@@ -6,6 +6,9 @@
   * Upload SVG restreint aux administrateurs (`classes/htr-tools.php`)
   * Sanitization des `$_POST` dans la sauvegarde des variations (`functions.php`, `classes/htr-woocommerce.php`)
   * Ajout des guards `current_user_can('edit_product')` sur les hooks de sauvegarde
+* Corrections de robustesse et performance (audit thème)
+  * Guard de récursion sur `pack_apply_discount_to_cart()` (`classes/htr-woocommerce.php`)
+  * `update_option()` déplacés de `after_setup_theme` vers `after_switch_theme` (`classes/htr-templates.php`)
 
 ## 21.07.2026
 

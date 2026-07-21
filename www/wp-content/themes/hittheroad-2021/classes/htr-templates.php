@@ -8,6 +8,7 @@ class HTR_Templates {
 	 */
 	function __construct () {
 		add_action('after_setup_theme', [$this, 'image_sizes']);
+		add_action('after_switch_theme', [$this, 'image_sizes_options']);
 		add_action('body_class', [$this, 'body_classes']);
 		add_filter('the_content', [$this, 'the_content'], 999);
 		add_filter('intermediate_image_sizes_advanced', [$this, 'remove_default_image_sizes']);
@@ -28,9 +29,9 @@ class HTR_Templates {
 	}
 
 	/**
-	 * Add custom sizes for images.
+	 * Set image size options
 	 */
-	public function image_sizes () {
+	public function image_sizes_options () {
 		update_option('thumbnail_size_h', 0);
 		update_option('thumbnail_size_w', 0);
 		update_option('medium_size_h', 0);
@@ -44,7 +45,12 @@ class HTR_Templates {
 		update_option('shop_catalog', 0);
 		update_option('shop_single', 768);
 		update_option('shop_thumbnail', 0);
+	}
 
+	/**
+	 * Add custom sizes for images.
+	 */
+	public function image_sizes () {
 		remove_image_size('woocommerce_thumbnail');
 		remove_image_size('woocommerce_single');
 		remove_image_size('woocommerce_gallery_thumbnail');

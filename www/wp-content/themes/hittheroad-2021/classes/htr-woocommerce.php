@@ -231,10 +231,17 @@ class HTR_Woocommerce {
 	 * Apply a discount to the cart based on the number of products from a specific category.
 	 */
 	public function pack_apply_discount_to_cart () {
+		static $running = false;
+		if ($running) {
+			return;
+		}
+		$running = true;
+
 		$couponRules = $this->get_custom_coupon_rules();
 		$cart = WC()->cart;
 
 		if (empty($cart->get_cart())) {
+			$running = false;
 			return;
 		}
 
@@ -293,6 +300,7 @@ class HTR_Woocommerce {
 				}
 			}
     }
+		$running = false;
 	}
 
 	/**
