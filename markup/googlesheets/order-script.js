@@ -5,13 +5,15 @@ function doGet(e) {
 
 function productInformations (item) {
 	const sizeMeta = item.meta_data?.find(m => m.key?.toLowerCase().includes('size')) || item.meta_data?.[0]
+	const size = sizeMeta?.display_value ?? ''
 	const finishMeta = item.meta_data?.find(m => m.key === 'rn_entry') || item.meta_data?.[1]
 
 	return {
 		price: item.price,
 		name: item.parent_name,
+		cert: `${item.parent_name} ${size} ${item.number}`,
 		quantity: item.quantity,
-		size: sizeMeta?.display_value ?? '',
+		size: size,
 		width: item.width,
 		height: item.height,
 		finish: finishMeta?.value?.Fields?.[0]?.SelectedValues?.[0]?.Value ?? '',
@@ -25,7 +27,8 @@ const makeProductRow = (product, orderNumber) => [
 	orderNumber,
 	'',
 	product.name,
-	'', '',
+	product.cert,
+	'',
 	product.quantity,
 	product.size,
 	product.width,
@@ -378,7 +381,8 @@ function writeContent (e) {
 				orderNumber,
 				order.date,
 				product.name,
-				'', '',
+				product.cert,
+				'',
 				product.quantity,
 				product.size,
 				product.width,
