@@ -12,7 +12,7 @@
 
 	$components = parse_url($_SERVER['REQUEST_URI']);
 	$metaQuery = [
-	'relation' => 'AND',
+		'relation' => 'AND',
 		[
 			'relation' => 'OR',
 			[
@@ -26,22 +26,41 @@
 		]
 	];
 
+	// Build a tax_query from URL params, restricted to registered product taxonomies.
+	$taxQuery = [];
+
 	if (isset($components['query'])) {
 		parse_str($components['query'], $params);
-		$show = [
-			'relation' => 'AND'
-		];
+		$productTaxonomies = get_object_taxonomies('product');
 
 		foreach ($params as $key => $value) :
-			$show[] = [
-				'taxonomy' => $key,
-				'value' => $value,
-				'compare' => 'IN',
+			$taxonomy = sanitize_key($key);
+			if (!in_array($taxonomy, $productTaxonomies, true)) {
+				continue;
+			}
+
+			$terms = array_filter(array_map('sanitize_title', (array) $value));
+			if (empty($terms)) {
+				continue;
+			}
+
+			$taxQuery[] = [
+				'taxonomy' => $taxonomy,
+				'field' => 'slug',
+				'terms' => $terms,
+				'operator' => 'IN',
 			];
 		endforeach;
-		array_push($metaQuery, $show);
+
+		if (count($taxQuery) > 1) {
+			$taxQuery['relation'] = 'AND';
+		}
 	}
-	$args = array_merge($args, ['meta_query' => $metaQuery]);
+
+	$args['meta_query'] = $metaQuery;
+	if (!empty($taxQuery)) {
+		$args['tax_query'] = $taxQuery;
+	}
 
 	$loop = new WP_Query($args);
 	$productsCount = $loop->found_posts;

@@ -181,7 +181,6 @@ class HTR_Woocommerce {
 		}
 
 		if (!$packs_list->isActive) {
-			error_log("No active packs found");
 			return;
 		}
 
@@ -190,7 +189,6 @@ class HTR_Woocommerce {
 		$pack_products = [];
 
 		if ($pack_product_count < 2) {
-			error_log("Not enough pack products in cart");
 			return;
 		}
 
@@ -213,14 +211,10 @@ class HTR_Woocommerce {
 					$processed_quantity++;
 					$quantity--;
 
-					error_log("Processed quantity: $processed_quantity, Discount product number: {$discount->product_number}");
-
 					if ($processed_quantity == $discount->product_number) {
 						$original_price = $cart_item['data']->get_regular_price();
 						$discounted_price = $original_price * ((100 - $discount->discount) / 100);
 						$cart_item['data']->set_price($discounted_price);
-						// Log debug information
-						error_log("Discount applied: Product ID: {$cart_item['product_id']}, Original Price: $original_price, Discounted Price: $discounted_price");
 						$processed_quantity = 0; // Reset processed_quantity to apply next discount level correctly
 						break; // Break to avoid applying the same discount multiple times
 					}
