@@ -45,8 +45,11 @@ class HTR_Woocommerce {
 	}
 
 	public function save_variation_max_qty_field ($variation_id, $loop) {
-		$max_stock_qty = isset($_POST['max_stock_qty'][$loop]) ? $_POST['max_stock_qty'][$loop] : '';
-		update_post_meta($variation_id, 'max_stock_qty', esc_attr($max_stock_qty));
+		if (!current_user_can('edit_product', $variation_id)) {
+			return;
+		}
+		$max_stock_qty = isset($_POST['max_stock_qty'][$loop]) ? absint($_POST['max_stock_qty'][$loop]) : 0;
+		update_post_meta($variation_id, 'max_stock_qty', $max_stock_qty);
 	}
 
 	public function load_variation_max_qty_field ($variation) {

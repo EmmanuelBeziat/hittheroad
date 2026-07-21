@@ -54,7 +54,9 @@ class HTR_Tools {
 	 * @return $mime_types array
 	 */
 	public function mime_types ($mime_types) {
-		$mime_types['svg'] = 'image/svg+xml';
+		if (current_user_can('manage_options')) {
+			$mime_types['svg'] = 'image/svg+xml';
+		}
 		$mime_types['webp'] = 'image/webp';
 
 		return $mime_types;
@@ -70,10 +72,12 @@ class HTR_Tools {
 			'application/pdf',
 			'image/jpeg',
 			'image/png',
-			'image/webp',
-			'image/svg+xml'
+			'image/webp'
 		];
+		if (current_user_can('manage_options')) {
+			$mime_types[] = 'image/svg+xml';
+		}
     return $mime_types;
-	}
+  }
 }
 new HTR_Tools();

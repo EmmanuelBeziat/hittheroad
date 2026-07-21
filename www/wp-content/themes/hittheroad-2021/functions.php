@@ -72,10 +72,12 @@ function acf_prepare_field_update_field_name($field) {
 
 // Save variation data
 add_action('woocommerce_save_product_variation', function($variation_id, $i = -1) {
-	// Update all fields for the current variation
+	if (!current_user_can('edit_product', $variation_id)) {
+		return;
+	}
 	if (!empty($_POST['acf']) && is_array($_POST['acf']) && array_key_exists($i, $_POST['acf']) && is_array(($fields = $_POST['acf'][ $i ]))) {
 		foreach ($fields as $key => $val) {
-			update_field($key, $val, $variation_id);
+			update_field(sanitize_key($key), sanitize_text_field($val), $variation_id);
 		}
 	}
 }, 10, 2);

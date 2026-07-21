@@ -1,5 +1,12 @@
 # Suivi de mises à jour
 
+## 22.07.2026
+
+* Corrections de sécurité (audit thème)
+  * Upload SVG restreint aux administrateurs (`classes/htr-tools.php`)
+  * Sanitization des `$_POST` dans la sauvegarde des variations (`functions.php`, `classes/htr-woocommerce.php`)
+  * Ajout des guards `current_user_can('edit_product')` sur les hooks de sauvegarde
+
 ## 21.07.2026
 
 * Mise à jour du script Pacific Colours (failsafe, validation de données, mail variable)
