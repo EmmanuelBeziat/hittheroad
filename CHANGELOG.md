@@ -2,7 +2,7 @@
 
 ## 12.06.2026
 
-* Mises à jour templates woocommerce (conservation du markup et classes personnalisées)
+* Mises à jour templates woocommerce
   * `hittheroad-2021/woocommerce/cart/cart.php` 10.1.0 → 10.8.0
   * `hittheroad-2021/woocommerce/emails/email-order-details.php` 10.4.0 → 10.8.0
   * `hittheroad-2021/woocommerce/loop/result-count.php` 9.9.0 → 10.8.0
@@ -10,7 +10,7 @@
   * `hittheroad-2021/woocommerce/myaccount/view-order.php` 10.1.0 → 10.6.0
   * `hittheroad-2021/woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php` 10.2.0 → 10.5.2
   * `hittheroad-2021/woocommerce/single-product/product-image.php` 9.7.0 → 10.5.0
-* Nettoyage du code : suppression de la logique et des templates liés aux "mugs" (fonctionnalité abandonnée).
+* Nettoyage du code : suppression de la logique et des templates liés aux mugs (fonctionnalité abandonnée).
 
 ## 06.01.2026
 
