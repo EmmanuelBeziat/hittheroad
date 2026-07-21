@@ -1,11 +1,11 @@
 //get invoked when web app receives a GET request
 function doGet(e) {
-  return HtmlService.createHtmlOutput('Requête Reçue')
+	return HtmlService.createHtmlOutput('Requête Reçue')
 }
 
 function productInformations (item) {
 	const sizeMeta = item.meta_data?.find(m => m.key?.toLowerCase().includes('size')) || item.meta_data?.[0]
-	const finishMeta = item.meta_data?.find(m => m.key?.toLowerCase().includes('finish')) || item.meta_data?.[1]
+	const finishMeta = item.meta_data?.find(m => m.key === 'rn_entry') || item.meta_data?.[1]
 
 	return {
 		price: item.price,
@@ -30,12 +30,14 @@ const makeProductRow = (product, orderNumber) => [
 	product.size,
 	product.width,
 	product.height,
+	'',
 	product.finish,
 	product.number,
+	product.vimeoCode,
 	'', '', '', '', '', '', '', '', '', '', '', '', '',
 	product.price,
-	product.vimeoCode,
-	' '
+	'',
+	''
 ]
 
 const countries = [
@@ -278,14 +280,14 @@ const countries = [
 ]
 
 const dropdowns = [
-  { column: 31, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
-  { column: 32, list: ['A FAIRE', 'FAIT', 'N/A'] },
-  { column: 33, list: ['A FAIRE', 'FAIT F6000', 'FAIT F6400', 'FAIT F7200', 'N/A'] },
-  { column: 34, list: ['A FAIRE', 'FAIT F6000', 'FAIT F6400', 'FAIT F7200', 'N/A'] },
-  { column: 36, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
-  { column: 37, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
-  { column: 38, list: ['A FAIRE', 'FAIT', 'N/A'] },
-  { column: 39, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+	{ column: 31, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+	{ column: 32, list: ['A FAIRE', 'FAIT', 'N/A'] },
+	{ column: 33, list: ['A FAIRE', 'FAIT F6000', 'FAIT F6400', 'FAIT F7200', 'N/A'] },
+	{ column: 34, list: ['A FAIRE', 'FAIT F6000', 'FAIT F6400', 'FAIT F7200', 'N/A'] },
+	{ column: 36, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+	{ column: 37, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
+	{ column: 38, list: ['A FAIRE', 'FAIT', 'N/A'] },
+	{ column: 39, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
 ]
 
 const getPhoneIndicator = iso => {
@@ -294,7 +296,7 @@ const getPhoneIndicator = iso => {
 }
 
 function createDropdown (range, list) {
-  if (!list) return
+	if (!list) return
 	const rule = SpreadsheetApp.newDataValidation().requireValueInList(list, true).setAllowInvalid(true).build()
 	range.setDataValidation(rule)
 	// Set the initial value to the first item in the list
@@ -307,17 +309,28 @@ function createCheckboxes (sheet, row, cells = [1, 30, 35, 40]) {
 	})
 }
 
+function isValidEmail (email) {
+	if (!email) return false
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+	return emailRegex.test(email)
+}
+
 function sendEmailNotification (email, orderNumber, sheetUrl) {
+	if (!isValidEmail(email)) {
+		Logger.log('Email invalide ou manquant, notification non envoyée: ' + email)
+		return
+	}
+
 	try {
 		MailApp.sendEmail({
 			to: email,
 			subject: `[HitTheRoad] Commande #${orderNumber}`,
 			htmlBody: `Une nouvelle commande a été ajoutée sur <a href="${sheetUrl}">le Google Sheet HitTheRoad</a>.`
 		});
-		Logger.log('Email envoyé avec succès.');
+		Logger.log('Email envoyé avec succès à: ' + email);
 	}
 	catch (error) {
-		Logger.log('Erreur lors de l’envoi de l’email : ' + error.message);
+		Logger.log('Erreur lors de l’envoi de l’email : ' + error.message);
 	}
 }
 
@@ -333,7 +346,8 @@ function writeContent (e) {
 	const order = {
 		number: data.number,
 		date: data.date_created,
-		status: data.status
+		status: data.status,
+		email: data.order_email_gsheet || ''
 	}
 	const shipping = {
 		firstname: data.shipping.first_name,
@@ -404,7 +418,7 @@ function writeContent (e) {
 
 		// Get the URL of the current Google Sheet
 		const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
-		sendEmailNotification('', orderNumber, sheetUrl)
+		sendEmailNotification(order.email, orderNumber, sheetUrl)
 	})
 
 	// Small pause to try avoid exceeds of writing quota
@@ -418,16 +432,16 @@ function doPost (e) {
 	const timer = 5000
 
 	if (lock.tryLock(timer)) {
-    try {
+		try {
 			return writeContent(e)
-    }
+		}
 		catch (error) {
 			Logger.log('Erreur dans doPost: ' + error.message)
 			return HtmlService.createHtmlOutput('Erreur: ' + error.message)
 		}
 		finally {
 			lock.releaseLock()
-    }
+		}
 	}
 	else {
 		Logger.log('Impossible d’obtenir le verrou.');

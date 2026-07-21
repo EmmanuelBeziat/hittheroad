@@ -150,6 +150,9 @@ class HTR_Woocommerce {
 			$payload['line_items'][$key]['vimeo_code'] = $code;
 		}
 
+		$orderEmail = get_field('order_email_gsheet', 'option');
+		$payload['order_email_gsheet'] = is_email($orderEmail) ? $orderEmail : '';
+
 		return $payload;
 	}
 
