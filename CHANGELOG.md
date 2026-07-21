@@ -1,5 +1,13 @@
 # Suivi de mises à jour
 
+## 21.07.2026
+
+* Mise à jour du script Pacific Colours (failsafe, validation de données, mail variable)
+* Ajout variable de mailing Options ACF
+* Mise à jour templates woocommerce
+  * `hittheroad-2021/woocommerce/order/order-details.php` 10.1.0 → 10.9.0
+  * `hittheroad-2021/woocommerce/single-product/add-to-cart/variable.php` 9.6.0 → 10.9.0
+
 ## 12.06.2026
 
 * Mises à jour templates woocommerce
