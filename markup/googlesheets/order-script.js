@@ -290,7 +290,6 @@ const dropdowns = [
 	{ column: 36, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
 	{ column: 37, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
 	{ column: 38, list: ['A FAIRE', 'FAIT', 'N/A'] },
-	{ column: 39, list: ['A FAIRE', 'FAIT', 'N/A', 'EN COURS'] },
 ]
 
 const getPhoneIndicator = iso => {
@@ -306,7 +305,7 @@ function createDropdown (range, list) {
 	range.setValue(list[0])
 }
 
-function createCheckboxes (sheet, row, cells = [1, 30, 35, 40]) {
+function createCheckboxes (sheet, row, cells = [1, 30, 35, 41]) {
 	cells.forEach(cell => {
 		sheet.getRange(row, cell).insertCheckboxes()
 	})
