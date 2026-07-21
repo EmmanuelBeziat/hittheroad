@@ -14,7 +14,6 @@ class HTR_Woocommerce {
 		add_action('woocommerce_available_variation', [$this, 'load_variation_max_qty_field']);
 
 		add_action('woocommerce_cart_calculate_fees', [$this, 'woocommerce_custom_shipping_tax'], 10, 1);
-		add_action('wp_head', [$this, 'get_current_shipping_method']);
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
@@ -64,8 +63,8 @@ class HTR_Woocommerce {
 
 		$packages = WC()->shipping->get_packages();
 		foreach ($packages as $i => $package) {
-			$chosen_method = isset(WC()->session->chosen_shipping_methods[$i]) ? WC()->session->chosen_shipping_methods[$i] : '';
-			$chosen_label = $package['rates'][$chosen_method]->label;
+			$chosen_method = WC()->session->chosen_shipping_methods[$i] ?? '';
+			$chosen_label = isset($package['rates'][$chosen_method]) ? $package['rates'][$chosen_method]->label : null;
 		}
 
 		return $chosen_label;
@@ -79,7 +78,11 @@ class HTR_Woocommerce {
 		}
 
 		$shipping_method = $this->get_current_shipping_method();
-		$tax = $shipping_method === 'Express' ? get_field('shipping-taxes', 'option')['shipping-tax-express'] : get_field('shipping-taxes', 'option')['shipping-tax-std'];
+		$shipping_taxes = get_field('shipping-taxes', 'option');
+		if (!is_array($shipping_taxes)) {
+			return;
+		}
+		$tax = $shipping_method === 'Express' ? ($shipping_taxes['shipping-tax-express'] ?? 0) : ($shipping_taxes['shipping-tax-std'] ?? 0);
 		$percentage = $tax / 100;
 		$shipping_total = $woocommerce->cart->get_shipping_total() * $percentage ?: 0;
 		$woocommerce->cart->add_fee('Supplément carburant', $shipping_total, true, '');
@@ -125,22 +128,20 @@ class HTR_Woocommerce {
 			if ($parent_product_id) {
 				$vimeoCode = get_field('vimeo-code', $parent_product_id);
 				$videoId = intval(get_field('movie', $parent_product_id)) ?? NULL;
-				if ($vimeoCode && $videoId) {
+				if ($vimeoCode && $videoId && class_exists('HTRVimeoCode')) {
 					$HTRVimeoCode = new HTRVimeoCode();
-					if ($HTRVimeoCode instanceof HTRVimeoCode) {
-						$vimeo = $HTRVimeoCode->applyCodeAtSale($videoId) ?? NULL;
+					$vimeo = $HTRVimeoCode->applyCodeAtSale($videoId) ?? NULL;
 
-						if (isset($vimeo) && $vimeo) {
-							$code = $vimeo->code;
-						}
-						else {
-							$orderNumber = $payload['id'];
-							$email = get_option('admin_email');
-							$subject = 'Code Viméo manquant pour la commande n°' . $orderNumber;
-							$message = 'La commande n° ' . $orderNumber . ' a besoin d’un code Viméo qui n’a pas pu être ajouté automatiquement.';
-							wp_mail($email, $subject, $message);
-							error_log(print_r('Code Viméo manquant pour la commande n°' . $orderNumber, true));
-						}
+					if (isset($vimeo) && $vimeo) {
+						$code = $vimeo->code;
+					}
+					else {
+						$orderNumber = $payload['id'];
+						$email = get_option('admin_email');
+						$subject = 'Code Viméo manquant pour la commande n°' . $orderNumber;
+						$message = 'La commande n° ' . $orderNumber . ' a besoin d’un code Viméo qui n’a pas pu être ajouté automatiquement.';
+						wp_mail($email, $subject, $message);
+						error_log(print_r('Code Viméo manquant pour la commande n°' . $orderNumber, true));
 					}
 				}
 			}

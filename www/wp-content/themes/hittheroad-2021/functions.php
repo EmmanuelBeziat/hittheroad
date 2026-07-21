@@ -110,6 +110,7 @@ function noIndexPage ($id) {
 	endforeach;
 }
 
+if (!function_exists('wc_dropdown_variation_attribute_options')) {
 function wc_dropdown_variation_attribute_options($args = []) {
 	$args = wp_parse_args(
 		apply_filters('woocommerce_dropdown_variation_attribute_options_args', $args),
@@ -181,6 +182,7 @@ function wc_dropdown_variation_attribute_options($args = []) {
 
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo apply_filters('woocommerce_dropdown_variation_attribute_options_html', $html, $args);
+}
 }
 
 add_filter('wpcf7_autop_or_not', '__return_false');
