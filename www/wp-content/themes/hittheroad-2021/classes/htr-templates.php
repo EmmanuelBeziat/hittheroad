@@ -94,11 +94,34 @@ class HTR_Templates {
 		return $content;
 	}
 
+	/**
+	 * Output a noindex meta tag if the current page has the hide-from-shop ACF field enabled.
+	 *
+	 * Hooked to wp_head with priority 2.
+	 */
 	public function unindex () {
 		$hidden = get_field('hide-from-shop', get_queried_object_id());
 		if ($hidden) : ?>
 		<meta name="robots" content="noindex,nofollow">
 		<?php endif;
+	}
+
+	/**
+	 * Output a noindex meta tag if the current page ID is in the no-index list.
+	 *
+	 * Checks the ACF option field 'no-index' which contains an array of page IDs that should be hidden from search engines.
+	 *
+	 * @param int $id The post/page ID to check.
+	 */
+	public function noIndexPage ($id) {
+		$noIndexPages = get_field('no-index', 'option');
+		if (empty($noIndexPages) || !is_array($noIndexPages)) return;
+
+		foreach ($noIndexPages as $page) {
+			if ($id == $page) {
+				echo '<meta name="robots" content="noindex,nofollow">';
+			}
+		}
 	}
 }
 

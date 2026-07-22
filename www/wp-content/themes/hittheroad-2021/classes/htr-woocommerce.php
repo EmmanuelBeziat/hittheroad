@@ -3,6 +3,8 @@
  * Woocommerce functions.
  */
 class HTR_Woocommerce {
+	private $acf_variation_index = 0;
+
 	/**
 	 * Add Wordpress' actions and filters.
 	 */
@@ -12,6 +14,14 @@ class HTR_Woocommerce {
 		add_action('woocommerce_product_after_variable_attributes', [$this, 'variation_max_qty_field'], 10, 3);
 		add_action('woocommerce_save_product_variation', [$this, 'save_variation_max_qty_field'], 10, 2);
 		add_action('woocommerce_available_variation', [$this, 'load_variation_max_qty_field']);
+
+		// ACF on variations
+		add_filter('woocommerce_available_variation', [$this, 'load_variation_settings_fields']);
+		add_action('woocommerce_product_after_variable_attributes', [$this, 'render_acf_variation_fields'], 10, 3);
+		add_action('woocommerce_save_product_variation', [$this, 'save_acf_variation_fields'], 10, 2);
+
+		// Address fields
+		add_filter('woocommerce_default_address_fields', [$this, 'remove_state_field']);
 
 		add_action('woocommerce_cart_calculate_fees', [$this, 'woocommerce_custom_shipping_tax'], 10, 1);
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
@@ -26,7 +36,13 @@ class HTR_Woocommerce {
 		add_filter('woocommerce_webhook_payload', [$this, 'add_custom_webhook_payload'], 10, 4);
 	}
 
-	// Quantity
+	/**
+	 * Render the max stock quantity input field in the variation admin.
+	 *
+	 * @param int $loop Current variation index.
+	 * @param array $variation_data Variation data.
+	 * @param WC_Product $variation Variation product object.
+	 */
 	public function variation_max_qty_field ($loop, $variation_data, $variation) {
 		woocommerce_wp_text_input([
 			'id' => "max_stock_qty{$loop}",
@@ -44,6 +60,12 @@ class HTR_Woocommerce {
 		]);
 	}
 
+	/**
+	 * Save the max stock quantity meta for a product variation.
+	 *
+	 * @param int $variation_id The variation post ID.
+	 * @param int $loop The variation index.
+	 */
 	public function save_variation_max_qty_field ($variation_id, $loop) {
 		if (!current_user_can('edit_product', $variation_id)) {
 			return;
@@ -52,15 +74,112 @@ class HTR_Woocommerce {
 		update_post_meta($variation_id, 'max_stock_qty', $max_stock_qty);
 	}
 
+	/**
+	 * Load the max stock quantity meta into variation data.
+	 *
+	 * @param array $variation Variation data array.
+	 * @return array Modified variation data with max_stock_qty.
+	 */
 	public function load_variation_max_qty_field ($variation) {
 		$variation['max_stock_qty'] = get_post_meta($variation['variation_id'], 'max_stock_qty', true);
 		return $variation;
 	}
 
+	/**
+	 * Load custom settings fields for product variations.
+	 *
+	 * @param array $variations Variation data array.
+	 * @return array Modified variation data with custom fields.
+	 */
+	public function load_variation_settings_fields ($variations) {
+		$variations['text_field'] = get_post_meta($variations['variation_id'], '_text_field', true);
+		return $variations;
+	}
+
+	/**
+	 * Render ACF fields in the product variation admin interface.
+	 *
+	 * This workaround ensures ACF fields are properly namespaced for each variation by temporarily hooking into acf/prepare_field to update field names.
+	 *
+	 * @param int $loop Current variation index.
+	 * @param array $variation_data Variation data (unused).
+	 * @param WC_Product $variation Variation product object.
+	 */
+	public function render_acf_variation_fields ($loop, $variation_data, $variation) {
+		$this->acf_variation_index = $loop;
+		add_filter('acf/prepare_field', [$this, 'acf_prepare_field_update_field_name']);
+
+		$acf_field_groups = acf_get_field_groups();
+		foreach ($acf_field_groups as $acf_field_group) {
+			foreach ($acf_field_group['location'] as $group_locations) {
+				foreach ($group_locations as $rule) {
+					if ($rule['param'] == 'post_type' && $rule['operator'] == '==' && $rule['value'] == 'product_variation') {
+						acf_render_fields($variation->ID, acf_get_fields($acf_field_group));
+						break 2;
+					}
+				}
+			}
+		}
+
+		remove_filter('acf/prepare_field', [$this, 'acf_prepare_field_update_field_name']);
+	}
+
+	/**
+	 * Update ACF field names to include the variation index.
+	 *
+	 * Callback for acf/prepare_field filter. Modifies field names from acf[...] to acf[{index}][...] to properly namespace fields per variation.
+	 *
+	 * @param array $field ACF field configuration array.
+	 * @return array Modified field configuration with updated name.
+	 */
+	public function acf_prepare_field_update_field_name ($field) {
+		$field['name'] = preg_replace('/^acf\[/', "acf[{$this->acf_variation_index}][", $field['name']);
+		return $field;
+	}
+
+	/**
+	 * Save ACF field values for product variations.
+	 *
+	 * Handles saving all ACF fields submitted via $_POST['acf'][$i] for the given variation.
+	 * Includes capability check and input sanitization.
+	 *
+	 * @param int $variation_id The variation post ID.
+	 * @param int $i he variation index in the edit form.
+	 */
+	public function save_acf_variation_fields ($variation_id, $i = -1) {
+		if (!current_user_can('edit_product', $variation_id)) {
+			return;
+		}
+		if (!empty($_POST['acf']) && is_array($_POST['acf']) && array_key_exists($i, $_POST['acf']) && is_array(($fields = $_POST['acf'][$i]))) {
+			foreach ($fields as $key => $val) {
+				update_field(sanitize_key($key), sanitize_text_field($val), $variation_id);
+			}
+		}
+	}
+
+	/**
+	 * Remove the state/province field from WooCommerce address forms.
+	 *
+	 * @param array $fields Default address fields.
+	 * @return array Modified address fields without the state field.
+	 */
+	public function remove_state_field ($fields) {
+		unset($fields['state']);
+		return $fields;
+	}
+
+	/**
+	 * Remove WooCommerce breadcrumbs on shop pages.
+	 */
 	public function remove_shop_breadcrumbs () {
 		remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
 	}
 
+	/**
+	 * Get the label of the currently chosen shipping method.
+	 *
+	 * @return string|null Shipping method label, or null if none chosen.
+	 */
 	public function get_current_shipping_method () {
 		$chosen_label = null;
 
@@ -73,6 +192,12 @@ class HTR_Woocommerce {
 		return $chosen_label;
 	}
 
+	/**
+	 * Add a fuel surcharge fee to the cart based on the chosen shipping method.
+	 *
+	 * Reads ACF option 'shipping-taxes' to determine the tax percentage
+	 * for standard or express shipping, then applies it as a cart fee.
+	 */
 	public function woocommerce_custom_shipping_tax () {
 		global $woocommerce;
 
@@ -91,10 +216,24 @@ class HTR_Woocommerce {
 		$woocommerce->cart->add_fee('Supplément carburant', $shipping_total, true, '');
 	}
 
+	/**
+	 * Filter the number of products per page on the shop.
+	 *
+	 * @param int $products Default products per page.
+	 * @return int Products per page from ACF option, or 12 as fallback.
+	 */
 	public function products_per_page ($products) {
 		return get_field('products-per-page', 'option') ?: 12;
 	}
 
+	/**
+	 * Override the single product gallery image HTML to use a custom image size.
+	 *
+	 * Replaces the default WooCommerce gallery image with the 'product-preview' size
+	 * and adds a portrait/landscape CSS class based on aspect ratio.
+	 *
+	 * @param string $args Original gallery image HTML.
+	 */
 	public function custom_single_product_image_html ($args) {
 		global $product;
 		global $_wp_additional_image_sizes;
@@ -107,25 +246,42 @@ class HTR_Woocommerce {
 		echo $image;
 	}
 
+	/**
+	 * Get dimensions (length, width) for all variations of a product.
+	 *
+	 * @param WC_Product $product The parent product.
+	 * @return array Array of [length, width] pairs keyed by variation order.
+	 */
 	public static function get_variation_size ($product) {
 		$items = [];
 
-		foreach ($product->get_children() as $key => $item) {
+		foreach ($product->get_children() as $item) {
 			array_push($items, [
-				get_post_meta($item)['_length'][0],
-				get_post_meta($item)['_width'][0]
+				get_post_meta($item, '_length', true),
+				get_post_meta($item, '_width', true),
 			]);
 		}
 
 		return $items;
 	}
 
+	/**
+	 * Enrich the WooCommerce order webhook payload with custom data.
+	 *
+	 * Adds variation dimensions, stock info, Vimeo code retrieval, and the order email for Google Sheets integration.
+	 *
+	 * @param array $payload The webhook payload.
+	 * @param string $resource The resource type (e.g. 'order').
+	 * @param int $resource_id The resource ID.
+	 * @param int $id The webhook ID.
+	 * @return array Modified payload.
+	 */
 	public function add_custom_webhook_payload ($payload, $resource, $resource_id, $id) {
 		if ($resource !== 'order') return $payload;
 
 		foreach ($payload['line_items'] as $key => $item) {
 			$code = '';
-			$product = get_post_meta($item['variation_id']);
+			$variation_id = $item['variation_id'];
 			$parent_product_id = $item['product_id'];
 
 			if ($parent_product_id) {
@@ -148,9 +304,11 @@ class HTR_Woocommerce {
 					}
 				}
 			}
-			$payload['line_items'][$key]['width'] = $product['_length'][0];
-			$payload['line_items'][$key]['height'] = $product['_width'][0];
-			$payload['line_items'][$key]['number'] = (intval($product['max_stock_qty'][0]) - intval($product['_stock'][0])) . '/' . $product['max_stock_qty'][0];
+			$payload['line_items'][$key]['width'] = get_post_meta($variation_id, '_length', true);
+			$payload['line_items'][$key]['height'] = get_post_meta($variation_id, '_width', true);
+			$max_stock = get_post_meta($variation_id, 'max_stock_qty', true);
+			$stock = get_post_meta($variation_id, '_stock', true);
+			$payload['line_items'][$key]['number'] = (intval($max_stock) - intval($stock)) . '/' . $max_stock;
 			$payload['line_items'][$key]['vimeo_code'] = $code;
 		}
 
@@ -160,6 +318,13 @@ class HTR_Woocommerce {
 		return $payload;
 	}
 
+	/**
+	 * Apply tiered discount pricing for product packs in the cart.
+	 *
+	 * Reads ACF 'pack' option to determine active packs, collects matching cart items, then delegates to apply_pack_discounts().
+	 *
+	 * @param WC_Cart $cart The WooCommerce cart object.
+	 */
 	public function apply_custom_pricing_rules ($cart) {
 		if (is_admin() && !defined('DOING_AJAX')) {
 			return;
@@ -204,23 +369,30 @@ class HTR_Woocommerce {
 			}
 		}
 
-		// Apply discounts to the collected pack products
-		foreach ($packs_list->discounts as $discount) {
-			$processed_quantity = 0;
+		$this->apply_pack_discounts($pack_products, $packs_list->discounts);
+	}
 
+	/**
+	 * Apply tiered discounts to pack products in the cart.
+	 *
+	 * For each discount tier, counts products and applies the percentage discount when the threshold is reached, then resets for the next tier.
+	 *
+	 * @param array $pack_products Cart items belonging to active packs.
+	 * @param array $discounts Array of discount objects (product_number, discount).
+	 */
+	private function apply_pack_discounts($pack_products, $discounts) {
+		foreach ($discounts as $discount) {
+			$processed = 0;
 			foreach ($pack_products as $cart_item) {
-				$quantity = $cart_item['quantity'];
-
-				while ($quantity > 0 && $processed_quantity < $discount->product_number) {
-					$processed_quantity++;
-					$quantity--;
-
-					if ($processed_quantity == $discount->product_number) {
-						$original_price = $cart_item['data']->get_regular_price();
-						$discounted_price = $original_price * ((100 - $discount->discount) / 100);
-						$cart_item['data']->set_price($discounted_price);
-						$processed_quantity = 0; // Reset processed_quantity to apply next discount level correctly
-						break; // Break to avoid applying the same discount multiple times
+				$remaining = $cart_item['quantity'];
+				while ($remaining > 0) {
+					$processed++;
+					$remaining--;
+					if ($processed === $discount->product_number) {
+						$original = $cart_item['data']->get_regular_price();
+						$cart_item['data']->set_price($original * ((100 - $discount->discount) / 100));
+						$processed = 0;
+						break;
 					}
 				}
 			}
@@ -351,6 +523,9 @@ class HTR_Woocommerce {
 		return $valid;
 	}
 
+	/**
+	 * Proxy for pack_apply_discount_to_cart, hooked on woocommerce_cart_updated.
+	 */
 	public function pack_update_discount_to_cart () {
 		$this->pack_apply_discount_to_cart();
 	}

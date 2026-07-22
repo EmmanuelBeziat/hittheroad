@@ -11,7 +11,10 @@
 	<meta name="apple-mobile-web-app-title" content="Hit the Road">
 	<link rel="manifest" href="<?= get_template_directory_uri() ?>/assets/images/favicons/site.webmanifest">
 
-	<?= noIndexPage(get_queried_object_id()) ?>
+	<?php
+	$htr_templates = new HTR_Templates();
+	$htr_templates->noIndexPage(get_queried_object_id());
+	?>
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

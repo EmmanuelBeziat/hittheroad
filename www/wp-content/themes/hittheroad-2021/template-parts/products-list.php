@@ -1,6 +1,6 @@
 <?php
 	$paged = get_query_var('paged') ?: 1;
-	$postsPerPage = get_field('products-per-page', 'option');
+	$postsPerPage = get_field('products-per-page', 'option') ?: 24;
 	$args = [
 		'post_type' => 'product',
 		'paged' => $paged,

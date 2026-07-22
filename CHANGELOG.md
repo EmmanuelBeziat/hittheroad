@@ -9,6 +9,12 @@
 * Corrections de robustesse et performance (audit thème)
   * Guard de récursion sur `pack_apply_discount_to_cart()` (`classes/htr-woocommerce.php`)
   * `update_option()` déplacés de `after_setup_theme` vers `after_switch_theme` (`classes/htr-templates.php`)
+* Corrections Medium (audit thème)
+  * `get_post_meta()` ciblés au lieu de fetch complet dans les boucles (`classes/htr-woocommerce.php`)
+  * Refactor de la logique pack-pricing dans une méthode dédiée `apply_pack_discounts()`
+  * Fallback `?: 12` pour `products-per-page` dans `products-list.php`
+  * Code procédural de `functions.php` déplacé dans les classes `HTR_Woocommerce` et `HTR_Templates`
+  * Commentaires PHPDoc ajoutés sur toutes les méthodes des classes `HTR_Woocommerce` et `HTR_Templates`
 
 ## 21.07.2026
 
