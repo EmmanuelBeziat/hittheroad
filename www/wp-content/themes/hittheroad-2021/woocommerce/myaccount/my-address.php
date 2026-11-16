@@ -71,7 +71,7 @@ $col = 1;
 			do_action('woocommerce_my_account_after_my_address', $name);
 			?>
 		</address>
-		<a href="<?= esc_url(wc_get_endpoint_url('edit-address', $name)); ?>" class="edit btn btn-primary">
+		<a href="<?= esc_url(wc_get_endpoint_url('edit-address', $name)); ?>" class="edit btn-solid theme-primary">
 			<?php printf(
 				/* translators: %s: Address title */
 				$address ? esc_html__('Edit %s', 'woocommerce') : esc_html__('Add %s', 'woocommerce'), esc_html( $address_title)

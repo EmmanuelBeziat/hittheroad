@@ -58,8 +58,8 @@ $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 
 			<div class="d-grid gap-2">
 				<?php wp_nonce_field('woocommerce-register', 'woocommerce-register-nonce'); ?>
-				<button type="submit" class="btn btn-primary woocommerce-form-register__submit" name="register" value="<?php esc_attr_e('Register', 'woocommerce'); ?>"><?php esc_html_e('Register', 'woocommerce'); ?></button>
-				<a class="btn btn-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>">Déjà inscrit ? Se connecter</a>
+				<button type="submit" class="btn-solid theme-primary woocommerce-form-register__submit" name="register" value="<?php esc_attr_e('Register', 'woocommerce'); ?>"><?php esc_html_e('Register', 'woocommerce'); ?></button>
+				<a class="btn-solid theme-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>">Déjà inscrit ? Se connecter</a>
 			</div>
 			<?php do_action('woocommerce_register_form_end'); ?>
 
@@ -84,10 +84,10 @@ $userRegistration = isset($_GET['action']) && $_GET['action'] === 'register';
 			</div>
 			<div class="d-grid gap-2">
 				<?php wp_nonce_field('woocommerce-login', 'woocommerce-login-nonce'); ?>
-				<button type="submit" class="btn btn-primary" name="login" value="<?php esc_attr_e('Log in', 'woocommerce'); ?>"><?php esc_html_e('Log in', 'woocommerce'); ?></button>
+				<button type="submit" class="btn-solid theme-primary" name="login" value="<?php esc_attr_e('Log in', 'woocommerce'); ?>"><?php esc_html_e('Log in', 'woocommerce'); ?></button>
 
-				<a class="btn btn-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>lost-password/"><?php esc_html_e('Lost your password?', 'woocommerce'); ?></a>
-				<a class="btn btn-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>?action=register">S’inscrire</a>
+				<a class="btn-solid theme-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>lost-password/"><?php esc_html_e('Lost your password?', 'woocommerce'); ?></a>
+				<a class="btn-solid theme-light" href="<?= get_permalink(wc_get_page_id('myaccount')) ?>?action=register">S’inscrire</a>
 			</div>
 			<?php do_action('woocommerce_login_form_end'); ?>
 		</form>

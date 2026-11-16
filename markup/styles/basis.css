@@ -43,10 +43,6 @@ a {
 	}
 }
 
-button {
-	cursor: pointer;
-}
-
 img {
 	max-width: 100%;
 }
@@ -69,8 +65,7 @@ h1,
 	}
 }
 
-button,
-.btn {
+button {
 	font-weight: 400;
 	font-size: 125%;
 	cursor: pointer;

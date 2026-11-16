@@ -35,6 +35,6 @@ if (isset($notification) && $notification !== '') : ?>
 	<div class="d-inline-flex justify-content-start">
 		<label for="coupon_code" class="screen-reader-text"><?php esc_html_e('Coupon:', 'woocommerce'); ?></label>
 		<input type="text" name="coupon_code" class="form-control me-1" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" id="coupon_code" arial-label="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" value="">
-		<button type="submit" class="btn btn-primary btn-outline" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">Appliquer</button>
+		<button type="submit" class="btn-outline theme-primary" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">Appliquer</button>
 	</div>
 </form>

@@ -79,8 +79,8 @@ $id_suffix = wp_unique_id();
 	</div>
 
 	<div class="d-grid mt-3">
-		<button type="button" id="filter-reset" class="btn btn-secondary btn-outline mb-2">Retirer les filtres</button>
-		<button type="button" id="filter-submit" class="btn btn-primary">Appliquer les filtres</button>
+		<button type="button" id="filter-reset" class="btn-outline theme-secondary mb-2">Retirer les filtres</button>
+		<button type="button" id="filter-submit" class="btn-solid theme-primary">Appliquer les filtres</button>
 	</div>
 
 	<input type="hidden" name="paged" value="1">

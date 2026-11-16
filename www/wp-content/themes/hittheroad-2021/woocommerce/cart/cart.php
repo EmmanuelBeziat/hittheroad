@@ -168,12 +168,12 @@ if (isset($notification) && $notification !== '') : ?>
 							<div class="coupon">
 								<label for="coupon_code" class="screen-reader-text"><?php esc_html_e('Coupon code', 'woocommerce'); ?></label>
 								<input type="text" name="coupon_code" class="form-control" id="coupon_code" value="" placeholder="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>" aria-label="<?php esc_attr_e('Coupon code', 'woocommerce'); ?>">
-								<button type="submit" class="btn btn-secondary" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">Appliquer</button>
+								<button type="submit" class="btn-solid theme-secondary" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">Appliquer</button>
 								<?php do_action('woocommerce_cart_coupon'); ?>
 							</div>
 						<?php endif ?>
 
-						<button type="submit" class="btn btn-secondary" name="update_cart" value="<?php esc_attr_e('Update cart', 'woocommerce'); ?>"><?php esc_html_e('Update cart', 'woocommerce'); ?></button>
+						<button type="submit" class="btn-solid theme-secondary" name="update_cart" value="<?php esc_attr_e('Update cart', 'woocommerce'); ?>"><?php esc_html_e('Update cart', 'woocommerce'); ?></button>
 					</div>
 					<?php do_action('woocommerce_cart_actions'); ?>
 

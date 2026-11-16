@@ -63,28 +63,26 @@
 		gap: 10px;
 	}
 
-	/* Copy of .btn, .btn-primary and .btn-secondary (components/buttons) */
+	/*
+	 * WordPress core buttons styled like .btn-solid (components/buttons):
+	 * core markup cannot receive the classes, so theme tokens are set here.
+	 */
 	.admin-email__actions {
 		.button {
-			--button-bg-active: var(--button-bg);
-			--button-bg-outline-active: var(--button-bg);
-			--button-color: #ffffff;
-			--button-color-active: var(--button-color);
-			--button-color-outline: var(--button-color);
-			--button-color-outline-active: var(--button-color);
-			--button-border: #ffffff;
-			--button-border-active: var(--button-border);
-			--button-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
-			--button-shadow-focus: var(--button-shadow);
+			--btn-bg: var(--theme-bg, transparent);
+			--btn-color: var(--theme-contrast, #ffffff);
+			--btn-border-color: var(--theme-border, #ffffff);
+			--btn-hover-color: var(--theme-fg, var(--btn-color));
+			--btn-focus-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
 
 			text-transform: uppercase;
 			border-radius: 0;
 			text-decoration: none;
 			line-height: 1.25em;
 			padding: .65em 1.45em;
-			background-color: var(--button-bg, transparent);
-			border: 1px solid var(--button-border);
-			color: var(--button-color);
+			background-color: var(--btn-bg);
+			border: 1px solid var(--btn-border-color);
+			color: var(--btn-color);
 			cursor: pointer;
 
 			&:hover,
@@ -94,19 +92,15 @@
 			&.focus,
 			&.active {
 				background-color: transparent;
-				border-color: var(--button-border-active);
-				color: var(--button-color-active);
+				border-color: var(--btn-border-color);
+				color: var(--btn-hover-color);
 			}
 
 			&:focus,
 			&:active,
 			&.active,
 			&.focus {
-				box-shadow: var(--button-shadow);
-			}
-
-			&:active:focus {
-				box-shadow: var(--button-shadow-focus);
+				box-shadow: var(--btn-focus-shadow);
 			}
 
 			svg {
@@ -114,13 +108,10 @@
 			}
 
 			&:first-child {
-				--button-bg: var(--color-secondary);
-				--button-color: var(--color-white);
-				--button-color-active: var(--color-black);
-				--button-color-outline: var(--button-black);
-				--button-border: var(--color-secondary);
-				--button-active: 0 0 0 .25em rgb(197 198 199 / .25);
-				--button-active-focus: 0 0 0 .25em rgb(197 198 199 / .5);
+				--theme-bg: var(--color-secondary);
+				--theme-contrast: var(--color-white);
+				--theme-border: var(--color-secondary);
+				--theme-fg: var(--color-black);
 			}
 
 			&:hover,
@@ -130,11 +121,10 @@
 		}
 
 		.button-primary {
-			--button-bg: var(--color-primary);
-			--button-color: var(--color-black);
-			--button-border: var(--color-primary);
-			--button-active: 0 0 0 .25em rgb(0 0 0 / .15);
-			--button-active-focus: 0 0 0 .25em rgb(0 0 0 / .25);
+			--theme-bg: var(--color-primary);
+			--theme-contrast: var(--color-black);
+			--theme-border: var(--color-primary);
+			--theme-fg: var(--color-black);
 		}
 	}
 
@@ -184,19 +174,9 @@
 		}
 
 		#wp-submit {
-			--button-bg: var(--color-primary);
-			--button-color: var(--color-black);
-			--button-border: var(--color-primary);
-			--button-active: 0 0 0 .25em rgb(0 0 0 / .15);
-			--button-active-focus: 0 0 0 .25em rgb(0 0 0 / .25);
-			--button-bg-active: var(--button-bg);
-			--button-bg-outline-active: var(--button-bg);
-			--button-color-active: var(--button-color);
-			--button-color-outline: var(--button-color);
-			--button-color-outline-active: var(--button-color);
-			--button-border-active: var(--button-border);
-			--button-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
-			--button-shadow-focus: var(--button-shadow);
+			--btn-bg: var(--color-primary);
+			--btn-color: var(--color-black);
+			--btn-border-color: var(--color-primary);
 
 			font-weight: 400;
 			font-size: 1.25rem;
@@ -210,15 +190,15 @@
 			text-decoration: none;
 			line-height: 1.25em;
 			padding: .65em 1.45em;
-			background-color: var(--button-bg, transparent);
-			border: 1px solid var(--button-border);
-			color: var(--button-color);
+			background-color: var(--btn-bg);
+			border: 1px solid var(--btn-border-color);
+			color: var(--btn-color);
 			cursor: pointer;
 
 			&:hover,
 			&:focus {
 				background-color: transparent;
-				border-color: var(--button-border-active);
+				border-color: var(--btn-border-color);
 				color: var(--color-white);
 			}
 		}

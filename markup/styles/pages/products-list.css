@@ -33,7 +33,7 @@
 		flex-direction: column;
 		transition: .25s ease-in-out !important;
 
-		.btn-primary {
+		.btn-solid {
 			margin-top: auto;
 			display: block;
 		}

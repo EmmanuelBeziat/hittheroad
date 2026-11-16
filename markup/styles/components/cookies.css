@@ -20,8 +20,8 @@
 }
 
 .cookies-accept {
-	--button-color-active: var(--color-black);
-	--button-border-active: var(--color-primary);
+	--btn-hover-color: var(--color-black);
+	--btn-hover-border-color: var(--color-primary);
 
 	margin-left: auto;
 

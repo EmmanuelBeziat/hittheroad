@@ -7,7 +7,7 @@
 
 			<div class="menu-social">
 				<?php foreach(get_field('social-networks', 'option') as $social) : ?>
-					<a href="<?= $social['url']; ?>" class="social-link btn btn-light btn-outline" title="<?= $social['site']['label']; ?>">
+					<a href="<?= $social['url']; ?>" class="social-link btn-outline theme-light" title="<?= $social['site']['label']; ?>">
 						<i class="fab fa-<?= $social['site']['value']; ?>"></i>
 					</a>
 				<?php endforeach; ?>

@@ -1,30 +1,64 @@
-.btn {
-	--button-bg-active: var(--button-bg);
-	--button-bg-outline-active: var(--button-bg);
-	--button-color: #ffffff;
-	--button-color-active: var(--button-color);
-	--button-color-outline: var(--button-color);
-	--button-color-outline-active: var(--button-color);
-	--button-border: #ffffff;
-	--button-border-active: var(--button-border);
-	--button-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
-	--button-shadow-focus: var(--button-shadow);
+/*
+ * Buttons, Bootstrap 6 style: a variant class (.btn-solid, .btn-outline)
+ * combined with a theme class (.theme-primary, …). Variants work without .btn.
+ */
 
-	text-transform: uppercase;
-	border-radius: 0;
-	text-decoration: none;
+/* Theme tokens (Bootstrap 6 names, unprefixed) */
+.theme-primary {
+	--theme-bg: var(--color-primary);
+	--theme-contrast: var(--color-black);
+	--theme-border: var(--color-primary);
+	--theme-fg: var(--color-black);
+}
+
+.theme-secondary {
+	--theme-bg: var(--color-secondary);
+	--theme-contrast: var(--color-white);
+	--theme-border: var(--color-secondary);
+	--theme-fg: var(--color-black);
+}
+
+/* Light and dark follow the surrounding text color when transparent */
+.theme-light {
+	--theme-bg: var(--color-white);
+	--theme-contrast: var(--color-black);
+	--theme-border: var(--color-white);
+	--theme-fg: currentcolor;
+}
+
+.theme-dark {
+	--theme-bg: transparent;
+	--theme-contrast: #ffffff;
+	--theme-border: #ffffff;
+	--theme-fg: #ffffff;
+}
+
+/* Base */
+.btn,
+.btn-solid,
+.btn-outline {
+	--btn-padding-y: .65em;
+	--btn-padding-x: 1.45em;
+	--btn-font-size: 125%;
+	--btn-focus-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
+
+	display: inline-block;
+	padding: var(--btn-padding-y) var(--btn-padding-x);
+	font-family: var(--font-stack-heading);
+	font-size: var(--btn-font-size);
+	font-weight: 400;
 	line-height: 1.25em;
-
-	/* padding: .8rem 1.75rem; */
-	padding: .65em 1.45em;
-	background-color: var(--button-bg, transparent);
-	border: 1px solid var(--button-border);
-	color: var(--button-color);
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	vertical-align: middle;
+	user-select: none;
 	cursor: pointer;
-
-	&.btn-rounded {
-		border-radius: 2em;
-	}
+	border: 1px solid var(--btn-border-color);
+	border-radius: 0;
+	background-color: var(--btn-bg);
+	color: var(--btn-color);
+	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
 	&:hover,
 	&:focus,
@@ -32,70 +66,63 @@
 	&.hover,
 	&.focus,
 	&.active {
-		background-color: transparent;
-		border-color: var(--button-border-active);
-		color: var(--button-color-active);
+		background-color: var(--btn-hover-bg);
+		border-color: var(--btn-hover-border-color);
+		color: var(--btn-hover-color);
 	}
 
 	&:focus,
 	&:active,
-	&.active,
-	&.focus {
-		box-shadow: var(--button-shadow);
+	&.focus,
+	&.active {
+		box-shadow: var(--btn-focus-shadow);
 	}
 
-	&:active:focus {
-		box-shadow: var(--button-shadow-focus);
+	&:focus-visible {
+		outline: 0;
 	}
 
-	&.btn-outline {
-		background: transparent;
-		color: var(--button-color-outline);
-
-		&:hover,
-		&:focus,
-		&:active,
-		&.hover,
-		&.focus,
-		&.active {
-			background: var(--button-bg-outline-active);
-			color: var(--button-color-outline-active);
-		}
+	&:disabled,
+	&.disabled,
+	fieldset:disabled & {
+		pointer-events: none;
+		opacity: .65;
 	}
 
 	svg {
 		pointer-events: none;
 	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+/* Variants */
+.btn,
+.btn-solid {
+	--btn-bg: var(--theme-bg, transparent);
+	--btn-color: var(--theme-contrast, #ffffff);
+	--btn-border-color: var(--theme-border, #ffffff);
+	--btn-hover-bg: transparent;
+	--btn-hover-color: var(--theme-fg, var(--btn-color));
+	--btn-hover-border-color: var(--btn-border-color);
+}
+
+.btn-outline {
+	--btn-bg: transparent;
+	--btn-color: var(--theme-fg, #ffffff);
+	--btn-border-color: var(--theme-border, #ffffff);
+	--btn-hover-bg: var(--theme-bg, transparent);
+	--btn-hover-color: var(--theme-contrast, #ffffff);
+	--btn-hover-border-color: var(--btn-border-color);
+}
+
+/* Modifiers */
+.btn-rounded {
+	border-radius: 2em;
 }
 
 .btn-lg {
-	font-size: 1.75rem;
-}
-
-.btn-primary {
-	--button-bg: var(--color-primary);
-	--button-color: var(--color-black);
-	--button-border: var(--color-primary);
-	--button-active: 0 0 0 .25em rgb(0 0 0 / .15);
-	--button-active-focus: 0 0 0 .25em rgb(0 0 0 / .25);
-}
-
-.btn-secondary {
-	--button-bg: var(--color-secondary);
-	--button-color: var(--color-white);
-	--button-color-active: var(--color-black);
-	--button-color-outline: var(--button-black);
-	--button-border: var(--color-secondary);
-	--button-active: 0 0 0 .25em rgb(197 198 199 / .25);
-	--button-active-focus: 0 0 0 .25em rgb(197 198 199 / .5);
-}
-
-.btn-light {
-	--button-bg: var(--color-white);
-	--button-color: var(--color-black);
-	--button-border: var(--color-white);
-	--button-active: 0 0 0 .25em rgb(0 0 0 / .15);
-	--button-active-focus: 0 0 0 .25em rgb(0 0 0 / .25);
-	--button-color-active: var(--color-black);
-	--button-color-outline: var(--button-black);
+	--btn-font-size: 1.75rem;
 }

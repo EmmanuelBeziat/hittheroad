@@ -74,7 +74,7 @@ $home = (object) [
 
 		<?php if (isset($home->showcase->link->url) && $home->showcase->link->url !== '') : ?>
 			<div>
-				<a class="btn btn-secondary btn-lg showcase-button" data-reveal="fade-up" style="--reveal-delay: 200ms" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
+				<a class="btn-solid theme-secondary btn-lg showcase-button" data-reveal="fade-up" style="--reveal-delay: 200ms" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
 			</div>
 		<?php endif; ?>
 	</div>

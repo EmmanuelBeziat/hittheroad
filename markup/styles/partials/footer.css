@@ -83,7 +83,7 @@
 		padding: 0;
 	}
 
-	a:hover {
+	a:not(.social-link):hover {
 		color: inherit;
 		text-decoration: underline;
 	}
@@ -167,7 +167,6 @@
 	&:hover,
 	&:focus {
 		border-color: var(--color-primary);
-		background: var(--color-primary);
 	}
 
 	svg {

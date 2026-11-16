@@ -55,19 +55,19 @@
 		<h1>Boutons</h1>
 
 		<p>
-			<button class="btn btn-primary">Bouton primaire</button>
-			<button class="btn btn-secondary">Bouton secondaire</button>
-			<button class="btn btn-primary btn-rounded">Bouton primaire</button>
-			<button class="btn btn-secondary btn-rounded">Bouton secondaire</button>
-			<button class="btn btn-primary btn-rounded" disabled>Bouton primaire</button>
-			<button class="btn btn-secondary btn-rounded" disabled>Bouton secondaire</button>
+			<button class="btn-solid theme-primary">Bouton primaire</button>
+			<button class="btn-solid theme-secondary">Bouton secondaire</button>
+			<button class="btn-solid theme-primary btn-rounded">Bouton primaire</button>
+			<button class="btn-solid theme-secondary btn-rounded">Bouton secondaire</button>
+			<button class="btn-solid theme-primary btn-rounded" disabled>Bouton primaire</button>
+			<button class="btn-solid theme-secondary btn-rounded" disabled>Bouton secondaire</button>
 		</p>
 
 		<p>
-			<button class="btn btn-primary btn-outline">Bouton primaire alternatif</button>
-			<button class="btn btn-secondary btn-outline">Bouton secondaire alternatif</button>
-			<button class="btn btn-primary btn-outline btn-rounded">Bouton primaire alternatif</button>
-			<button class="btn btn-secondary btn-outline btn-rounded">Bouton secondaire alternatif</button>
+			<button class="btn-outline theme-primary">Bouton primaire alternatif</button>
+			<button class="btn-outline theme-secondary">Bouton secondaire alternatif</button>
+			<button class="btn-outline theme-primary btn-rounded">Bouton primaire alternatif</button>
+			<button class="btn-outline theme-secondary btn-rounded">Bouton secondaire alternatif</button>
 		</p>
 	</div>
 </section>

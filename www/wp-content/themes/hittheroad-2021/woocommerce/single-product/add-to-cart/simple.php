@@ -43,7 +43,7 @@ if ($product->is_in_stock()) : ?>
 		do_action('woocommerce_after_add_to_cart_quantity');
 		?>
 
-		<button type="submit" name="add-to-cart" value="<?= esc_attr($product->get_id()); ?>" class="btn btn-primary"><?= esc_html($product->single_add_to_cart_text()); ?></button>
+		<button type="submit" name="add-to-cart" value="<?= esc_attr($product->get_id()); ?>" class="btn-solid theme-primary"><?= esc_html($product->single_add_to_cart_text()); ?></button>
 
 		<?php do_action('woocommerce_after_add_to_cart_button'); ?>
 	</form>

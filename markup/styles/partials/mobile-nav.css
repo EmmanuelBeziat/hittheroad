@@ -119,8 +119,8 @@
 	.social-link {
 		&:hover,
 		&:focus {
-			--button-bg-outline-active: var(--color-white);
-			--button-color-outline-active: var(--color-black);
+			--btn-hover-bg: var(--color-white);
+			--btn-hover-color: var(--color-black);
 		}
 	}
 

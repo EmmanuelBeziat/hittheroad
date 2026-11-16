@@ -23,7 +23,7 @@ $movie = (object) [
 		<h2 class="h2 mb-3"><?= $movie->title ?></h2>
 		<?= $movie->description ?>
 		<div class="d-grid d-lg-block movie-link">
-			<a href="<?= $movie->link ?>" class="btn btn-primary"><i class="fab fa-vimeo-v me-2"></i> Voir le film</a>
+			<a href="<?= $movie->link ?>" class="btn-solid theme-primary"><i class="fab fa-vimeo-v me-2"></i> Voir le film</a>
 		</div>
 	</figcaption>
 </figure>
