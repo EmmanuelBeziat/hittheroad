@@ -1,58 +1,32 @@
-// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+// 1. Include functions
 @import "bootstrap/scss/functions";
 
-// 2. Include any default variable overrides here
+// 2. Include default variable overrides
 $primary: #202020;
 $secondary: #a4a4a4;
-
 $light: #e8e9ea;
 
-// 3. Include remainder of required Bootstrap stylesheets
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 
-// 4. Include any optional Bootstrap components as you like
 // Layout & components
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/type";
-// @import "bootstrap/scss/images";
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/forms";
-// @import "bootstrap/scss/buttons"; // replaced by components/buttons.css (Bootstrap 6 style)
-// @import "bootstrap/scss/transitions"; // unused (no Bootstrap JS)
 @import "bootstrap/scss/dropdown";
-// @import "bootstrap/scss/button-group"; // unused (no Bootstrap JS)
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar";
-//  @import "bootstrap/scss/card";
-//  @import "bootstrap/scss/accordion";
-//  @import "bootstrap/scss/breadcrumb";
 @import "bootstrap/scss/pagination";
-//  @import "bootstrap/scss/badge";
-//  @import "bootstrap/scss/alert";
-//  @import "bootstrap/scss/progress";
-//  @import "bootstrap/scss/list-group";
-// @import "bootstrap/scss/close"; // unused (no Bootstrap JS)
-//  @import "bootstrap/scss/toasts";
 @import "bootstrap/scss/tables";
-// @import "bootstrap/scss/modal"; // unused (no Bootstrap JS)
-// @import "bootstrap/scss/tooltip"; // unused (no Bootstrap JS)
-//  @import "bootstrap/scss/popover";
-//  @import "bootstrap/scss/carousel";
-//  @import "bootstrap/scss/spinners";
-// @import "bootstrap/scss/offcanvas"; // unused (no Bootstrap JS)
-// @import "bootstrap/scss/placeholders"; // unused (no Bootstrap JS)
 
 // Helpers
 @import "bootstrap/scss/helpers";
 
 // Utilities
 @import "bootstrap/scss/utilities/api";
-
-// 5. Add additional custom code here
-
