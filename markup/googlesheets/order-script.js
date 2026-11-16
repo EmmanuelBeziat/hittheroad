@@ -16,7 +16,7 @@ function productInformations (item) {
 		size: size,
 		width: item.width,
 		height: item.height,
-		finish: finishMeta?.value?.Fields?.[0]?.SelectedValues?.[0]?.Value ?? '',
+		finish: toCellText(finishMeta?.value?.Fields?.[0]?.SelectedValues?.[0]?.Value ?? ''),
 		number: item.number,
 		vimeoCode: item.vimeo_code
 	}
@@ -342,7 +342,9 @@ function writeContent (e) {
 	const data = JSON.parse(e.postData.contents)
 
 	if (!data.number || !data.shipping || !data.line_items || !Array.isArray(data.line_items)) {
-		Logger.log('Données de commande invalides: champs requis manquants — ' + JSON.stringify(data))
+		// No payload in logs: it contains customer personal data
+		Logger.log('Données de commande invalides : champs requis manquants (commande ' + (data.number || '?') + ')')
+		return HtmlService.createHtmlOutput('Erreur: données de commande invalides')
 	}
 
 	const order = {
@@ -351,19 +353,20 @@ function writeContent (e) {
 		status: data.status,
 		email: data.order_email_gsheet || ''
 	}
+	// Customer-provided fields go through toCellText (formula injection)
 	const shipping = {
-		firstname: data.shipping.first_name,
-		lastname: data.shipping.last_name,
+		firstname: toCellText(data.shipping.first_name),
+		lastname: toCellText(data.shipping.last_name),
 		indicator: `'${getPhoneIndicator(data.shipping.country)}`,
 		phone: `'${data.shipping.phone}`,
-		email: data.meta_data.find(item => item.key === '_shipping_email').value,
-		company: data.shipping.company,
-		address1: data.shipping.address_1,
-		address2: data.shipping.address_2,
-		postcode: data.shipping.postcode,
-		city: data.shipping.city,
-		country: countries.find(c => c.iso === data.shipping.country.toLowerCase())?.name ?? data.shipping.country,
-		note: data.customer_note,
+		email: toCellText(data.meta_data.find(item => item.key === '_shipping_email')?.value ?? ''),
+		company: toCellText(data.shipping.company),
+		address1: toCellText(data.shipping.address_1),
+		address2: toCellText(data.shipping.address_2),
+		postcode: toCellText(data.shipping.postcode),
+		city: toCellText(data.shipping.city),
+		country: countries.find(c => c.iso === data.shipping.country.toLowerCase())?.name ?? toCellText(data.shipping.country),
+		note: toCellText(data.customer_note),
 		cost: data.shipping_total
 	}
 	const total = data.total
@@ -431,6 +434,10 @@ function writeContent (e) {
 }
 
 function doPost (e) {
+	if (!isAuthorizedRequest(e)) {
+		return unauthorizedResponse()
+	}
+
 	const lock = LockService.getScriptLock()
 	const timer = 5000
 
