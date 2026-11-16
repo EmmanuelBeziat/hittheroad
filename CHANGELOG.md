@@ -1,5 +1,17 @@
 # Suivi de mises à jour
 
+## 16.11.2026
+
+* Performance (audit Core Web Vitals)
+  * Galerie produit : suppression de l'`opacity: 0` inline qui masquait l'image jusqu'à l'exécution du JS (`woocommerce/single-product/product-image.php`)
+* Remplacement de la librairie AOS par des animations CSS natives (scroll-driven animations)
+  * Nouveau composant `markup/styles/components/reveal.scss` (attribut `data-reveal`, voir README)
+  * Suppression de `markup/scripts/vendors/aos.js`, `markup/styles/vendors/aos.scss` et de `AOS.init()` dans `markup/scripts/app.js`
+  * Templates migrés de `data-aos` vers `data-reveal` : `page-home.php`, `page-movies.php`, `template-parts/content/home/map.php`, `template-parts/content/movies/movie.php`, `template-parts/products-list.php`, `woocommerce/archive-product.php`, `woocommerce/content-product.php`, `woocommerce/loop/orderby.php`, `woocommerce/loop/pagination.php`, `woocommerce/loop/result-count.php`
+  * Les éléments visibles au chargement apparaissent en fondu dès l'affichage, sans attendre le JS
+  * Décalage progressif des produits de la boutique via `sibling-index()`
+  * Changement de comportement : un élément qui ressort par le bas de l'écran redevient transparent (AOS le laissait visible)
+
 ## 22.07.2026
 
 * Corrections de sécurité (audit thème)
