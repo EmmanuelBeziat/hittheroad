@@ -15,6 +15,11 @@
 	z-index: var(--zindex-nav);
 }
 
+/* Desktop menu hidden below md (mobile uses .mobile-nav); shown by .navbar-expand-md */
+.navbar-collapse.collapse:not(.show) {
+	display: none;
+}
+
 .logo-htr {
 	svg {
 		height: 100%;
