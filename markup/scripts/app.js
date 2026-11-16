@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Checkout
 	new CheckoutStateHandler()
 
-	// MapLibre (HomePage)
+	// MapLibre (HomePage) — map disabled (not used), library excluded from the build
+	/*
 	if (typeof htrMapToken !== 'undefined' && typeof htrMapStyle !== 'undefined') {
 		new MapLibre({
 			container: 'htr-destinations',
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 		htrMapDestinations)
 	}
+	*/
 
 	// Sliders (swiper.js)
 	const productsSlider = document.querySelectorAll('.products-slider')

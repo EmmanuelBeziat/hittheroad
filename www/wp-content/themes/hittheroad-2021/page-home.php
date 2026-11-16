@@ -80,7 +80,7 @@ $home = (object) [
 	</div>
 </section>
 
-<?php get_template_part('template-parts/content/home/map', '', ['map' => $home->map]); ?>
+<?php /* Map disabled (not used): get_template_part('template-parts/content/home/map', '', ['map' => $home->map]); */ ?>
 <?php get_template_part('template-parts/content/home/latest-products', '', ['products' => $home->latestProducts]); ?>
 <?php get_template_part('template-parts/content/home/best-products', '', ['products' => $home->bestProducts]); ?>
 

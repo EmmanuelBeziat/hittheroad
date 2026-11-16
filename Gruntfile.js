@@ -63,11 +63,11 @@ module.exports = grunt => {
 				separator: ';',
 			},
 			vendors: {
-				src: ['<%= config.src.scripts %>vendors/*.js'],
+				src: ['<%= config.src.scripts %>vendors/*.js', '!<%= config.src.scripts %>vendors/maplibre-gl.js'],
 				dest: '<%= config.dist.scripts %>vendors.js'
 			},
 			classes: {
-				src: ['<%= config.src.scripts %>classes/*.js'],
+				src: ['<%= config.src.scripts %>classes/*.js', '!<%= config.src.scripts %>classes/maplibre.js'],
 				dest: '<%= config.dist.scripts %>classes.js'
 			},
 			app: {
@@ -80,11 +80,11 @@ module.exports = grunt => {
 			options: {
 			},
 			vendors: {
-				src: ['<%= config.src.scripts %>vendors/*.js'],
+				src: ['<%= config.src.scripts %>vendors/*.js', '!<%= config.src.scripts %>vendors/maplibre-gl.js'],
 				dest: '<%= config.dist.scripts %>vendors.js'
 			},
 			classes: {
-				src: ['<%= config.src.scripts %>classes/*.js'],
+				src: ['<%= config.src.scripts %>classes/*.js', '!<%= config.src.scripts %>classes/maplibre.js'],
 				dest: '<%= config.dist.scripts %>classes.js'
 			},
 			app: {

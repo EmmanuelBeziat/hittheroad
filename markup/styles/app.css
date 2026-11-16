@@ -1,5 +1,5 @@
 @import "../../.tmp/bootstrap.css";
-@import "vendors/maplibre-gl.css";
+/* @import "vendors/maplibre-gl.css"; Map disabled (not used) */
 @import "variables.css";
 @import "basis.css";
 @import "layout.css";
@@ -22,7 +22,7 @@
 @import "pages/home/hero.css";
 @import "pages/home/showcase.css";
 @import "pages/home/best-products.css";
-@import "pages/home/map.css";
+/* @import "pages/home/map.css"; Map disabled (not used) */
 @import "pages/shop/filters.css";
 @import "pages/about-us.css";
 @import "pages/cart/cart.css";
