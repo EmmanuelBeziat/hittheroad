@@ -48,7 +48,7 @@ do_action('woocommerce_before_main_content');
 <?php
 if (woocommerce_product_loop()) :
 	$paged = get_query_var('paged') ?: 1;
-	$postsPerPage = get_field('products-per-page', 'option');
+	$postsPerPage = (int) get_field('products-per-page', 'option') ?: 12;
 	$args = [
 		'post_type' => 'product',
 		'paged' => $paged,
@@ -57,7 +57,6 @@ if (woocommerce_product_loop()) :
 		'post_status' => 'publish',
 	];
 
-	$components = parse_url($_SERVER['REQUEST_URI']);
 	$metaQuery = [
 	'relation' => 'AND',
 		[
@@ -73,22 +72,11 @@ if (woocommerce_product_loop()) :
 		]
 	];
 
-	if (isset($components['query'])) {
-		parse_str($components['query'], $params);
-		$show = [
-			'relation' => 'AND'
-		];
-
-		foreach ($params as $key => $value) :
-			$show[] = [
-				'taxonomy' => $key,
-				'value' => $value,
-				'compare' => 'IN',
-			];
-		endforeach;
-		array_push($metaQuery, $show);
+	$filtersQuery = htr_get_shop_filters_meta_query();
+	if ($filtersQuery) {
+		$metaQuery[] = $filtersQuery;
 	}
-	$args = array_merge($args, ['meta_query' => $metaQuery]);
+	$args['meta_query'] = $metaQuery;
 
 	$loop = new WP_Query($args);
 	$productsCount = $loop->found_posts;

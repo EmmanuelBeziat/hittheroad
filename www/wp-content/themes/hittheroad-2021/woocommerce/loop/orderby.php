@@ -24,30 +24,24 @@ $id_suffix = wp_unique_id();
 <form class="products-ordering" data-reveal="fade-up" style="--reveal-duration: 300ms; --reveal-delay: 50ms" method="get">
 	<div class="filters">
 		<?php
-		$fields = acf_get_fields(252);
-		foreach ($fields as $field) :
-			if ($field['type'] === 'tab') continue;
-
-			$type = $field['type'];
+		foreach (htr_get_shop_filter_fields() as $field) :
 			$name = $field['name'];
-			$label = $field['label'];
 		?>
 		<div class="filter-item">
-			<h3 class="h4"><?= $label ?></h3>
+			<h3 class="h4"><?= esc_html($field['label']) ?></h3>
 
 			<?php if (!isset($field['choices'])) :
-				global $wpdb;
-				$years = $wpdb->get_results("SELECT DISTINCT(meta_value) FROM htrwp_postmeta WHERE meta_key = '$name' AND meta_value != '' ORDER BY meta_value DESC", ARRAY_A);
+				$years = htr_get_meta_values($name);
 				$index = 0;
 				foreach ($years as $year) : ?>
 					<?php if ($index === 3) : ?>
-						<details class="filter-more" id="filters-category-<?= $name ?>">
+						<details class="filter-more" id="filters-category-<?= esc_attr($name) ?>">
 							<summary class="filter-toggle">Voir davantage <i class="fa fa-chevron-down" aria-hidden="true"></i></summary>
 					<?php endif; ?>
 
 					<div class="filter-checkbox">
-						<input class="form-check-input shop-filter" type="checkbox" name="<?= $name ?>" id="filter-<?= $name ?>-<?= $year['meta_value'] ?>" value="<?= $year['meta_value'] ?>">
-						<label class="form-check-label" for="filter-<?= $name ?>-<?= $year['meta_value'] ?>"><?= $year['meta_value'] ?></label>
+						<input class="form-check-input shop-filter" type="checkbox" name="<?= esc_attr($name) ?>" id="filter-<?= esc_attr($name . '-' . $year) ?>" value="<?= esc_attr($year) ?>">
+						<label class="form-check-label" for="filter-<?= esc_attr($name . '-' . $year) ?>"><?= esc_html($year) ?></label>
 					</div>
 
 					<?php if ($index >= 3 && $index === count($years) - 1) : ?>
@@ -59,13 +53,13 @@ $id_suffix = wp_unique_id();
 				$index = 0;
 				foreach ($field['choices'] as $key => $value) : ?>
 					<?php if ($index === 5) : ?>
-						<details class="filter-more" id="filters-category-<?= $name ?>">
+						<details class="filter-more" id="filters-category-<?= esc_attr($name) ?>">
 							<summary class="filter-toggle">Voir davantage <i class="fa fa-chevron-down" aria-hidden="true"></i></summary>
 					<?php endif; ?>
 
 						<div class="filter-checkbox">
-							<input class="form-check-input shop-filter" type="checkbox" name="<?= $name ?>" id="filter-<?= $name ?>-<?= $key ?>" value="<?= $key ?>">
-							<label class="form-check-label" for="filter-<?= $name ?>-<?= $key ?>"><?= $value ?></label>
+							<input class="form-check-input shop-filter" type="checkbox" name="<?= esc_attr($name) ?>" id="filter-<?= esc_attr($name . '-' . $key) ?>" value="<?= esc_attr($key) ?>">
+							<label class="form-check-label" for="filter-<?= esc_attr($name . '-' . $key) ?>"><?= esc_html($value) ?></label>
 						</div>
 
 					<?php if ($index >= 5 && $index === count($field['choices']) - 1) : ?>

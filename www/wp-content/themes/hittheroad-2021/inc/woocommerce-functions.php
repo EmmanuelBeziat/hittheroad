@@ -1,5 +1,69 @@
 <?php
 
+defined('ABSPATH') || exit;
+
+/**
+ * ACF field group holding the shop filters (each field name is a product meta key).
+ */
+const HTR_SHOP_FILTERS_GROUP = 252;
+
+/**
+ * Maximum number of values accepted per filter in the query string.
+ */
+const HTR_SHOP_FILTERS_MAX_VALUES = 20;
+
+/**
+ * Get the shop filter fields (tabs excluded).
+ *
+ * @return array ACF field arrays.
+ */
+function htr_get_shop_filter_fields () {
+	$fields = function_exists('acf_get_fields') ? acf_get_fields(HTR_SHOP_FILTERS_GROUP) : [];
+	return array_values(array_filter($fields ?: [], fn($field) => $field['type'] !== 'tab'));
+}
+
+/**
+ * Build the shop meta_query clauses from the query string.
+ * Only known filter fields are accepted; values are comma-separated.
+ *
+ * @return array meta_query clauses (empty if no active filter).
+ */
+function htr_get_shop_filters_meta_query () {
+	$clauses = [];
+
+	foreach (htr_get_shop_filter_fields() as $field) {
+		$raw = $_GET[$field['name']] ?? ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only filtering
+		if (!is_string($raw) || $raw === '') {
+			continue;
+		}
+
+		$values = array_filter(array_map('sanitize_text_field', explode(',', wp_unslash($raw))), 'strlen');
+		if ($values) {
+			$clauses[] = [
+				'key' => $field['name'],
+				'value' => array_slice(array_values($values), 0, HTR_SHOP_FILTERS_MAX_VALUES),
+				'compare' => 'IN',
+			];
+		}
+	}
+
+	return $clauses ? array_merge(['relation' => 'AND'], $clauses) : [];
+}
+
+/**
+ * Get the distinct non-empty values stored for a product meta key, newest first.
+ *
+ * @param string $meta_key Meta key.
+ * @return string[] Values.
+ */
+function htr_get_meta_values ($meta_key) {
+	global $wpdb;
+	return $wpdb->get_col($wpdb->prepare(
+		"SELECT DISTINCT meta_value FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value != '' ORDER BY meta_value DESC",
+		$meta_key
+	));
+}
+
 /**
  * Insert the opening anchor tag for products in the loop.
  */
