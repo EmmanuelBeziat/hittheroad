@@ -72,7 +72,7 @@
 	flex-direction: column;
 	gap: 4rem;
 
-	@media (min-width: 768px) {
+	@media (width >= 768px) {
 		display: grid;
 		grid-template-columns: repeat(var(--footer-columns-number, 2), 1fr);
 	}
@@ -94,7 +94,7 @@
 	flex-direction: column;
 	align-items: center;
 
-	@media (min-width: 768px) {
+	@media (width >= 768px) {
 		align-items: flex-start;
 	}
 
@@ -153,9 +153,11 @@
 	padding: 0;
 	width: 2em;
 	aspect-ratio: 1/1;
+
 	@supports not (aspect-ratio: 1/1) {
 		height: 2em;
 	}
+
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
@@ -182,9 +184,11 @@
 	line-height: 1;
 	width: 4rem;
 	aspect-ratio: 1/1;
+
 	@supports not (aspect-ratio: 1/1) {
 		height: 4rem;
 	}
+
 	display: flex;
 	justify-content: center;
 	align-items: center;

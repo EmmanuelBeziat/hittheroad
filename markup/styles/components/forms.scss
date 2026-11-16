@@ -39,16 +39,16 @@ textarea.form-control {
 
 .select2-container--default .select2-selection--single {
 	@extend .form-control;
+
 	font-weight: 400;
 	line-height: 1.5;
 	color: #212529;
-	background-color: #fff;
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	height: auto;
 	margin-bottom: 0;
-	background-color: #fff;
+	background-color: #ffffff;
 	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 	background-repeat: no-repeat;
 	background-position: right 0.75rem center;
@@ -75,7 +75,7 @@ textarea.form-control {
 .select2-hidden-accessible + .select2-container--default.select2-container--open {
 	border-color: #909090;
 	outline: 0;
-	box-shadow: 0 0 0 0.25rem rgb(32 32 32 / 25%);
+	box-shadow: 0 0 0 0.25rem rgb(32 32 32 / 0.25);
 }
 
 .form-row-first,

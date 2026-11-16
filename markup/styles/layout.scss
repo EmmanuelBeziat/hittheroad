@@ -5,7 +5,8 @@
 
 	.admin-bar & {
 		min-height: calc(100vh - 32px);
-		@media screen and (max-width: 782px) {
+
+		@media screen and (width <= 782px) {
 			min-height: calc(100vh - 46px);
 		}
 	}

@@ -12,7 +12,7 @@ span#club-js {
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
-	clip: rect(0, 0, 0, 0);
+	clip-path: inset(50%);
 	width: 1px;
 	display: block !important;
 	visibility: visible !important;

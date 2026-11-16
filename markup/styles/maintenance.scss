@@ -1,16 +1,14 @@
 @use "variables.scss";
-
 @use "basis.scss";
-
 @use "fonts/bebas-neue.scss";
 @use "fonts/montserrat.scss";
-
 @use "vendors/wordpress.scss";
 
 h1, .h1 {
 	color: inherit;
 	font-size: 3rem;
 	border: none;
+
 	&::before {
 		content: none;
 	}

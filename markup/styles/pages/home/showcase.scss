@@ -11,7 +11,7 @@
 	align-items: center;
 	color: var(--color-white);
 
-	@media (min-width: 768px) {
+	@media (width >= 768px) {
 		font-size: 6rem;
 
 		/* &::before,

@@ -7,7 +7,7 @@
 			padding: .5rem 1.5rem;
 			border-radius: 0;
 			border: 0;
-			background: var(--tabs-background, #fff);
+			background: var(--tabs-background, #ffffff);
 			border-bottom: 1px solid var(--tabs-border);
 
 			&:not(.active):hover {
@@ -23,6 +23,7 @@
 			&[disabled],
 			&.disabled {
 				opacity: .5;
+
 				--tabs-color: var(--color-secondary);
 			}
 		}

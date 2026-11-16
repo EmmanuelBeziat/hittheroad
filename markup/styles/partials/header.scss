@@ -1,5 +1,6 @@
 .site-header {
 	--z-index-nav: 50;
+
 	margin-bottom: 4rem;
 	padding: .4rem 0;
 	position: relative;
@@ -27,6 +28,7 @@
 
 	.nav-item {
 		--nav-color: var(--color-white);
+
 		padding: 1rem .5rem;
 		color: var(--nav-color, var(--color-white));
 		display: flex;
@@ -47,15 +49,18 @@
 
 		&::after {
 			--dot-size: 8px;
+
 			content: "";
 			bottom: 3px;
 			position: absolute;
 			width: var(--dot-size);
 			left: calc(50% - var(--dot-size) / 2);
 			aspect-ratio: 1/1;
+
 			@supports not (aspect-ratio: 1/1) {
 				height: var(--dot-size);
 			}
+
 			border-radius: 50%;
 			background: var(--color-primary);
 			transition: .25s ease-in-out;
@@ -143,15 +148,18 @@
 
 		&::after {
 			--dot-size: 8px;
+
 			content: "";
 			bottom: 3px;
 			position: absolute;
 			width: var(--dot-size);
 			left: calc(50% - var(--dot-size) / 2);
 			aspect-ratio: 1/1;
+
 			@supports not (aspect-ratio: 1/1) {
 				height: var(--dot-size);
 			}
+
 			border-radius: 50%;
 			background: var(--color-primary);
 			transition: .25s ease-in-out;

@@ -29,7 +29,7 @@
 .author-caption {
 	grid-area: 2 / 1 / 3 / 2;
 	padding: 1rem;
-	background-image: linear-gradient(to right, rgba(0, 0, 0, .9) 20%, rgba(0, 0, 0, .1));
+	background-image: linear-gradient(to right, rgb(0 0 0 / .9) 20%, rgb(0 0 0 / .1));
 	color: var(--color-white);
 }
 

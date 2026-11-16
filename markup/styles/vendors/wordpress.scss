@@ -1,8 +1,8 @@
 .admin-bar {
-	--global--admin-bar--height: 32px;
+	--admin-bar-height: 32px;
 
-	@media only screen and (max-width: 782px) {
-		--global--admin-bar--height: 46px;
+	@media only screen and (width <= 782px) {
+		--admin-bar-height: 46px;
 		}
 }
 
@@ -16,8 +16,7 @@
  * .alignleft
  */
 .alignleft {
-
-	/*rtl:ignore*/
+	/* rtl:ignore */
 	text-align: left;
 	margin-top: 0;
 }
@@ -26,14 +25,12 @@
 	max-width: var(--responsive--aligndefault-width);
 }
 
-@media only screen and (min-width: 482px) {
-
+@media only screen and (width >= 482px) {
 	.alignleft {
-
-		/*rtl:ignore*/
+		/* rtl:ignore */
 		float: left;
 
-		/*rtl:ignore*/
+		/* rtl:ignore */
 		margin-right: var(--global--spacing-horizontal);
 		margin-bottom: var(--global--spacing-vertical);
 	}
@@ -67,14 +64,12 @@
 	max-width: var(--responsive--aligndefault-width);
 }
 
-@media only screen and (min-width: 482px) {
-
+@media only screen and (width >= 482px) {
 	.alignright {
-
-		/*rtl:ignore*/
+		/* rtl:ignore */
 		float: right;
 
-		/*rtl:ignore*/
+		/* rtl:ignore */
 		margin-left: var(--global--spacing-horizontal);
 	}
 
@@ -83,8 +78,8 @@
 	}
 }
 
-[class*=inner-container] > .alignleft + *,
-[class*=inner-container] > .alignright + * {
+[class*="inner-container"] > .alignleft + *,
+[class*="inner-container"] > .alignright + * {
 	margin-top: 0;
 }
 
@@ -136,7 +131,7 @@
 	display: none;
 }
 
-@media only screen and (min-width: 482px) {
+@media only screen and (width >= 482px) {
 	.desktop-only {
 		display: block;
 	}

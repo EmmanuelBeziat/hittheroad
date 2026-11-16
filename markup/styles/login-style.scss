@@ -5,6 +5,7 @@
 
 .login {
 	--color-black-login: #2b2a2a;
+
 	background: #2b2b32;
 	color: var(--color-white);
 
@@ -50,7 +51,7 @@
 	.admin-email-confirm-form {
 		background: var(--color-black-login);
 		border-color: #555555;
-		box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+		box-shadow: 0 1px 5px rgb(0 0 0 / .4);
 	}
 
 	h1.admin-email__heading {
@@ -84,7 +85,7 @@
 	#loginform {
 		background: var(--color-black-login);
 		border-color: #555555;
-		box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+		box-shadow: 0 1px 5px rgb(0 0 0 / .4);
 
 		input[type="text"],
 		input[type="password"],
@@ -101,6 +102,7 @@
 
 		.wp-pwd button {
 			--color-eye: var(--color-primary);
+
 			color: var(--color-eye);
 
 			&:hover {
@@ -108,8 +110,8 @@
 			}
 		}
 
-		input[type=checkbox],
-		input[type=radio] {
+		input[type="checkbox"],
+		input[type="radio"] {
 			background: transparent;
 
 			&:checked::before {
@@ -129,19 +131,19 @@
 			--button-bg: var(--color-primary);
 			--button-color: var(--color-black);
 			--button-border: var(--color-primary);
-			--button-active: 0 0 0 .25em rgba(0, 0, 0, .15);
-			--button-active-focus: 0 0 0 .25em rgba(0, 0, 0, .25);
+			--button-active: 0 0 0 .25em rgb(0 0 0 / .15);
+			--button-active-focus: 0 0 0 .25em rgb(0 0 0 / .25);
 			--button-bg-active: var(--button-bg);
 			--button-bg-outline-active: var(--button-bg);
 			--button-color-active: var(--button-color);
 			--button-color-outline: var(--button-color);
 			--button-color-outline-active: var(--button-color);
 			--button-border-active: var(--button-border);
-			--button-shadow: 0 0 0 .25em rgba(0, 0, 0, .25);
+			--button-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
 			--button-shadow-focus: var(--button-shadow);
+
 			font-weight: 400;
 			font-size: 1.25rem;
-			cursor: pointer;
 			font-family: var(--font-stack-heading);
 			margin-top: 10px;
 			float: none;

@@ -12,6 +12,11 @@
 } */
 .products-slider {
 	max-width: calc(100vw - .75rem * 4);
+
+	.nav-dots {
+		grid-area: Dots;
+		display: flex;
+	}
 }
 
 .product.swiper-slide {
@@ -30,9 +35,11 @@
 	all: unset;
 	width: 3rem;
 	aspect-ratio: 1 / 1;
+
 	@supports not (aspect-ratio: 1/1) {
 		height: 3rem;
 	}
+
 	color: var(--color-black);
 	background: var(--color-primary);
 	text-decoration: none;
@@ -54,12 +61,5 @@
 	&:active {
 		color: var(--color-white);
 		background: var(--color-secondary);
-	}
-}
-
-.products-slider {
-	.nav-dots {
-		grid-area: Dots;
-		display: flex;
 	}
 }

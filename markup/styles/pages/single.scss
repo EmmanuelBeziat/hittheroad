@@ -16,13 +16,12 @@
 	.product {
 		display: grid;
 		gap: 1rem;
-		grid-template-columns: 3fr 2fr;
-		grid-template-rows: repeat(3, auto);
-		grid-template-areas:
-			"Picture Summary"
-			"Description Description"
-			"Process Process"
-			"Related Related";
+		grid-template:
+			"Picture Summary" auto
+			"Description Description" auto
+			"Process Process" auto
+			"Related Related"
+			/ 3fr 2fr;
 
 		@media (width <= 767px) {
 			grid-template-columns: auto;
@@ -53,22 +52,11 @@
 
 	.related.products {
 		grid-area: Related;
-	}
 
-	.product-description {
-		grid-area: Process;
-	}
-
-	.yith_magnifier_zoom img,
-	.woocommerce-product-gallery .attachment-shop_single {
-		width: 100%;
-		// max-height: 480px;
-	}
-
-	.related.products {
 		.products-grid {
 			--repeat: 4;
 			--min-width: 180px;
+
 			grid-template-columns: repeat(var(--repeat), minmax(var(--min-width), 1fr));
 
 			@media (width <= 996px) {
@@ -81,7 +69,18 @@
 		}
 	}
 
+	.product-description {
+		grid-area: Process;
+	}
+
+	.yith_magnifier_zoom img,
+	.woocommerce-product-gallery .attachment-shop_single {
+		width: 100%;
+		// max-height: 480px;
+	}
+
 	.woocommerce-product-gallery__image {
+		display: block;
 		background: var(--bs-gray-200);
 		overflow: hidden;
 		// position: relative;
@@ -116,7 +115,7 @@
 
 			&:focus {
 				outline: none;
-				box-shadow: 0 0 0 .25em rgba(0, 0, 0, .25);
+				box-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
 			}
 		}
 	}
@@ -124,8 +123,8 @@
 	#wc-stripe-payment-request-wrapper {
 		display: none !important;
 	}
-	.woocommerce-variation-add-to-cart {
 
+	.woocommerce-variation-add-to-cart {
 		#wc-stripe-payment-request-button-separator {
 			margin-top: 1em !important;
 			display: none !important;
@@ -140,10 +139,6 @@
 		& > * {
 			display: block;
 		}
-	}
-
-	.woocommerce-product-gallery__image {
-		display: block;
 	}
 }
 
@@ -165,10 +160,10 @@
 	line-height: 1.15;
 	background: var(--color-gray-light);
 	color: var(--color-text);
-	border: 1px solid rgba(0, 0, 0, .05);
+	border: 1px solid rgb(0 0 0 / .05);
 
 	i, svg {
-		color: rgba(0, 0, 0, .45);
+		color: rgb(0 0 0 / .45);
 		font-size: .8em;
 	}
 }

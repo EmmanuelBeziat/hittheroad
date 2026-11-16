@@ -1,9 +1,11 @@
 
 .navbar-toggler {
 	aspect-ratio: 1 / 1;
+
 	@supports not (aspect-ratio: 1 / 1) {
 		height: 42px;
 	}
+
 	width: 42px;
 	padding: 0;
 	cursor: pointer;
@@ -73,10 +75,7 @@
 	gap: 10px;
 	color: var(--color-white);
 	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	inset: 0;
 	background: var(--color-black);
 	z-index: calc(var(--z-index-nav) - 10);
 	transition: opacity .25s ease-in-out;

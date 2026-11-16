@@ -2,17 +2,15 @@
 :root {
 	// colors
 	--color-black: #17191e;
-	--color-white: #fff;
+	--color-white: #ffffff;
 	--color-gray-light: #faf7f0;
-
 	--color-primary: #ffcc1d;
 	--color-primary-alt: #daa410;
-
 	--color-secondary: #3c3b32;
 	--color-secondary-alt: #5d5c50;
 
 	// font stacks
-	--font-stack-common: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--font-stack-common: "Montserrat", system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
 	--font-stack-heading: "Bebas Neue", var(--font-stack-common);
 
 	// font sizes

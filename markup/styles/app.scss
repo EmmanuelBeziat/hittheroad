@@ -3,15 +3,11 @@
 // @use "../../node_modules/bootstrap/scss/bootstrap";
 @use "vendors/custom-bootstrap.scss";
 @use "vendors/maplibre-gl.scss";
-
 @use "variables.scss";
-
 @use "basis.scss";
 @use "layout.scss";
-
 @use "fonts/bebas-neue.scss";
 @use "fonts/montserrat.scss";
-
 @use "components/buttons.scss";
 @use "components/alerts.scss";
 @use "components/forms.scss";
@@ -21,11 +17,9 @@
 @use "components/cookies.scss";
 @use "components/slider.scss";
 @use "components/reveal.scss";
-
 @use "partials/header.scss";
 @use "partials/mobile-nav.scss";
 @use "partials/footer.scss";
-
 @use "pages/single.scss";
 @use "pages/products-list.scss";
 @use "pages/home/hero.scss";
@@ -34,13 +28,10 @@
 @use "pages/home/map.scss";
 @use "pages/shop/filters.scss";
 @use "pages/about-us.scss";
-
 @use "pages/cart/cart.scss";
 @use "pages/cart/payment.scss";
-
 @use "pages/my-account/login.scss";
 @use "pages/my-account/dashboard.scss";
-
 @use "vendors/wordpress.scss";
 @use "vendors/woocommerce.scss";
 @use "vendors/tom-select.scss";

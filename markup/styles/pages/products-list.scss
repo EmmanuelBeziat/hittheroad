@@ -2,10 +2,7 @@
 	display: grid;
 	gap: 2rem 1rem;
 	align-items: start;
-	grid-template-columns: 240px auto;
-	grid-template-rows: auto;
-	grid-template-areas:
-	"Sidebar List";
+	grid-template: "Sidebar List" auto / 240px auto;
 
 	@media (width <= 992px) {
 		grid-template-rows: auto auto;
@@ -17,6 +14,7 @@
 
 .products-grid {
 	--repeat: 3;
+
 	display: grid;
 	gap: 1rem;
 	grid-template-columns: repeat(var(--repeat), minmax(240px, 1fr));
@@ -43,7 +41,7 @@
 		&:hover,
 		&:focus {
 			scale: 1.025 !important;
-			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15) !important;
+			box-shadow: 0 0 0 .25em rgb(0 0 0 / .15) !important;
 		}
 	}
 

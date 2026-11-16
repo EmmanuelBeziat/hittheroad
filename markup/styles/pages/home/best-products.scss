@@ -11,7 +11,7 @@
 		&:hover,
 		&:focus {
 			scale: 1.025 !important;
-			box-shadow: 0 0 0 .25em rgba(0, 0, 0, .15) !important;
+			box-shadow: 0 0 0 .25em rgb(0 0 0 / .15) !important;
 		}
 	}
 }
@@ -22,6 +22,7 @@
 
 .products-list {
 	--products-count: 2;
+
 	display: grid;
 	grid-template-columns: repeat(var(--products-count), 1fr);
 	gap: 1rem;
@@ -30,20 +31,20 @@
 		overflow: hidden;
 		display: block;
 		border-radius: 4px;
-		box-shadow: 0 1px 1px HSL(0deg 0% 0% / .075),
-		0 2px 2px HSL(0deg 0% 0% / .075),
-		0 4px 4px HSL(0deg 0% 0% / .05),
-		0 8px 8px HSL(0deg 0% 0% / 0),
-		0 16px 16px HSL(0deg 0% 0% / 0);
+		box-shadow: 0 1px 1px hsl(0deg 0% 0% / .075),
+		0 2px 2px hsl(0deg 0% 0% / .075),
+		0 4px 4px hsl(0deg 0% 0% / .05),
+		0 8px 8px hsl(0deg 0% 0% / 0),
+		0 16px 16px hsl(0deg 0% 0% / 0);
 		transition: .5s ease-in-out;
 		cursor: pointer;
 
 		&:hover {
-			box-shadow: 0 1px 1px HSL(0deg 0% 0% / .075),
-			0 2px 2px HSL(0deg 0% 0% / .075),
-			0 4px 4px HSL(0deg 0% 0% / .075),
-			0 8px 8px HSL(0deg 0% 0% / .075),
-			0 16px 16px HSL(0deg 0% 0% / .075);
+			box-shadow: 0 1px 1px hsl(0deg 0% 0% / .075),
+			0 2px 2px hsl(0deg 0% 0% / .075),
+			0 4px 4px hsl(0deg 0% 0% / .075),
+			0 8px 8px hsl(0deg 0% 0% / .075),
+			0 16px 16px hsl(0deg 0% 0% / .075);
 			translate: 0 -6px;
 			transition: .25s ease-in-out;
 
@@ -55,7 +56,7 @@
 	}
 
 	.product-image {
-		background: #ccc;
+		background: #cccccc;
 		height: 240px;
 		overflow: hidden;
 

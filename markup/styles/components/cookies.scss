@@ -8,7 +8,6 @@
 	padding-left: 1rem;
 	font-size: .85rem;
 	visibility: hidden;
-	overflow: 0;
 	translate: 0 -50%;
 	z-index: -5;
 
@@ -21,9 +20,10 @@
 }
 
 .cookies-accept {
-	margin-left: auto;
 	--button-color-active: var(--color-black);
 	--button-border-active: var(--color-primary);
+
+	margin-left: auto;
 
 	&:hover {
 		background: var(--color-white);
