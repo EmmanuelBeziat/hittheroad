@@ -1,6 +1,13 @@
 .my-account-nav {
-	border-right: 1px solid #e5e5e5;
-	padding-right: 1.5rem;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 1rem;
+
+	@media (width >= 768px) {
+		border-bottom: 0;
+		padding-bottom: 0;
+		border-right: 1px solid #e5e5e5;
+		padding-right: 1.5rem;
+	}
 
 	ul {
 		list-style: none;
@@ -35,7 +42,11 @@
 .my-account-layout {
 	display: grid;
 	gap: 1.5rem;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: minmax(0, 1fr);
+
+	@media (width >= 768px) {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
 }
 
 .woocommerce-account .woocommerce-MyAccount-content {

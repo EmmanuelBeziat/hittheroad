@@ -2,10 +2,18 @@
 .actions .coupon {
 	float: none !important;
 	display: flex;
+	flex: 1 1 18rem;
+	max-width: 32rem;
+
+	.form-control {
+		flex: 1;
+		min-width: 0;
+	}
 }
 
 .actions-content {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 1rem;
 	justify-content: space-between;
 }
