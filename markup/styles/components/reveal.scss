@@ -1,3 +1,8 @@
+/*
+ * Scroll-triggered reveal, played once when 20% of the element is visible.
+ * Without animation-trigger support (or with reduced motion), elements are simply shown.
+ */
+
 @keyframes reveal-fade-in {
 	from {
 		opacity: 0;
@@ -20,25 +25,15 @@
 }
 
 [data-reveal~="stagger"] {
-	--reveal-delay: 100ms;
-
-	@supports (animation-delay: calc(sibling-index() * 1ms)) {
-		--reveal-delay: calc(min(sibling-index(), 8) * 50ms);
-	}
+	--reveal-delay: calc(mod(sibling-index() - 1, var(--reveal-stagger-cols, 3)) * 50ms);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	[data-reveal] {
-		animation: var(--reveal-name) var(--reveal-duration, .4s) ease-out var(--reveal-delay, 0s) backwards;
-	}
-
-	@supports (animation-timeline: view()) and (animation-range: entry) {
+	@supports (animation-trigger: none) {
 		[data-reveal] {
-			animation:
-				var(--reveal-name) var(--reveal-duration, .4s) ease-out var(--reveal-delay, 0s) backwards,
-				var(--reveal-name) auto linear backwards;
-			animation-timeline: auto, view();
-			animation-range: normal, entry 0% entry min(100%, 20vh);
+			timeline-trigger: --reveal view() entry 20% exit 100%;
+			animation: var(--reveal-name) var(--reveal-duration, .4s) ease-out var(--reveal-delay, 0s) both;
+			animation-trigger: --reveal play-once;
 		}
 	}
 }
