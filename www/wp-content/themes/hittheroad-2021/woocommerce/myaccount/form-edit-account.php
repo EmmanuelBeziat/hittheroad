@@ -39,11 +39,6 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	</div>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_last_name" id="account_last_name" required autocomplete="family-name" value="<?= esc_attr($user->last_name); ?>" placeholder="Doe">
-		<label for="account_last_name"><?php esc_html_e('Last name', 'woocommerce'); ?> <span class="required">*</span></label>
-	</div>
-
-	<div class="form-floating mb-3">
 		<input type="text" class="form-control" name="account_display_name" id="account_display_name" required aria-required="true" aria-describedby="account_display_name_description" value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span id="account_display_name_description"><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
 		<label for="account_display_name"><?php esc_html_e('Display name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
@@ -68,14 +63,6 @@ do_action('woocommerce_before_edit_account_form'); ?>
 		<div class="form-floating mb-3">
 			<input type="password" class="form-control" name="password_current" id="password_current" placeholder="Mot de passe" autocomplete="current-password">
 			<label for="password_current"><?php esc_html_e('Current password (leave blank to leave unchanged)', 'woocommerce'); ?></label>
-		</div>
-		<div class="form-floating mb-3">
-			<input type="password" class="form-control" name="password_1" id="password_1" autocomplete="new-password" placeholder="Mot de passe">
-			<label for="password_1"><?php esc_html_e('New password (leave blank to leave unchanged)', 'woocommerce'); ?></label>
-		</div>
-		<div class="form-floating mb-3">
-			<input type="password" class="form-control" name="password_2" id="password_2" autocomplete="new-password" placeholder="Mot de passe">
-			<label for="password_2"><?php esc_html_e('Confirm new password', 'woocommerce'); ?></label>
 		</div>
 		<div class="form-floating mb-3">
 			<input type="password" class="form-control" name="password_1" id="password_1" autocomplete="new-password" placeholder="Mot de passe">
