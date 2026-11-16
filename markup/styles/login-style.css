@@ -147,12 +147,12 @@
 		}
 
 		.wp-pwd button {
-			--color-eye: var(--color-primary);
+			--password-toggle-color: var(--color-primary);
 
-			color: var(--color-eye);
+			color: var(--password-toggle-color);
 
 			&:hover {
-				--color-eye: var(--color-primary-alt);
+				--password-toggle-color: var(--color-primary-alt);
 			}
 		}
 

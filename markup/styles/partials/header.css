@@ -1,5 +1,5 @@
 .site-header {
-	--z-index-nav: 50;
+	--zindex-nav: 50;
 
 	margin-bottom: 4rem;
 	padding: .4rem 0;
@@ -12,7 +12,7 @@
 
 .site-header-container {
 	position: relative;
-	z-index: var(--z-index-nav);
+	z-index: var(--zindex-nav);
 }
 
 .logo-htr {
@@ -27,10 +27,10 @@
 	gap: 5px;
 
 	.nav-item {
-		--nav-color: var(--color-white);
+		--nav-link-color: var(--color-white);
 
 		padding: 1rem .5rem;
-		color: var(--nav-color, var(--color-white));
+		color: var(--nav-link-color, var(--color-white));
 		display: flex;
 		gap: .25rem;
 		line-height: 1;
@@ -41,32 +41,32 @@
 
 		&:hover,
 		&:focus {
-			--translate-y: 0;
-			--scale-x: 1;
-			--active-opacity: 1;
-			--nav-color: var(--color-primary);
+			--nav-link-indicator-y: 0;
+			--nav-link-indicator-scale: 1;
+			--nav-link-indicator-opacity: 1;
+			--nav-link-color: var(--color-primary);
 		}
 
 		&::after {
-			--dot-size: 8px;
+			--nav-link-indicator-size: 8px;
 
 			content: "";
 			bottom: 3px;
 			position: absolute;
-			width: var(--dot-size);
-			left: calc(50% - var(--dot-size) / 2);
+			width: var(--nav-link-indicator-size);
+			left: calc(50% - var(--nav-link-indicator-size) / 2);
 			aspect-ratio: 1/1;
 
 			@supports not (aspect-ratio: 1/1) {
-				height: var(--dot-size);
+				height: var(--nav-link-indicator-size);
 			}
 
 			border-radius: 50%;
 			background: var(--color-primary);
 			transition: .25s ease-in-out;
-			opacity: var(--active-opacity, 0);
-			translate: 0 var(--translate-y, -3px);
-			scale: var(--scale-x, 0.75);
+			opacity: var(--nav-link-indicator-opacity, 0);
+			translate: 0 var(--nav-link-indicator-y, -3px);
+			scale: var(--nav-link-indicator-scale, 0.75);
 		}
 
 		@media (width <= 767px) {
@@ -129,10 +129,10 @@
 		/* &[aria-current="page"], */
 		&:hover,
 		&:focus {
-			--translate-y: 0;
-			--scale-x: 1;
-			--active-opacity: 1;
-			--nav-color: var(--color-primary);
+			--nav-link-indicator-y: 0;
+			--nav-link-indicator-scale: 1;
+			--nav-link-indicator-opacity: 1;
+			--nav-link-color: var(--color-primary);
 		}
 
 		&[aria-current="page"] {
@@ -147,25 +147,25 @@
 		}
 
 		&::after {
-			--dot-size: 8px;
+			--nav-link-indicator-size: 8px;
 
 			content: "";
 			bottom: 3px;
 			position: absolute;
-			width: var(--dot-size);
-			left: calc(50% - var(--dot-size) / 2);
+			width: var(--nav-link-indicator-size);
+			left: calc(50% - var(--nav-link-indicator-size) / 2);
 			aspect-ratio: 1/1;
 
 			@supports not (aspect-ratio: 1/1) {
-				height: var(--dot-size);
+				height: var(--nav-link-indicator-size);
 			}
 
 			border-radius: 50%;
 			background: var(--color-primary);
 			transition: .25s ease-in-out;
-			opacity: var(--active-opacity, 0);
-			translate: 0 var(--translate-y, -3px);
-			scale: var(--scale-x, 0.75);
+			opacity: var(--nav-link-indicator-opacity, 0);
+			translate: 0 var(--nav-link-indicator-y, -3px);
+			scale: var(--nav-link-indicator-scale, 0.75);
 
 			@media (width <= 767px) {
 				content: none;

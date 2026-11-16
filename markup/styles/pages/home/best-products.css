@@ -21,10 +21,10 @@
 }
 
 .products-list {
-	--products-count: 2;
+	--best-products-columns: 2;
 
 	display: grid;
-	grid-template-columns: repeat(var(--products-count), 1fr);
+	grid-template-columns: repeat(var(--best-products-columns), 1fr);
 	gap: 1rem;
 
 	.product {

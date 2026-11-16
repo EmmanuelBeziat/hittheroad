@@ -10,7 +10,7 @@
 	padding: 0;
 	cursor: pointer;
 	position: relative;
-	z-index: var(--z-index-nav);
+	z-index: var(--zindex-nav);
 
 	&:focus:not(:focus-visible) {
 		box-shadow: none;
@@ -77,7 +77,7 @@
 	position: fixed;
 	inset: 0;
 	background: var(--color-black);
-	z-index: calc(var(--z-index-nav) - 10);
+	z-index: calc(var(--zindex-nav) - 10);
 	transition: opacity .25s ease-in-out;
 	opacity: 0;
 	visibility: hidden;

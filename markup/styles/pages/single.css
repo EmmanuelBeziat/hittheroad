@@ -52,17 +52,17 @@
 		grid-area: Related;
 
 		.products-grid {
-			--repeat: 4;
-			--min-width: 180px;
+			--products-grid-columns: 4;
+			--products-grid-min-width: 180px;
 
-			grid-template-columns: repeat(var(--repeat), minmax(var(--min-width), 1fr));
+			grid-template-columns: repeat(var(--products-grid-columns), minmax(var(--products-grid-min-width), 1fr));
 
 			@media (width <= 996px) {
-				--repeat: 2;
+				--products-grid-columns: 2;
 			}
 
 			@media (width <= 576px) {
-				--repeat: auto-fit;
+				--products-grid-columns: auto-fit;
 			}
 		}
 	}

@@ -7,14 +7,14 @@
 
 	& > li > *,
 	.page-link {
-		--page-background: var(--color-white);
-		--page-border: rgb(0 0 0 / .35);
-		--page-color: var(--color-black);
+		--pagination-bg: var(--color-white);
+		--pagination-border-color: rgb(0 0 0 / .35);
+		--pagination-color: var(--color-black);
 
-		color: var(--page-color);
-		background-color: var(--page-background);
+		color: var(--pagination-color);
+		background-color: var(--pagination-bg);
     border: 1px solid #dee2e6;
-		border-color: var(--page-border);
+		border-color: var(--pagination-border-color);
 		border-radius: 0 !important;
 		text-decoration: none;
 		position: relative;
@@ -25,8 +25,8 @@
 		&.current,
 		&:hover,
 		&:active {
-			--page-background: var(--color-secondary);
-			--page-color: var(--color-primary);
+			--pagination-bg: var(--color-secondary);
+			--pagination-color: var(--color-primary);
 		}
 	}
 
@@ -45,7 +45,7 @@
 
 	.page-item:not(:first-child) + .page-item:not(:last-child) {
 		.page-link {
-			border-left: 1px solid var(--page-border);
+			border-left: 1px solid var(--pagination-border-color);
 		}
 	}
 
@@ -62,21 +62,21 @@
 
 	li:not(:first-child) + li:not(:last-child) {
 		& > a {
-			border-left: 1px solid var(--page-border);
+			border-left: 1px solid var(--pagination-border-color);
 		}
 	}
 
 	.next,
 	.prev {
-		--page-background: var(--color-primary);
-		--page-border: var(--color-primary);
-		--page-color: var(--color-black);
+		--pagination-bg: var(--color-primary);
+		--pagination-border-color: var(--color-primary);
+		--pagination-color: var(--color-black);
 
 		&.active,
 		&:hover,
 		&:active {
-			--page-background: var(--color-white);
-			--page-color: var(--color-black);
+			--pagination-bg: var(--color-white);
+			--pagination-color: var(--color-black);
 		}
 	}
 }
@@ -85,15 +85,15 @@
 .page-item-next {
 	& > a,
 	.page-link {
-		--page-background: var(--color-primary);
-		--page-border: var(--color-primary);
-		--page-color: var(--color-black);
+		--pagination-bg: var(--color-primary);
+		--pagination-border-color: var(--color-primary);
+		--pagination-color: var(--color-black);
 
 		&.active,
 		&:hover,
 		&:active {
-			--page-background: var(--color-white);
-			--page-color: var(--color-black);
+			--pagination-bg: var(--color-white);
+			--pagination-color: var(--color-black);
 		}
 	}
 }

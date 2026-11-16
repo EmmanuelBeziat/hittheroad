@@ -13,19 +13,19 @@
 }
 
 .products-grid {
-	--repeat: 3;
+	--products-grid-columns: 3;
 
 	display: grid;
 	gap: 1rem;
-	grid-template-columns: repeat(var(--repeat), minmax(240px, 1fr));
+	grid-template-columns: repeat(var(--products-grid-columns), minmax(240px, 1fr));
 	grid-area: List;
 
 	@media (width <= 1400px) {
-		--repeat: 3;
+		--products-grid-columns: 3;
 	}
 
 	@media (width <= 1200px) {
-		--repeat: auto-fit;
+		--products-grid-columns: auto-fit;
 	}
 
 	.product {
@@ -46,7 +46,7 @@
 	}
 
 	.products-alert {
-		grid-column: span var(--repeat, 1);
+		grid-column: span var(--products-grid-columns, 1);
 	}
 }
 
