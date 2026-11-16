@@ -106,7 +106,7 @@
 	$format = isset($format) ? $format : '';
 
 	if (!$total <= 1) : ?>
-		<nav class="products-pagination" aria-label="Navigation pages produits" data-aos="fade-up" data-aos-delay="0" data-aos-duration="400">
+		<nav class="products-pagination" aria-label="Navigation pages produits" data-reveal="fade-up">
 			<?php echo paginate_links([
 				'base' => $base,
 				'format' => $format,

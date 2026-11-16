@@ -23,7 +23,7 @@ if (!is_a($product, WC_Product::class) || !$product->is_visible()) {
 	return;
 }
 ?>
-<article <?php wc_product_class('', $product); ?> data-aos="fade-in" data-aos-delay="100" data-aos-duration="400">
+<article <?php wc_product_class('', $product); ?> data-reveal="fade-in stagger">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

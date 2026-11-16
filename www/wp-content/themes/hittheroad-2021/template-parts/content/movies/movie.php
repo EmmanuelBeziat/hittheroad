@@ -11,7 +11,7 @@ $movie = (object) [
 ];
 ?>
 
-<figure class="movie" data-aos="fade-in" data-aos-delay="<?= $args['delay'] ?>">
+<figure class="movie" data-reveal="fade-in">
 	<a href="<?= $movie->link ?>">
 		<picture class="movie-picture">
 			<source srcset="<?= $movie->pictures->mobile['sizes']['author-picture'] ?>" media="(max-width: 980px)" type="image/<?= $movie->pictures->mobile['subtype'] ?>">

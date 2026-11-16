@@ -3,7 +3,6 @@
 // @use "../../node_modules/bootstrap/scss/bootstrap";
 @use "vendors/custom-bootstrap.scss";
 @use "vendors/maplibre-gl.scss";
-@use "vendors/aos.scss";
 
 @use "variables.scss";
 
@@ -21,6 +20,7 @@
 @use "components/videos.scss";
 @use "components/cookies.scss";
 @use "components/slider.scss";
+@use "components/reveal.scss";
 
 @use "partials/header.scss";
 @use "partials/mobile-nav.scss";

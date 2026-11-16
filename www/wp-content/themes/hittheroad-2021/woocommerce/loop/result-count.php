@@ -23,7 +23,7 @@ if (!defined('ABSPATH')) {
 ?>
 <div class="products-page">
 	<aside class="products-sidebar">
-		<p class="products-count" role="status" aria-relevant="all" <?php echo (empty($orderedby) || 1 === intval($total)) ? '' : 'data-is-sorted-by="true"'; ?> data-aos="fade-up" data-aos-delay="100" data-aos-duration="200">
+		<p class="products-count" role="status" aria-relevant="all" <?php echo (empty($orderedby) || 1 === intval($total)) ? '' : 'data-is-sorted-by="true"'; ?> data-reveal="fade-up" style="--reveal-duration: 200ms; --reveal-delay: 100ms">
 			<?php
 			global $productsCount;
 			$total = $productsCount;

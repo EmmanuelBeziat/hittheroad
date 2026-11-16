@@ -8,7 +8,7 @@
 	</div>
 	<?php endif; ?>
 
-	<div id="htr-destinations" data-aos="fade-in" data-aos-duration="500" data-aos-delay="200"></div>
+	<div id="htr-destinations" data-reveal="fade-in" style="--reveal-duration: 500ms; --reveal-delay: 200ms"></div>
 
 	<?php if ($args['map']->borders) : ?>
 	<div class="map-divider-bottom">

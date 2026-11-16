@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 
 $id_suffix = wp_unique_id();
 ?>
-<form class="products-ordering" data-aos="fade-up" data-aos-delay="50" data-aos-duration="300" method="get">
+<form class="products-ordering" data-reveal="fade-up" style="--reveal-duration: 300ms; --reveal-delay: 50ms" method="get">
 	<div class="filters">
 		<?php
 		$fields = acf_get_fields(252);

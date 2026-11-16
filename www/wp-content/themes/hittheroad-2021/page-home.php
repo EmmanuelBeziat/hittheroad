@@ -45,7 +45,7 @@ $home = (object) [
 
 <section class="hero" style="--hero-background: url(<?= $home->hero->background ?>)">
 	<div class="hero-content">
-		<div class="hero-inner-content" data-aos="fade-in" data-aos-duration="1000">
+		<div class="hero-inner-content" data-reveal="fade-in" style="--reveal-duration: 1s">
 			<video class="hero-video" width="480" height=480" autoplay muted loop playsinline>
 				<source src="<?= get_stylesheet_directory_uri() ?>/assets/images/videos/htr-logo.mov" type="video/quicktime">
 				<source src="<?= get_stylesheet_directory_uri() ?>/assets/images/videos/htr-logo.webm" type="video/webm">
@@ -67,14 +67,14 @@ $home = (object) [
 
 <section class="showcase">
 	<div class="container text-center">
-		<h2 class="showcase-title" data-aos="fade-up" data-aos-duration="400"><?= $home->showcase->title ?></h2>
+		<h2 class="showcase-title" data-reveal="fade-up"><?= $home->showcase->title ?></h2>
 		<?php if ($home->showcase->content && $home->showcase->content !== '') : ?>
-		<p class="lead" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100"><?= $home->showcase->content ?></p>
+		<p class="lead" data-reveal="fade-up" style="--reveal-delay: 100ms"><?= $home->showcase->content ?></p>
 		<?php endif; ?>
 
 		<?php if (isset($home->showcase->link->url) && $home->showcase->link->url !== '') : ?>
 			<div>
-				<a class="btn btn-secondary btn-lg showcase-button" data-aos="fade-up" data-aos-duration="400" data-aos-delay="200" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
+				<a class="btn btn-secondary btn-lg showcase-button" data-reveal="fade-up" style="--reveal-delay: 200ms" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
 			</div>
 		<?php endif; ?>
 	</div>
