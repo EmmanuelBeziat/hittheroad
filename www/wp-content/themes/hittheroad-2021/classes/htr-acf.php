@@ -15,7 +15,11 @@ class HTR_ACF {
 	 * Add ACF options page.
 	 */
 	public function options_page () {
-		acf_add_options_page();
+		acf_add_options_page([
+			'page_title' => 'Options',
+			'menu_slug' => 'acf-options',
+			'capability' => 'manage_woocommerce',
+		]);
 	}
 
 	/**

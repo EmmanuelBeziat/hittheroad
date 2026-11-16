@@ -43,7 +43,7 @@ $home = (object) [
 
 <?php get_header(); ?>
 
-<section class="hero" style="--hero-background: url(<?= $home->hero->background ?>)">
+<section class="hero" style="--hero-background: url(<?= esc_url($home->hero->background) ?>)">
 	<div class="hero-content">
 		<div class="hero-inner-content" data-reveal="fade-in" style="--reveal-duration: 1s">
 			<video class="hero-video" width="480" height=480" autoplay muted loop playsinline>
@@ -51,7 +51,7 @@ $home = (object) [
 				<source src="<?= get_stylesheet_directory_uri() ?>/assets/images/videos/htr-logo.webm" type="video/webm">
 			</video>
 			<?php if ($home->hero->content && $home->hero->content !== '') :
-				echo $home->hero->content;
+				echo HTR_Tools::kses_content($home->hero->content);
 			endif; ?>
 		</div>
 
@@ -67,14 +67,14 @@ $home = (object) [
 
 <section class="showcase">
 	<div class="container text-center">
-		<h2 class="showcase-title" data-reveal="fade-up"><?= $home->showcase->title ?></h2>
+		<h2 class="showcase-title" data-reveal="fade-up"><?= esc_html($home->showcase->title) ?></h2>
 		<?php if ($home->showcase->content && $home->showcase->content !== '') : ?>
-		<p class="lead" data-reveal="fade-up" style="--reveal-delay: 100ms"><?= $home->showcase->content ?></p>
+		<p class="lead" data-reveal="fade-up" style="--reveal-delay: 100ms"><?= HTR_Tools::kses_content($home->showcase->content) ?></p>
 		<?php endif; ?>
 
 		<?php if (isset($home->showcase->link->url) && $home->showcase->link->url !== '') : ?>
 			<div>
-				<a class="btn-solid theme-secondary btn-lg showcase-button" data-reveal="fade-up" style="--reveal-delay: 200ms" href="<?= $home->showcase->link->url ?>"><?= $home->showcase->link->label ?></a>
+				<a class="btn-solid theme-secondary btn-lg showcase-button" data-reveal="fade-up" style="--reveal-delay: 200ms" href="<?= esc_url($home->showcase->link->url) ?>"><?= esc_html($home->showcase->link->label) ?></a>
 			</div>
 		<?php endif; ?>
 	</div>

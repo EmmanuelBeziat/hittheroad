@@ -13,8 +13,8 @@
 	<div class="mobile-social">
 		<div class="menu-social">
 			<?php foreach(get_field('social-networks', 'option') as $social) : ?>
-				<a href="<?= $social['url']; ?>" class="social-link btn-outline theme-dark" title="<?= $social['site']['label']; ?>">
-					<i class="fab fa-<?= $social['site']['value']; ?>"></i>
+				<a href="<?= esc_url($social['url']) ?>" class="social-link btn-outline theme-dark" title="<?= esc_attr($social['site']['label']) ?>">
+					<i class="fab fa-<?= esc_attr($social['site']['value']) ?>"></i>
 				</a>
 			<?php endforeach; ?>
 		</div>

@@ -43,10 +43,10 @@ $tags = [
 	<?php endforeach; ?>
 	<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--place>">
 		<th class="woocommerce-product-attributes-item__label">Pays</th>
-		<td class="woocommerce-product-attributes-item__value"><?= $tags['country']->label ?></td>
+		<td class="woocommerce-product-attributes-item__value"><?= esc_html($tags['country']->label) ?></td>
 	</tr>
 	<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--place>">
 		<th class="woocommerce-product-attributes-item__label">Année</th>
-		<td class="woocommerce-product-attributes-item__value"><?= $tags['year'] ?></td>
+		<td class="woocommerce-product-attributes-item__value"><?= esc_html($tags['year']) ?></td>
 	</tr>
 </table>

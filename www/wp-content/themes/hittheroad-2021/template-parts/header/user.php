@@ -12,6 +12,6 @@ $count = $woocommerce->cart->cart_contents_count;
 	<a class="nav-item position-relative" aria-label="Mon panier" href="<?= get_permalink(wc_get_page_id('cart')) ?>">
 		<i class="fas fa-shopping-cart"></i>
 		<span class="nav-item-label">Mon panier</span>
-		(<?= $count; ?>)
+		(<?= absint($count) ?>)
 	</a>
 </nav>

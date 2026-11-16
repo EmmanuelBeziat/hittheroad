@@ -12,18 +12,18 @@ $movie = (object) [
 ?>
 
 <figure class="movie" data-reveal="fade-in">
-	<a href="<?= $movie->link ?>">
+	<a href="<?= esc_url($movie->link) ?>">
 		<picture class="movie-picture">
-			<source srcset="<?= $movie->pictures->mobile['sizes']['author-picture'] ?>" media="(max-width: 980px)" type="image/<?= $movie->pictures->mobile['subtype'] ?>">
-			<img src="<?= $movie->pictures->desktop['sizes']['author-picture'] ?>" alt="<?= $movie->title ?>">
+			<source srcset="<?= esc_url($movie->pictures->mobile['sizes']['author-picture']) ?>" media="(max-width: 980px)" type="image/<?= $movie->pictures->mobile['subtype'] ?>">
+			<img src="<?= esc_url($movie->pictures->desktop['sizes']['author-picture']) ?>" alt="<?= esc_attr($movie->title) ?>">
 		</picture>
 	</a>
 
 	<figcaption class="movie-caption">
-		<h2 class="h2 mb-3"><?= $movie->title ?></h2>
-		<?= $movie->description ?>
+		<h2 class="h2 mb-3"><?= esc_html($movie->title) ?></h2>
+		<?= HTR_Tools::kses_content($movie->description) ?>
 		<div class="d-grid d-lg-block movie-link">
-			<a href="<?= $movie->link ?>" class="btn-solid theme-primary"><i class="fab fa-vimeo-v me-2"></i> Voir le film</a>
+			<a href="<?= esc_url($movie->link) ?>" class="btn-solid theme-primary"><i class="fab fa-vimeo-v me-2"></i> Voir le film</a>
 		</div>
 	</figcaption>
 </figure>

@@ -92,7 +92,7 @@ else {
 
 $notification = get_field('notification', 'option');
 if (isset($notification) && $notification !== '') : ?>
-<div class="alert" style="background:#ffcc1d;padding:10px 20px;color:#17191e;margin-top:10px;"><?= $notification ?></div><br><br>
+<div class="alert" style="background:#ffcc1d;padding:10px 20px;color:#17191e;margin-top:10px;"><?= HTR_Tools::kses_content($notification) ?></div><br><br>
 <?php endif;
 
 echo $email_improvements_enabled ? '</div>' : '';

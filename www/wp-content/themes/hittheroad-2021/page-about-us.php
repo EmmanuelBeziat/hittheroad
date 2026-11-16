@@ -19,7 +19,7 @@ $aboutUs = (object) [
 
 <section class="section presentation" id="presentation">
 	<div class="container">
-		<h1 class="h1"><?= $aboutUs->title ?></h1>
+		<h1 class="h1"><?= esc_html($aboutUs->title) ?></h1>
 
 		<?= wpautop(wptexturize($aboutUs->content)) ?>
 
@@ -29,7 +29,7 @@ $aboutUs = (object) [
 			endforeach; ?>
 		</div>
 
-		<?= $aboutUs->contentNext ?>
+		<?= HTR_Tools::kses_content($aboutUs->contentNext) ?>
 
 		<?php if ($aboutUs->video !== '') : ?>
 		<h2 class="h2 mt-5">Notre dernier film</h2>

@@ -44,8 +44,19 @@ class HTR_Tools {
 	 * @param $url string Video URL
 	 * @return HTMLElement iframe embed video
 	 */
+	/**
+	 * Sanitize rich content (WYSIWYG fields) for output.
+	 * Re-applies responsive image attributes that wp_kses_post() strips, like the_content does.
+	 *
+	 * @param string|null $html Content to sanitize.
+	 * @return string Safe HTML.
+	 */
+	public static function kses_content ($html) {
+		return wp_filter_content_tags(wp_kses_post((string) $html));
+	}
+
 	public static function blockVideo	($url) {
-		return '<iframe class="video" src="'.$url.'" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>';
+		return '<iframe class="video" src="' . esc_url($url) . '" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>';
 	}
 
 	/**

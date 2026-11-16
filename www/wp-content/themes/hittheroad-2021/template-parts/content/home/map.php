@@ -36,9 +36,9 @@
 		wp_reset_postdata();
 	endif; ?>
 	<script>
-		const places = <?= json_encode($places) ?>;
-		const htrMapToken = '<?= $args['map']->token ?>'
-		const htrMapStyle = '<?= $args['map']->style ?>'
+		const places = <?= wp_json_encode($places) ?>;
+		const htrMapToken = <?= wp_json_encode($args['map']->token) ?>
+		const htrMapStyle = <?= wp_json_encode($args['map']->style) ?>
 		const htrMapDestinations = []
 		places.forEach(place => {
 			htrMapDestinations.push({

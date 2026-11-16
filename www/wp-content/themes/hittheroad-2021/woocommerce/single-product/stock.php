@@ -25,9 +25,9 @@ $percent = $maxNumber ? ($quantity / $maxNumber) : 0;
 
 ?>
 <div class="stock <?php echo esc_attr($class); ?> mb-4">
-	Limité à <?= $maxNumber ?> tirages
+	Limité à <?= absint($maxNumber) ?> tirages
 	<div class="stock-meter my-2">
-		<span class="stock-meter-value" style="transform: scaleX(<?= $percent ?>)"></span>
+		<span class="stock-meter-value" style="transform: scaleX(<?= esc_attr($percent) ?>)"></span>
 	</div>
 	<div class="stock-number"><?= $quantity > 0 ? 'Encore '.$quantity.' tirages disponibles' : 'Plus de tirages disponibles' ?></div>
 	<?php //echo wp_kses_post($availability); ?>

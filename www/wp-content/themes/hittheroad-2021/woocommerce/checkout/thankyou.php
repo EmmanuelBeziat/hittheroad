@@ -24,7 +24,7 @@ defined('ABSPATH') || exit;
 	<?php
 	$notification = get_field('notification', 'option');
 	if (isset($notification) && $notification !== '') : ?>
-	<div class="alert alert-warning" role="alert"><?= $notification ?></div>
+	<div class="alert alert-warning" role="alert"><?= HTR_Tools::kses_content($notification) ?></div>
 	<?php endif;
 
 	if ($order) :

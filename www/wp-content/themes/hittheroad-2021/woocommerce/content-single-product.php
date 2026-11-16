@@ -35,7 +35,7 @@ $current_product_slug = get_post_field('post_name', $current_product);
 
 $notification = get_field('notification', 'option');
 if (isset($notification) && $notification !== '') : ?>
-<div class="alert alert-warning" role="alert"><?= $notification ?></div>
+<div class="alert alert-warning" role="alert"><?= HTR_Tools::kses_content($notification) ?></div>
 <?php endif ?>
 
 <section id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
@@ -72,7 +72,7 @@ if (isset($notification) && $notification !== '') : ?>
 
 	if (isset($process) && $process !== '') : ?>
 		<section class="product-description mb-4">
-			<?= $process ?>
+			<?= HTR_Tools::kses_content($process) ?>
 		</section>
 		<?php
 	endif;
