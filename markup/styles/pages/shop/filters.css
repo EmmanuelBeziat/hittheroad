@@ -12,6 +12,17 @@
 	gap: .5rem;
 	text-decoration: none;
 	font-size: .875rem;
+	list-style: none;
+	cursor: pointer;
+	transition: color var(--transition-regular);
+
+	&:hover {
+		color: var(--color-primary);
+	}
+
+	&::-webkit-details-marker {
+		display: none;
+	}
 
 	.fa {
 		font-size: .85em;
@@ -20,9 +31,29 @@
 	.svg-inline--fa {
 		height: .85em;
 	}
+}
 
-	& + .collapse,
-	& + .collapsing {
-		margin-top: .5rem;
+/* Native disclosure; height animated where interpolate-size is supported */
+.filter-more {
+	interpolate-size: allow-keywords;
+
+	&[open] > .filter-toggle {
+		margin-bottom: .5rem;
+	}
+
+	&::details-content {
+		height: 0;
+		overflow: clip;
+		transition: height .35s ease, content-visibility .35s allow-discrete;
+	}
+
+	&[open]::details-content {
+		height: auto;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::details-content {
+			transition: none;
+		}
 	}
 }

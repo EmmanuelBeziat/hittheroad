@@ -41,8 +41,8 @@ $id_suffix = wp_unique_id();
 				$index = 0;
 				foreach ($years as $year) : ?>
 					<?php if ($index === 3) : ?>
-						<a class="filter-toggle" data-bs-toggle="collapse" href="#filters-category-<?= $name ?>" role="button" aria-expanded="false" aria-controls="filters-category-<?= $name ?>">Voir d’avantage <i class="fa fa-chevron-down"></i></a>
-						<div id="filters-category-<?= $name ?>" class="collapse">
+						<details class="filter-more" id="filters-category-<?= $name ?>">
+							<summary class="filter-toggle">Voir davantage <i class="fa fa-chevron-down" aria-hidden="true"></i></summary>
 					<?php endif; ?>
 
 					<div class="filter-checkbox">
@@ -51,7 +51,7 @@ $id_suffix = wp_unique_id();
 					</div>
 
 					<?php if ($index >= 3 && $index === count($years) - 1) : ?>
-					</div>
+					</details>
 					<?php endif;
 					$index++;
 				endforeach;
@@ -59,8 +59,8 @@ $id_suffix = wp_unique_id();
 				$index = 0;
 				foreach ($field['choices'] as $key => $value) : ?>
 					<?php if ($index === 5) : ?>
-						<a class="filter-toggle" data-bs-toggle="collapse" href="#filters-category-<?= $name ?>" role="button" aria-expanded="false" aria-controls="filters-category-<?= $name ?>">Voir d’avantage <i class="fa fa-chevron-down"></i></a>
-						<div id="filters-category-<?= $name ?>" class="collapse">
+						<details class="filter-more" id="filters-category-<?= $name ?>">
+							<summary class="filter-toggle">Voir davantage <i class="fa fa-chevron-down" aria-hidden="true"></i></summary>
 					<?php endif; ?>
 
 						<div class="filter-checkbox">
@@ -69,7 +69,7 @@ $id_suffix = wp_unique_id();
 						</div>
 
 					<?php if ($index >= 5 && $index === count($field['choices']) - 1) : ?>
-					</div>
+					</details>
 					<?php endif;
 					$index++;
 				endforeach;

@@ -24,9 +24,9 @@ $light: #e8e9ea;
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/forms";
 // @import "bootstrap/scss/buttons"; // replaced by components/buttons.css (Bootstrap 6 style)
-@import "bootstrap/scss/transitions";
+// @import "bootstrap/scss/transitions"; // unused (no Bootstrap JS)
 @import "bootstrap/scss/dropdown";
-@import "bootstrap/scss/button-group";
+// @import "bootstrap/scss/button-group"; // unused (no Bootstrap JS)
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar";
 //  @import "bootstrap/scss/card";
@@ -37,16 +37,16 @@ $light: #e8e9ea;
 //  @import "bootstrap/scss/alert";
 //  @import "bootstrap/scss/progress";
 //  @import "bootstrap/scss/list-group";
-@import "bootstrap/scss/close";
+// @import "bootstrap/scss/close"; // unused (no Bootstrap JS)
 //  @import "bootstrap/scss/toasts";
 @import "bootstrap/scss/tables";
-@import "bootstrap/scss/modal";
-@import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/modal"; // unused (no Bootstrap JS)
+// @import "bootstrap/scss/tooltip"; // unused (no Bootstrap JS)
 //  @import "bootstrap/scss/popover";
 //  @import "bootstrap/scss/carousel";
 //  @import "bootstrap/scss/spinners";
-@import "bootstrap/scss/offcanvas";
-@import "bootstrap/scss/placeholders";
+// @import "bootstrap/scss/offcanvas"; // unused (no Bootstrap JS)
+// @import "bootstrap/scss/placeholders"; // unused (no Bootstrap JS)
 
 // Helpers
 @import "bootstrap/scss/helpers";
