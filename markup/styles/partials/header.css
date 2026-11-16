@@ -85,9 +85,15 @@
 		color: var(--color-white);
 		margin-left: 4px;
 
+		/* Visually hidden on small screens, still read by screen readers */
 		@media (width <= 992px) {
-			display: none;
-			margin-left: 0;
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: 0;
+			overflow: hidden;
+			clip-path: inset(50%);
+			white-space: nowrap;
 		}
 	}
 }

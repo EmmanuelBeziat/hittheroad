@@ -102,26 +102,31 @@
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	gap: 10px;
+	gap: 0;
 
+	/* 24px touch target, 10px visible dot */
 	.nav-dots-item {
 		all: unset;
-		width: 10px;
-		aspect-ratio: 1/1;
+		width: 24px;
+		height: 24px;
+		display: grid;
+		place-items: center;
+		cursor: pointer;
 
-		@supports not (aspect-ratio: 1/1) {
+		&::before {
+			content: "";
+			width: 10px;
 			height: 10px;
+			background: var(--color-secondary);
 		}
 
-		background: var(--color-secondary);
-
-		&.tns-nav-active,
-		&.active {
+		&.tns-nav-active::before,
+		&.active::before {
 			background: var(--color-primary);
 		}
 
-		&:hover,
-		&:focus {
+		&:hover::before,
+		&:focus-visible::before {
 			box-shadow: 0 0 0 .25em rgb(0 0 0 / .15);
 		}
 	}

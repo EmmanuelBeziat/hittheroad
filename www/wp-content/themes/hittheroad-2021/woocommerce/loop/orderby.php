@@ -28,7 +28,7 @@ $id_suffix = wp_unique_id();
 			$name = $field['name'];
 		?>
 		<div class="filter-item">
-			<h3 class="h4"><?= esc_html($field['label']) ?></h3>
+			<h2 class="h4"><?= esc_html($field['label']) ?></h2>
 
 			<?php if (!isset($field['choices'])) :
 				$years = htr_get_meta_values($name);
