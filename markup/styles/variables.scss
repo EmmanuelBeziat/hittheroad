@@ -1,6 +1,6 @@
-// CSS Custom Properties
+/* CSS Custom Properties */
 :root {
-	// colors
+	/* colors */
 	--color-black: #17191e;
 	--color-white: #ffffff;
 	--color-gray-light: #faf7f0;
@@ -9,13 +9,13 @@
 	--color-secondary: #3c3b32;
 	--color-secondary-alt: #5d5c50;
 
-	// font stacks
+	/* font stacks */
 	--font-stack-common: "Montserrat", system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
 	--font-stack-heading: "Bebas Neue", var(--font-stack-common);
 
-	// font sizes
+	/* font sizes */
 	--font-size-root: 16px;
 
-	// Transitions
+	/* Transitions */
 	--transition-regular: .25s ease-in-out;
 }

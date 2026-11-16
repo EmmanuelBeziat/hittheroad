@@ -1,5 +1,8 @@
 .form-control,
+.select2-container--default .select2-selection--single,
+.input-text,
 .form-select,
+.thwepo-extra-options select,
 .form-check-input[type="checkbox"] {
 	border-radius: 0;
 	font-size: 1rem;
@@ -17,15 +20,13 @@
 	cursor: pointer;
 }
 
-textarea.form-control {
+textarea.form-control,
+.select2-container--default textarea.select2-selection--single,
+textarea.input-text {
 	min-height: calc(12.5em + .75rem + 2px);
 }
 
 /** woocommerce stuff */
-.input-text {
-	@extend .form-control;
-}
-
 .woocommerce form .form-row label,
 .woocommerce-page form .form-row label {
 	line-height: inherit;
@@ -38,8 +39,6 @@ textarea.form-control {
 }
 
 .select2-container--default .select2-selection--single {
-	@extend .form-control;
-
 	font-weight: 400;
 	line-height: 1.5;
 	color: #212529;

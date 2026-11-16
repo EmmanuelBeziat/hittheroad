@@ -58,17 +58,69 @@
 		color: var(--color-white);
 	}
 
-	.admin-email__actions {
-		&-primary {
-			display: inline-flex;
-			gap: 10px;
-		}
+	.admin-email__actions-primary {
+		display: inline-flex;
+		gap: 10px;
+	}
 
+	/* Copy of .btn, .btn-primary and .btn-secondary (components/buttons) */
+	.admin-email__actions {
 		.button {
-			@extend .btn;
+			--button-bg-active: var(--button-bg);
+			--button-bg-outline-active: var(--button-bg);
+			--button-color: #ffffff;
+			--button-color-active: var(--button-color);
+			--button-color-outline: var(--button-color);
+			--button-color-outline-active: var(--button-color);
+			--button-border: #ffffff;
+			--button-border-active: var(--button-border);
+			--button-shadow: 0 0 0 .25em rgb(0 0 0 / .25);
+			--button-shadow-focus: var(--button-shadow);
+
+			text-transform: uppercase;
+			border-radius: 0;
+			text-decoration: none;
+			line-height: 1.25em;
+			padding: .65em 1.45em;
+			background-color: var(--button-bg, transparent);
+			border: 1px solid var(--button-border);
+			color: var(--button-color);
+			cursor: pointer;
+
+			&:hover,
+			&:focus,
+			&:active,
+			&.hover,
+			&.focus,
+			&.active {
+				background-color: transparent;
+				border-color: var(--button-border-active);
+				color: var(--button-color-active);
+			}
+
+			&:focus,
+			&:active,
+			&.active,
+			&.focus {
+				box-shadow: var(--button-shadow);
+			}
+
+			&:active:focus {
+				box-shadow: var(--button-shadow-focus);
+			}
+
+			svg {
+				pointer-events: none;
+			}
 
 			&:first-child {
-				@extend .btn-secondary;
+				--button-bg: var(--color-secondary);
+				--button-color: var(--color-white);
+				--button-color-active: var(--color-black);
+				--button-color-outline: var(--button-black);
+				--button-border: var(--color-secondary);
+				--button-active: 0 0 0 .25em rgb(197 198 199 / .25);
+				--button-active-focus: 0 0 0 .25em rgb(197 198 199 / .5);
 			}
 
 			&:hover,
@@ -78,7 +130,11 @@
 		}
 
 		.button-primary {
-			@extend .btn-primary;
+			--button-bg: var(--color-primary);
+			--button-color: var(--color-black);
+			--button-border: var(--color-primary);
+			--button-active: 0 0 0 .25em rgb(0 0 0 / .15);
+			--button-active-focus: 0 0 0 .25em rgb(0 0 0 / .25);
 		}
 	}
 
