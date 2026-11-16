@@ -116,7 +116,8 @@
 	--btn-hover-border-color: var(--btn-border-color);
 }
 
-.btn-outline {
+.btn-outline,
+.woocommerce :is(.woocommerce-orders-table__cell-order-actions .button, .button.order-actions-button) {
 	--btn-bg: transparent;
 	--btn-color: var(--theme-fg, #ffffff);
 	--btn-border-color: var(--theme-border, #ffffff);
@@ -132,4 +133,12 @@
 
 .btn-lg {
 	--btn-font-size: 1.75rem;
+}
+
+/* WooCommerce buttons in the account area use the small size */
+.btn-sm,
+.woocommerce .woocommerce-MyAccount-content .button {
+	--btn-padding-y: .45em;
+	--btn-padding-x: .9em;
+	--btn-font-size: 1rem;
 }
