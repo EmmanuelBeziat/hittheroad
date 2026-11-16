@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <?php $author = $args['author']; ?>
 
 <figure class="author">

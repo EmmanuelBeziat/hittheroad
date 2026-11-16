@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <footer class="site-footer" role="contentinfo">
 	<div class="site-footer-top">
 		<?php if (get_field('footer-borders', 'option')) : ?>

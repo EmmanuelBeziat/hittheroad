@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <?php if (has_nav_menu('navigation')) : ?>
 <div class="main-nav navbar-expand-md navbar">
 	<button class="navbar-toggler ms-auto" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Navigation mobile">

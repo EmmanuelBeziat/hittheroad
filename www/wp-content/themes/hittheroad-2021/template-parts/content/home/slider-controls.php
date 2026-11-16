@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <div class="products-slider-controls mt-2 mb-2">
 	<div class="nav-dots"></div>
 

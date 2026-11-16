@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <header class="site-header<?= is_front_page() ? '' : ' bg-dark' ?>">
 	<div class="container-fluid site-header-container">
 		<div class="d-flex">

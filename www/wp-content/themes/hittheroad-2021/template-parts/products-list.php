@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 	$paged = get_query_var('paged') ?: 1;
 	$postsPerPage = get_field('products-per-page', 'option') ?: 24;
 	$args = [

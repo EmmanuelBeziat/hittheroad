@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <?php if ($args['map']->isActive) : ?>
 <section class="map" id="home-map">
 	<?php if ($args['map']->borders) : ?>

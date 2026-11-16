@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <?php if ($args['products']->isActive) : ?>
 <section class="section best-products">
 	<div class="container">

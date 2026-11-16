@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 global $woocommerce;
 global $current_user;
 wp_get_current_user();

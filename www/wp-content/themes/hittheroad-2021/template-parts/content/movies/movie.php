@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 $id = $args['movie']->ID;
 $movie = (object) [
 	'title' => get_post($id)->post_title,

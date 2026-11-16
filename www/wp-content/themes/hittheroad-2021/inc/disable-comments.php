@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 
 add_action('admin_init', function () {
     // Redirect any user trying to access comments page

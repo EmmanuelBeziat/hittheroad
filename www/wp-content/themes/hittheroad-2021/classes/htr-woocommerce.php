@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit;
 /**
  * Woocommerce functions.
  */
@@ -232,18 +233,22 @@ class HTR_Woocommerce {
 	 * Replaces the default WooCommerce gallery image with the 'product-preview' size
 	 * and adds a portrait/landscape CSS class based on aspect ratio.
 	 *
-	 * @param string $args Original gallery image HTML.
+	 * @param string $html Original gallery image HTML.
+	 * @return string Modified gallery image HTML.
 	 */
-	public function custom_single_product_image_html ($args) {
+	public function custom_single_product_image_html ($html) {
 		global $product;
-		global $_wp_additional_image_sizes;
-		$attachment_uri = get_the_post_thumbnail_url($product->get_id(), 'product-preview');
-		$attachment_id = get_post_thumbnail_id($product->get_id());
-		$imageSize = wp_get_attachment_image_src($attachment_id, 'product-preview');
-		$containerClass = $imageSize[0] > $imageSize[1] ? 'paysage' : 'portrait';
-		$replacement = ['/class="woocommerce-product-gallery__image /', '/src="(.*?)"/', '/width="(.*?)"/', '/height="(.*?)"/'];
-		$image = preg_replace($replacement, ['class="woocommerce-product-gallery__image '.$containerClass, 'src="'.$attachment_uri.'"', 'width="'.$imageSize[0].'"', 'height="'.$imageSize[1].'"'], $args);
-		echo $image;
+		$image = wp_get_attachment_image_src(get_post_thumbnail_id($product->get_id()), 'product-preview');
+		if (!$image) {
+			return $html;
+		}
+
+		[$src, $width, $height] = $image;
+		$containerClass = $width > $height ? 'paysage' : 'portrait';
+		$patterns = ['/class="woocommerce-product-gallery__image /', '/src="(.*?)"/', '/width="(.*?)"/', '/height="(.*?)"/'];
+		$replacements = ['class="woocommerce-product-gallery__image ' . $containerClass, 'src="' . esc_url($src) . '"', 'width="' . (int) $width . '"', 'height="' . (int) $height . '"'];
+
+		return preg_replace($patterns, $replacements, $html);
 	}
 
 	/**
@@ -546,7 +551,6 @@ class HTR_Woocommerce {
 
 		foreach ($rulesList as $rule) {
 			if (isset($rule['active']) && $rule['active']) {
-				// HTR_Tools::dd($rule);
 				$productCategory = $rule['product_category'] ?? 0; // Assuming product_category is a single category ID
 
 

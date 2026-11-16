@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <div class="mobile-nav-content" id="mobile-menu">
 	<?php if (has_nav_menu('navigation')) : ?>
 		<?php wp_nav_menu([

@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <nav class="footer-nav">
 	<div class="footer-nav-item">
 		<div class="footer-social">

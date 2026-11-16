@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') || exit; ?>
 <?php $product_id = $args['id']; ?>
 <article class="product swiper-slide">
 	<a href="<?= get_the_permalink($product_id) ?>" class="product-link">
