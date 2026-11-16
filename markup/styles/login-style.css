@@ -1,7 +1,7 @@
-@use "variables.scss";
-@use "fonts/bebas-neue.scss";
-@use "fonts/montserrat.scss";
-@use "components/buttons.scss";
+@import "variables.css";
+@import "fonts/bebas-neue.css";
+@import "fonts/montserrat.css";
+@import "components/buttons.css";
 
 .login {
 	--color-black-login: #2b2a2a;

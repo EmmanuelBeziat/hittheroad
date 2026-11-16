@@ -2,6 +2,16 @@ module.exports = grunt => {
 	require('load-grunt-tasks')(grunt)
 	const pathConfig = require('./grunt-settings.js')
 	const sass = require('sass')
+	const postcssImport = require('postcss-import')
+	const { default: postcssNested } = require('postcss-nested') // ESM-only package
+	const cssnano = require('cssnano')
+
+	const styleEntries = {
+		expand: true,
+		cwd: '<%= config.src.styles %>',
+		src: ['app.css', 'maintenance.css', 'editor-style.css', 'login-style.css'],
+		dest: '<%= config.dist.styles %>'
+	}
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -14,46 +24,37 @@ module.exports = grunt => {
 			}
 		},
 
+		// Only Bootstrap is still written in Sass, compiled then imported by app.css
 		sass: {
-			dev: {
+			bootstrap: {
 				options: {
 					implementation: sass,
-					sourceMap: true,
+					loadPaths: ['node_modules'],
+					quietDeps: true,
+					silenceDeprecations: ['import'],
+					sourceMap: false,
+					style: 'expanded'
 				},
-				files: [
-					{
-						expand: true,
-						cwd: '<%= config.src.styles %>',
-						src: ['app.scss'],
-						dest: '<%= config.dist.styles %>',
-						ext: '.css'
-					},
-				]
+				files: {
+					'.tmp/bootstrap.css': '<%= config.src.styles %>vendors/custom-bootstrap.scss'
+				}
+			}
+		},
+
+		postcss: {
+			dev: {
+				options: {
+					map: true,
+					processors: [postcssImport(), postcssNested()]
+				},
+				files: [styleEntries]
 			},
 			prod: {
 				options: {
-					implementation: sass,
-					sourceMap: false,
-					outputStyle: 'compressed'
+					map: false,
+					processors: [postcssImport(), postcssNested(), cssnano()]
 				},
-				files: [
-					{
-						src: ['<%= config.src.styles %>app.scss'],
-						dest: '<%= config.dist.styles %>app.css'
-					},
-					{
-						src: ['<%= config.src.styles %>maintenance.scss'],
-						dest: '<%= config.dist.styles %>maintenance.css'
-					},
-					{
-						src: ['<%= config.src.styles %>editor-style.scss'],
-						dest: '<%= config.dist.styles %>editor-style.css'
-					},
-					{
-						src: ['<%= config.src.styles %>login-style.scss'],
-						dest: '<%= config.dist.styles %>login-style.css'
-					}
-				]
+				files: [styleEntries]
 			}
 		},
 
@@ -135,8 +136,12 @@ module.exports = grunt => {
 				}
 			}, */
 			styles: {
-				files: ['<%= config.src.styles %>**/*.scss'],
-				tasks: ['sass:dev'],
+				files: ['<%= config.src.styles %>**/*.css'],
+				tasks: ['postcss:dev'],
+			},
+			bootstrap: {
+				files: ['<%= config.src.styles %>vendors/custom-bootstrap.scss'],
+				tasks: ['sass:bootstrap', 'postcss:dev'],
 			},
 			images: {
 				files: ['<%= config.src.images %>**/*.{png,jpg,jpeg,gif,svg,webp}'],
@@ -161,9 +166,9 @@ module.exports = grunt => {
 	})
 
 	grunt.registerTask('default', ['build'])
-	grunt.registerTask('dev:full', ['sass:dev', 'concat:vendors', 'concat:classes', 'concat:app', 'copy:images', 'copy:fonts', 'watch'])
-	grunt.registerTask('dev:quick', ['watch'])
-	grunt.registerTask('build', ['sass:prod', 'uglify:vendors', 'uglify:classes', 'uglify:app', 'copy:images', 'copy:fonts'])
-	grunt.registerTask('build:styles', ['sass:prod'])
+	grunt.registerTask('dev:full', ['sass:bootstrap', 'postcss:dev', 'concat:vendors', 'concat:classes', 'concat:app', 'copy:images', 'copy:fonts', 'watch'])
+	grunt.registerTask('dev:quick', ['sass:bootstrap', 'watch'])
+	grunt.registerTask('build', ['sass:bootstrap', 'postcss:prod', 'uglify:vendors', 'uglify:classes', 'uglify:app', 'copy:images', 'copy:fonts'])
+	grunt.registerTask('build:styles', ['sass:bootstrap', 'postcss:prod'])
 	grunt.registerTask('build:scripts', ['uglify:vendors', 'uglify:classes', 'uglify:app'])
 }
