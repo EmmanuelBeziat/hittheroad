@@ -1,17 +1,22 @@
 /*
  * Buttons, Bootstrap 6 style: a variant class (.btn-solid, .btn-outline)
  * combined with a theme class (.theme-primary, …). Variants work without .btn.
+ * WooCommerce core buttons (.button, .button.alt) are mapped to .btn-solid
+ * with the secondary and primary themes; the selector matches WooCommerce's
+ * specificity (.woocommerce a.button) and wins as app.css loads after it.
  */
 
 /* Theme tokens (Bootstrap 6 names, unprefixed) */
-.theme-primary {
+.theme-primary,
+.woocommerce :is(a, button, input).button.alt {
 	--theme-bg: var(--color-primary);
 	--theme-contrast: var(--color-black);
 	--theme-border: var(--color-primary);
 	--theme-fg: var(--color-black);
 }
 
-.theme-secondary {
+.theme-secondary,
+.woocommerce :is(a, button, input).button {
 	--theme-bg: var(--color-secondary);
 	--theme-contrast: var(--color-white);
 	--theme-border: var(--color-secondary);
@@ -36,7 +41,8 @@
 /* Base */
 .btn,
 .btn-solid,
-.btn-outline {
+.btn-outline,
+.woocommerce :is(a, button, input).button {
 	--btn-padding-y: .65em;
 	--btn-padding-x: 1.45em;
 	--btn-font-size: 125%;
@@ -100,7 +106,8 @@
 
 /* Variants */
 .btn,
-.btn-solid {
+.btn-solid,
+.woocommerce :is(a, button, input).button {
 	--btn-bg: var(--theme-bg, transparent);
 	--btn-color: var(--theme-contrast, #ffffff);
 	--btn-border-color: var(--theme-border, #ffffff);
