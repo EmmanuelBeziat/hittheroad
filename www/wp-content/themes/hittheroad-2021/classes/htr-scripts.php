@@ -9,7 +9,40 @@ class HTR_Scripts {
 	 */
 	function __construct () {
 		add_action('wp_enqueue_scripts', [$this, 'front_scripts']);
+		add_action('wp_enqueue_scripts', [$this, 'dequeue_unused_plugin_assets'], 100);
 		add_action('login_enqueue_scripts', [$this, 'login_scripts']);
+	}
+
+	/**
+	 * Remove plugin assets from pages that do not use them.
+	 */
+	public function dequeue_unused_plugin_assets () {
+		// Additional Product Fields: only for WooCommerce cart blocks (not used, cart/checkout are classic).
+		// It pulls the whole WooCommerce Blocks/React stack on every page.
+		wp_dequeue_script('rn-cart-block-edit');
+
+		if ($this->has_contact_form()) {
+			return;
+		}
+
+		// Contact Form 7 and its anti-spam add-ons
+		foreach (['contact-form-7', 'swv', 'spam-protect-for-contact-form7', 'altcha-widget-custom-options'] as $handle) {
+			wp_dequeue_script($handle);
+		}
+		foreach (['contact-form-7', 'cf7apps-honeypot-frontend', 'spam-protect-for-contact-form7'] as $handle) {
+			wp_dequeue_style($handle);
+		}
+	}
+
+	/**
+	 * Whether the current page content contains a Contact Form 7 form (shortcode or block).
+	 *
+	 * @return bool
+	 */
+	private function has_contact_form () {
+		$post = get_post();
+
+		return is_singular() && $post && (has_shortcode($post->post_content, 'contact-form-7') || has_block('contact-form-7/contact-form-selector', $post));
 	}
 
 	/**
