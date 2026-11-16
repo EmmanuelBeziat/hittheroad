@@ -8,8 +8,8 @@
 
 			<div class="menu-social">
 				<?php foreach(get_field('social-networks', 'option') as $social) : ?>
-					<a href="<?= esc_url($social['url']) ?>" class="social-link btn-outline theme-light" title="<?= esc_attr($social['site']['label']) ?>">
-						<i class="fab fa-<?= esc_attr($social['site']['value']) ?>"></i>
+					<a href="<?= esc_url($social['url']) ?>" class="social-link btn-outline theme-light" title="<?= esc_attr(HTR_Tools::social_label($social['site'])) ?>">
+						<?= HTR_Tools::social_icon($social['site']['value']) ?>
 					</a>
 				<?php endforeach; ?>
 			</div>
