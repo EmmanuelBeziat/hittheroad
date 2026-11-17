@@ -25,7 +25,6 @@ class HTR_Admin {
 			'required' => [
 				'WooCommerce' => fn () => class_exists('WooCommerce'),
 				'Advanced Custom Fields PRO' => fn () => function_exists('acf_add_options_page'),
-				'ACF Country' => fn () => function_exists('acf_get_field_type') && acf_get_field_type('country'),
 			],
 			'integrated' => [
 				'PDF Invoices & Packing Slips for WooCommerce (factures)' => fn () => defined('WPO_WCPDF_VERSION'),

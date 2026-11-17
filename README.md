@@ -17,7 +17,6 @@ Indispensables :
 
 * WooCommerce
 * Advanced Custom Fields PRO (mu-plugin)
-* ACF Country (mu-plugin, champ « Pays » des produits)
 
 Utilisés par des fonctionnalités du thème :
 
