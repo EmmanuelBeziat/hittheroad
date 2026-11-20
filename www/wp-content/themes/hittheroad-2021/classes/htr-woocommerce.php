@@ -28,6 +28,8 @@ class HTR_Woocommerce {
 		add_filter('loop_shop_per_page', [$this, 'products_per_page'], 30);
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
+		add_filter('single_product_large_thumbnail_size', [$this, 'single_product_image_size']);
+		add_filter('max_srcset_image_width', [$this, 'single_product_srcset_max_width'], 10, 2);
 		add_action('woocommerce_before_calculate_totals', [$this, 'apply_custom_pricing_rules'], 10, 1);
 		add_action('woocommerce_before_cart_table', [$this, 'pack_apply_discount_to_cart'], 10, 1);
 		add_action('woocommerce_cart_updated', [$this, 'pack_update_discount_to_cart'], 10, 1);
@@ -249,6 +251,30 @@ class HTR_Woocommerce {
 		$replacements = ['class="woocommerce-product-gallery__image ' . $containerClass, 'src="' . esc_url($src) . '"', 'width="' . (int) $width . '"', 'height="' . (int) $height . '"'];
 
 		return preg_replace($patterns, $replacements, $html);
+	}
+
+	/**
+	 * Main product image size (YITH Zoom Magnifier asks for the unregistered "shop_single",
+	 * which gives a srcset/sizes based on the full, watermarked image).
+	 *
+	 * @return string
+	 */
+	public function single_product_image_size () {
+		return 'product-preview';
+	}
+
+	/**
+	 * Keep the watermarked full size out of the main product image srcset
+	 * (high-density screens would load it): it is only shown in the zoom.
+	 *
+	 * @param int   $max_width  Maximum width in the srcset.
+	 * @param array $size_array Displayed width and height.
+	 * @return int
+	 */
+	public function single_product_srcset_max_width ($max_width, $size_array) {
+		$preview_width = (int) (wp_get_registered_image_subsizes()['product-preview']['width'] ?? 0);
+
+		return is_product() && $preview_width && (int) $size_array[0] === $preview_width ? $preview_width : $max_width;
 	}
 
 	/**
