@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see https://docs.woocommerce.com/document/template-structure/
+ * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 8.1.0
+ * @version 11.2.0
  *
  * @var WC_Order $order
  */
@@ -34,7 +34,12 @@ defined('ABSPATH') || exit;
 
 		<?php if ($order->has_status('failed')) : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e('Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce'); ?></p>
+			<?php
+			$default_order_failed_text = esc_html__('Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce');
+			$order_failed_text = apply_filters('woocommerce_thankyou_order_failed_text', $default_order_failed_text, $order);
+			$order_failed_text = is_string($order_failed_text) ? $order_failed_text : $default_order_failed_text;
+			?>
+			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php echo wp_kses_post($order_failed_text); ?></p>
 
 			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
 				<a href="<?php echo esc_url($order->get_checkout_payment_url()); ?>" class="button pay"><?php esc_html_e('Pay', 'woocommerce'); ?></a>

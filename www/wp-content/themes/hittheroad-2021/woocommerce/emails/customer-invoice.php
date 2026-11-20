@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer invoice email
+ * Customer order details email
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-invoice.php.
  *
@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
- * @version 10.4.0
+ * @version 11.1.0
  */
 
 use Automattic\WooCommerce\Enums\OrderStatus;
@@ -59,7 +59,7 @@ else {
 				]
 			),
 			esc_html(get_bloginfo('name', 'display')),
-			'<a href="' . esc_url($order->get_checkout_payment_url()) . '">' . esc_html__('Pay for this order', 'woocommerce') . '</a>'
+			'<a href="' . esc_url($order->get_checkout_payment_url()) . '" class="email-payment-link">' . esc_html__('Pay for this order', 'woocommerce') . '</a>'
 		);
 	}
 	else {
@@ -74,7 +74,7 @@ else {
 				]
 			),
 			esc_html(get_bloginfo('name', 'display')),
-			'<a href="' . esc_url($order->get_checkout_payment_url()) . '">' . esc_html__('Pay for this order', 'woocommerce') . '</a>'
+			'<a href="' . esc_url($order->get_checkout_payment_url()) . '" class="email-payment-link">' . esc_html__('Pay for this order', 'woocommerce') . '</a>'
 		);
 	}
 	?>

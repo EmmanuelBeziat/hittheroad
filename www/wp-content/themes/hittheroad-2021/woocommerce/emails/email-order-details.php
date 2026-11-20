@@ -12,7 +12,7 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
- * @version 10.8.0
+ * @version 11.2.0
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -109,6 +109,12 @@ do_action('woocommerce_email_before_order_table', $order, $sent_to_admin, $plain
 				foreach ($item_totals as $total) {
 					++$i;
 					$last_class = ($i === $item_totals_count) ? ' order-totals-last' : '';
+					if ($email_improvements_enabled && 'shipping' === ($total['type'] ?? '') && isset($total['meta']) && $total['value'] === $total['meta']) {
+						// Zero cost shipping: show "Free!" instead of the repeated method name.
+						if ((bool) apply_filters('woocommerce_email_order_shipping_show_free_label', $order->has_shipping_method('free_shipping'), $order)) {
+							$total['value'] = __('Free!', 'woocommerce');
+						}
+					}
 					?>
 					<tr class="order-totals order-totals-<?= esc_attr($total['type'] ?? 'unknown'); ?><?= esc_attr($last_class); ?>">
 						<th class="td text-align-left" scope="row" colspan="2" style="<?= (1 === $i) ? 'border-top-width: 4px;' : ''; ?>">

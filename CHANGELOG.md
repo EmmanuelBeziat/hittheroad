@@ -1,5 +1,22 @@
 # Suivi de mises à jour
 
+## 20.11.2026
+
+* Mise à jour templates woocommerce (WooCommerce 11.3.0) : seuls les changements utiles sont reportés, le markup du thème est conservé
+  * `cart/cart.php` 10.8.0 → 11.3.0 : nom d'article via `get_item_product_name()`, `scope="col"` sur les en-têtes, `scope` invalide retiré du `<td>`, arguments `$cart_item`/`$cart_item_key` du filtre de rupture
+  * `cart/cart-shipping.php` 8.8.0 → 11.2.0 : index entier dans le `for` du libellé, 2ᵉ argument `$formatted_destination` du filtre `woocommerce_cart_no_shipping_available_html`
+  * `checkout/payment.php` 9.8.0 → 10.9.0 : `aria-label` sur la liste des moyens de paiement
+  * `checkout/thankyou.php` 8.1.0 → 11.2.0 : message d'échec filtrable (`woocommerce_thankyou_order_failed_text`)
+  * `emails/customer-invoice.php` 10.4.0 → 11.1.0 : classe `email-payment-link` sur le lien de paiement
+  * `emails/email-order-details.php` 10.8.0 → 11.2.0 : « Gratuit ! » pour la livraison gratuite
+  * `myaccount/form-add-payment-method.php` 7.8.0 → 10.9.0 : `aria-label` sur la liste des moyens de paiement
+  * `myaccount/form-edit-account.php` 10.5.0 → 11.0.0 : description du nom affiché sans mention des avis si désactivés
+  * `myaccount/payment-methods.php` 8.9.0 → 11.3.0 : libellé des moyens de paiement sans marque de carte
+  * `order/order-details.php` 10.9.0 → 11.3.1 : sécurité, adresse affichée à un visiteur non connecté uniquement avec la clé de commande
+  * `single-product/add-to-cart/variable.php` 10.9.0 → 11.1.0 : `<template>` au lieu de `<script type="text/template">`, condition `VariationGallery\Package::is_enabled()` (toujours vraie) retirée
+  * `single-product/meta.php` 9.7.0 → 11.2.0 : catégories dans l'ordre du fil d'Ariane (filtre `woocommerce_product_meta_category_orderby`)
+  * `single-product/product-image.php` 10.5.0 → 11.1.0 et `single-product/product-thumbnails.php` 9.8.0 → 11.1.0 : version seule, galerie vidéo (API interne) non reprise
+
 ## 16.11.2026
 
 * Performance (audit Core Web Vitals)

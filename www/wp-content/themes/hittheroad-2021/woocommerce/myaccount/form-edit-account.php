@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 10.5.0
+ * @version 11.0.0
  */
 
 defined('ABSPATH') || exit;
@@ -39,7 +39,7 @@ do_action('woocommerce_before_edit_account_form'); ?>
 	</div>
 
 	<div class="form-floating mb-3">
-		<input type="text" class="form-control" name="account_display_name" id="account_display_name" required aria-required="true" aria-describedby="account_display_name_description" value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span id="account_display_name_description"><em><?php esc_html_e('This will be how your name will be displayed in the account section and in reviews', 'woocommerce'); ?></em></span>
+		<input type="text" class="form-control" name="account_display_name" id="account_display_name" required aria-required="true" aria-describedby="account_display_name_description" value="<?= esc_attr($user->display_name); ?>" placeholder="JohnD55"> <span id="account_display_name_description"><em><?php echo wc_reviews_enabled() ? esc_html__('This will be how your name will be displayed in the account section and in reviews', 'woocommerce') : esc_html__('This will be how your name will be displayed in the account section', 'woocommerce'); ?></em></span>
 		<label for="account_display_name"><?php esc_html_e('Display name', 'woocommerce'); ?> <span class="required">*</span></label>
 	</div>
 
