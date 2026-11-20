@@ -29,6 +29,7 @@ class HTR_Woocommerce {
 		add_filter('woocommerce_product_get_weight', '__return_false');
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
 		add_filter('single_product_large_thumbnail_size', [$this, 'single_product_image_size']);
+		add_filter('woocommerce_gallery_image_size', [$this, 'gallery_image_size']);
 		add_filter('max_srcset_image_width', [$this, 'single_product_srcset_max_width'], 10, 2);
 		add_filter('post_thumbnail_id', [$this, 'variation_thumbnail_fallback'], 10, 2);
 		add_action('woocommerce_before_calculate_totals', [$this, 'apply_custom_pricing_rules'], 10, 1);
@@ -262,6 +263,16 @@ class HTR_Woocommerce {
 	 */
 	public function single_product_image_size () {
 		return 'product-preview';
+	}
+
+	/**
+	 * Same size for the image shown after choosing a variation (WooCommerce default: woocommerce_single, 600 px).
+	 *
+	 * @param string|array $size Image size.
+	 * @return string|array
+	 */
+	public function gallery_image_size ($size) {
+		return 'woocommerce_single' === $size ? $this->single_product_image_size() : $size;
 	}
 
 	/**
