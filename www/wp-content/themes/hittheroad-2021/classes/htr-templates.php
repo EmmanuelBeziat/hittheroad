@@ -13,6 +13,8 @@ class HTR_Templates {
 		add_action('body_class', [$this, 'body_classes']);
 		add_filter('the_content', [$this, 'the_content'], 999);
 		add_filter('intermediate_image_sizes_advanced', [$this, 'remove_default_image_sizes']);
+		add_filter('image_editor_output_format', [$this, 'webp_output_format']);
+		add_filter('wp_handle_upload', [$this, 'convert_jpeg_upload_to_webp'], 5);
 		add_action('wp_head', [$this, 'unindex'], 2);
 	}
 
@@ -66,6 +68,59 @@ class HTR_Templates {
 		add_image_size('product-thumbnail', 300, 300, true);
 		add_image_size('product-preview', 768);
 		add_image_size('product-full', 1920);
+	}
+
+	/**
+	 * Save image sizes generated from JPEG uploads as WebP.
+	 * Sizes are written before Ultimate Watermark runs (wp_generate_attachment_metadata), so WebP files get the watermark.
+	 * @param $formats array Source MIME type => output MIME type.
+	 * @return $formats array
+	 */
+	public function webp_output_format ($formats) {
+		if (wp_image_editor_supports(['mime_type' => 'image/webp'])) {
+			$formats['image/jpeg'] = 'image/webp';
+		}
+		return $formats;
+	}
+
+	/**
+	 * Replace an uploaded JPEG with a WebP copy before the attachment is created,
+	 * so the full size (used by the product zoom) is WebP too, then watermarked.
+	 * @param $upload array File path, URL and MIME type of the upload.
+	 * @return $upload array
+	 */
+	public function convert_jpeg_upload_to_webp ($upload) {
+		if (!empty($upload['error']) || 'image/jpeg' !== ($upload['type'] ?? '') || !wp_image_editor_supports(['mime_type' => 'image/webp'])) {
+			return $upload;
+		}
+
+		$editor = wp_get_image_editor($upload['file']);
+		if (is_wp_error($editor)) {
+			return $upload;
+		}
+
+		// WebP drops EXIF: apply the orientation now.
+		$editor->maybe_exif_rotate();
+		$editor->set_quality(90);
+
+		$dir = dirname($upload['file']);
+		// The uploaded JPEG is replaced: only an existing WebP of the same name is a conflict.
+		$filename = pathinfo($upload['file'], PATHINFO_FILENAME) . '.webp';
+		if (file_exists("$dir/$filename")) {
+			$filename = wp_unique_filename($dir, $filename);
+		}
+		$saved = $editor->save($dir . '/' . $filename, 'image/webp');
+		if (is_wp_error($saved)) {
+			return $upload;
+		}
+
+		wp_delete_file($upload['file']);
+
+		return array_merge($upload, [
+			'file' => $saved['path'],
+			'url' => trailingslashit(dirname($upload['url'])) . $saved['file'],
+			'type' => 'image/webp',
+		]);
 	}
 
 	/**
