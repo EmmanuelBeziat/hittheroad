@@ -421,11 +421,10 @@ function writeContent (e) {
 		dropdowns.forEach(({ column, list }) => {
 			createDropdown(sheet.getRange(sheet.getLastRow(), column), list)
 		})
-
-		// Get the URL of the current Google Sheet
-		const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
-		sendEmailNotification(order.email, orderNumber, sheetUrl)
 	})
+
+	// One notification per order, not per product
+	sendEmailNotification(order.email, order.number, SpreadsheetApp.getActiveSpreadsheet().getUrl())
 
 	// Small pause to try avoid exceeds of writing quota
 	Utilities.sleep(500)
