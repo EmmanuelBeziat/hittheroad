@@ -9,6 +9,14 @@ Sources dans `markup/`, compilées vers `www/wp-content/themes/hittheroad-2021/a
 * `npm run dev` : compilation complète + watch
 * `npm run build` : build de production (à lancer avant chaque déploiement des assets)
 
+## Déploiement
+
+`npm run deploy` : build, simulation, confirmation, sauvegarde du thème en production (`~/deploy-backups/`), puis envoi par rsync (`bin/deploy.sh`).
+
+* Prérequis : `brew install rsync`, hôte SSH dans `~/.ssh/config`, `.env` à la racine (non versionné) avec `SSH_HOST` et `SSH_PATH` (dossier du thème en production)
+* Options : `--delete` (supprime en production les fichiers absents en local, sauvegardés), `--no-build`, `--yes`, `--rollback <archive.tar.gz>`
+* Seul le thème est déployé ; `assets/css/custom.css` et `assets/js/custom.js` ne sont jamais modifiés
+
 ## Plugins requis
 
 Le thème affiche un avis dans l'administration si l'un d'eux est absent ou inactif (`HTR_Admin::theme_plugins()`).

@@ -17,7 +17,8 @@
 		"build": "grunt build",
 		"build:styles": "grunt build:styles",
 		"build:scripts": "grunt build:scripts",
-		"check:wc": "node .kilo/scripts/check-wc-templates.js"
+		"check:wc": "node .kilo/scripts/check-wc-templates.js",
+		"deploy": "bash bin/deploy.sh"
 	},
 	"browserslist": [
 		"baseline widely available"
