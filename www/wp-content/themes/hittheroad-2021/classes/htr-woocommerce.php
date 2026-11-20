@@ -30,6 +30,7 @@ class HTR_Woocommerce {
 		add_filter('woocommerce_single_product_image_html', [$this, 'custom_single_product_image_html']);
 		add_filter('single_product_large_thumbnail_size', [$this, 'single_product_image_size']);
 		add_filter('max_srcset_image_width', [$this, 'single_product_srcset_max_width'], 10, 2);
+		add_filter('post_thumbnail_id', [$this, 'variation_thumbnail_fallback'], 10, 2);
 		add_action('woocommerce_before_calculate_totals', [$this, 'apply_custom_pricing_rules'], 10, 1);
 		add_action('woocommerce_before_cart_table', [$this, 'pack_apply_discount_to_cart'], 10, 1);
 		add_action('woocommerce_cart_updated', [$this, 'pack_update_discount_to_cart'], 10, 1);
@@ -261,6 +262,22 @@ class HTR_Woocommerce {
 	 */
 	public function single_product_image_size () {
 		return 'product-preview';
+	}
+
+	/**
+	 * A variation without its own image uses the parent product image, as WooCommerce displays it.
+	 * YITH Zoom Magnifier reads the variation thumbnail when a size is chosen: without it, the zoom URL was empty.
+	 *
+	 * @param int|false    $thumbnail_id Thumbnail ID.
+	 * @param WP_Post|null $post         Post.
+	 * @return int|false
+	 */
+	public function variation_thumbnail_fallback ($thumbnail_id, $post) {
+		if ($thumbnail_id || !$post || 'product_variation' !== $post->post_type || !$post->post_parent) {
+			return $thumbnail_id;
+		}
+
+		return get_post_thumbnail_id($post->post_parent);
 	}
 
 	/**
